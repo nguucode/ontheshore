@@ -20,7 +20,7 @@ const { Content } = await render(entry);
   <p class="faint"><a href={url(lang, "/projects/")}>← {t("Dự án", "Projects")}</a></p>
 
   <h1 style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
-  <p class="entry-meta mono">
+  <p class="entry-meta num">
     {entry.data.role} · {entry.data.year}{entry.data.client ? ` · ${entry.data.client}` : ""}
   </p>
   <p class="lede">{entry.data.summary}</p>
@@ -29,7 +29,7 @@ const { Content } = await render(entry);
     entry.data.cover ? (
       <img class="cover" src={entry.data.cover} alt="" />
     ) : (
-      <div class="cover" aria-hidden="true">
+      <div class="cover placeholder" aria-hidden="true">
         <span>{t("Ảnh bìa — sẽ cập nhật", "Cover image — coming soon")}</span>
       </div>
     )

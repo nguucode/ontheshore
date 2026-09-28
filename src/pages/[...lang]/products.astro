@@ -32,8 +32,9 @@ const t = T(lang);
               <Row
                 href={it.href && (it.local ? url(lang, it.href) : it.href)}
                 title={it.name}
-                lead={g.kind}
-                meta={it.uses ? compact(it.uses) : undefined}
+                lead={it.uses ? compact(it.uses) : "—"}
+                meta={it.uses ? t("lượt dùng", "uses") : undefined}
+                kicker={g.kind}
                 flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
                 note={it.note[lang]}
                 i={i}

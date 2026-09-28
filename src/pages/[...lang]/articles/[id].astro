@@ -20,7 +20,7 @@ const { Content } = await render(entry);
   <p class="faint"><a href={url(lang, "/articles/")}>← {t("Bài viết", "Articles")}</a></p>
 
   <h1>{entry.data.title}</h1>
-  <p class="entry-meta mono">{entry.data.date.toISOString().slice(0, 10)}</p>
+  <p class="entry-meta num">{entry.data.date.toISOString().slice(0, 10)}</p>
 
   <div class="prose">
     <Content />

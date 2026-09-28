@@ -34,8 +34,8 @@ const projects = byLang(await getCollection("projects", (p) => !p.data.draft), l
             title={p.data.title}
             lead={p.data.year}
             meta={p.data.client}
-            note={`${p.data.role} — ${p.data.summary}`}
-            peek={p.data.cover ?? true}
+            kicker={p.data.role}
+            note={p.data.summary}
             vt={`p-${p.slug}`}
             i={i}
           />
