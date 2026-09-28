@@ -1,0 +1,127 @@
+---
+import Base from "../../layouts/Base.astro";
+import Row from "../../components/Row.astro";
+import { getCollection } from "astro:content";
+import { byLang, getLang, langPaths, T, url } from "../../i18n";
+import { compact, topByUses, totalPublished, totalUses } from "../../data/products";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+
+const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 5);
+
+const featured = topByUses[0];
+---
+
+<Base title="Product designer" lang={lang}>
+  <section class="sec">
+    <h2 class="sec-label">{t("Giới thiệu", "About")}</h2>
+    <div class="intro">
+      <h1>{t("Thiết kế sản phẩm, UI/UX.", "Product designer, UI/UX.")}</h1>
+      <p class="lede">
+        <em>
+          {
+            t(
+              "[Cần sếp viết: giới thiệu ngắn 2-3 câu. Làm gì, cho ai, vì sao nên thuê.]",
+              "[Cần sếp viết bản tiếng Anh: 2-3 sentence intro. What you do, for whom, why hire you.]"
+            )
+          }
+        </em>
+      </p>
+    </div>
+    <dl class="proof">
+      <div>
+        <dt>{t("lượt dùng template trên Figma Community", "template uses on Figma Community")}</dt>
+        <dd class="num">{compact(totalUses)}</dd>
+      </div>
+      <div>
+        <dt>{t("sản phẩm đã publish, miễn phí", "products published, all free")}</dt>
+        <dd class="num">{totalPublished}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="sec feature">
+    <h2 class="sec-label">{t("Nổi bật", "Featured")}</h2>
+    <div class="feature-text">
+      <span class="tag">Figma Community</span>
+      <p class="kicker">{t("Template · miễn phí", "Template · free")}</p>
+      <h3 class="feature-title">{featured.name}</h3>
+      <p class="feature-sub">{featured.note[lang]}</p>
+      <p class="feature-stat">
+        <span class="num">{compact(featured.uses!)}</span>
+        {t("lượt dùng", "uses")}
+      </p>
+      <a class="go" href={featured.href} rel="noopener">
+        <span class="go-ring" aria-hidden="true">→</span>{t("Xem trên Figma", "Open in Figma")}
+      </a>
+    </div>
+    <div class="feature-media placeholder" aria-hidden="true">
+      <span>{t("Ảnh sản phẩm — sẽ cập nhật", "Product image — coming soon")}</span>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Dự án", "Work")}</h2>
+    {
+      projects.length === 0 ? (
+        <div class="empty span-3">
+          {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
+        </div>
+      ) : (
+        <ul class="ix">
+          {projects.map((p, i) => (
+            <Row
+              href={url(lang, `/projects/${p.slug}/`)}
+              title={p.data.title}
+              lead={p.data.year}
+              meta={p.data.client}
+              kicker={p.data.role}
+              vt={`p-${p.slug}`}
+              i={i}
+            />
+          ))}
+        </ul>
+      )
+    }
+    <p class="more span-3"><a href={url(lang, "/projects/")}>{t("Tất cả dự án", "All work")} →</a></p>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Sản phẩm", "Products")}</h2>
+    <ul class="ix">
+      {
+        topByUses.slice(0, 3).map((it, i) => (
+          <Row
+            href={it.href}
+            title={it.name}
+            lead={compact(it.uses!)}
+            meta={t("lượt dùng", "uses")}
+            kicker={it.kind}
+            note={it.note[lang]}
+            i={i}
+          />
+        ))
+      }
+    </ul>
+    <p class="more span-3"><a href={url(lang, "/products/")}>{t("Tất cả sản phẩm", "All products")} →</a></p>
+  </section>
+
+  <div class="band placeholder" aria-hidden="true">
+    <span>{t("Ảnh chỗ làm việc / Nha Trang — sẽ cập nhật", "Studio / Nha Trang photo — coming soon")}</span>
+  </div>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Liên hệ", "Contact")}</h2>
+    <div class="span-2">
+      <p>{t("Nhận freelance UI/UX.", "Taking freelance UI/UX work.")}</p>
+      <a class="go" href="mailto:kafka@ontheshore.biz">
+        <span class="go-ring" aria-hidden="true">→</span>kafka@ontheshore.biz
+      </a>
+    </div>
+  </section>
+</Base>

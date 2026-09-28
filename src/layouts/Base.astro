@@ -1,29 +1,33 @@
 ---
 import "../styles/global.css";
+import { type Lang, T, url } from "../i18n";
 
 interface Props {
   title: string;
+  lang: Lang;
   description?: string;
 }
 
-const { title, description = "Ngưu Nguyễn — product designer. UI/UX, freelance." } = Astro.props;
+const { title, lang } = Astro.props;
+const t = T(lang);
+const description = Astro.props.description ?? "Ngưu Nguyễn — product designer. UI/UX, freelance.";
 
 const site = "OnTheShore";
 const path = Astro.url.pathname;
+const bare = path.replace(/^\/vi(?=\/)/, ""); // đường dẫn không kèm /vi
+const other: Lang = lang === "en" ? "vi" : "en";
 
+// icon: path SVG 24x24, nét 1.5
 const nav = [
-  { href: "/cv/", label: "CV" },
-  { href: "/projects/", label: "Projects" },
-  { href: "/products/", label: "Products" },
-  { href: "/articles/", label: "Articles" },
+  { href: "/projects/", label: t("Dự án", "Projects"), icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" },
+  { href: "/products/", label: t("Sản phẩm", "Products"), icon: "M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" },
+  { href: "/articles/", label: t("Bài viết", "Articles"), icon: "M5 5h14M5 10h14M5 15h9M5 20h6" },
+  { href: "/cv/", label: "CV", icon: "M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7" },
 ];
-
-const isCurrent = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,32 +36,66 @@ const isCurrent = (href: string) =>
     <meta property="og:title" content={`${title} — ${site}`} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="vi" href={new URL(url("vi", bare), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(url("en", bare), Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500&display=swap"
+    />
   </head>
   <body>
-    <div class="wrap">
-      <header class="site-head">
-        <a class="brand" href="/">Ngưu Nguyễn</a>
-        <nav>
-          {
-            nav.map((item) => (
-              <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
-                {item.label}
-              </a>
-            ))
-          }
-        </nav>
-      </header>
+    <header class="rail-l">
+      <a class="mark" href={url(lang, "/")} aria-label="Ngưu Nguyễn">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" />
+          <path d="M6 18q4.5-3 9 0t9 0 9 0 9 0M3 25q5.25-3 10.5 0t10.5 0 10.5 0 10.5 0M4 32q5-3 10 0t10 0 10 0 10 0M9 39q3.75-3 7.5 0t7.5 0 7.5 0 7.5 0" />
+        </svg>
+        <span class="mark-name">Ngưu Nguyễn</span>
+        <span class="mark-sub">OnTheShore</span>
+      </a>
+      <a class="lang" href={url(other, bare)} hreflang={other} lang={other}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" /></svg>
+        <span>{other === "en" ? "English" : "Tiếng Việt"}</span>
+      </a>
+    </header>
 
-      <main>
-        <slot />
-      </main>
+    <nav class="rail-r" aria-label={t("Điều hướng chính", "Main")}>
+      {
+        nav.map((item) => (
+          <a href={url(lang, item.href)} aria-current={bare.startsWith(item.href) ? "page" : undefined}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d={item.icon} />
+            </svg>
+            <span>{item.label}</span>
+          </a>
+        ))
+      }
+      <a class="status" href="mailto:kafka@ontheshore.biz">
+        <strong><span class="dot" aria-hidden="true"></span>{t("Đang nhận việc", "Available")}</strong>
+        <small>Nha Trang <time data-clock></time></small>
+      </a>
+    </nav>
 
-      <footer class="site-foot">
-        <span>Nha Trang, Việt Nam</span>
-        <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>
-        <span style="margin-left:auto">© {new Date().getFullYear()}</span>
-      </footer>
-    </div>
+    <main class="sheet">
+      <slot />
+    </main>
+
+    <footer class="site-foot sheet">
+      <span>Nha Trang, Việt Nam</span>
+      <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>
+      <span class="num">© {new Date().getFullYear()}</span>
+    </footer>
+
+    <script is:inline>
+      // Giờ địa phương Nha Trang. Không có JS thì chỉ mất dòng giờ.
+      const el = document.querySelector("[data-clock]");
+      const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit" });
+      const tick = () => (el.textContent = fmt.format(new Date()));
+      tick();
+      setInterval(tick, 30000);
+    </script>
   </body>
 </html>

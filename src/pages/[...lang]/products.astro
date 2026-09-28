@@ -1,0 +1,56 @@
+---
+import Base from "../../layouts/Base.astro";
+import Row from "../../components/Row.astro";
+import { getLang, langPaths, T, url } from "../../i18n";
+import { compact, groups, totalPublished } from "../../data/products";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+---
+
+<Base
+  title={t("Sản phẩm", "Products")}
+  description="Figma templates, plugins, AI skills and open-source libraries published by Ngưu Nguyễn."
+  lang={lang}
+>
+  <h1>{t("Sản phẩm", "Products")}</h1>
+  <p class="lede">
+    {t(`${totalPublished} thứ đã publish, dùng được ngay. Miễn phí.`, `${totalPublished} things published, ready to use. Free.`)}
+  </p>
+
+  {
+    groups.map((g) => (
+      <>
+        <h2>{g.heading[lang]}</h2>
+        {g.items.length === 0 ? (
+          <div class="empty">{t("Chưa có gì publish ở mục này.", "Nothing published here yet.")}</div>
+        ) : (
+          <ul class="ix">
+            {g.items.map((it, i) => (
+              <Row
+                href={it.href && (it.local ? url(lang, it.href) : it.href)}
+                title={it.name}
+                lead={it.uses ? compact(it.uses) : "—"}
+                meta={it.uses ? t("lượt dùng", "uses") : undefined}
+                kicker={g.kind}
+                flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
+                note={it.note[lang]}
+                i={i}
+              />
+            ))}
+          </ul>
+        )}
+      </>
+    ))
+  }
+
+  <hr />
+  <p class="faint">
+    {t("Hồ sơ đầy đủ:", "Full profile:")}{" "}
+    <a href="https://www.figma.com/@nguunguyen73" rel="noopener">
+      figma.com/@nguunguyen73
+    </a>
+  </p>
+</Base>

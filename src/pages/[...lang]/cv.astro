@@ -1,15 +1,25 @@
 ---
-import Base from "../layouts/Base.astro";
+import Base from "../../layouts/Base.astro";
+import { getLang, langPaths, T } from "../../i18n";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
 ---
 
-<Base title="CV" description="Ngưu Nguyễn — Senior / Lead Product Designer.">
+<Base title="CV" description="Ngưu Nguyễn — Senior / Lead Product Designer." lang={lang}>
   <h1>Ngưu Nguyễn</h1>
   <p class="lede">
-    Senior / Lead Product Designer. UI/UX, product design. Nha Trang, Việt Nam.
-    Freelance.
+    {
+      t(
+        "Senior / Lead Product Designer. UI/UX, product design. Nha Trang, Việt Nam. Freelance.",
+        "Senior / Lead Product Designer. UI/UX, product design. Based in Nha Trang, Vietnam. Freelance."
+      )
+    }
   </p>
 
-  <h2>Experience</h2>
+  <h2>{t("Kinh nghiệm", "Experience")}</h2>
   <div class="empty">
     [Cần sếp cung cấp: lịch sử làm việc. Mỗi dòng cần năm, vai trò, nơi làm, và
     1-2 câu về việc đã làm.]
@@ -26,16 +36,16 @@ import Base from "../layouts/Base.astro";
   </div>
   */}
 
-  <h2>Skills</h2>
+  <h2>{t("Kỹ năng", "Skills")}</h2>
   <div class="empty">
     [Cần sếp cung cấp: nhóm kỹ năng. Ví dụ Product design, Design systems,
     Research, Prototyping, Front-end.]
   </div>
 
-  <h2>Tools</h2>
+  <h2>{t("Công cụ", "Tools")}</h2>
   <p class="muted">Figma, Storybook, TailwindCSS, TypeScript.</p>
 
-  <h2>Contact</h2>
+  <h2>{t("Liên hệ", "Contact")}</h2>
   <p>
     <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>
   </p>

@@ -1,0 +1,39 @@
+---
+/* Một dòng kiểu "tin tức" bảo tàng: [lead lớn + meta nhỏ] | [kicker nhỏ / tiêu đề / ghi chú].
+   vt: tên view transition, để tiêu đề "bay" sang h1 của trang chi tiết. */
+interface Props {
+  href?: string;
+  title: string;
+  lead?: string;
+  meta?: string;
+  kicker?: string;
+  note?: string;
+  flag?: string;
+  vt?: string;
+  i?: number;
+}
+
+const { href, title, lead = "", meta, kicker, note, flag, vt, i = 0 } = Astro.props;
+const external = href?.startsWith("http");
+---
+
+<li class="ix-row" style={`--i:${i}`}>
+  <div class="ix-lead">
+    <span class="num">{lead}</span>
+    {meta && <small>{meta}</small>}
+  </div>
+  <div class="ix-main">
+    {kicker && <small class="ix-kicker">{kicker}</small>}
+    {
+      href ? (
+        <a class="ix-title" href={href} rel={external ? "noopener" : undefined} style={vt && `view-transition-name:${vt}`}>
+          {title}
+        </a>
+      ) : (
+        <span class="ix-title">{title}</span>
+      )
+    }
+    {flag && <span class="tag">{flag}</span>}
+    {note && <p class="ix-note">{note}</p>}
+  </div>
+</li>
