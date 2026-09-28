@@ -1,0 +1,322 @@
+<!doctype html>
+<!-- Static demo of Blasphemous's Viewer (a sample Demo), served as-is by GitHub Pages.
+     Port of blasphemous/src/components/phone-3d.tsx; keep the two in step. No build step:
+     three.js comes from jsDelivr through the import map below. -->
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo · Blasphemous</title>
+  <meta name="description" content="Demo mẫu của Blasphemous: prototype Figma chạy trong iPhone 3D xoay được, chuyển Mobile và Desktop.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --stage: #000; --stage-raised: #1d1d1f; --glass: rgb(22 22 23 / 0.8);
+      --ink: #f5f5f7; --ink-secondary: #86868b; --link: #2997ff;
+      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { background: var(--stage); color: var(--ink); font: 15px/1.4 var(--font); -webkit-font-smoothing: antialiased; overflow: hidden; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+    main { position: relative; height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
+    .spot { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 38% 52% at 50% 48%, rgb(255 255 255 / 0.09), transparent 72%); }
+
+    header { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 24px 0; flex-wrap: wrap; }
+    .glass { background: var(--glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08); }
+    .name { min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; border-radius: 18px; font-weight: 600; font-size: 17px; letter-spacing: -0.022em; }
+    .name small { font-weight: 400; font-size: 13px; color: var(--ink-secondary); letter-spacing: 0; }
+    .switch { display: inline-flex; gap: 4px; padding: 4px; border-radius: 18px; }
+    .switch button { min-height: 44px; min-width: 44px; padding: 0 20px; border: 0; border-radius: 14px; background: none; color: var(--ink-secondary); cursor: pointer; font-size: 14px; letter-spacing: -0.016em; transition: color .3s; }
+    .switch button:hover { color: var(--ink); }
+    .switch button[aria-pressed="true"] { background: rgb(255 255 255 / 0.12); color: var(--ink); font-weight: 600; }
+
+    .stage { position: relative; min-height: 0; }
+    .device { position: absolute; inset: 0; }
+    .device[hidden] { display: none; }
+    #phone { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+    #phone:active { cursor: grabbing; }
+    .status { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-secondary); font-size: 14px; pointer-events: none; z-index: 1; }
+    .screen { position: relative; width: 100%; height: 100%; background: var(--stage-raised); }
+    .screen iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .screen .loading { position: absolute; inset: 0; display: grid; place-items: center; background: var(--stage-raised); color: var(--ink-secondary); font-size: 14px; }
+    #desktop { padding: 8px 24px; }
+    .flat { position: absolute; top: 50%; left: 50%; width: 1440px; height: 900px; transform-origin: 0 0; overflow: hidden; border-radius: 20px; background: var(--stage-raised); box-shadow: 0 40px 120px -20px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.1); }
+
+    footer { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; padding: 4px 24px 16px; font-size: 12px; color: var(--ink-secondary); }
+    footer .row { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap; }
+    footer a { min-height: 44px; display: inline-flex; align-items: center; }
+    footer .credit a { color: inherit; text-decoration: underline; min-height: 0; display: inline; }
+    footer .credit a:hover { color: var(--ink); }
+    #reset { min-height: 44px; border: 0; background: none; color: var(--link); cursor: pointer; font-size: 15px; padding: 0; }
+    #reset:hover { text-decoration: underline; }
+    #reset[hidden], .credit[hidden] { display: none; }
+    @media (max-width: 640px) { header { padding: 12px 16px 0; } footer { padding: 4px 16px 12px; } .name small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main>
+    <div class="spot" aria-hidden="true"></div>
+
+    <header>
+      <div class="name glass">Live Chat <small>Demo mẫu · Blasphemous</small></div>
+      <div class="switch glass" role="group" aria-label="Chọn thiết bị">
+        <button type="button" data-device="desktop" aria-pressed="false">Desktop</button>
+        <button type="button" data-device="phone" aria-pressed="true">Mobile</button>
+      </div>
+    </header>
+
+    <div class="stage">
+      <div class="device" id="phone"><p class="status" id="status">Đang tải mô hình…</p></div>
+      <div class="device" id="desktop" hidden><div class="flat" id="flat"></div></div>
+    </div>
+
+    <footer>
+      <div class="row">
+        <a href="/products/blasphemous/">← Blasphemous</a>
+        <button type="button" id="reset">Đưa về thẳng ›</button>
+        <span id="hint">Kéo nền để xoay, bấm vào màn hình để dùng thử.</span>
+      </div>
+      <span class="credit" id="credit">
+        Mô hình “<a href="https://sketchfab.com/3d-models/iphone-17-pro-max-e7c5674931ae4b0ea1b4eaaabb159fdb" rel="noopener">iPhone 17 Pro Max</a>” của
+        <a href="https://sketchfab.com/fqrhmn" rel="noopener">Taufiq K</a>,
+        <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>
+      </span>
+    </footer>
+  </main>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { CSS3DObject, CSS3DRenderer } from "three/addons/renderers/CSS3DRenderer.js";
+    import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+    import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+    // The sample Demo: one Figma prototype, shown on both devices.
+    const SAMPLE = { fileKey: "k0piuu0Zxvnmz3rpCaGLfa", nodeId: "3:10" };
+    const MODEL = {
+      url: "./iphone-17-pro-max.glb",
+      screenMaterial: "17ProMax_Screen",
+      hiddenMaterials: ["17ProMax_glass"], // front glass would cover the screen hole
+      logo: { material: "17ProMax_Logo", paintAs: "17ProMax_color2" }, // no Apple logo
+      islandMaterial: "17ProMax_2112",
+    };
+    const SCREEN_CSS_WIDTH = 393;
+    const FOV = 30;
+    const MAX_TILT_X = 0.6;
+
+    function embedUrl({ fileKey, nodeId }) {
+      const params = new URLSearchParams({
+        "node-id": nodeId.replaceAll(":", "-"), "starting-point-node-id": nodeId, "embed-host": "blasphemous",
+        footer: "false", "hotspot-hints": "false", "viewport-controls": "false", scaling: "contain", "content-scaling": "fixed",
+      });
+      return `https://embed.figma.com/proto/${fileKey}?${params}`;
+    }
+
+    // A screen: the Figma iframe with a loading cover until it has loaded.
+    function screen() {
+      const el = document.createElement("div");
+      el.className = "screen";
+      el.innerHTML = `<iframe title="Prototype Live Chat" allowfullscreen></iframe><div class="loading">Đang tải prototype…</div>`;
+      const iframe = el.querySelector("iframe");
+      iframe.addEventListener("load", () => el.querySelector(".loading")?.remove(), { once: true });
+      iframe.src = embedUrl(SAMPLE);
+      return el;
+    }
+
+    function roundedRect(w, h, r) {
+      const s = new THREE.Shape();
+      const x = -w / 2, y = -h / 2;
+      s.moveTo(x + r, y);
+      s.lineTo(x + w - r, y);
+      s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0);
+      s.lineTo(x + w, y + h - r);
+      s.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2);
+      s.lineTo(x + r, y + h);
+      s.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI);
+      s.lineTo(x, y + r);
+      s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
+      return s;
+    }
+
+    // The screen mesh is a rounded rectangle; its vertex nearest a corner sits on the arc at 45°.
+    function cornerRadius(mesh, box) {
+      const pos = mesh.geometry.attributes.position;
+      const v = new THREE.Vector3();
+      let nearest = Infinity;
+      for (let i = 0; i < pos.count; i++) {
+        v.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld);
+        nearest = Math.min(nearest, v.x - box.min.x + (box.max.y - v.y));
+      }
+      return nearest / 2 / (1 - Math.SQRT1_2);
+    }
+
+    async function loadPhone() {
+      const { scene: model } = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(MODEL.url);
+      model.scale.setScalar(1000);
+      model.rotation.y = Math.PI;
+      const phone = new THREE.Group();
+      phone.add(model);
+      phone.updateMatrixWorld(true);
+      model.position.sub(new THREE.Box3().setFromObject(phone).getCenter(new THREE.Vector3()));
+      phone.updateMatrixWorld(true);
+
+      let screenMesh, logoMesh, panel, islandMesh;
+      phone.traverse((o) => {
+        if (!o.isMesh) return;
+        const name = o.material.name;
+        if (name === MODEL.screenMaterial) screenMesh = o;
+        if (name === MODEL.logo.material) logoMesh = o;
+        if (name === MODEL.logo.paintAs) panel = o.material;
+        if (MODEL.hiddenMaterials.includes(name)) o.visible = false;
+        if (name === MODEL.islandMaterial) islandMesh = o;
+      });
+      if (logoMesh && panel) logoMesh.material = panel;
+      if (islandMesh) {
+        const box = new THREE.Box3().setFromObject(islandMesh);
+        const size = box.getSize(new THREE.Vector3());
+        const capsule = new THREE.Mesh(new THREE.ShapeGeometry(roundedRect(size.x, size.y, size.y / 2), 24), new THREE.MeshBasicMaterial({ color: 0x000000 }));
+        capsule.position.copy(box.getCenter(new THREE.Vector3()));
+        capsule.position.z = box.max.z + 0.05;
+        phone.add(capsule);
+      }
+      if (!screenMesh) throw new Error(`Model has no ${MODEL.screenMaterial} mesh`);
+      // Transparent hole: the CSS3D iframe underneath shows through; island and camera win the depth test.
+      screenMesh.material = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: 0, blending: THREE.NoBlending, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
+      const box = new THREE.Box3().setFromObject(screenMesh);
+      return { phone, screen: box, screenRadius: cornerRadius(screenMesh, box), body: new THREE.Box3().setFromObject(phone).getSize(new THREE.Vector3()) };
+    }
+
+    // ---- 3D phone ----
+    const container = document.getElementById("phone");
+    const status = document.getElementById("status");
+    const target = { x: 0, y: 0 };
+    let body = new THREE.Vector3(79, 163, 9);
+
+    const scene = new THREE.Scene();
+    const cssScene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(FOV, 1, 1, 2000);
+    const rotor = new THREE.Group();
+    const cssRotor = new THREE.Group();
+    scene.add(rotor);
+    cssScene.add(cssRotor);
+
+    const gl = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    gl.setPixelRatio(Math.min(devicePixelRatio, 2));
+    gl.setClearColor(0x000000, 0);
+    Object.assign(gl.domElement.style, { position: "absolute", inset: "0", pointerEvents: "none" });
+    const css = new CSS3DRenderer();
+    Object.assign(css.domElement.style, { position: "absolute", inset: "0" });
+    container.append(css.domElement, gl.domElement);
+
+    const pmrem = new THREE.PMREMGenerator(gl);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    const light = new THREE.DirectionalLight(0xffffff, 1.2);
+    light.position.set(80, 120, 200);
+    scene.add(light);
+
+    function resize() {
+      const { clientWidth: w, clientHeight: h } = container;
+      if (!w || !h) return;
+      camera.aspect = w / h;
+      const t = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+      camera.position.z = Math.max((body.y * 1.12) / 2 / t, (body.x * 1.8) / 2 / (t * camera.aspect));
+      camera.updateProjectionMatrix();
+      gl.setSize(w, h);
+      css.setSize(w, h);
+    }
+    new ResizeObserver(resize).observe(container);
+    resize();
+
+    loadPhone().then(({ phone, screen: box, screenRadius, body: size }) => {
+      rotor.add(phone);
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) rotor.rotation.set(0.12, -0.9, 0);
+      const w = box.max.x - box.min.x;
+      const h = box.max.y - box.min.y;
+      const el = screen();
+      Object.assign(el.style, {
+        width: `${SCREEN_CSS_WIDTH}px`, height: `${Math.round((SCREEN_CSS_WIDTH * h) / w)}px`,
+        borderRadius: `${(SCREEN_CSS_WIDTH * screenRadius) / w}px`, overflow: "hidden", backfaceVisibility: "hidden",
+      });
+      const obj = new CSS3DObject(el);
+      obj.scale.setScalar(w / SCREEN_CSS_WIDTH);
+      obj.position.copy(box.getCenter(new THREE.Vector3()));
+      cssRotor.add(obj);
+      body = size;
+      resize();
+      status.remove();
+    }, (err) => {
+      console.error(err);
+      status.textContent = "Không tải được mô hình điện thoại.";
+    });
+
+    let drag = null;
+    container.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      drag = { x: e.clientX, y: e.clientY };
+      container.setPointerCapture(e.pointerId);
+    });
+    container.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      if (e.buttons === 0) return (drag = null); // pointerup was lost over the iframe
+      target.y += (e.clientX - drag.x) * 0.008;
+      target.x = THREE.MathUtils.clamp(target.x + (e.clientY - drag.y) * 0.008, -MAX_TILT_X, MAX_TILT_X);
+      drag = { x: e.clientX, y: e.clientY };
+    });
+    const up = () => (drag = null);
+    container.addEventListener("pointerup", up);
+    container.addEventListener("pointercancel", up);
+
+    document.getElementById("reset").addEventListener("click", () => {
+      const turn = 2 * Math.PI; // back the short way after several spins
+      target.x = 0;
+      target.y = Math.round(rotor.rotation.y / turn) * turn;
+    });
+
+    (function tick() {
+      requestAnimationFrame(tick);
+      if (!container.clientWidth) return; // hidden while Desktop is showing
+      rotor.rotation.x += (target.x - rotor.rotation.x) * 0.08;
+      rotor.rotation.y += (target.y - rotor.rotation.y) * 0.08;
+      cssRotor.rotation.copy(rotor.rotation);
+      gl.render(scene, camera);
+      css.render(cssScene, camera);
+    })();
+
+    // ---- Desktop frame: created on first open, then only hidden, never reloaded ----
+    const desktop = document.getElementById("desktop");
+    const flat = document.getElementById("flat");
+    function fitDesktop() {
+      const s = Math.min(desktop.clientWidth / 1440, desktop.clientHeight / 900, 1);
+      flat.style.transform = `scale(${s}) translate(-50%, -50%)`;
+    }
+    new ResizeObserver(fitDesktop).observe(desktop);
+
+    // ---- Device switcher ----
+    const phoneOnly = [document.getElementById("reset"), document.getElementById("hint"), document.getElementById("credit")];
+    for (const button of document.querySelectorAll("[data-device]")) {
+      button.addEventListener("click", () => {
+        const device = button.dataset.device;
+        for (const b of document.querySelectorAll("[data-device]")) b.setAttribute("aria-pressed", String(b === button));
+        container.hidden = device !== "phone";
+        desktop.hidden = device !== "desktop";
+        phoneOnly.forEach((el) => (el.hidden = device !== "phone"));
+        if (device === "desktop" && !flat.firstChild) flat.append(screen());
+      });
+    }
+  </script>
+</body>
+</html>
