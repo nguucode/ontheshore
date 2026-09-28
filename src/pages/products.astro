@@ -3,8 +3,19 @@ import Base from "../layouts/Base.astro";
 
 /* Kiểm kê thật từ Figma Community @nguunguyen73, 19/09/2026.
    Số liệu đọc trực tiếp từ trang profile.
-   Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác. */
-type Item = { name: string; href: string; note?: string; stat?: string };
+   Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác.
+   Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
+   wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish. */
+type Item = { name: string; href?: string; note?: string; stat?: string; wip?: boolean };
+
+const apps: Item[] = [
+  {
+    name: "Blasphemous",
+    href: "/products/blasphemous/",
+    wip: true,
+    note: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được.",
+  },
+];
 
 const figmaTemplates: Item[] = [
   {
@@ -57,13 +68,14 @@ const openSource: Item[] = [
 ];
 
 const groups = [
+  { heading: "Apps", items: apps },
   { heading: "Open source", items: openSource },
   { heading: "Figma — Templates", items: figmaTemplates },
   { heading: "Figma — AI Skills", items: figmaSkills },
   { heading: "Figma — Plugins", items: figmaPlugins },
 ];
 
-const totalPublished = groups.reduce((n, g) => n + g.items.length, 0);
+const totalPublished = groups.reduce((n, g) => n + g.items.filter((it) => it.href && !it.wip).length, 0);
 ---
 
 <Base
@@ -85,9 +97,14 @@ const totalPublished = groups.reduce((n, g) => n + g.items.length, 0);
           <ul class="entries">
             {g.items.map((it) => (
               <li>
-                <a class="entry-title" href={it.href} rel="noopener">
-                  {it.name}
-                </a>
+                {it.href ? (
+                  <a class="entry-title" href={it.href} rel="noopener">
+                    {it.name}
+                  </a>
+                ) : (
+                  <span class="entry-title">{it.name}</span>
+                )}
+                {(!it.href || it.wip) && <div class="entry-meta">Đang phát triển</div>}
                 {it.stat && <div class="entry-meta">{it.stat}</div>}
                 {it.note && <p class="entry-note">{it.note}</p>}
               </li>

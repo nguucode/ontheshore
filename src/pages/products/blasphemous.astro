@@ -1,0 +1,29 @@
+---
+import Base from "../../layouts/Base.astro";
+
+// Khi app đã deploy: thêm link app vào đây, bỏ wip: true ở mục Blasphemous trong products.astro.
+---
+
+<Base
+  title="Blasphemous"
+  description="Trình chiếu prototype Figma cho khách bằng một link. Khách không cần tài khoản Figma."
+>
+  <p class="faint"><a href="/products/">← Products</a></p>
+
+  <h1>Blasphemous</h1>
+  <p class="entry-meta">App · Đang phát triển</p>
+  <p class="lede">Gửi khách một link. Họ thấy sản phẩm, không thấy Figma.</p>
+
+  <div class="prose">
+    <p>
+      Dán link prototype Figma cho phone, tablet, desktop. Khách mở một đường dẫn gọn, tự bấm thử,
+      không cần tài khoản Figma.
+    </p>
+    <ul>
+      <li>Một link cho cả ba kích thước, chuyển phone, tablet, desktop ngay trên trang.</li>
+      <li>Khung iPhone 3D xoay được.</li>
+      <li>Tạo Demo không cần đăng ký.</li>
+    </ul>
+    <p>App chưa mở cho mọi người. Link sẽ có ở đây khi app lên sóng.</p>
+  </div>
+</Base>

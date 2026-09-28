@@ -161,7 +161,7 @@ hr {
   color: var(--ink);
 }
 
-.entry-title:hover {
+a.entry-title:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
