@@ -2,12 +2,17 @@
 import Base from "../../../layouts/Base.astro";
 import { getLang, langPaths, T, url } from "../../../i18n";
 
+// Demo tĩnh ở public/products/blasphemous/demo/ (chạy thẳng trên GitHub Pages, không cần build), dùng chung cho cả hai ngôn ngữ.
 // Khi app đã deploy: thêm link app vào đây, bỏ wip: true ở mục Blasphemous trong src/data/products.ts.
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
+
+const sketchfab = "https://sketchfab.com/3d-models/iphone-17-pro-max-e7c5674931ae4b0ea1b4eaaabb159fdb";
+const author = "https://sketchfab.com/fqrhmn";
+const ccby = "https://creativecommons.org/licenses/by/4.0/";
 ---
 
 <Base
@@ -24,33 +29,85 @@ const t = T(lang);
   <p class="entry-meta">Open source · {t("Đang phát triển", "In development")}</p>
   <p class="lede">{t("Gửi khách một link. Họ thấy sản phẩm, không thấy Figma.", "Send one link. Clients see the product, not Figma.")}</p>
 
+  <p>
+    <a href="/products/blasphemous/demo/">{t("Xem demo", "View demo")} ›</a> ·
+    <a href="https://github.com/nguucode/blasphemous" rel="noopener">{t("Mã nguồn trên GitHub", "Source on GitHub")} ›</a> (MIT)
+  </p>
+
   <div class="prose">
     {
       lang === "en" ? (
         <>
+          <h2>Problem</h2>
           <p>
-            Paste Figma prototype links for phone, tablet and desktop. Clients open one clean URL and click through it
-            themselves, no Figma account required.
+            Demoing a Figma prototype to a client usually trips on a few things: the client has to sign in or install Figma
+            to see it, the link is long and the default background looks unprofessional, and a product with phone, tablet
+            and desktop versions means sending three separate links.
           </p>
+
+          <h2>How it works</h2>
+          <ol>
+            <li>In Figma, open Present and Copy the prototype link for each device.</li>
+            <li>Paste the links into Blasphemous and set a name, a path and a background color. The preview shows exactly what the client will see.</li>
+            <li>Send the client one clean Demo Link. They open it in a browser, click through it themselves and switch devices right on the page.</li>
+          </ol>
+
+          <h2>Features</h2>
           <ul>
-            <li>One link for all three sizes; switch phone, tablet, desktop right on the page.</li>
-            <li>A rotatable 3D iPhone frame.</li>
-            <li>Make a demo without signing up.</li>
+            <li>One link for phone, tablet and desktop. Desktop can scale across 3 screen sizes.</li>
+            <li>The phone sits in a rotatable 3D iPhone frame, and the prototype stays clickable at any angle.</li>
+            <li>The prototype is the real Figma file: edit it in Figma and the Demo updates, nothing to rebuild.</li>
+            <li>Make a Demo without signing up. Change the path and the old link still redirects.</li>
           </ul>
-          <p>The app is not open to everyone yet. The link will be here when it goes live.</p>
+
+          <h2>Status</h2>
+          <p>
+            The demo above runs a sample Demo: drag the background to rotate the phone, tap the screen to try it, switch to
+            Desktop. The full app, where you make your own Demo, is not open to everyone yet.
+          </p>
+
+          <h2>Credits</h2>
+          <p>
+            The iPhone frame uses the 3D model <a href={sketchfab} rel="noopener">“iPhone 17 Pro Max”</a> by{" "}
+            <a href={author} rel="noopener">Taufiq K</a>, licensed <a href={ccby} rel="noopener">CC BY 4.0</a>. Blasphemous
+            is not affiliated with Figma or Apple.
+          </p>
         </>
       ) : (
         <>
+          <h2>Vấn đề</h2>
           <p>
-            Dán link prototype Figma cho phone, tablet, desktop. Khách mở một đường dẫn gọn, tự bấm thử, không cần tài
-            khoản Figma.
+            Demo prototype Figma cho khách thường vướng mấy chỗ: khách phải đăng nhập hoặc cài Figma mới xem được, link dài
+            và nền mặc định trông không chuyên nghiệp, còn sản phẩm có bản phone, tablet, desktop thì phải gửi ba link riêng.
           </p>
+
+          <h2>Cách hoạt động</h2>
+          <ol>
+            <li>Trong Figma, mở Present và Copy link prototype cho từng thiết bị.</li>
+            <li>Dán các link vào Blasphemous, đặt tên, đường dẫn và màu nền. Bản xem trước hiện đúng như khách sẽ thấy.</li>
+            <li>Gửi khách một Demo Link gọn. Khách mở trên trình duyệt, tự bấm thử, chuyển giữa các thiết bị ngay trên trang.</li>
+          </ol>
+
+          <h2>Tính năng</h2>
           <ul>
-            <li>Một link cho cả ba kích thước, chuyển phone, tablet, desktop ngay trên trang.</li>
-            <li>Khung iPhone 3D xoay được.</li>
-            <li>Tạo Demo không cần đăng ký.</li>
+            <li>Một link cho cả phone, tablet, desktop. Desktop có thể co giãn theo 3 kích thước màn hình.</li>
+            <li>Phone hiện trong khung iPhone 3D xoay được, vẫn bấm được prototype ở mọi góc.</li>
+            <li>Prototype là file Figma thật: sửa trong Figma là Demo cập nhật theo, không phải dựng lại.</li>
+            <li>Tạo Demo không cần đăng ký. Đổi đường dẫn thì link cũ vẫn tự chuyển về.</li>
           </ul>
-          <p>App chưa mở cho mọi người. Link sẽ có ở đây khi app lên sóng.</p>
+
+          <h2>Trạng thái</h2>
+          <p>
+            Bản demo ở trên chạy một Demo mẫu: kéo nền để xoay máy, bấm vào màn hình để dùng thử, chuyển sang Desktop. App
+            đầy đủ, nơi bạn tạo Demo của riêng mình, chưa mở cho mọi người.
+          </p>
+
+          <h2>Ghi công</h2>
+          <p>
+            Khung iPhone dùng mô hình 3D <a href={sketchfab} rel="noopener">“iPhone 17 Pro Max”</a> của{" "}
+            <a href={author} rel="noopener">Taufiq K</a>, giấy phép <a href={ccby} rel="noopener">CC BY 4.0</a>. Blasphemous
+            không liên kết với Figma hay Apple.
+          </p>
         </>
       )
     }
