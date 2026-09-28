@@ -15,20 +15,43 @@ import Base from "../../layouts/Base.astro";
   <p class="entry-meta">Open source · Đang phát triển</p>
   <p class="lede">Gửi khách một link. Họ thấy sản phẩm, không thấy Figma.</p>
 
+  <p><a href="/products/blasphemous/demo/">Xem demo ›</a></p>
+
   <div class="prose">
+    <h2>Vấn đề</h2>
     <p>
-      Dán link prototype Figma cho phone, tablet, desktop. Khách mở một đường dẫn gọn, tự bấm thử,
-      không cần tài khoản Figma.
+      Demo prototype Figma cho khách thường vướng mấy chỗ: khách phải đăng nhập hoặc cài Figma mới xem được, link dài và nền
+      mặc định trông không chuyên nghiệp, còn sản phẩm có bản phone, tablet, desktop thì phải gửi ba link riêng.
     </p>
+
+    <h2>Cách hoạt động</h2>
+    <ol>
+      <li>Trong Figma, mở Present và Copy link prototype cho từng thiết bị.</li>
+      <li>Dán các link vào Blasphemous, đặt tên, đường dẫn và màu nền. Bản xem trước hiện đúng như khách sẽ thấy.</li>
+      <li>Gửi khách một Demo Link gọn. Khách mở trên trình duyệt, tự bấm thử, chuyển giữa các thiết bị ngay trên trang.</li>
+    </ol>
+
+    <h2>Tính năng</h2>
     <ul>
-      <li>Một link cho cả ba kích thước, chuyển phone, tablet, desktop ngay trên trang.</li>
-      <li>Khung iPhone 3D xoay được.</li>
-      <li>Tạo Demo không cần đăng ký.</li>
+      <li>Một link cho cả phone, tablet, desktop. Desktop có thể co giãn theo 3 kích thước màn hình.</li>
+      <li>Phone hiện trong khung iPhone 3D xoay được, vẫn bấm được prototype ở mọi góc.</li>
+      <li>Prototype là file Figma thật: sửa trong Figma là Demo cập nhật theo, không phải dựng lại.</li>
+      <li>Tạo Demo không cần đăng ký. Đổi đường dẫn thì link cũ vẫn tự chuyển về.</li>
     </ul>
+
+    <h2>Trạng thái</h2>
     <p>
-      <a href="/products/blasphemous/demo/">Xem demo ›</a> Một Demo mẫu chạy trong iPhone 3D: kéo để xoay máy,
-      bấm vào màn hình để dùng thử prototype, chuyển sang Desktop.
+      Bản demo ở trên chạy một Demo mẫu: kéo nền để xoay máy, bấm vào màn hình để dùng thử, chuyển sang Desktop. App đầy đủ,
+      nơi bạn tạo Demo của riêng mình, chưa mở cho mọi người.
     </p>
-    <p>App đầy đủ, nơi bạn tạo Demo của riêng mình, chưa mở cho mọi người.</p>
+
+    <h2>Ghi công</h2>
+    <p>
+      Khung iPhone dùng mô hình 3D
+      <a href="https://sketchfab.com/3d-models/iphone-17-pro-max-e7c5674931ae4b0ea1b4eaaabb159fdb" rel="noopener">“iPhone 17 Pro Max”</a>
+      của <a href="https://sketchfab.com/fqrhmn" rel="noopener">Taufiq K</a>, giấy phép
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Blasphemous không liên kết với Figma
+      hay Apple.
+    </p>
   </div>
 </Base>
