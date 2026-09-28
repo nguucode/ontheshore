@@ -3,7 +3,7 @@
    Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác.
    Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
    wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish.
-   local: href là trang trong site này, cần gắn tiền tố /en/ khi xem bản tiếng Anh. */
+   local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt. */
 export type Item = {
   name: string;
   href?: string;

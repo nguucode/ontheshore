@@ -14,7 +14,7 @@ const description = Astro.props.description ?? "Ngưu Nguyễn — product desig
 
 const site = "OnTheShore";
 const path = Astro.url.pathname;
-const bare = path.replace(/^\/en(?=\/)/, ""); // đường dẫn không kèm /en
+const bare = path.replace(/^\/vi(?=\/)/, ""); // đường dẫn không kèm /vi
 const other: Lang = lang === "en" ? "vi" : "en";
 
 // icon: path SVG 24x24, nét 1.5
