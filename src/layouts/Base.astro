@@ -1,29 +1,33 @@
 ---
 import "../styles/global.css";
+import { type Lang, T, url } from "../i18n";
 
 interface Props {
   title: string;
+  lang: Lang;
   description?: string;
 }
 
-const { title, description = "Ngưu Nguyễn — product designer. UI/UX, freelance." } = Astro.props;
+const { title, lang } = Astro.props;
+const t = T(lang);
+const description =
+  Astro.props.description ?? t("Ngưu Nguyễn — product designer. UI/UX, freelance.", "Ngưu Nguyễn — product designer. UI/UX, freelance.");
 
 const site = "OnTheShore";
 const path = Astro.url.pathname;
+const bare = path.replace(/^\/en(?=\/)/, ""); // đường dẫn không kèm /en
+const other: Lang = lang === "en" ? "vi" : "en";
 
 const nav = [
   { href: "/cv/", label: "CV" },
-  { href: "/projects/", label: "Projects" },
-  { href: "/products/", label: "Products" },
-  { href: "/articles/", label: "Articles" },
+  { href: "/projects/", label: t("Dự án", "Projects") },
+  { href: "/products/", label: t("Sản phẩm", "Products") },
+  { href: "/articles/", label: t("Bài viết", "Articles") },
 ];
-
-const isCurrent = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,20 +36,29 @@ const isCurrent = (href: string) =>
     <meta property="og:title" content={`${title} — ${site}`} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="vi" href={new URL(url("vi", bare), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(url("en", bare), Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
   </head>
   <body>
     <div class="wrap">
       <header class="site-head">
-        <a class="brand" href="/">Ngưu Nguyễn</a>
+        <a class="brand" href={url(lang, "/")}>Ngưu Nguyễn</a>
         <nav>
           {
             nav.map((item) => (
-              <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+              <a href={url(lang, item.href)} aria-current={bare.startsWith(item.href) ? "page" : undefined}>
                 {item.label}
               </a>
             ))
           }
+          <a class="lang" href={url(other, bare)} hreflang={other} lang={other}>{other.toUpperCase()}</a>
         </nav>
       </header>
 
@@ -54,10 +67,19 @@ const isCurrent = (href: string) =>
       </main>
 
       <footer class="site-foot">
-        <span>Nha Trang, Việt Nam</span>
+        <span>Nha Trang, Việt Nam <time class="clock mono" data-clock></time></span>
         <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>
         <span style="margin-left:auto">© {new Date().getFullYear()}</span>
       </footer>
     </div>
+
+    <script is:inline>
+      // Giờ địa phương Nha Trang. Không có JS thì chỉ mất dòng giờ.
+      const el = document.querySelector("[data-clock]");
+      const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit" });
+      const tick = () => (el.textContent = "· " + fmt.format(new Date()));
+      tick();
+      setInterval(tick, 30000);
+    </script>
   </body>
 </html>

@@ -1,0 +1,58 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { getLang, langPaths, T, url } from "../../../i18n";
+
+// Khi app đã deploy: thêm link app vào đây, bỏ wip: true ở mục Blasphemous trong src/data/products.ts.
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+---
+
+<Base
+  title="Blasphemous"
+  description={t(
+    "Trình chiếu prototype Figma cho khách bằng một link. Khách không cần tài khoản Figma.",
+    "Show Figma prototypes to clients with one link. No Figma account needed."
+  )}
+  lang={lang}
+>
+  <p class="faint"><a href={url(lang, "/products/")}>← {t("Sản phẩm", "Products")}</a></p>
+
+  <h1>Blasphemous</h1>
+  <p class="entry-meta">Open source · {t("Đang phát triển", "In development")}</p>
+  <p class="lede">{t("Gửi khách một link. Họ thấy sản phẩm, không thấy Figma.", "Send one link. Clients see the product, not Figma.")}</p>
+
+  <div class="prose">
+    {
+      lang === "en" ? (
+        <>
+          <p>
+            Paste Figma prototype links for phone, tablet and desktop. Clients open one clean URL and click through it
+            themselves, no Figma account required.
+          </p>
+          <ul>
+            <li>One link for all three sizes; switch phone, tablet, desktop right on the page.</li>
+            <li>A rotatable 3D iPhone frame.</li>
+            <li>Make a demo without signing up.</li>
+          </ul>
+          <p>The app is not open to everyone yet. The link will be here when it goes live.</p>
+        </>
+      ) : (
+        <>
+          <p>
+            Dán link prototype Figma cho phone, tablet, desktop. Khách mở một đường dẫn gọn, tự bấm thử, không cần tài
+            khoản Figma.
+          </p>
+          <ul>
+            <li>Một link cho cả ba kích thước, chuyển phone, tablet, desktop ngay trên trang.</li>
+            <li>Khung iPhone 3D xoay được.</li>
+            <li>Tạo Demo không cần đăng ký.</li>
+          </ul>
+          <p>App chưa mở cho mọi người. Link sẽ có ở đây khi app lên sóng.</p>
+        </>
+      )
+    }
+  </div>
+</Base>

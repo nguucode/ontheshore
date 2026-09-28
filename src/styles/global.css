@@ -1,5 +1,5 @@
 /* ontheshore.biz — deliberately plain.
-   One column, one accent, system fonts. Nothing to maintain later. */
+   One column, one accent, one typeface + mono for numbers. No JS except the clock. */
 
 :root {
   --ink: #1a1a1a;
@@ -7,7 +7,10 @@
   --ink-faint: #8a8a8a;
   --rule: #e2e2e2;
   --bg: #fdfdfc;
-  --accent: #1a1a1a;
+  --accent: #2f6f68;
+  --sans: "Be Vietnam Pro", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --measure: 34rem;
   --gap: 1.6rem;
 }
@@ -19,7 +22,7 @@
     --ink-faint: #767672;
     --rule: #2e2e2c;
     --bg: #131312;
-    --accent: #ececea;
+    --accent: #86bdb4;
   }
 }
 
@@ -38,9 +41,8 @@ body {
   padding: 0 1.5rem 6rem;
   background: var(--bg);
   color: var(--ink);
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: var(--sans);
+  font-size: 15.5px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -82,6 +84,7 @@ body {
 .site-head nav a:hover,
 .site-head nav a[aria-current="page"] {
   color: var(--ink);
+  text-decoration-color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -137,45 +140,10 @@ hr {
   margin: 3rem 0;
 }
 
-/* ---------- lists of things ---------- */
-
-.entries {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.entries li {
-  padding: 1.1rem 0;
-  border-top: 1px solid var(--rule);
-}
-
-.entries li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.entry-title {
-  display: block;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink);
-}
-
-a.entry-title:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 .entry-meta {
   font-size: 0.85rem;
   color: var(--ink-faint);
   margin-top: 0.15rem;
-}
-
-.entry-note {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  margin: 0.35rem 0 0;
 }
 
 /* ---------- CV rows ---------- */
@@ -266,9 +234,252 @@ a.entry-title:hover {
 }
 
 .prose code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.88em;
+  font-family: var(--mono);
+  font-size: 0.85em;
   background: var(--rule);
   padding: 0.1em 0.35em;
   border-radius: 3px;
+}
+
+/* ---------- mono numbers ---------- */
+
+.mono,
+.clock {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-head nav a.lang {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0 0.35rem;
+}
+
+/* ---------- status + proof (home) ---------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.4rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: breathe 2.4s var(--ease) infinite;
+}
+
+@keyframes breathe {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 7px transparent; }
+}
+
+.proof {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  gap: 2.5rem;
+  margin: 0 0 1rem;
+}
+
+.proof div {
+  display: flex;
+  flex-direction: column;
+}
+
+.proof dd {
+  order: -1; /* số lên trên, nhãn dưới, vẫn giữ thứ tự dt/dd hợp lệ */
+}
+
+.proof dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.proof dt {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  max-width: 14ch;
+  line-height: 1.4;
+}
+
+.more {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- index rows: [lead] [title + note] [meta] ---------- */
+
+.ix {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ix-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.4rem 1fr auto;
+  gap: 0 1rem;
+  align-items: baseline;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--rule);
+  animation: rise 0.6s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+.ix-lead,
+.ix-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+
+.ix-meta {
+  text-align: right;
+}
+
+.ix-title {
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.ix-title::after {
+  /* cả dòng bấm được */
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.ix-row:has(a.ix-title):hover .ix-title {
+  color: var(--accent);
+}
+
+.ix-row:has(a.ix-title) .ix-main {
+  transition: transform 0.35s var(--ease);
+}
+
+.ix-row:has(a.ix-title):hover .ix-main {
+  transform: translateX(4px);
+}
+
+.ix-flag {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.ix-note {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0.2rem 0 0;
+}
+
+@media (max-width: 34rem) {
+  .ix-row {
+    grid-template-columns: 1fr auto;
+  }
+  .ix-lead {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ảnh xem trước ở lề phải, chỉ khi màn đủ rộng và có chuột */
+.peek {
+  display: none;
+}
+
+@media (min-width: 66rem) and (hover: hover) {
+  .peek {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    left: calc(100% + 2.5rem);
+    top: 50%;
+    width: 15rem;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-8px, -50%) scale(0.97);
+    transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
+  }
+  .ix-row:hover .peek {
+    opacity: 1;
+    transform: translate(0, -50%) scale(1);
+  }
+}
+
+.peek img,
+img.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* placeholder cho ảnh chưa có: kẻ sọc + nhãn */
+.peek,
+.cover {
+  background: repeating-linear-gradient(-45deg, var(--bg) 0 7px, var(--rule) 7px 8px);
+}
+
+.peek span,
+.cover span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  background: var(--bg);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+
+.cover {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 3 / 2;
+  margin: 0 0 2.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+/* chuyển trang mượt giữa các trang (Chrome, Safari 18.2+), trình duyệt khác bỏ qua */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  @view-transition {
+    navigation: none;
+  }
 }

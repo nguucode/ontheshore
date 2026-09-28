@@ -1,0 +1,43 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Row from "../../../components/Row.astro";
+import { getCollection } from "astro:content";
+import { byLang, getLang, langPaths, T, url } from "../../../i18n";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+
+const articles = byLang(await getCollection("articles", (a) => !a.data.draft), lang).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title={t("Bài viết", "Articles")} description="Writing on product design and UX." lang={lang}>
+  <h1>{t("Bài viết", "Articles")}</h1>
+
+  {
+    articles.length === 0 ? (
+      <div class="empty">
+        <p style="margin:0 0 .6rem">{t("Chưa có bài nào.", "Nothing here yet.")}</p>
+        <p style="margin:0" class="faint">
+          {t("Phạm vi chưa chốt (OTS-18). Mỗi bài là một file", "Scope not settled (OTS-18). Each article is a")}{" "}
+          <code>.md</code> {t("trong", "in")} <code>src/content/articles/{lang}/</code>.
+        </p>
+      </div>
+    ) : (
+      <ul class="ix">
+        {articles.map((a, i) => (
+          <Row
+            href={url(lang, `/articles/${a.slug}/`)}
+            title={a.data.title}
+            lead={a.data.date.toISOString().slice(0, 7)}
+            note={a.data.summary}
+            i={i}
+          />
+        ))}
+      </ul>
+    )
+  }
+</Base>

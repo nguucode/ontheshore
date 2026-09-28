@@ -1,0 +1,85 @@
+---
+import Base from "../../layouts/Base.astro";
+import Row from "../../components/Row.astro";
+import { getCollection } from "astro:content";
+import { byLang, getLang, langPaths, T, url } from "../../i18n";
+import { compact, topByUses, totalPublished, totalUses } from "../../data/products";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+
+const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 5);
+---
+
+<Base title="Product designer" lang={lang}>
+  <p class="status"><span class="dot" aria-hidden="true"></span>{t("Đang nhận dự án freelance", "Available for freelance")}</p>
+
+  <h1>{t("Thiết kế sản phẩm, UI/UX.", "Product designer, UI/UX.")}</h1>
+  <p class="lede">
+    <em class="muted">
+      {
+        t(
+          "[Cần sếp viết: giới thiệu ngắn 2-3 câu. Làm gì, cho ai, vì sao nên thuê.]",
+          "[Cần sếp viết bản tiếng Anh: 2-3 sentence intro. What you do, for whom, why hire you.]"
+        )
+      }
+    </em>
+  </p>
+
+  <dl class="proof">
+    <div>
+      <dt>{t("lượt dùng template trên Figma Community", "template uses on Figma Community")}</dt>
+      <dd>{compact(totalUses)}</dd>
+    </div>
+    <div>
+      <dt>{t("sản phẩm đã publish, miễn phí", "products published, all free")}</dt>
+      <dd>{totalPublished}</dd>
+    </div>
+  </dl>
+
+  <h2>{t("Dự án tiêu biểu", "Selected work")}</h2>
+  {
+    projects.length === 0 ? (
+      <div class="empty">
+        {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
+      </div>
+    ) : (
+      <ul class="ix">
+        {projects.map((p, i) => (
+          <Row
+            href={url(lang, `/projects/${p.slug}/`)}
+            title={p.data.title}
+            lead={p.data.year}
+            meta={p.data.client}
+            note={p.data.role}
+            peek={p.data.cover ?? true}
+            vt={`p-${p.slug}`}
+            i={i}
+          />
+        ))}
+      </ul>
+    )
+  }
+
+  <h2>{t("Sản phẩm", "Products")}</h2>
+  <ul class="ix">
+    {
+      topByUses.slice(0, 3).map((it, i) => (
+        <Row href={it.href} title={it.name} lead={it.kind} meta={compact(it.uses!)} note={it.note[lang]} i={i} />
+      ))
+    }
+  </ul>
+  <p class="more"><a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "All products")} →</a></p>
+
+  <hr />
+
+  <h2>{t("Liên hệ", "Contact")}</h2>
+  <p>
+    {t("Nhận freelance UI/UX. Email", "Taking freelance UI/UX work. Email")}{" "}
+    <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>.
+  </p>
+</Base>

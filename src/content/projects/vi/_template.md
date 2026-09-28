@@ -4,6 +4,7 @@ role: "Lead Product Designer"
 year: "2025"
 client: "Tên client (bỏ dòng này nếu NDA)"
 summary: "Một câu: làm gì, cho ai, kết quả gì."
+cover: "/projects/ten-project/cover.png" # tỉ lệ 3:2, bỏ dòng này thì hiện placeholder
 order: 1
 draft: true
 ---

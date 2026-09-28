@@ -1,0 +1,41 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import { byLang, getLang, langPaths, T, url } from "../../../i18n";
+
+export async function getStaticPaths() {
+  const all = await getCollection("projects", (p) => !p.data.draft);
+  return langPaths().flatMap(({ params }) =>
+    byLang(all, getLang(params.lang)).map((p) => ({ params: { ...params, id: p.slug }, props: { entry: p } }))
+  );
+}
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={entry.data.title} description={entry.data.summary} lang={lang}>
+  <p class="faint"><a href={url(lang, "/projects/")}>← {t("Dự án", "Projects")}</a></p>
+
+  <h1 style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
+  <p class="entry-meta mono">
+    {entry.data.role} · {entry.data.year}{entry.data.client ? ` · ${entry.data.client}` : ""}
+  </p>
+  <p class="lede">{entry.data.summary}</p>
+
+  {
+    entry.data.cover ? (
+      <img class="cover" src={entry.data.cover} alt="" />
+    ) : (
+      <div class="cover" aria-hidden="true">
+        <span>{t("Ảnh bìa — sẽ cập nhật", "Cover image — coming soon")}</span>
+      </div>
+    )
+  }
+
+  <div class="prose">
+    <Content />
+  </div>
+</Base>

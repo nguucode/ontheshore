@@ -9,6 +9,7 @@ const projects = defineCollection({
     year: z.string(),
     client: z.string().optional(),
     summary: z.string(),
+    cover: z.string().optional(), // đường dẫn ảnh trong public/, bỏ trống thì hiện placeholder
     order: z.number().default(99),
     draft: z.boolean().default(false),
   }),

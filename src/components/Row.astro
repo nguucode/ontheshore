@@ -1,0 +1,44 @@
+---
+/* Một dòng trong index: [lead mono] [tiêu đề + ghi chú] [meta mono].
+   peek: ảnh xem trước hiện ở lề phải khi hover (màn rộng). Chưa có ảnh -> ô placeholder kẻ sọc.
+   vt: tên view transition, để tiêu đề "bay" sang h1 của trang chi tiết. */
+interface Props {
+  href?: string;
+  title: string;
+  lead?: string;
+  meta?: string;
+  note?: string;
+  flag?: string;
+  peek?: string | true;
+  vt?: string;
+  i?: number;
+}
+
+const { href, title, lead = "", meta, note, flag, peek, vt, i = 0 } = Astro.props;
+const external = href?.startsWith("http");
+---
+
+<li class="ix-row" style={`--i:${i}`}>
+  <span class="ix-lead">{lead}</span>
+  <div class="ix-main">
+    {
+      href ? (
+        <a class="ix-title" href={href} rel={external ? "noopener" : undefined} style={vt && `view-transition-name:${vt}`}>
+          {title}
+        </a>
+      ) : (
+        <span class="ix-title">{title}</span>
+      )
+    }
+    {flag && <span class="ix-flag">{flag}</span>}
+    {note && <p class="ix-note">{note}</p>}
+  </div>
+  {meta && <span class="ix-meta">{meta}</span>}
+  {
+    peek && (
+      <span class="peek" aria-hidden="true">
+        {typeof peek === "string" ? <img src={peek} alt="" loading="lazy" /> : <span>{title}</span>}
+      </span>
+    )
+  }
+</li>
