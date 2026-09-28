@@ -8,15 +8,6 @@ import Base from "../layouts/Base.astro";
    wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish. */
 type Item = { name: string; href?: string; note?: string; stat?: string; wip?: boolean };
 
-const apps: Item[] = [
-  {
-    name: "Blasphemous",
-    href: "/products/blasphemous/",
-    wip: true,
-    note: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được.",
-  },
-];
-
 const figmaTemplates: Item[] = [
   {
     name: "Circle Charts",
@@ -56,6 +47,12 @@ const figmaSkills: Item[] = [
 
 const openSource: Item[] = [
   {
+    name: "Blasphemous",
+    href: "/products/blasphemous/",
+    wip: true,
+    note: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được.",
+  },
+  {
     name: "Moonveil Icons",
     href: "/moonveilicons/",
     note: "Thư viện icon SVG mã nguồn mở, hai style outline và solid. Dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Đang phát triển.",
@@ -68,7 +65,6 @@ const openSource: Item[] = [
 ];
 
 const groups = [
-  { heading: "Apps", items: apps },
   { heading: "Open source", items: openSource },
   { heading: "Figma — Templates", items: figmaTemplates },
   { heading: "Figma — AI Skills", items: figmaSkills },
