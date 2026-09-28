@@ -4,13 +4,15 @@ import Base from "../layouts/Base.astro";
 /* Kiểm kê thật từ Figma Community @nguunguyen73, 19/09/2026.
    Số liệu đọc trực tiếp từ trang profile.
    Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác.
-   Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish. */
-type Item = { name: string; href?: string; note?: string; stat?: string };
+   Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
+   wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish. */
+type Item = { name: string; href?: string; note?: string; stat?: string; wip?: boolean };
 
 const apps: Item[] = [
   {
     name: "Blasphemous",
-    // Thêm href: "https://blasphemous.ontheshore.biz" khi app đã deploy.
+    href: "/products/blasphemous/",
+    wip: true,
     note: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được.",
   },
 ];
@@ -73,7 +75,7 @@ const groups = [
   { heading: "Figma — Plugins", items: figmaPlugins },
 ];
 
-const totalPublished = groups.reduce((n, g) => n + g.items.filter((it) => it.href).length, 0);
+const totalPublished = groups.reduce((n, g) => n + g.items.filter((it) => it.href && !it.wip).length, 0);
 ---
 
 <Base
@@ -102,7 +104,7 @@ const totalPublished = groups.reduce((n, g) => n + g.items.filter((it) => it.hre
                 ) : (
                   <span class="entry-title">{it.name}</span>
                 )}
-                {!it.href && <div class="entry-meta">Đang phát triển</div>}
+                {(!it.href || it.wip) && <div class="entry-meta">Đang phát triển</div>}
                 {it.stat && <div class="entry-meta">{it.stat}</div>}
                 {it.note && <p class="entry-note">{it.note}</p>}
               </li>
