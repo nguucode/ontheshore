@@ -9,6 +9,8 @@
   <title>Demo · Blasphemous</title>
   <meta name="description" content="Demo mẫu của Blasphemous: prototype Figma chạy trong iPhone 3D xoay được, chuyển Mobile và Desktop.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- Start the model download with the HTML; crossorigin matches GLTFLoader's fetch so it is reused. -->
+  <link rel="preload" href="./iphone-17-pro-max.glb" as="fetch" crossorigin>
   <style>
     :root {
       --stage: #000; --stage-raised: #1d1d1f; --glass: rgb(22 22 23 / 0.8);
@@ -117,6 +119,12 @@
     const SCREEN_CSS_WIDTH = 393;
     const FOV = 30;
     const MAX_TILT_X = 0.6;
+    // Canvas at 1.5× at rest, 1× while moving (motion hides it); easing is per second so the phone
+    // settles in ~1.8 s at any frame rate; below SETTLED the render loop stops.
+    const REST_PIXEL_RATIO = Math.min(devicePixelRatio, 1.5);
+    const MOVING_PIXEL_RATIO = Math.min(REST_PIXEL_RATIO, 1);
+    const EASE_PER_SECOND = 5;
+    const SETTLED = 1e-4;
 
     function embedUrl({ fileKey, nodeId }) {
       const params = new URLSearchParams({
@@ -205,6 +213,9 @@
     const status = document.getElementById("status");
     const target = { x: 0, y: 0 };
     let body = new THREE.Vector3(79, 163, 9);
+    const phoneLoading = loadPhone(); // before the renderer and environment, which take a few hundred ms
+    let frame = 0; // pending animation frame; declared early because resize() below already calls wake()
+    let last = 0;
 
     const scene = new THREE.Scene();
     const cssScene = new THREE.Scene();
@@ -215,7 +226,7 @@
     cssScene.add(cssRotor);
 
     const gl = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    gl.setPixelRatio(Math.min(devicePixelRatio, 2));
+    gl.setPixelRatio(REST_PIXEL_RATIO);
     gl.setClearColor(0x000000, 0);
     Object.assign(gl.domElement.style, { position: "absolute", inset: "0", pointerEvents: "none" });
     const css = new CSS3DRenderer();
@@ -235,13 +246,14 @@
       const t = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
       camera.position.z = Math.max((body.y * 1.12) / 2 / t, (body.x * 1.8) / 2 / (t * camera.aspect));
       camera.updateProjectionMatrix();
-      gl.setSize(w, h);
+      gl.setSize(w, h); // clears the canvas, so draw again
       css.setSize(w, h);
+      wake();
     }
     new ResizeObserver(resize).observe(container);
     resize();
 
-    loadPhone().then(({ phone, screen: box, screenRadius, body: size }) => {
+    phoneLoading.then(({ phone, screen: box, screenRadius, body: size }) => {
       rotor.add(phone);
       if (!matchMedia("(prefers-reduced-motion: reduce)").matches) rotor.rotation.set(0.12, -0.9, 0);
       const w = box.max.x - box.min.x;
@@ -275,6 +287,7 @@
       target.y += (e.clientX - drag.x) * 0.008;
       target.x = THREE.MathUtils.clamp(target.x + (e.clientY - drag.y) * 0.008, -MAX_TILT_X, MAX_TILT_X);
       drag = { x: e.clientX, y: e.clientY };
+      wake();
     });
     const up = () => (drag = null);
     container.addEventListener("pointerup", up);
@@ -284,17 +297,32 @@
       const turn = 2 * Math.PI; // back the short way after several spins
       target.x = 0;
       target.y = Math.round(rotor.rotation.y / turn) * turn;
+      wake();
     });
 
-    (function tick() {
-      requestAnimationFrame(tick);
-      if (!container.clientWidth) return; // hidden while Desktop is showing
-      rotor.rotation.x += (target.x - rotor.rotation.x) * 0.08;
-      rotor.rotation.y += (target.y - rotor.rotation.y) * 0.08;
+    // Render only while something moves; an idle phone draws nothing and leaves the iframe alone.
+    function tick(now) {
+      frame = 0;
+      if (!container.clientWidth) return; // hidden while Desktop is showing; resize wakes it when shown
+      const dt = last ? Math.min((now - last) / 1000, 0.1) : 1 / 60;
+      last = now;
+      const dx = target.x - rotor.rotation.x;
+      const dy = target.y - rotor.rotation.y;
+      const settled = !drag && Math.abs(dx) < SETTLED && Math.abs(dy) < SETTLED;
+      const k = 1 - Math.exp(-EASE_PER_SECOND * dt);
+      rotor.rotation.x = settled ? target.x : rotor.rotation.x + dx * k;
+      rotor.rotation.y = settled ? target.y : rotor.rotation.y + dy * k;
       cssRotor.rotation.copy(rotor.rotation);
+      const ratio = settled ? REST_PIXEL_RATIO : MOVING_PIXEL_RATIO;
+      if (gl.getPixelRatio() !== ratio) gl.setPixelRatio(ratio);
       gl.render(scene, camera);
       css.render(cssScene, camera);
-    })();
+      if (settled) last = 0;
+      else frame = requestAnimationFrame(tick);
+    }
+    function wake() {
+      if (!frame) frame = requestAnimationFrame(tick);
+    }
 
     // ---- Desktop frame: created on first open, then only hidden, never reloaded ----
     const desktop = document.getElementById("desktop");
