@@ -15,9 +15,10 @@ const t = T(lang);
 
 const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
   .sort((a, b) => a.data.order - b.data.order);
+const homeProjects = projects.slice(0, 3);
 
 // Có lượt dùng xếp trước, theo số lượt dùng.
-const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0));
+const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0)).slice(0, 3);
 
 const featured = topByUses[0];
 ---
@@ -90,8 +91,8 @@ const featured = topByUses[0];
           {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
         </div>
       ) : (
-        <ul class="ix clip" id="home-projects">
-          {projects.map((p, i) => (
+        <ul class="ix">
+          {homeProjects.map((p, i) => (
             <Row
               href={url(lang, `/projects/${p.slug}/`)}
               title={p.data.title}
@@ -105,16 +106,14 @@ const featured = topByUses[0];
         </ul>
       )
     }
-    {projects.length > 3 && (
-      <p class="more span-3">
-        <a href={url(lang, "/projects/")} data-more="home-projects">{t(`Xem thêm (${projects.length - 3})`, `Display more (${projects.length - 3})`)} ↓</a>
-      </p>
-    )}
+    <p class="more span-3">
+      <a href={url(lang, "/projects/")}>View all →</a>
+    </p>
   </section>
 
   <section class="sec">
     <h2 class="sec-label">Products</h2>
-    <ul class="ix clip" id="home-products">
+    <ul class="ix">
       {
         products.map((it, i) => (
           <Row
@@ -130,11 +129,9 @@ const featured = topByUses[0];
         ))
       }
     </ul>
-    {products.length > 3 && (
-      <p class="more span-3">
-        <a href={url(lang, "/products/")} data-more="home-products">{t(`Xem thêm (${products.length - 3})`, `Display more (${products.length - 3})`)} ↓</a>
-      </p>
-    )}
+    <p class="more span-3">
+      <a href={url(lang, "/products/")}>View all →</a>
+    </p>
   </section>
 
   <Image
@@ -158,14 +155,3 @@ const featured = topByUses[0];
     </div>
   </section>
 </Base>
-
-<script>
-  // "Xem thêm": mở hết danh sách tại chỗ. Không có JS thì link dẫn sang trang đầy đủ.
-  for (const a of document.querySelectorAll<HTMLAnchorElement>("[data-more]")) {
-    a.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.getElementById(a.dataset.more!)?.classList.remove("clip");
-      a.parentElement?.remove();
-    });
-  }
-</script>

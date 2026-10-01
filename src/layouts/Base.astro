@@ -149,10 +149,10 @@ const nav = [
       });
 
       // Link nội dung mở tab mới (kể cả link trong markdown).
-      // Trừ: menu, logo, nút ngôn ngữ, ô Open to work (hai rail), mailto:/tel: (mở app),
-      // #neo trong trang, và nút "Xem thêm" (mở danh sách tại chỗ).
-      for (const a of document.querySelectorAll("a[href]:not([data-more])")) {
-        if (a.closest(".rail-l, .rail-r") || /^(mailto:|tel:|#)/.test(a.getAttribute("href"))) continue;
+      // Trừ: menu, logo, nút ngôn ngữ, ô Open to work (hai rail), "View all" (.more),
+      // mailto:/tel: (mở app) và #neo trong trang.
+      for (const a of document.querySelectorAll("a[href]")) {
+        if (a.closest(".rail-l, .rail-r, .more") || /^(mailto:|tel:|#)/.test(a.getAttribute("href"))) continue;
         a.target = "_blank";
         a.rel = "noopener";
       }
