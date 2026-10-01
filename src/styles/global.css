@@ -212,7 +212,7 @@ svg {
   display: grid;
   place-items: center;
   height: calc(var(--foot-h) + 1px); /* cao bằng footer (kể cả viền trên của footer) */
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   background: var(--bg);
   color: var(--ink);
   padding: 0 0.4rem;
