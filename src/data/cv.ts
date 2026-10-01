@@ -80,5 +80,5 @@ export const skills: { group: string; items: string[] }[] = [
     group: "Engineering",
     items: ["Front-end engineering", "HTML/CSS", "React", "TypeScript", "TailwindCSS", "Git", "Accessibility", "AI-assisted workflows"],
   },
-  { group: "Tools", items: ["Figma", "Storybook", "Miro", "Notion", "Microsoft 365"] },
+  { group: "Tools", items: ["Figma", "FigJam", "Storybook", "Miro", "Jira", "Confluence", "Notion", "Microsoft\u00a0365"] },
 ];
