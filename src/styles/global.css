@@ -132,22 +132,32 @@ svg {
   text-decoration: none;
 }
 
+/* Ngôn ngữ + nút sáng/tối nằm cùng hàng ở đáy rail trái. */
 .tools {
+  display: flex;
+  align-items: center;
   width: 100%;
+  border-top: 1px solid var(--line);
+}
+
+.tools .lang {
+  flex: 1;
+  border-top: 0;
 }
 
 .theme {
-  border-inline: 0;
-  border-bottom: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.4rem 0.6rem 0.4rem 0;
+  border: 0;
   background: none;
   color: var(--accent);
-  font: inherit;
-  font-size: 0.68rem;
   cursor: pointer;
 }
 
-.theme > span {
-  display: contents;
+.theme svg {
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 /* Không có JS thì nút không chạy được: ẩn. Icon là chế độ sẽ chuyển sang. */
@@ -738,9 +748,13 @@ code {
   }
 
   .tools {
-    display: flex;
-    gap: 1rem;
+    gap: 0.9rem;
     width: auto;
+    border-top: 0;
+  }
+
+  .theme {
+    padding: 0.3rem;
   }
 
   .lang {
