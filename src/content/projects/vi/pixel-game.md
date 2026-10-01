@@ -2,7 +2,7 @@
 title: "Game mobile pixel art"
 role: "Vai trò sẽ cập nhật"
 year: "—"
-summary: "Game mobile phong cách pixel art. Chi tiết sẽ cập nhật."
+summary: "Game mobile phong cách pixel art. Case study đang viết."
 order: 6
 draft: false
 ---
