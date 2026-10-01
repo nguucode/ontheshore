@@ -4,7 +4,7 @@ role: "Role to be added"
 year: "—"
 summary: "A mobile app for monitoring an IoT system on the factory floor. Details coming soon."
 order: 3
-draft: false
+draft: true
 ---
 
 ## Problem

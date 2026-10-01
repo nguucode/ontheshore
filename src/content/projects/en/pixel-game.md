@@ -4,7 +4,7 @@ role: "Role to be added"
 year: "—"
 summary: "A mobile game in pixel-art style. Details coming soon."
 order: 6
-draft: false
+draft: true
 ---
 
 ## Problem
