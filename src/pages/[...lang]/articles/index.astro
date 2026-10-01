@@ -23,11 +23,7 @@ const articles = byLang(await getCollection("articles", (a) => !a.data.draft), l
   {
     articles.length === 0 ? (
       <div class="empty">
-        <p style="margin:0 0 .6rem">{t("Chưa có bài nào.", "Nothing here yet.")}</p>
-        <p style="margin:0" class="faint">
-          {t("Phạm vi chưa chốt (OTS-18). Mỗi bài là một file", "Scope not settled (OTS-18). Each article is a")}{" "}
-          <code>.md</code> {t("trong", "in")} <code>src/content/articles/{lang}/</code>.
-        </p>
+        <p style="margin:0">{t("Chưa có bài nào.", "Nothing here yet.")}</p>
       </div>
     ) : (
       <ul class="ix">

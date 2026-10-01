@@ -9,26 +9,21 @@ const t = T(lang);
 ---
 
 <Base title="About me" description={t(
-    "Ngưu Nguyễn, Senior / Lead Product Designer ở Nha Trang. Kinh nghiệm, kỹ năng và công cụ: UI/UX, design system, prototyping, Figma.",
-    "Ngưu Nguyễn, Senior / Lead Product Designer based in Nha Trang, Vietnam. Experience, skills and tools: UI/UX, design systems, prototyping, Figma."
+    "Ngưu Nguyễn, Senior / Lead Product Designer cho sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Product design, design system và front-end.",
+    "Ngưu Nguyễn, Senior / Lead Product Designer for SaaS and enterprise products: CRM, ERP, fintech, accounting. Product design, design systems, front-end."
   )} lang={lang}>
   <h1>Ngưu Nguyễn</h1>
   <p class="lede">
     {
       t(
-        "Senior / Lead Product Designer. UI/UX, product design. Nha Trang, Việt Nam. Freelance.",
-        "Senior / Lead Product Designer. UI/UX, product design. Based in Nha Trang, Vietnam. Freelance."
+        "Senior / Lead Product Designer cho sản phẩm SaaS và enterprise. Đang ở Nha Trang, Việt Nam. Nhận cả vị trí full-time lẫn dự án freelance.",
+        "Senior / Lead Product Designer for SaaS and enterprise products. Based in Nha Trang, Vietnam. Open to full-time roles and freelance projects."
       )
     }
   </p>
 
+  {/* Experience: thêm khi có lịch sử làm việc. Mỗi dòng:
   <h2>Experience</h2>
-  <div class="empty">
-    [Cần sếp cung cấp: lịch sử làm việc. Mỗi dòng cần năm, vai trò, nơi làm, và
-    1-2 câu về việc đã làm.]
-  </div>
-
-  {/* Cấu trúc sẵn, điền vào rồi xoá khối .empty ở trên:
   <div class="row">
     <div class="when">2023 — nay</div>
     <p class="what">
@@ -40,21 +35,16 @@ const t = T(lang);
   */}
 
   <h2>Skills</h2>
-  <div class="empty">
-    [Cần sếp cung cấp: nhóm kỹ năng. Ví dụ Product design, Design systems,
-    Research, Prototyping, Front-end.]
-  </div>
+  <p>Product design · Business analysis · Product ownership · Design systems and tokens · Front-end engineering · Shape Up and agile delivery</p>
+
+  <h2>Domains</h2>
+  <p>SaaS · CRM · ERP · Fintech · {t("Kế toán", "Accounting")}</p>
 
   <h2>Tools</h2>
-  <p class="muted">Figma, Storybook, TailwindCSS, TypeScript.</p>
+  <p class="muted">Figma, Storybook, React, TypeScript, TailwindCSS.</p>
 
   <h2>Contact</h2>
   <p>
     <a href="mailto:nguunguyen.design@gmail.com">nguunguyen.design@gmail.com</a>
-  </p>
-
-  <hr />
-  <p class="faint">
-    [Quyết định chưa chốt: có làm bản PDF tải về không.]
   </p>
 </Base>

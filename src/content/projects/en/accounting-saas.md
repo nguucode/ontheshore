@@ -1,8 +1,8 @@
 ---
-title: "AccountKit"
+title: "Accounting SaaS"
 role: "Role to be added"
 year: "—"
-summary: "An accounting product. Details coming soon."
+summary: "An accounting SaaS product. Case study in progress."
 order: 2
 draft: false
 ---

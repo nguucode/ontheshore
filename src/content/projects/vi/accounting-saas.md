@@ -1,8 +1,8 @@
 ---
-title: "AccountKit"
+title: "Accounting SaaS"
 role: "Vai trò sẽ cập nhật"
 year: "—"
-summary: "Sản phẩm dành cho kế toán. Chi tiết sẽ cập nhật."
+summary: "Sản phẩm SaaS cho kế toán. Case study đang viết."
 order: 2
 draft: false
 ---
