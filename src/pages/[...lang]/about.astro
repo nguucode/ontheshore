@@ -8,7 +8,10 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 ---
 
-<Base title="About me" description="Ngưu Nguyễn — Senior / Lead Product Designer." lang={lang}>
+<Base title="About me" description={t(
+    "Ngưu Nguyễn, Senior / Lead Product Designer ở Nha Trang. Kinh nghiệm, kỹ năng và công cụ: UI/UX, design system, prototyping, Figma.",
+    "Ngưu Nguyễn, Senior / Lead Product Designer based in Nha Trang, Vietnam. Experience, skills and tools: UI/UX, design systems, prototyping, Figma."
+  )} lang={lang}>
   <h1>Ngưu Nguyễn</h1>
   <p class="lede">
     {
