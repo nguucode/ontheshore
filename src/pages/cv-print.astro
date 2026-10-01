@@ -1,7 +1,7 @@
 ---
 // Bản in của CV, khổ A4 một trang, tiếng Anh. Không nằm trong menu hay sitemap.
 // `npm run cv` build rồi in trang này ra public/nguu-nguyen-cv.pdf bằng Chrome (macOS).
-import { experience, skills, tools } from "../data/cv";
+import { experience, skills } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
 import { compact, totalUses } from "../data/products";
 ---
@@ -125,8 +125,15 @@ import { compact, totalUses } from "../data/products";
       .cols p {
         margin: 0;
       }
-      .muted {
-        color: var(--soft);
+      .skill {
+        display: grid;
+        grid-template-columns: 24mm 1fr;
+      }
+      .skill + .skill {
+        margin-top: 1mm;
+      }
+      .group {
+        color: var(--faint);
       }
     </style>
   </head>
@@ -169,8 +176,14 @@ import { compact, totalUses } from "../data/products";
     <div class="cols">
       <div>
         <h2>Skills</h2>
-        <p>{skills.join(" · ")}</p>
-        <p class="muted" style="margin-top:1.5mm">{tools.join(", ")}</p>
+        {
+          skills.map((g) => (
+            <p class="skill">
+              <span class="group">{g.group}</span>
+              <span>{g.items.join(" · ")}</span>
+            </p>
+          ))
+        }
       </div>
       <div>
         <h2>Community and open source</h2>

@@ -3,14 +3,23 @@ import Base from "../../layouts/Base.astro";
 import { Image } from "astro:assets";
 import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
-import { compact, totalUses } from "../../data/products";
+import { compact, groups, totalUses } from "../../data/products";
+import Row from "../../components/Row.astro";
 import { email, linkedin } from "../../data/contact";
-import { experience, skills, tools } from "../../data/cv";
+import { experience, skills } from "../../data/cv";
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
+
+// Community: lấy thẳng từ src/data/products.ts để không lệch với trang Products.
+const byKind = (kind: string) => groups.find((g) => g.kind === kind)!.items;
+const templates = byKind("Figma");
+const community = [
+  ...byKind("Skill").map((it) => ({ ...it, kind: "Skill" })),
+  ...byKind("OSS").map((it) => ({ ...it, kind: "OSS" })),
+];
 
 // Số năm, 9+ ngành và 5 design system/sản phẩm: sếp cung cấp 2026-10-01. Lượt dùng template tính từ src/data/products.ts.
 const facts = [
@@ -94,17 +103,46 @@ const facts = [
   */}
 
   <h2>Community and open source</h2>
-  <p>
-    {t(
-      "Tôi publish Figma template miễn phí và một Figma AI skill trên Figma Community, và duy trì hai dự án open source: Zweihänder, một React UI kit, và Moonveil Icons, một icon library SVG.",
-      "I publish free Figma templates and a Figma AI skill on Figma Community, and maintain two open-source projects: Zweihänder, a React UI kit, and Moonveil Icons, an SVG icon library."
-    )}{" "}
-    <a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a>
-  </p>
+  <ul class="ix">
+    <Row
+      href="https://www.figma.com/@nguunguyen73"
+      title={t("Figma template", "Figma templates")}
+      lead={compact(totalUses)}
+      meta={t("lượt dùng", "uses")}
+      kicker="Figma Community"
+      note={templates.map((it) => it.name).join(", ")}
+    />
+    {
+      community.map((it, i) => (
+        <Row
+          href={it.href && (it.local ? url(lang, it.href) : it.href)}
+          title={it.name}
+          lead="—"
+          kicker={it.kind === "Skill" ? "Figma AI skill" : "Open source"}
+          flag={it.wip ? t("Đang phát triển", "In development") : undefined}
+          note={it.note[lang]}
+          i={i + 1}
+        />
+      ))
+    }
+  </ul>
+  <p class="more"><a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a></p>
 
   <h2>Skills</h2>
-  <p>{skills.join(" · ")}</p>
-  <p class="muted">{tools.join(", ")}.</p>
+  <div>
+    {
+      skills.map((g) => (
+        <div class="row">
+          <div class="when">{g.group}</div>
+          <ul class="chips">
+            {g.items.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
 
   <h2>Contact</h2>
   <p>

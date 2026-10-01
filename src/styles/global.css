@@ -677,6 +677,23 @@ a.ix-title::after {
   line-height: 1.45;
 }
 
+/* tags kỹ năng */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--rule);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
 /* ---------- placeholder / empty state ---------- */
 
 .empty {
@@ -891,6 +908,10 @@ code {
   }
   .row .when {
     order: 2;
+  }
+  /* nhóm kỹ năng: nhãn nhóm vẫn nằm trên tags */
+  .row:has(.chips) .when {
+    order: 0;
   }
 }
 

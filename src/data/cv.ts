@@ -72,14 +72,10 @@ export const experience: Job[] = [
   },
 ];
 
-export const skills = [
-  "Product design",
-  "Design systems and tokens",
-  "Business analysis",
-  "Product ownership",
-  "Front-end engineering",
-  "AI-assisted workflows",
-  "Shape Up and agile delivery",
+// Nhóm Design/Product lấy từ vault about-me và Top skills trên LinkedIn.
+export const skills: { group: string; items: string[] }[] = [
+  { group: "Design", items: ["Product design", "UX design", "Mobile and web UI", "Design systems and tokens"] },
+  { group: "Product", items: ["Business analysis", "Product ownership", "Shape Up and agile delivery", "Lean principles"] },
+  { group: "Engineering", items: ["Front-end engineering", "AI-assisted workflows"] },
+  { group: "Tools", items: ["Figma", "Storybook", "React", "TypeScript", "TailwindCSS"] },
 ];
-
-export const tools = ["Figma", "Storybook", "React", "TypeScript", "TailwindCSS"];
