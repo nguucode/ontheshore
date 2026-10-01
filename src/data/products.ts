@@ -67,6 +67,7 @@ const openSource: Item[] = [
   {
     name: "Moonveil Icons",
     href: "/moonveilicons/",
+    wip: true,
     note: {
       vi: "Thư viện icon SVG mã nguồn mở, hai style outline và solid. Dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Đang phát triển.",
       en: "Open-source SVG icon library, outline and solid. Ships via npm, React, Vue, Web Component, webfont, CDN and CLI. In development.",
