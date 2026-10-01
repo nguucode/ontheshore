@@ -3,9 +3,16 @@
    Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác.
    Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
    wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish.
-   local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt. */
+   local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
+   thumb: hiện ở khung Featured trên trang chủ khi mục này có nhiều lượt dùng nhất. */
+import type { ImageMetadata } from "astro";
+import circleCharts from "../assets/products/circle-charts.png";
+import basicCharts from "../assets/products/basic-charts.png";
+import polarisChart from "../assets/products/polaris-chart.png";
+
 export type Item = {
   name: string;
+  thumb?: ImageMetadata; // ảnh cover tải từ trang Figma Community (og:image)
   href?: string;
   local?: boolean;
   uses?: number;
@@ -17,18 +24,21 @@ const figmaTemplates: Item[] = [
   {
     name: "Circle Charts",
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
+    thumb: circleCharts,
     uses: 72600,
     note: { vi: "Bộ circle chart dựng sẵn cho dashboard.", en: "Ready-made circle charts for dashboards." },
   },
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
+    thumb: basicCharts,
     uses: 18700,
     note: { vi: "Chart cơ bản: bar, line, area.", en: "The basics: bar, line, area." },
   },
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
+    thumb: polarisChart,
     uses: 12600,
     note: { vi: "Chart theo design system Polaris.", en: "Charts built on the Polaris design system." },
   },

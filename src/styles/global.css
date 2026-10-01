@@ -465,6 +465,14 @@ hr {
   padding: 0;
 }
 
+/* ảnh thật giữ nguyên tỉ lệ gốc, không cắt chữ trên cover */
+img.feature-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+}
+
 /* link kiểu bảo tàng: mũi tên trong vòng tròn */
 .go {
   display: inline-flex;
@@ -472,6 +480,7 @@ hr {
   gap: 0.7rem;
   font-size: 0.9rem;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .go-ring {

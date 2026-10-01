@@ -65,9 +65,21 @@ const featured = topByUses[0];
         <span class="go-ring" aria-hidden="true">→</span>{t("Xem trên Figma", "Open in Figma")}
       </a>
     </div>
-    <div class="feature-media placeholder" aria-hidden="true">
-      <span>{t("Ảnh sản phẩm — sẽ cập nhật", "Product image — coming soon")}</span>
-    </div>
+    {
+      featured.thumb ? (
+        <Image
+          class="feature-media"
+          src={featured.thumb}
+          widths={[600, 1000, featured.thumb.width]}
+          sizes="(max-width: 60rem) 100vw, 50vw"
+          alt={featured.name}
+        />
+      ) : (
+        <div class="feature-media placeholder" aria-hidden="true">
+          <span>{t("Ảnh sản phẩm — sẽ cập nhật", "Product image — coming soon")}</span>
+        </div>
+      )
+    }
   </section>
 
   <section class="sec">
