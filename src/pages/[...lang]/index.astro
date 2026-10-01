@@ -22,7 +22,7 @@ const featured = topByUses[0];
 
 <Base lang={lang}>
   <section class="sec">
-    <h2 class="sec-label">{"About"}</h2>
+    <h2 class="sec-label">About</h2>
     <div class="intro">
       <h1>{"Product designer, UI/UX."}</h1>
       <p class="lede">
@@ -49,7 +49,7 @@ const featured = topByUses[0];
   </section>
 
   <section class="sec feature">
-    <h2 class="sec-label">{"Featured"}</h2>
+    <h2 class="sec-label">Featured</h2>
     <div class="feature-text">
       <span class="tag">Figma Community</span>
       <p class="kicker">{t("Template · miễn phí", "Template · free")}</p>
@@ -69,7 +69,7 @@ const featured = topByUses[0];
   </section>
 
   <section class="sec">
-    <h2 class="sec-label">{"Work"}</h2>
+    <h2 class="sec-label">Projects</h2>
     {
       projects.length === 0 ? (
         <div class="empty span-3">
@@ -99,7 +99,7 @@ const featured = topByUses[0];
   </section>
 
   <section class="sec">
-    <h2 class="sec-label">{"Products"}</h2>
+    <h2 class="sec-label">Products</h2>
     <ul class="ix clip" id="home-products">
       {
         products.map((it, i) => (
@@ -128,7 +128,7 @@ const featured = topByUses[0];
   </div>
 
   <section class="sec">
-    <h2 class="sec-label">{"Contact"}</h2>
+    <h2 class="sec-label">Contact</h2>
     <div class="span-2">
       <p>{t("Nhận freelance UI/UX.", "Taking freelance UI/UX work.")}</p>
       <p><a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a></p>
