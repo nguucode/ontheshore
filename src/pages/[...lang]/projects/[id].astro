@@ -17,7 +17,7 @@ const { Content } = await render(entry);
 ---
 
 <Base title={entry.data.title} description={entry.data.summary} lang={lang}>
-  <p class="faint"><a href={url(lang, "/projects/")}>← {t("Dự án", "Projects")}</a></p>
+  <p class="faint"><a href={url(lang, "/projects/")}>← {"Projects"}</a></p>
 
   <h1 style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
   <p class="entry-meta num">
