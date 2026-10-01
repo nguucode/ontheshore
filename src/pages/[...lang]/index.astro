@@ -6,7 +6,7 @@ import nhaTrang from "../../assets/nha-trang.jpg";
 import { getCollection } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
 import { all, compact, topByUses, totalPublished, totalUses } from "../../data/products";
-import { email, phone } from "../../data/contact";
+import { email, linkedin, phone } from "../../data/contact";
 
 export const getStaticPaths = langPaths;
 
@@ -142,6 +142,7 @@ const featured = topByUses[0];
       <p>{t("Hiện tại đang sống ở Nha Trang.", "Living in Nha Trang, for now.")}</p>
       <p><a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a></p>
       <p><a class="go" href={email.href}><span class="go-ring" aria-hidden="true">→</span>{email.value}</a></p>
+      <p><a class="go" href={linkedin.href}><span class="go-ring" aria-hidden="true">→</span>{linkedin.label}</a></p>
     </div>
   </section>
 </Base>
