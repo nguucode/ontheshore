@@ -15,11 +15,11 @@ const projects = byLang(await getCollection("projects", (p) => !p.data.draft), l
 ---
 
 <Base title={t("Dự án", "Projects")} description={t(
-    "Case study UI/UX của Ngưu Nguyễn: Shopify app, design system, thư viện icon, app IoT. Vấn đề, vai trò, quá trình, kết quả.",
+    "Case study UI/UX của Ngưu Nguyễn: Shopify app, design system, icon library, IoT app. Problem, role, process, outcome.",
     "UI/UX case studies by Ngưu Nguyễn: a Shopify app, a design system, an icon library, an IoT app. Problem, role, process, outcome."
   )} lang={lang}>
   <h1>{t("Dự án", "Projects")}</h1>
-  <p class="lede">{t("Case study. Vấn đề, vai trò, quá trình, kết quả.", "Case studies. Problem, role, process, outcome.")}</p>
+  <p class="lede">{t("Case study. Problem, role, process, outcome.", "Case studies. Problem, role, process, outcome.")}</p>
 
   {
     projects.length === 0 ? (

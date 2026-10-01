@@ -18,19 +18,19 @@ const figmaTemplates: Item[] = [
     name: "Circle Charts",
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
     uses: 72600,
-    note: { vi: "Bộ biểu đồ tròn dựng sẵn cho dashboard.", en: "Ready-made circle charts for dashboards." },
+    note: { vi: "Bộ circle chart dựng sẵn cho dashboard.", en: "Ready-made circle charts for dashboards." },
   },
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
     uses: 18700,
-    note: { vi: "Biểu đồ nền tảng: cột, đường, vùng.", en: "The basics: bar, line, area." },
+    note: { vi: "Chart cơ bản: bar, line, area.", en: "The basics: bar, line, area." },
   },
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
     uses: 12600,
-    note: { vi: "Biểu đồ theo hệ design system Polaris.", en: "Charts built on the Polaris design system." },
+    note: { vi: "Chart theo design system Polaris.", en: "Charts built on the Polaris design system." },
   },
   {
     name: "Country Flags",
@@ -69,7 +69,7 @@ const openSource: Item[] = [
     href: "https://nguucode.github.io/moonveilicons/",
     wip: true,
     note: {
-      vi: "Thư viện icon SVG mã nguồn mở, hai style outline và solid. Dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Đang phát triển.",
+      vi: "Icon library SVG open source, hai style outline và solid. Dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Đang phát triển.",
       en: "Open-source SVG icon library, outline and solid. Ships via npm, React, Vue, Web Component, webfont, CDN and CLI. In development.",
     },
   },

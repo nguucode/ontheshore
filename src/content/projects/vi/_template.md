@@ -9,21 +9,21 @@ order: 1
 draft: true
 ---
 
-## Vấn đề
+## Problem
 
 Chuyện gì đang sai. Ai chịu hậu quả. Đo được bằng gì.
 
-## Vai trò của tôi
+## My role
 
 Làm một mình hay trong team. Tôi phụ trách phần nào. Ai quyết cái gì.
 
-## Quá trình
+## Process
 
 Các bước thật. Cái gì thử rồi bỏ cũng nên viết, đó là phần người đọc tin.
 
 ![Mô tả ảnh](/projects/ten-project/hinh-1.png)
 
-## Kết quả
+## Outcome
 
 Số đo được nếu có. Nếu không có số thì nói thẳng là không có, và mô tả thay đổi quan sát được.
 

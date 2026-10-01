@@ -7,18 +7,18 @@ order: 6
 draft: false
 ---
 
-## Vấn đề
+## Problem
 
 Sẽ cập nhật.
 
-## Vai trò của tôi
+## My role
 
 Sẽ cập nhật.
 
-## Quá trình
+## Process
 
 Sẽ cập nhật.
 
-## Kết quả
+## Outcome
 
 Sẽ cập nhật.

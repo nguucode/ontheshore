@@ -7,7 +7,7 @@ order: 1
 draft: false
 ---
 
-## Sản phẩm
+## The product
 
 TrueProfit ("TP: True Profit Analytics") tính lợi nhuận ròng của cửa hàng Shopify theo thời gian thực. App tự lấy các khoản chi phí: giá vốn, phí ship, phí giao dịch, thuế, chi phí quảng cáo và chi phí tuỳ chỉnh. App có mặt trên Shopify App Store từ 31/07/2019.
 
@@ -27,14 +27,14 @@ App kết nối với các nền tảng quảng cáo (Facebook, Google, TikTok, 
 
 Trang sản phẩm: [trueprofit.io](https://trueprofit.io/)
 
-## Vai trò của tôi
+## My role
 
 Sẽ cập nhật.
 
-## Quá trình
+## Process
 
 Sẽ cập nhật.
 
-## Kết quả
+## Outcome
 
 Sẽ cập nhật.

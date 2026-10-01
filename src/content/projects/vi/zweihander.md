@@ -9,18 +9,18 @@ draft: false
 
 Link: [GitHub](https://github.com/nguucode/zweihander) · [npm](https://www.npmjs.com/package/zweihander) (0.7.0, giai đoạn đầu) · [Storybook](https://nguucode.github.io/zweihander/)
 
-## Vấn đề
+## Problem
 
 Sẽ cập nhật.
 
-## Vai trò của tôi
+## My role
 
 Sẽ cập nhật.
 
-## Quá trình
+## Process
 
 Sẽ cập nhật.
 
-## Kết quả
+## Outcome
 
 Sẽ cập nhật.
