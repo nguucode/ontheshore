@@ -1,21 +1,39 @@
 ---
 import "../styles/global.css";
 import { type Lang, T, url } from "../i18n";
+import { contacts, email, phone } from "../data/contact";
 
 interface Props {
-  title: string;
+  title?: string; // bỏ trống = trang chủ
   lang: Lang;
   description?: string;
 }
 
 const { title, lang } = Astro.props;
 const t = T(lang);
-const description = Astro.props.description ?? "Ngưu Nguyễn — product designer. UI/UX, freelance.";
+const description = Astro.props.description ?? "Product Designer, UI/UX";
 
 const site = "OnTheShore";
+const fullTitle = title ? `${title} — ${site}` : "ontheshore";
 const path = Astro.url.pathname;
 const bare = path.replace(/^\/vi(?=\/)/, ""); // đường dẫn không kèm /vi
 const other: Lang = lang === "en" ? "vi" : "en";
+const canonical = new URL(path, Astro.site);
+const ogImage = new URL("/og.png", Astro.site);
+
+// Thông tin cho Google (schema.org Person).
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ngưu Nguyễn",
+  jobTitle: "Product Designer, UI/UX",
+  url: Astro.site,
+  image: new URL("/avatar.png", Astro.site),
+  email: email.value,
+  telephone: phone.href.slice(4),
+  address: { "@type": "PostalAddress", addressLocality: "Nha Trang", addressCountry: "VN" },
+  sameAs: contacts.filter((c) => c.href.startsWith("http")).map((c) => c.href),
+};
 
 // icon: path SVG 24x24, nét 1.5
 const nav = [
@@ -33,14 +51,29 @@ const nav = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} — {site}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={`${title} — ${site}`} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content={site} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "vi_VN"} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#003c88" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14284f" media="(prefers-color-scheme: dark)" />
     <link rel="alternate" hreflang="vi" href={new URL(url("vi", bare), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(url("en", bare), Astro.site)} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" hreflang="x-default" href={new URL(url("en", bare), Astro.site)} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -51,10 +84,7 @@ const nav = [
   <body>
     <header class="rail-l">
       <a class="mark" href={url(lang, "/")} aria-label="Ngưu Nguyễn">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="22" />
-          <path d="M6 18q4.5-3 9 0t9 0 9 0 9 0M3 25q5.25-3 10.5 0t10.5 0 10.5 0 10.5 0M4 32q5-3 10 0t10 0 10 0 10 0M9 39q3.75-3 7.5 0t7.5 0 7.5 0 7.5 0" />
-        </svg>
+        <img src="/avatar.png" alt="" width="96" height="96" />
         <span class="mark-name">Ngưu Nguyễn</span>
         <span class="mark-sub">OnTheShore</span>
       </a>
@@ -76,8 +106,7 @@ const nav = [
         ))
       }
       <a class="status" href={url(lang, "/contact/")}>
-        <strong><span class="dot" aria-hidden="true"></span>{t("Đang nhận việc", "Available")}</strong>
-        <small>Nha Trang <time data-clock></time></small>
+        <strong><span class="dot" aria-hidden="true"></span>Open to work</strong>
       </a>
     </nav>
 
@@ -87,8 +116,8 @@ const nav = [
 
     <footer class="site-foot sheet">
       <span>Nha Trang, Việt Nam</span>
-      <a href="mailto:nguunguyen.design@gmail.com">nguunguyen.design@gmail.com</a>
-      <span class="num">© {new Date().getFullYear()}</span>
+      <a href={email.href}>{email.value}</a>
+      <span class="num">© ontheshore.biz</span>
     </footer>
 
     <script is:inline>
@@ -99,13 +128,6 @@ const nav = [
           a.rel = "noopener";
         }
       }
-
-      // Giờ địa phương Nha Trang. Không có JS thì chỉ mất dòng giờ.
-      const el = document.querySelector("[data-clock]");
-      const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit" });
-      const tick = () => (el.textContent = fmt.format(new Date()));
-      tick();
-      setInterval(tick, 30000);
     </script>
   </body>
 </html>

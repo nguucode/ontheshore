@@ -102,11 +102,10 @@ svg {
   text-decoration: none;
 }
 
-.mark svg {
+.mark img {
   width: 3.4rem;
   height: 3.4rem;
-  color: var(--accent);
-  stroke-width: 1.4;
+  border-radius: 50%;
 }
 
 .mark-name {
@@ -200,12 +199,6 @@ svg {
   justify-content: center;
   align-items: center;
   gap: 0.1rem 0.35rem;
-}
-
-.status small {
-  color: var(--ink-soft);
-  font-size: 0.66rem;
-  font-family: var(--num-font);
 }
 
 .dot {
@@ -709,7 +702,7 @@ code {
     gap: 0.6rem;
   }
 
-  .mark svg {
+  .mark img {
     width: 2.2rem;
     height: 2.2rem;
   }

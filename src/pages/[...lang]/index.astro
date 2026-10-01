@@ -20,7 +20,7 @@ const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0));
 const featured = topByUses[0];
 ---
 
-<Base title="Product designer" lang={lang}>
+<Base lang={lang}>
   <section class="sec">
     <h2 class="sec-label">{t("Giới thiệu", "About")}</h2>
     <div class="intro">
