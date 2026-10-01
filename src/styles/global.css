@@ -648,6 +648,7 @@ a.ix-title::after {
 .portrait {
   width: 10rem;
   height: auto;
+  border-radius: 50%; /* ảnh export từ Figma còn nền xám ở 4 góc */
   margin-bottom: 1.5rem;
 }
 
