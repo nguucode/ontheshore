@@ -11,12 +11,12 @@ export const getStaticPaths = langPaths;
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-// Nguồn: LinkedIn của sếp (đọc 2026-10-01). Ẩn danh theo brief cv-portfolio: mô tả loại công ty, không nêu tên.
+// Nguồn: LinkedIn của sếp (đọc 2026-10-01). Nêu tên công ty (sếp chốt 2026-10-01); số liệu và màn hình nội bộ vẫn không đưa lên.
 const experience = [
   {
     when: "2023 — 2026",
     role: "Senior Product Designer",
-    where: t("Công ty outsourcing phần mềm enterprise, khách hàng toàn cầu", "Enterprise software outsourcing firm, global clients"),
+    where: t("TMA Solutions · outsourcing phần mềm enterprise", "TMA Solutions · enterprise software outsourcing"),
     what: t(
       "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare và logistics. Cách làm system-first giữ chất lượng đồng đều giữa các dự án thay vì mỗi dự án tự dựng lại từ đầu.",
       "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality consistent from one engagement to the next instead of rebuilding each time."
@@ -25,7 +25,7 @@ const experience = [
   {
     when: "2023",
     role: "Product Designer",
-    where: t("Phần mềm logistics enterprise: shipping, terminal, freight forwarding", "Enterprise logistics software: shipping, terminal, freight forwarding"),
+    where: t("CyberLogitec · phần mềm logistics enterprise", "CyberLogitec · enterprise logistics software"),
     what: t(
       "Định hướng design trong product team, biến các workflow vận hành dày đặc thành giao diện theo từng vai trò.",
       "Led design direction in the product team, turning dense operational workflows into role-specific interfaces."
@@ -34,7 +34,7 @@ const experience = [
   {
     when: "2021 — 2023",
     role: "UI/UX Designer",
-    where: t("Sản phẩm CRM cho ngân hàng và fintech", "Banking and fintech CRM product"),
+    where: t("Aperia Solutions · CRM cho ngân hàng và fintech", "Aperia Solutions · banking and fintech CRM"),
     what: t(
       "Phụ trách UX cho các trang sản phẩm và workflow chính, duy trì design system trong Figma, làm cùng PO và BA suốt quá trình delivery.",
       "Owned the UX across product pages and core workflows, maintained the design system in Figma, and worked with POs and BAs through delivery."
@@ -43,7 +43,7 @@ const experience = [
   {
     when: "2020 — 2021",
     role: "Product Designer",
-    where: t("Shopify app về profit analytics", "Shopify profit analytics app"),
+    where: t("FireGroup Technology · Shopify app về profit analytics", "FireGroup Technology · Shopify profit analytics app"),
     href: "/projects/shopify-profit-analytics/",
     what: t(
       "Thiết kế end-to-end từ research, prototype tới handoff. Dựng và làm chủ design library lõi, làm trực tiếp với engineer để bản code khớp thiết kế.",
@@ -53,7 +53,7 @@ const experience = [
   {
     when: "2019 — 2020",
     role: "UI/UX Designer",
-    where: "Design studio",
+    where: "Conceptual Studio · design studio",
     what: t(
       "Dự án e-commerce, mobile và web, làm cả UX flow lẫn visual. Dựng UI kit và WordPress theme dùng nội bộ và bán ra thị trường.",
       "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market."
@@ -62,7 +62,7 @@ const experience = [
   {
     when: "2019",
     role: "UI/UX Design Intern",
-    where: "Digital agency",
+    where: "Kyanon Digital · digital agency",
   },
 ];
 
