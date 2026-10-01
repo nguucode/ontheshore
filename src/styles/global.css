@@ -677,6 +677,12 @@ a.ix-title::after {
   line-height: 1.45;
 }
 
+.row .what .tag {
+  margin-left: 0.5rem;
+  background: var(--status);
+  color: var(--ink-soft);
+}
+
 /* tags kỹ năng */
 .chips {
   display: flex;

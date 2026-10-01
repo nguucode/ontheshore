@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
 import { compact, groups, totalUses } from "../../data/products";
-import Row from "../../components/Row.astro";
 import { email, linkedin } from "../../data/contact";
 import { experience, skills } from "../../data/cv";
 
@@ -17,9 +16,21 @@ const t = T(lang);
 const byKind = (kind: string) => groups.find((g) => g.kind === kind)!.items;
 const templates = byKind("Figma");
 const community = [
-  ...byKind("Skill").map((it) => ({ ...it, kind: "Skill" })),
-  ...byKind("OSS").map((it) => ({ ...it, kind: "OSS" })),
-];
+  {
+    when: `${compact(totalUses)} ${t("lượt dùng", "uses")}`,
+    name: t("Figma template", "Figma templates"),
+    href: "https://www.figma.com/@nguunguyen73",
+    note: templates.map((it) => it.name).join(", "),
+  },
+  ...byKind("Skill").map((it) => ({ when: "Figma AI skill", name: it.name, href: it.href!, note: it.note[lang], wip: it.wip })),
+  ...byKind("OSS").map((it) => ({
+    when: "Open source",
+    name: it.name,
+    href: it.local ? url(lang, it.href!) : it.href!,
+    note: it.note[lang],
+    wip: it.wip,
+  })),
+]
 
 // Số năm, 9+ ngành và 5 design system/sản phẩm: sếp cung cấp 2026-10-01. Lượt dùng template tính từ src/data/products.ts.
 const facts = [
@@ -103,29 +114,23 @@ const facts = [
   */}
 
   <h2>Community and open source</h2>
-  <ul class="ix">
-    <Row
-      href="https://www.figma.com/@nguunguyen73"
-      title={t("Figma template", "Figma templates")}
-      lead={compact(totalUses)}
-      meta={t("lượt dùng", "uses")}
-      kicker="Figma Community"
-      note={templates.map((it) => it.name).join(", ")}
-    />
+  <div>
     {
-      community.map((it, i) => (
-        <Row
-          href={it.href && (it.local ? url(lang, it.href) : it.href)}
-          title={it.name}
-          lead="—"
-          kicker={it.kind === "Skill" ? "Figma AI skill" : "Open source"}
-          flag={it.wip ? t("Đang phát triển", "In development") : undefined}
-          note={it.note[lang]}
-          i={i + 1}
-        />
+      community.map((it) => (
+        <div class="row">
+          <div class="when num">{it.when}</div>
+          <p class="what">
+            <strong>
+              <a href={it.href}>{it.name}</a>
+            </strong>
+            {it.wip && <span class="tag">{t("Đang phát triển", "In development")}</span>}
+            <br />
+            <span class="where">{it.note}</span>
+          </p>
+        </div>
       ))
     }
-  </ul>
+  </div>
   <p class="more"><a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a></p>
 
   <h2>Skills</h2>
