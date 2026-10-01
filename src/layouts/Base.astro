@@ -18,6 +18,8 @@ const fullTitle = title ? `${title} — ${site}` : "ontheshore";
 const path = Astro.url.pathname;
 const bare = path.replace(/^\/vi(?=\/)/, ""); // đường dẫn không kèm /vi
 const other: Lang = lang === "en" ? "vi" : "en";
+// Umami Cloud (gói Hobby miễn phí). Website ID lấy trong cloud.umami.is → Settings → Websites.
+const umamiId = "927cfeb3-1366-49b5-a686-c58d067f90e3";
 const canonical = new URL(path, Astro.site);
 const ogImage = new URL("/og.png", Astro.site);
 
@@ -73,6 +75,7 @@ const nav = [
     <link rel="icon" href="/icon-192.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    {umamiId && <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} data-domains="ontheshore.biz" />}
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
