@@ -852,3 +852,8 @@ code {
     navigation: none;
   }
 }
+
+/* trang chủ: chỉ hiện 3 dòng đầu tới khi bấm "Xem thêm" */
+.ix.clip > .ix-row:nth-child(n + 4) {
+  display: none;
+}

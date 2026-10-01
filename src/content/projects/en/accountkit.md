@@ -4,7 +4,7 @@ role: "Role to be added"
 year: "—"
 summary: "An accounting product. Details coming soon."
 order: 2
-draft: true
+draft: false
 ---
 
 ## Problem

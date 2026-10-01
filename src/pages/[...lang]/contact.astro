@@ -1,0 +1,20 @@
+---
+import Base from "../../layouts/Base.astro";
+import Row from "../../components/Row.astro";
+import { getLang, langPaths, T } from "../../i18n";
+import { contacts } from "../../data/contact";
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+---
+
+<Base title={t("Liên hệ", "Contact")} description="Contact Ngưu Nguyễn — phone, email, LinkedIn, Zalo, Facebook, Figma." lang={lang}>
+  <h1>{t("Liên hệ", "Contact")}</h1>
+  <p class="lede">{t("Nhận freelance UI/UX. Nha Trang, Việt Nam.", "Taking freelance UI/UX work. Nha Trang, Vietnam.")}</p>
+
+  <ul class="ix">
+    {contacts.map((c, i) => <Row href={c.href} title={c.value} lead={c.label} i={i} />)}
+  </ul>
+</Base>

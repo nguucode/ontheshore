@@ -4,7 +4,7 @@ role: "Vai trò sẽ cập nhật"
 year: "—"
 summary: "Mobile app giám sát hệ thống IoT trong nhà máy. Chi tiết sẽ cập nhật."
 order: 3
-draft: true
+draft: false
 ---
 
 ## Vấn đề

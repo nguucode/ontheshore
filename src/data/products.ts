@@ -90,7 +90,7 @@ export const groups = [
   { kind: "Plugin", heading: { vi: "Figma — Plugins", en: "Figma — Plugins" }, items: figmaPlugins },
 ];
 
-const all = groups.flatMap((g) => g.items.map((it) => ({ ...it, kind: g.kind })));
+export const all = groups.flatMap((g) => g.items.map((it) => ({ ...it, kind: g.kind })));
 
 export const isPublished = (it: Item) => Boolean(it.href && !it.wip);
 export const totalPublished = all.filter(isPublished).length;

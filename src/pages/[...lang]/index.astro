@@ -3,7 +3,8 @@ import Base from "../../layouts/Base.astro";
 import Row from "../../components/Row.astro";
 import { getCollection } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
-import { compact, topByUses, totalPublished, totalUses } from "../../data/products";
+import { all, compact, topByUses, totalPublished, totalUses } from "../../data/products";
+import { email, phone } from "../../data/contact";
 
 export const getStaticPaths = langPaths;
 
@@ -11,8 +12,10 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
 const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 5);
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Có lượt dùng xếp trước, theo số lượt dùng.
+const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0));
 
 const featured = topByUses[0];
 ---
@@ -73,7 +76,7 @@ const featured = topByUses[0];
           {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
         </div>
       ) : (
-        <ul class="ix">
+        <ul class="ix clip" id="home-projects">
           {projects.map((p, i) => (
             <Row
               href={url(lang, `/projects/${p.slug}/`)}
@@ -88,27 +91,36 @@ const featured = topByUses[0];
         </ul>
       )
     }
-    <p class="more span-3"><a href={url(lang, "/projects/")}>{t("Tất cả dự án", "All work")} →</a></p>
+    {projects.length > 3 && (
+      <p class="more span-3">
+        <a href={url(lang, "/projects/")} data-more="home-projects">{t(`Xem thêm (${projects.length - 3})`, `Display more (${projects.length - 3})`)} ↓</a>
+      </p>
+    )}
   </section>
 
   <section class="sec">
     <h2 class="sec-label">{t("Sản phẩm", "Products")}</h2>
-    <ul class="ix">
+    <ul class="ix clip" id="home-products">
       {
-        topByUses.slice(0, 3).map((it, i) => (
+        products.map((it, i) => (
           <Row
-            href={it.href}
+            href={it.href && (it.local ? url(lang, it.href) : it.href)}
             title={it.name}
-            lead={compact(it.uses!)}
-            meta={t("lượt dùng", "uses")}
+            lead={it.uses ? compact(it.uses) : "—"}
+            meta={it.uses ? t("lượt dùng", "uses") : undefined}
             kicker={it.kind}
+            flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
             note={it.note[lang]}
             i={i}
           />
         ))
       }
     </ul>
-    <p class="more span-3"><a href={url(lang, "/products/")}>{t("Tất cả sản phẩm", "All products")} →</a></p>
+    {products.length > 3 && (
+      <p class="more span-3">
+        <a href={url(lang, "/products/")} data-more="home-products">{t(`Xem thêm (${products.length - 3})`, `Display more (${products.length - 3})`)} ↓</a>
+      </p>
+    )}
   </section>
 
   <div class="band placeholder" aria-hidden="true">
@@ -119,9 +131,19 @@ const featured = topByUses[0];
     <h2 class="sec-label">{t("Liên hệ", "Contact")}</h2>
     <div class="span-2">
       <p>{t("Nhận freelance UI/UX.", "Taking freelance UI/UX work.")}</p>
-      <a class="go" href="mailto:kafka@ontheshore.biz">
-        <span class="go-ring" aria-hidden="true">→</span>kafka@ontheshore.biz
-      </a>
+      <p><a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a></p>
+      <p><a class="go" href={email.href}><span class="go-ring" aria-hidden="true">→</span>{email.value}</a></p>
     </div>
   </section>
 </Base>
+
+<script>
+  // "Xem thêm": mở hết danh sách tại chỗ. Không có JS thì link dẫn sang trang đầy đủ.
+  for (const a of document.querySelectorAll<HTMLAnchorElement>("[data-more]")) {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById(a.dataset.more!)?.classList.remove("clip");
+      a.parentElement?.remove();
+    });
+  }
+</script>

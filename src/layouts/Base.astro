@@ -19,10 +19,12 @@ const other: Lang = lang === "en" ? "vi" : "en";
 
 // icon: path SVG 24x24, nét 1.5
 const nav = [
+  { href: "/", label: t("Trang chủ", "Home"), icon: "M4 11l8-7 8 7v9h-5v-6h-6v6H4z" },
+  { href: "/about/", label: t("Về tôi", "About me"), icon: "M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" },
   { href: "/projects/", label: t("Dự án", "Projects"), icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" },
   { href: "/products/", label: t("Sản phẩm", "Products"), icon: "M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" },
   { href: "/articles/", label: t("Bài viết", "Articles"), icon: "M5 5h14M5 10h14M5 15h9M5 20h6" },
-  { href: "/cv/", label: "CV", icon: "M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7" },
+  { href: "/contact/", label: t("Liên hệ", "Contact"), icon: "M3 6h18v12H3zM3 6l9 7 9-7" },
 ];
 ---
 
@@ -65,7 +67,7 @@ const nav = [
     <nav class="rail-r" aria-label={t("Điều hướng chính", "Main")}>
       {
         nav.map((item) => (
-          <a href={url(lang, item.href)} aria-current={bare.startsWith(item.href) ? "page" : undefined}>
+          <a href={url(lang, item.href)} aria-current={(item.href === "/" ? bare === "/" : bare.startsWith(item.href)) ? "page" : undefined}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d={item.icon} />
             </svg>
@@ -73,7 +75,7 @@ const nav = [
           </a>
         ))
       }
-      <a class="status" href="mailto:kafka@ontheshore.biz">
+      <a class="status" href={url(lang, "/contact/")}>
         <strong><span class="dot" aria-hidden="true"></span>{t("Đang nhận việc", "Available")}</strong>
         <small>Nha Trang <time data-clock></time></small>
       </a>
@@ -85,11 +87,19 @@ const nav = [
 
     <footer class="site-foot sheet">
       <span>Nha Trang, Việt Nam</span>
-      <a href="mailto:kafka@ontheshore.biz">kafka@ontheshore.biz</a>
+      <a href="mailto:nguunguyen.design@gmail.com">nguunguyen.design@gmail.com</a>
       <span class="num">© {new Date().getFullYear()}</span>
     </footer>
 
     <script is:inline>
+      // Link ra ngoài site mở tab mới (gồm cả link trong markdown).
+      for (const a of document.querySelectorAll('a[href^="http"]')) {
+        if (a.host !== location.host) {
+          a.target = "_blank";
+          a.rel = "noopener";
+        }
+      }
+
       // Giờ địa phương Nha Trang. Không có JS thì chỉ mất dòng giờ.
       const el = document.querySelector("[data-clock]");
       const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit" });

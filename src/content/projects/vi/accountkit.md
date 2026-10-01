@@ -4,7 +4,7 @@ role: "Vai trò sẽ cập nhật"
 year: "—"
 summary: "Sản phẩm dành cho kế toán. Chi tiết sẽ cập nhật."
 order: 2
-draft: true
+draft: false
 ---
 
 ## Vấn đề
