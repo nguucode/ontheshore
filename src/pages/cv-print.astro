@@ -1,0 +1,184 @@
+---
+// Bản in của CV, khổ A4 một trang, tiếng Anh. Không nằm trong menu hay sitemap.
+// `npm run cv` build rồi in trang này ra public/nguu-nguyen-cv.pdf bằng Chrome (macOS).
+import { experience, skills, tools } from "../data/cv";
+import { email, linkedin, phone } from "../data/contact";
+import { compact, totalUses } from "../data/products";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Ngưu Nguyễn — CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=block"
+    />
+    <style is:inline>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      :root {
+        --ink: #1c1d21;
+        --soft: #565a64;
+        --faint: #8a8d96;
+        --accent: #003c88;
+        --rule: rgba(0, 60, 136, 0.16);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 210mm;
+        min-height: 297mm;
+        padding: 16mm 17mm 14mm;
+        font: 9.6pt/1.5 "Be Vietnam Pro", sans-serif;
+        color: var(--ink);
+        background: #fff;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .num {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 8mm;
+        padding-bottom: 5mm;
+        border-bottom: 2px solid var(--accent);
+      }
+      h1 {
+        margin: 0;
+        font-size: 24pt;
+        font-weight: 600;
+        line-height: 1.1;
+        color: var(--accent);
+      }
+      .title {
+        margin: 1.5mm 0 0;
+        font-size: 11pt;
+        font-weight: 500;
+      }
+      .contact {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        text-align: right;
+        font-size: 8.6pt;
+        color: var(--soft);
+      }
+      h2 {
+        margin: 6mm 0 2.5mm;
+        font-size: 8pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .summary {
+        margin: 5mm 0 0;
+        color: var(--soft);
+      }
+      .job {
+        display: grid;
+        grid-template-columns: 24mm 1fr;
+        gap: 4mm;
+        padding: 2.4mm 0;
+        border-top: 1px solid var(--rule);
+      }
+      .job:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .when {
+        font-size: 8.6pt;
+        color: var(--faint);
+        padding-top: 0.4mm;
+      }
+      .job p {
+        margin: 0;
+      }
+      .role {
+        font-weight: 600;
+      }
+      .where {
+        color: var(--soft);
+      }
+      .what {
+        margin-top: 0.8mm !important;
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8mm;
+      }
+      .cols p {
+        margin: 0;
+      }
+      .muted {
+        color: var(--soft);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Ngưu Nguyễn</h1>
+        <p class="title">Senior Product Designer</p>
+      </div>
+      <ul class="contact">
+        <li>Nha Trang, Vietnam · open to remote</li>
+        <li><a href={email.href}>{email.value}</a> · <a href={phone.href}>{phone.value}</a></li>
+        <li><a href={linkedin.href}>linkedin.com/in/{linkedin.value}</a></li>
+        <li><a href="https://ontheshore.biz/">ontheshore.biz</a></li>
+      </ul>
+    </header>
+
+    <p class="summary">
+      7 years designing complex B2B products: fintech, banking CRM, enterprise logistics, healthcare and e-commerce. I treat the
+      design system as a product in its own right, map the problem space before any design work begins, and stay close to
+      engineers, PMs, POs and BAs until it ships. I write front-end code myself and build tools that remove the repetitive parts
+      of design work.
+    </p>
+
+    <h2>Experience</h2>
+    {
+      experience.map((e) => (
+        <div class="job">
+          <div class="when num">{e.when}</div>
+          <div>
+            <p>
+              <span class="role">{e.role}</span> <span class="where">· {e.company} ({e.kind.en})</span>
+            </p>
+            {e.what && <p class="what">{e.what.en}</p>}
+          </div>
+        </div>
+      ))
+    }
+
+    <div class="cols">
+      <div>
+        <h2>Skills</h2>
+        <p>{skills.join(" · ")}</p>
+        <p class="muted" style="margin-top:1.5mm">{tools.join(", ")}</p>
+      </div>
+      <div>
+        <h2>Community and open source</h2>
+        <p>
+          Free Figma templates with <span class="num">{compact(totalUses)}</span> uses on Figma Community, plus a published Figma AI
+          skill. Open-source maintainer of Zweihänder, a React UI kit, and Moonveil Icons, an SVG icon library.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

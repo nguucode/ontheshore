@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cv": "astro build && \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=10000 --print-to-pdf=public/nguu-nguyen-cv.pdf \"file://$PWD/dist/cv-print/index.html\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

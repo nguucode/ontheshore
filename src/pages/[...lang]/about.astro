@@ -5,68 +5,14 @@ import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
 import { compact, totalUses } from "../../data/products";
 import { email, linkedin } from "../../data/contact";
+import { experience, skills, tools } from "../../data/cv";
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-// Nguồn: LinkedIn của sếp (đọc 2026-10-01). Nêu tên công ty (sếp chốt 2026-10-01); số liệu và màn hình nội bộ vẫn không đưa lên.
-const experience = [
-  {
-    when: "2023 — 2026",
-    role: "Senior Product Designer",
-    where: t("TMA Solutions · outsourcing phần mềm enterprise", "TMA Solutions · enterprise software outsourcing"),
-    what: t(
-      "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare và logistics. Cách làm system-first giữ chất lượng đồng đều giữa các dự án thay vì mỗi dự án tự dựng lại từ đầu.",
-      "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality consistent from one engagement to the next instead of rebuilding each time."
-    ),
-  },
-  {
-    when: "2023",
-    role: "Product Designer",
-    where: t("CyberLogitec · phần mềm logistics enterprise", "CyberLogitec · enterprise logistics software"),
-    what: t(
-      "Định hướng design trong product team, biến các workflow vận hành dày đặc thành giao diện theo từng vai trò.",
-      "Led design direction in the product team, turning dense operational workflows into role-specific interfaces."
-    ),
-  },
-  {
-    when: "2021 — 2023",
-    role: "UI/UX Designer",
-    where: t("Aperia Solutions · CRM cho ngân hàng và fintech", "Aperia Solutions · banking and fintech CRM"),
-    what: t(
-      "Phụ trách UX cho các trang sản phẩm và workflow chính, duy trì design system trong Figma, làm cùng PO và BA suốt quá trình delivery.",
-      "Owned the UX across product pages and core workflows, maintained the design system in Figma, and worked with POs and BAs through delivery."
-    ),
-  },
-  {
-    when: "2020 — 2021",
-    role: "Product Designer",
-    where: t("FireGroup Technology · Shopify app về profit analytics", "FireGroup Technology · Shopify profit analytics app"),
-    href: "/projects/shopify-profit-analytics/",
-    what: t(
-      "Thiết kế end-to-end từ research, prototype tới handoff. Dựng và làm chủ design library lõi, làm trực tiếp với engineer để bản code khớp thiết kế.",
-      "Led end-to-end design from research and prototyping to handoff. Built and owned the core design library, working directly with engineers on implementation accuracy."
-    ),
-  },
-  {
-    when: "2019 — 2020",
-    role: "UI/UX Designer",
-    where: "Conceptual Studio · design studio",
-    what: t(
-      "Dự án e-commerce, mobile và web, làm cả UX flow lẫn visual. Dựng UI kit và WordPress theme dùng nội bộ và bán ra thị trường.",
-      "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market."
-    ),
-  },
-  {
-    when: "2019",
-    role: "UI/UX Design Intern",
-    where: "Kyanon Digital · digital agency",
-  },
-];
-
-// Con số đều kiểm chứng được: số năm và ngành lấy từ lịch sử trên; 3 design system = CRM ngân hàng, Shopify app, Zweihänder;
+// Con số đều kiểm chứng được: số năm và ngành lấy từ src/data/cv.ts; 3 design system = CRM ngân hàng, Shopify app, Zweihänder;
 // lượt dùng template tính từ src/data/products.ts.
 const facts = [
   { n: "7", label: t("năm làm product design", "years in product design") },
@@ -89,6 +35,9 @@ const facts = [
         "Senior Product Designer. 7 years designing complex B2B products: fintech, banking CRM, enterprise logistics. Based in Nha Trang, Vietnam."
       )
     }
+  </p>
+  <p>
+    <a class="go" href="/nguu-nguyen-cv.pdf"><span class="go-ring" aria-hidden="true">↓</span>{t("Tải CV (PDF)", "Download CV (PDF)")}</a>
   </p>
 
   <h2>How I work</h2>
@@ -125,11 +74,13 @@ const facts = [
           <p class="what">
             <strong>{e.role}</strong>
             <br />
-            <span class="where">{e.href ? <a href={url(lang, e.href)}>{e.where}</a> : e.where}</span>
+            <span class="where">
+              {e.company} · {e.href ? <a href={url(lang, e.href)}>{e.kind[lang]}</a> : e.kind[lang]}
+            </span>
             {e.what && (
               <>
                 <br />
-                {e.what}
+                {e.what[lang]}
               </>
             )}
           </p>
@@ -153,8 +104,8 @@ const facts = [
   </p>
 
   <h2>Skills</h2>
-  <p>Product design · Design systems and tokens · Business analysis · Product ownership · Front-end engineering · AI-assisted workflows · Shape Up and agile delivery</p>
-  <p class="muted">Figma, Storybook, React, TypeScript, TailwindCSS.</p>
+  <p>{skills.join(" · ")}</p>
+  <p class="muted">{tools.join(", ")}.</p>
 
   <h2>Contact</h2>
   <p>
