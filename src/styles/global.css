@@ -111,15 +111,6 @@ svg {
   letter-spacing: 0.08em;
 }
 
-.mark-sub {
-  writing-mode: vertical-rl;
-  font-family: var(--num-font);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
 .lang {
   display: flex;
   flex-direction: column;
@@ -743,10 +734,6 @@ code {
   .mark-name {
     writing-mode: horizontal-tb;
     font-size: 1rem;
-  }
-
-  .mark-sub {
-    display: none;
   }
 
   .tools {
