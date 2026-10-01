@@ -25,6 +25,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Project sites only inherit ontheshore.biz from a repo named
+      # nguucode.github.io, so zweihander's built Storybook + registry is
+      # served from here instead. zweihander's CI pushes it to its gh-pages
+      # branch and dispatches this workflow.
+      - uses: actions/checkout@v5
+        with:
+          repository: nguucode/zweihander
+          ref: gh-pages
+          path: dist/zweihander
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
