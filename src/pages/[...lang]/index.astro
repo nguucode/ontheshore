@@ -1,6 +1,8 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Row from "../../components/Row.astro";
+import { Image } from "astro:assets";
+import nhaTrang from "../../assets/nha-trang.jpg";
 import { getCollection } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
 import { all, compact, topByUses, totalPublished, totalUses } from "../../data/products";
@@ -123,9 +125,16 @@ const featured = topByUses[0];
     )}
   </section>
 
-  <div class="band placeholder" aria-hidden="true">
-    <span>{t("Ảnh chỗ làm việc / Nha Trang — sẽ cập nhật", "Studio / Nha Trang photo — coming soon")}</span>
-  </div>
+  <Image
+    class="band"
+    src={nhaTrang}
+    widths={[800, 1400, 2000]}
+    sizes="(max-width: 60rem) 100vw, calc(100vw - 12.5rem)"
+    alt={t(
+      "Thuyền thúng và thuyền đánh cá trên vịnh Nha Trang, phía xa là thành phố và núi.",
+      "Basket boats and fishing boats on Nha Trang bay, with the city and mountains behind."
+    )}
+  />
 
   <section class="sec">
     <h2 class="sec-label">Contact</h2>

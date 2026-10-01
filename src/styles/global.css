@@ -501,7 +501,12 @@ hr {
 
 /* dải ảnh tràn 4 cột */
 .band {
+  display: block;
+  width: 100%;
+  height: auto;
   aspect-ratio: 4 / 1;
+  object-fit: cover;
+  object-position: center 72%; /* giữ thuyền và bờ thành phố khi cắt dải mỏng */
   margin-bottom: 5.5rem;
 }
 
