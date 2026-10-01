@@ -14,7 +14,7 @@ const articles = byLang(await getCollection("articles", (a) => !a.data.draft), l
 );
 ---
 
-<Base title={"Articles"} description={t(
+<Base title="Articles" description={t(
     "Bài viết của Ngưu Nguyễn về product design, UI/UX, design system và cách làm việc với Figma.",
     "Writing by Ngưu Nguyễn on product design, UI/UX, design systems and working in Figma."
   )} lang={lang}>
