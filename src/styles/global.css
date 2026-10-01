@@ -211,8 +211,8 @@ svg {
   margin-top: auto;
   display: grid;
   place-items: center;
-  height: calc(var(--foot-h) + 1px); /* + viền trên, giống footer */
-  border-top: 1px solid var(--line);
+  height: calc(var(--foot-h) + 1px); /* cao bằng footer (kể cả viền trên của footer) */
+  border: 1px solid var(--rule);
   background: var(--bg);
   color: var(--ink);
   padding: 0 0.4rem;
@@ -223,20 +223,8 @@ svg {
 .status strong {
   font-size: 0.82rem;
   font-weight: 600;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.1rem 0.35rem;
 }
 
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #2f8f5b;
-  animation: breathe 2.4s var(--ease) infinite;
-}
 
 @keyframes breathe {
   0% { box-shadow: 0 0 0 0 rgba(47, 143, 91, 0.45); }
