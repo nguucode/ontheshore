@@ -1,50 +1,169 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { getLang, langPaths, T } from "../../i18n";
+import { Image } from "astro:assets";
+import portrait from "../../assets/portrait.png";
+import { getLang, langPaths, T, url } from "../../i18n";
+import { compact, totalUses } from "../../data/products";
+import { email, linkedin } from "../../data/contact";
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
+
+// Nguồn: LinkedIn của sếp (đọc 2026-10-01). Ẩn danh theo brief cv-portfolio: mô tả loại công ty, không nêu tên.
+const experience = [
+  {
+    when: "2023 — 2026",
+    role: "Senior Product Designer",
+    where: t("Công ty outsourcing phần mềm enterprise, khách hàng toàn cầu", "Enterprise software outsourcing firm, global clients"),
+    what: t(
+      "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare và logistics. Cách làm system-first giữ chất lượng đồng đều giữa các dự án thay vì mỗi dự án tự dựng lại từ đầu.",
+      "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality consistent from one engagement to the next instead of rebuilding each time."
+    ),
+  },
+  {
+    when: "2023",
+    role: "Product Designer",
+    where: t("Phần mềm logistics enterprise: shipping, terminal, freight forwarding", "Enterprise logistics software: shipping, terminal, freight forwarding"),
+    what: t(
+      "Định hướng design trong product team, biến các workflow vận hành dày đặc thành giao diện theo từng vai trò.",
+      "Led design direction in the product team, turning dense operational workflows into role-specific interfaces."
+    ),
+  },
+  {
+    when: "2021 — 2023",
+    role: "UI/UX Designer",
+    where: t("Sản phẩm CRM cho ngân hàng và fintech", "Banking and fintech CRM product"),
+    what: t(
+      "Phụ trách UX cho các trang sản phẩm và workflow chính, duy trì design system trong Figma, làm cùng PO và BA suốt quá trình delivery.",
+      "Owned the UX across product pages and core workflows, maintained the design system in Figma, and worked with POs and BAs through delivery."
+    ),
+  },
+  {
+    when: "2020 — 2021",
+    role: "Product Designer",
+    where: t("Shopify app về profit analytics", "Shopify profit analytics app"),
+    href: "/projects/shopify-profit-analytics/",
+    what: t(
+      "Thiết kế end-to-end từ research, prototype tới handoff. Dựng và làm chủ design library lõi, làm trực tiếp với engineer để bản code khớp thiết kế.",
+      "Led end-to-end design from research and prototyping to handoff. Built and owned the core design library, working directly with engineers on implementation accuracy."
+    ),
+  },
+  {
+    when: "2019 — 2020",
+    role: "UI/UX Designer",
+    where: "Design studio",
+    what: t(
+      "Dự án e-commerce, mobile và web, làm cả UX flow lẫn visual. Dựng UI kit và WordPress theme dùng nội bộ và bán ra thị trường.",
+      "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market."
+    ),
+  },
+  {
+    when: "2019",
+    role: "UI/UX Design Intern",
+    where: "Digital agency",
+  },
+];
+
+// Con số đều kiểm chứng được: số năm và ngành lấy từ lịch sử trên; 3 design system = CRM ngân hàng, Shopify app, Zweihänder;
+// lượt dùng template tính từ src/data/products.ts.
+const facts = [
+  { n: "7", label: t("năm làm product design", "years in product design") },
+  { n: "5", label: t("ngành: fintech, CRM ngân hàng, logistics, healthcare, e-commerce", "industries: fintech, banking CRM, logistics, healthcare, e-commerce") },
+  { n: "3", label: t("design system đã dựng hoặc duy trì", "design systems built or maintained") },
+  { n: compact(totalUses), label: t("lượt dùng Figma template của tôi", "uses of my Figma templates") },
+];
 ---
 
 <Base title="About me" description={t(
-    "Ngưu Nguyễn, Senior Product Designer cho sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Product design, design system và front-end.",
-    "Ngưu Nguyễn, Senior Product Designer for SaaS and enterprise products: CRM, ERP, fintech, accounting. Product design, design systems, front-end."
+    "Ngưu Nguyễn, Senior Product Designer với 7 năm trong fintech, CRM ngân hàng và logistics enterprise. Product design, design system và front-end. Nha Trang.",
+    "Ngưu Nguyễn, Senior Product Designer with 7 years in fintech, banking CRM and enterprise logistics. Product design, design systems and front-end. Nha Trang, Vietnam."
   )} lang={lang}>
+  <Image class="portrait" src={portrait} width={320} alt={t("Ảnh chân dung Ngưu Nguyễn", "Portrait of Ngưu Nguyễn")} loading="eager" />
   <h1>Ngưu Nguyễn</h1>
   <p class="lede">
     {
       t(
-        "Senior Product Designer cho sản phẩm SaaS và enterprise. Đang ở Nha Trang, Việt Nam. Nhận cả vị trí full-time lẫn dự án freelance.",
-        "Senior Product Designer for SaaS and enterprise products. Based in Nha Trang, Vietnam. Open to full-time roles and freelance projects."
+        "Senior Product Designer. 7 năm thiết kế sản phẩm B2B phức tạp: fintech, CRM ngân hàng, logistics enterprise. Đang ở Nha Trang, Việt Nam.",
+        "Senior Product Designer. 7 years designing complex B2B products: fintech, banking CRM, enterprise logistics. Based in Nha Trang, Vietnam."
       )
     }
   </p>
 
-  {/* Experience: thêm khi có lịch sử làm việc. Mỗi dòng:
+  <h2>How I work</h2>
+  <p>
+    {t(
+      "Tôi thích những sản phẩm có domain phức tạp và ít chỗ cho sai sót. Sản phẩm phức tạp hiếm khi hỏng ở ý tưởng lớn. Nó hỏng ở chi tiết: component không nhất quán, handoff chậm, cùng một bộ setup bị dựng lại cho mỗi dự án mới.",
+      "I like products where the domain is complex and the margin for error is low. Complex products rarely break at the big idea. They break in the details: inconsistent components, slow handoffs, the same setup rebuilt for every new project."
+    )}
+  </p>
+  <p>
+    {t(
+      "Vì vậy tôi coi design system là một sản phẩm thực thụ. Tôi vẽ rõ problem space trước khi bắt đầu design, và làm sát với engineer, PM, PO, BA cho tới khi ship. Tôi tự code front-end, và tự làm tool để bỏ bớt phần lặp lại trong công việc design.",
+      "So I treat the design system as a product in its own right. I map the problem space before any design work begins, and I stay close to engineers, PMs, POs and BAs until it ships. I write front-end code myself, and I build tools that remove the repetitive parts of design work."
+    )}
+  </p>
+
+  <dl class="facts">
+    {
+      facts.map((f) => (
+        <div>
+          <dt>{f.label}</dt>
+          <dd class="num">{f.n}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
   <h2>Experience</h2>
-  <div class="row">
-    <div class="when">2023 — nay</div>
-    <p class="what">
-      <strong>Lead Product Designer</strong><br />
-      <span class="where">Freelance</span><br />
-      Mô tả một hoặc hai câu.
-    </p>
+  <div>
+    {
+      experience.map((e) => (
+        <div class="row">
+          <div class="when num">{e.when}</div>
+          <p class="what">
+            <strong>{e.role}</strong>
+            <br />
+            <span class="where">{e.href ? <a href={url(lang, e.href)}>{e.where}</a> : e.where}</span>
+            {e.what && (
+              <>
+                <br />
+                {e.what}
+              </>
+            )}
+          </p>
+        </div>
+      ))
+    }
   </div>
+
+  {/* Leadership: sếp sẽ bổ sung (quy mô team dẫn dắt, mentoring, quy trình đã xây). Mở comment khi có nội dung.
+  <h2>Leadership</h2>
+  <p>...</p>
   */}
 
+  <h2>Community and open source</h2>
+  <p>
+    {t(
+      "Tôi publish Figma template miễn phí và một Figma AI skill trên Figma Community, và duy trì hai dự án open source: Zweihänder, một React UI kit, và Moonveil Icons, một icon library SVG.",
+      "I publish free Figma templates and a Figma AI skill on Figma Community, and maintain two open-source projects: Zweihänder, a React UI kit, and Moonveil Icons, an SVG icon library."
+    )}{" "}
+    <a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a>
+  </p>
+
   <h2>Skills</h2>
-  <p>Product design · Business analysis · Product ownership · Design systems and tokens · Front-end engineering · Shape Up and agile delivery</p>
-
-  <h2>Domains</h2>
-  <p>SaaS · CRM · ERP · Fintech · {t("Kế toán", "Accounting")}</p>
-
-  <h2>Tools</h2>
+  <p>Product design · Design systems and tokens · Business analysis · Product ownership · Front-end engineering · AI-assisted workflows · Shape Up and agile delivery</p>
   <p class="muted">Figma, Storybook, React, TypeScript, TailwindCSS.</p>
 
   <h2>Contact</h2>
   <p>
-    <a href="mailto:nguunguyen.design@gmail.com">nguunguyen.design@gmail.com</a>
+    {t("Đang tìm vị trí senior product design làm remote, và nhận dự án freelance.", "Open to remote senior product design roles and freelance projects.")}
+  </p>
+  <p>
+    <a class="go" href={email.href}><span class="go-ring" aria-hidden="true">→</span>{email.value}</a>
+  </p>
+  <p>
+    <a class="go" href={linkedin.href}><span class="go-ring" aria-hidden="true">→</span>{linkedin.label}</a>
   </p>
 </Base>

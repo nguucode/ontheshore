@@ -643,6 +643,40 @@ a.ix-title::after {
   font-size: 0.9rem;
 }
 
+/* ---------- About: ảnh chân dung + con số ---------- */
+
+.portrait {
+  width: 10rem;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  margin: 2.5rem 0 0;
+}
+
+.facts div {
+  display: flex;
+  flex-direction: column;
+}
+
+.facts dd {
+  order: -1;
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.facts dt {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  line-height: 1.45;
+}
+
 /* ---------- placeholder / empty state ---------- */
 
 .empty {
