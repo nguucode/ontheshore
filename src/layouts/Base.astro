@@ -148,10 +148,11 @@ const nav = [
         try { localStorage.setItem("theme", next); } catch {}
       });
 
-      // Mọi link mở tab mới, kể cả menu và link trong markdown.
-      // Trừ mailto:/tel: (mở app), #neo trong trang, và nút "Xem thêm" (mở danh sách tại chỗ).
+      // Link nội dung mở tab mới (kể cả link trong markdown).
+      // Trừ: menu, logo, nút ngôn ngữ, ô Open to work (hai rail), mailto:/tel: (mở app),
+      // #neo trong trang, và nút "Xem thêm" (mở danh sách tại chỗ).
       for (const a of document.querySelectorAll("a[href]:not([data-more])")) {
-        if (/^(mailto:|tel:|#)/.test(a.getAttribute("href"))) continue;
+        if (a.closest(".rail-l, .rail-r") || /^(mailto:|tel:|#)/.test(a.getAttribute("href"))) continue;
         a.target = "_blank";
         a.rel = "noopener";
       }
