@@ -643,6 +643,14 @@ a.ix-title::after {
   margin: 0;
 }
 
+.row .what strong a {
+  text-decoration: none;
+}
+
+.row .what strong a:hover {
+  text-decoration: underline;
+}
+
 .row .what .where {
   color: var(--ink-soft);
   font-size: 0.9rem;

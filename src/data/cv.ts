@@ -78,10 +78,15 @@ export const experience: Job[] = [
   },
 ];
 
-// Nhóm Design/Product lấy từ vault about-me và Top skills trên LinkedIn.
+// Domains và Designed: sếp cung cấp 2026-10-02. Nhóm Design/Product lấy từ vault about-me và Top skills trên LinkedIn.
 export const skills: { group: string; items: string[] }[] = [
+  {
+    group: "Domains",
+    items: ["Fintech", "Banking", "Real estate", "ERP", "SaaS", "System", "Social", "E-commerce", "Healthcare", "Accounting", "IoT", "Logistics"],
+  },
+  { group: "Designed", items: ["Design resources", "Design systems", "Mobile apps", "Domain systems", "Landing pages"] },
   { group: "Design", items: ["Product design", "UX design", "Mobile and web UI", "Design systems and tokens"] },
-  { group: "Product", items: ["Business analysis", "Product ownership", "Shape Up and agile delivery", "Lean principles"] },
+  { group: "Product", items: ["Business analysis", "Product ownership", "Agile/Scrum", "Shape Up", "Wayfinder", "Lean principles"] },
   {
     group: "Engineering",
     items: ["Front-end engineering", "HTML/CSS", "React", "TypeScript", "TailwindCSS", "Git", "Accessibility", "AI-assisted workflows"],
