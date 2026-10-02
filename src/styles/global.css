@@ -390,6 +390,11 @@ hr {
 
 .intro .lede {
   margin: 0;
+  color: var(--ink);
+}
+
+.intro .lede + .lede {
+  margin-top: 1.25rem;
 }
 
 .proof {
