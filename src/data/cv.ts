@@ -10,6 +10,7 @@ export type Job = {
   kind: Text;
   href?: string; // case study trong site
   what?: Text;
+  cv?: string; // bản trung tính cho CV PDF; trang About dùng `what` (giọng Elden Ring)
 };
 
 export const experience: Job[] = [
@@ -22,6 +23,7 @@ export const experience: Job[] = [
       vi: "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare, logistics. Cách làm system-first giữ chất lượng đồng đều qua từng dự án. Không dự án nào phải dựng lại từ đầu.",
       en: "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality even from one engagement to the next. None had to be rebuilt from nothing.",
     },
+    cv: "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality consistent from one engagement to the next instead of rebuilding each time.",
   },
   {
     when: "2023",
@@ -32,6 +34,7 @@ export const experience: Job[] = [
       vi: "Định hướng design trong product team. Những workflow vận hành dày đặc được nắn lại thành giao diện riêng cho từng vai trò.",
       en: "Set design direction within the product team. Dense operational workflows, reshaped into an interface for each role.",
     },
+    cv: "Led design direction in the product team, turning dense operational workflows into role-specific interfaces.",
   },
   {
     when: "2021 — 2023",
@@ -42,6 +45,7 @@ export const experience: Job[] = [
       vi: "Phụ trách UX cho các trang sản phẩm và workflow chính. Gìn giữ design system trong Figma, đi cùng PO và BA suốt quá trình delivery.",
       en: "Owned the UX across product pages and core workflows. Kept the design system in Figma, and stood with POs and BAs through delivery.",
     },
+    cv: "Owned the UX across product pages and core workflows, maintained the design system in Figma, and worked with POs and BAs through delivery.",
   },
   {
     when: "2020 — 2021",
@@ -53,6 +57,7 @@ export const experience: Job[] = [
       vi: "Thiết kế end-to-end, từ research, prototype tới handoff. Dựng nên design library lõi và giữ gìn nó, làm sát bên engineer cho tới khi code khớp với thiết kế.",
       en: "Led end-to-end design, from research and prototyping to handoff. Built the core design library and kept it, working beside engineers until the code matched the design.",
     },
+    cv: "Led end-to-end design from research and prototyping to handoff. Built and owned the core design library, working directly with engineers on implementation accuracy.",
   },
   {
     when: "2019 — 2020",
@@ -63,6 +68,7 @@ export const experience: Job[] = [
       vi: "E-commerce, mobile và web, từ UX flow tới visual. UI kit và WordPress theme ra đời ở đây, dùng nội bộ và được bán ra ngoài.",
       en: "E-commerce, mobile and web, from UX flows to visual production. UI kits and WordPress themes were made here, used in-house and sold beyond its walls.",
     },
+    cv: "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market.",
   },
   {
     when: "2019",
