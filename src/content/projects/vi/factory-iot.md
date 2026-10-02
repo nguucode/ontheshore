@@ -1,24 +1,24 @@
 ---
 title: "IoT nhà máy"
-role: "Vai trò sẽ cập nhật"
+role: "Vai trò chưa được ghi lại"
 year: "—"
-summary: "Mobile app giám sát hệ thống IoT trong nhà máy. Case study đang viết."
+summary: "Mobile app canh chừng hệ thống IoT trong nhà máy. Case study chưa được chép lại."
 order: 3
 draft: false
 ---
 
 ## Problem
 
-Sẽ cập nhật.
+Chưa được chép lại.
 
 ## My role
 
-Sẽ cập nhật.
+Chưa được chép lại.
 
 ## Process
 
-Sẽ cập nhật.
+Chưa được chép lại.
 
 ## Outcome
 
-Sẽ cập nhật.
+Chưa được chép lại.

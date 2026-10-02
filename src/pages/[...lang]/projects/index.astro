@@ -24,7 +24,7 @@ const projects = byLang(await getCollection("projects", (p) => !p.data.draft), l
   {
     projects.length === 0 ? (
       <div class="empty">
-        <p style="margin:0 0 .6rem">{t("Chưa có case study nào được publish.", "No case studies published yet.")}</p>
+        <p style="margin:0 0 .6rem">{t("Chưa case study nào được publish.", "No case study has been published yet.")}</p>
         <p style="margin:0" class="faint">
           <code>src/content/projects/{lang}/_template.md</code>
         </p>

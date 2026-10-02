@@ -2,7 +2,7 @@
 title: "Zweihänder"
 role: "Design Engineer"
 year: "2026"
-summary: "A design system shipped as a React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Open source, MIT."
+summary: "A design system shipped as a React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Open source, MIT. A two-handed name, for a kit still early in its making."
 order: 4
 draft: false
 ---
@@ -11,16 +11,16 @@ Links: [GitHub](https://github.com/nguucode/zweihander) · [npm](https://www.npm
 
 ## Problem
 
-To be added.
+Not yet written.
 
 ## My role
 
-To be added.
+Not yet written.
 
 ## Process
 
-To be added.
+Not yet written.
 
 ## Outcome
 
-To be added.
+Not yet written.

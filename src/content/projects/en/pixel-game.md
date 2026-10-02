@@ -1,24 +1,24 @@
 ---
 title: "Pixel-art mobile game"
-role: "Role to be added"
+role: "Role not yet recorded"
 year: "—"
-summary: "A mobile game in pixel-art style. Case study in progress."
+summary: "A mobile game, drawn in pixel art. Its case study is not yet written."
 order: 6
 draft: false
 ---
 
 ## Problem
 
-To be added.
+Not yet written.
 
 ## My role
 
-To be added.
+Not yet written.
 
 ## Process
 
-To be added.
+Not yet written.
 
 ## Outcome
 
-To be added.
+Not yet written.

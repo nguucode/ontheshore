@@ -20,7 +20,7 @@ const t = T(lang);
 >
   <h1>Products</h1>
   <p class="lede">
-    {t(`${totalPublished} thứ đã publish, dùng được ngay. Miễn phí.`, `${totalPublished} things published, ready to use. Free.`)}
+    {t(`${totalPublished} thứ đã publish, dùng được ngay. Miễn phí, để ngỏ cho bất kỳ ai cần.`, `${totalPublished} things published, ready to use. Free, left open for any who need them.`)}
   </p>
 
   {
@@ -28,7 +28,7 @@ const t = T(lang);
       <>
         <h2>{g.heading[lang]}</h2>
         {g.items.length === 0 ? (
-          <div class="empty">{t("Chưa có gì publish ở mục này.", "Nothing published here yet.")}</div>
+          <div class="empty">{t("Mục này chưa có gì được publish.", "Nothing has been published here yet.")}</div>
         ) : (
           <ul class="ix">
             {g.items.map((it, i) => (

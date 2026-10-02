@@ -1,24 +1,24 @@
 ---
 title: "Accounting SaaS"
-role: "Role to be added"
+role: "Role not yet recorded"
 year: "—"
-summary: "An accounting SaaS product. Case study in progress."
+summary: "An accounting SaaS product. Its case study is not yet written."
 order: 2
 draft: false
 ---
 
 ## Problem
 
-To be added.
+Not yet written.
 
 ## My role
 
-To be added.
+Not yet written.
 
 ## Process
 
-To be added.
+Not yet written.
 
 ## Outcome
 
-To be added.
+Not yet written.

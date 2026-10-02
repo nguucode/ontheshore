@@ -30,7 +30,7 @@ const { Content } = await render(entry);
       <img class="cover" src={entry.data.cover} alt="" />
     ) : (
       <div class="cover placeholder" aria-hidden="true">
-        <span>{t("Ảnh bìa — sẽ cập nhật", "Cover image — coming soon")}</span>
+        <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
       </div>
     )
   }

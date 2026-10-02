@@ -19,8 +19,8 @@ export const experience: Job[] = [
     company: "TMA Solutions",
     kind: { vi: "outsourcing phần mềm enterprise", en: "enterprise software outsourcing" },
     what: {
-      vi: "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare và logistics. Cách làm system-first giữ chất lượng đồng đều giữa các dự án thay vì mỗi dự án tự dựng lại từ đầu.",
-      en: "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality consistent from one engagement to the next instead of rebuilding each time.",
+      vi: "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare, logistics. Cách làm system-first giữ chất lượng đồng đều qua từng dự án. Không dự án nào phải dựng lại từ đầu.",
+      en: "Led product design across concurrent enterprise projects in fintech, healthcare and logistics. A system-first approach kept quality even from one engagement to the next. None had to be rebuilt from nothing.",
     },
   },
   {
@@ -29,8 +29,8 @@ export const experience: Job[] = [
     company: "CyberLogitec",
     kind: { vi: "phần mềm logistics enterprise", en: "enterprise logistics software" },
     what: {
-      vi: "Định hướng design trong product team, biến các workflow vận hành dày đặc thành giao diện theo từng vai trò.",
-      en: "Led design direction in the product team, turning dense operational workflows into role-specific interfaces.",
+      vi: "Định hướng design trong product team. Những workflow vận hành dày đặc được nắn lại thành giao diện riêng cho từng vai trò.",
+      en: "Set design direction within the product team. Dense operational workflows, reshaped into an interface for each role.",
     },
   },
   {
@@ -39,8 +39,8 @@ export const experience: Job[] = [
     company: "Aperia Solutions",
     kind: { vi: "CRM cho ngân hàng và fintech", en: "banking and fintech CRM" },
     what: {
-      vi: "Phụ trách UX cho các trang sản phẩm và workflow chính, duy trì design system trong Figma, làm cùng PO và BA suốt quá trình delivery.",
-      en: "Owned the UX across product pages and core workflows, maintained the design system in Figma, and worked with POs and BAs through delivery.",
+      vi: "Phụ trách UX cho các trang sản phẩm và workflow chính. Gìn giữ design system trong Figma, đi cùng PO và BA suốt quá trình delivery.",
+      en: "Owned the UX across product pages and core workflows. Kept the design system in Figma, and stood with POs and BAs through delivery.",
     },
   },
   {
@@ -50,8 +50,8 @@ export const experience: Job[] = [
     kind: { vi: "TrueProfit, Shopify app về profit analytics", en: "TrueProfit, a Shopify profit analytics app" },
     href: "/projects/trueprofit/",
     what: {
-      vi: "Thiết kế end-to-end từ research, prototype tới handoff. Dựng và làm chủ design library lõi, làm trực tiếp với engineer để bản code khớp thiết kế.",
-      en: "Led end-to-end design from research and prototyping to handoff. Built and owned the core design library, working directly with engineers on implementation accuracy.",
+      vi: "Thiết kế end-to-end, từ research, prototype tới handoff. Dựng nên design library lõi và giữ gìn nó, làm sát bên engineer cho tới khi code khớp với thiết kế.",
+      en: "Led end-to-end design, from research and prototyping to handoff. Built the core design library and kept it, working beside engineers until the code matched the design.",
     },
   },
   {
@@ -60,8 +60,8 @@ export const experience: Job[] = [
     company: "Conceptual Studio",
     kind: { vi: "design studio", en: "design studio" },
     what: {
-      vi: "Dự án e-commerce, mobile và web, làm cả UX flow lẫn visual. Dựng UI kit và WordPress theme dùng nội bộ và bán ra thị trường.",
-      en: "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market.",
+      vi: "E-commerce, mobile và web, từ UX flow tới visual. UI kit và WordPress theme ra đời ở đây, dùng nội bộ và được bán ra ngoài.",
+      en: "E-commerce, mobile and web, from UX flows to visual production. UI kits and WordPress themes were made here, used in-house and sold beyond its walls.",
     },
   },
   {

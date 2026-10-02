@@ -23,7 +23,7 @@ const articles = byLang(await getCollection("articles", (a) => !a.data.draft), l
   {
     articles.length === 0 ? (
       <div class="empty">
-        <p style="margin:0">{t("Chưa có bài nào.", "Nothing here yet.")}</p>
+        <p style="margin:0">{t("Chưa có bài nào được viết.", "Nothing has been written here yet.")}</p>
       </div>
     ) : (
       <ul class="ix">

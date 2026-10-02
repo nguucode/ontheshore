@@ -31,8 +31,16 @@ const featured = topByUses[0];
       <p class="lede">
         {
           t(
-            "Tôi thiết kế sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Tôi làm cả product design, business analysis lẫn product ownership, và tự code front-end. Phần lớn team làm hệ thống phức tạp hơn mức cần. Việc của tôi là cắt bớt sự phức tạp đó.",
-            "I design SaaS and enterprise products: CRM, ERP, fintech and accounting. I work across product design, business analysis and product ownership, and I build the front end myself. Most teams overcomplicate their systems. My job is to cut that back."
+            "Thiết kế sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Product design, business analysis, product ownership, và front-end do cùng một tay dựng nên.",
+            "Designs SaaS and enterprise products: CRM, ERP, fintech, accounting. Product design, business analysis and product ownership, with the front end built by the same hand."
+          )
+        }
+      </p>
+      <p>
+        {
+          t(
+            "Tương truyền phần lớn team dựng hệ thống nặng hơn mức công việc đòi hỏi. Ở đây, phần thừa ấy được cắt bỏ.",
+            "Most teams, it is said, build their systems heavier than the work demands. Here, that weight is cut away."
           )
         }
       </p>
@@ -75,7 +83,7 @@ const featured = topByUses[0];
         />
       ) : (
         <div class="feature-media placeholder" aria-hidden="true">
-          <span>{t("Ảnh sản phẩm — sẽ cập nhật", "Product image — coming soon")}</span>
+          <span>{t("Ảnh sản phẩm chưa có.", "Product image not yet added.")}</span>
         </div>
       )
     }
@@ -86,7 +94,7 @@ const featured = topByUses[0];
     {
       projects.length === 0 ? (
         <div class="empty span-3">
-          {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
+          {t("Chưa case study nào được chép lại.", "No case study has been set down yet.")} <code>src/content/projects/{lang}/</code>
         </div>
       ) : (
         <ul class="ix">
@@ -147,7 +155,7 @@ const featured = topByUses[0];
   <section class="sec">
     <h2 class="sec-label">Contact</h2>
     <div class="span-2">
-      <p>{t("Hiện tại đang sống ở Nha Trang.", "Living in Nha Trang, for now.")}</p>
+      <p>{t("Cư ngụ ở Nha Trang, bên bờ vịnh. Tạm thời là vậy.", "Resides in Nha Trang, on the shore of the bay. For now.")}</p>
       <p><a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a></p>
       <p><a class="go" href={email.href}><span class="go-ring" aria-hidden="true">→</span>{email.value}</a></p>
       <p><a class="go" href={linkedin.href}><span class="go-ring" aria-hidden="true">→</span>{linkedin.label}</a></p>

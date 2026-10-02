@@ -37,7 +37,7 @@ const facts = [
   { n: "7", label: t("năm làm product design", "years in product design") },
   { n: "9+", label: t("ngành, trong đó có fintech, CRM ngân hàng, logistics, healthcare, e-commerce", "industries, including fintech, banking CRM, logistics, healthcare and e-commerce") },
   { n: "5", label: t("design system và sản phẩm đang duy trì", "design systems and products maintained") },
-  { n: compact(totalUses), label: t("lượt dùng Figma template của tôi", "uses of my Figma templates") },
+  { n: compact(totalUses), label: t("lượt dùng các Figma template", "uses of the Figma templates") },
 ];
 ---
 
@@ -50,8 +50,8 @@ const facts = [
   <p class="lede">
     {
       t(
-        "Senior Product Designer. 7 năm thiết kế sản phẩm B2B phức tạp: fintech, CRM ngân hàng, logistics enterprise. Đang ở Nha Trang, Việt Nam.",
-        "Senior Product Designer. 7 years designing complex B2B products: fintech, banking CRM, enterprise logistics. Based in Nha Trang, Vietnam."
+        "Senior Product Designer. 7 năm dành cho sản phẩm B2B phức tạp: fintech, CRM ngân hàng, logistics enterprise. Cư ngụ ở Nha Trang, Việt Nam.",
+        "Senior Product Designer. 7 years spent on complex B2B products: fintech, banking CRM, enterprise logistics. Resides in Nha Trang, Vietnam."
       )
     }
   </p>
@@ -59,17 +59,23 @@ const facts = [
     <a class="go" href="/nguu-nguyen-cv.pdf"><span class="go-ring" aria-hidden="true">↓</span>{t("Tải CV (PDF)", "Download CV (PDF)")}</a>
   </p>
 
-  <h2>How I work</h2>
+  <h2>How the work is done</h2>
   <p>
     {t(
-      "Tôi thích những sản phẩm có domain phức tạp và ít chỗ cho sai sót. Sản phẩm phức tạp hiếm khi hỏng ở ý tưởng lớn. Nó hỏng ở chi tiết: component không nhất quán, handoff chậm, cùng một bộ setup bị dựng lại cho mỗi dự án mới.",
-      "I like products where the domain is complex and the margin for error is low. Complex products rarely break at the big idea. They break in the details: inconsistent components, slow handoffs, the same setup rebuilt for every new project."
+      "Thường chọn những sản phẩm có domain phức tạp, nơi sai một li là đi một dặm. Sản phẩm như thế hiếm khi gục ở ý tưởng lớn. Nó gục ở chi tiết: component lệch nhau, handoff ì ạch, cùng một bộ setup bị dựng lại cho mỗi dự án mới.",
+      "Drawn to products where the domain is dense and errors cost dearly. Such products rarely fall at the grand idea. They fall in the details: components that disagree, handoffs that stall, the same setup rebuilt for every new project."
     )}
   </p>
   <p>
     {t(
-      "Vì vậy tôi coi design system là một sản phẩm thực thụ. Tôi vẽ rõ problem space trước khi bắt đầu design, và làm sát với engineer, PM, PO, BA cho tới khi ship. Tôi tự code front-end, và tự làm tool để bỏ bớt phần lặp lại trong công việc design.",
-      "So I treat the design system as a product in its own right. I map the problem space before any design work begins, and I stay close to engineers, PMs, POs and BAs until it ships. I write front-end code myself, and I build tools that remove the repetitive parts of design work."
+      "Vì thế design system được coi là một sản phẩm thực thụ. Problem space được vẽ rõ trước khi bắt tay vào design, và công việc bám sát engineer, PM, PO, BA cho tới ngày ship. Front-end do chính tay này viết, tool cũng tự rèn lấy để gạt bỏ phần lặp lại trong việc design.",
+      "So the design system is treated as a product in its own right. The problem space is mapped before any design begins, and the work stays close to engineers, PMs, POs and BAs until it ships. The front end is written by the same hand, and tools are forged to strip the repetition from design work."
+    )}
+  </p>
+  <p>
+    {t(
+      "Ít bộ phận hơn, dùng nhất quán mỗi lần. Người ta nói hệ thống phức tạp trụ được là nhờ vậy.",
+      "Fewer moving parts, used the same way each time. It is said that is how complex systems endure."
     )}
   </p>
 

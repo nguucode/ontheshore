@@ -2,25 +2,25 @@
 title: "Moonveil Icons"
 role: "Design Engineer"
 year: "2026"
-summary: "An open-source SVG icon library in outline and solid styles, for npm, React, Vue, Web Components, webfont, CDN and CLI. In development."
+summary: "An open-source SVG icon library in outline and solid styles, for npm, React, Vue, Web Components, webfont, CDN and CLI. Its forging is not yet finished."
 order: 5
 draft: false
 ---
 
-Links: [GitHub](https://github.com/nguucode/moonveilicons) · [Docs](https://nguucode.github.io/moonveilicons/). Not on npm yet.
+Links: [GitHub](https://github.com/nguucode/moonveilicons) · [Docs](https://nguucode.github.io/moonveilicons/). Not yet released to npm.
 
 ## Problem
 
-To be added.
+Not yet written.
 
 ## My role
 
-To be added.
+Not yet written.
 
 ## Process
 
-To be added.
+Not yet written.
 
 ## Outcome
 
-To be added.
+Not yet written.
