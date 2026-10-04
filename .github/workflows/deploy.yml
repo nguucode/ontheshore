@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -7,15 +7,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -25,10 +23,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      # Project sites only inherit ontheshore.biz from a repo named
-      # nguucode.github.io, so zweihander's built Storybook + registry is
-      # served from here instead. zweihander's CI pushes it to its gh-pages
-      # branch and dispatches this workflow.
+      # zweihander's built Storybook + registry. Its CI pushes it to its gh-pages branch and dispatches this workflow.
       - uses: actions/checkout@v5
         with:
           repository: nguucode/zweihander
@@ -42,33 +37,8 @@ jobs:
           ref: gh-pages
           path: dist/products/kusabimaru/app
           token: ${{ secrets.KUSABIMARU_READ_TOKEN }}
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-
-  # Moving to Cloudflare Pages (GitHub Pages terms rule out a site that sells things). Both deploy the same build
-  # until ontheshore.biz points at Cloudflare; then the github-pages job and public/CNAME go.
-  cloudflare:
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-    steps:
-      - uses: actions/download-artifact@v5
-        with:
-          name: github-pages
-      - run: mkdir site && tar -xf artifact.tar -C site
-      # First run creates the project; afterwards it already exists and this is a no-op.
-      - run: npx -y wrangler@4 pages project create ontheshore --production-branch=main || true
-      - run: npx -y wrangler@4 pages deploy site --project-name=ontheshore --branch=main
+      # ontheshore.biz is a custom domain on the Cloudflare Pages project (GitHub Pages terms rule out a site that sells things)
+      - run: npx -y wrangler@4 pages deploy dist --project-name=ontheshore --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
