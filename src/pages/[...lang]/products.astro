@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Row from "../../components/Row.astro";
 import { getLang, langPaths, T, url } from "../../i18n";
-import { compact, groups, totalPublished } from "../../data/products";
+import { compact, groups, totalFree, totalPublished } from "../../data/products";
 
 export const getStaticPaths = langPaths;
 
@@ -20,7 +20,7 @@ const t = T(lang);
 >
   <h1>Products</h1>
   <p class="lede">
-    {t(`${totalPublished} thứ đã publish, dùng được ngay. Miễn phí, để ngỏ cho bất kỳ ai cần.`, `${totalPublished} things published, ready to use. Free, left open for any who need them.`)}
+    {t(`${totalPublished} thứ đã publish, dùng được ngay. ${totalFree} thứ miễn phí, để ngỏ cho bất kỳ ai cần.`, `${totalPublished} things published, ready to use. ${totalFree} are free, left open for any who need them.`)}
   </p>
 
   {
@@ -35,7 +35,7 @@ const t = T(lang);
               <Row
                 href={it.href && (it.local ? url(lang, it.href) : it.href)}
                 title={it.name}
-                lead={it.uses ? compact(it.uses) : "—"}
+                lead={it.uses ? compact(it.uses) : (it.price ?? "—")}
                 meta={it.uses ? t("lượt dùng", "uses") : undefined}
                 kicker={g.kind}
                 flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}

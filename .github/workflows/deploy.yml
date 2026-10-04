@@ -34,6 +34,14 @@ jobs:
           repository: nguucode/zweihander
           ref: gh-pages
           path: dist/zweihander
+      # Kusabimaru web app, same setup: its CI pushes the build to gh-pages and dispatches this workflow.
+      # The repo is private, so this needs a fine-grained PAT with Contents: read on nguucode/kusabimaru.
+      - uses: actions/checkout@v5
+        with:
+          repository: nguucode/kusabimaru
+          ref: gh-pages
+          path: dist/products/kusabimaru/app
+          token: ${{ secrets.KUSABIMARU_READ_TOKEN }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist

@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 import nhaTrang from "../../assets/nha-trang.jpg";
 import { getCollection } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
-import { all, compact, topByUses, totalPublished, totalUses } from "../../data/products";
+import { all, compact, topByUses, totalFree, totalUses } from "../../data/products";
 import { email, linkedin, phone } from "../../data/contact";
 
 export const getStaticPaths = langPaths;
@@ -52,7 +52,7 @@ const featured = topByUses[0];
       </div>
       <div>
         <dt>{t("sản phẩm đã publish, miễn phí", "products published, all free")}</dt>
-        <dd class="num">{totalPublished}</dd>
+        <dd class="num">{totalFree}</dd>
       </div>
     </dl>
   </section>
@@ -126,7 +126,7 @@ const featured = topByUses[0];
           <Row
             href={it.href && (it.local ? url(lang, it.href) : it.href)}
             title={it.name}
-            lead={it.uses ? compact(it.uses) : "—"}
+            lead={it.uses ? compact(it.uses) : (it.price ?? "—")}
             meta={it.uses ? t("lượt dùng", "uses") : undefined}
             kicker={it.kind}
             flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
