@@ -4,6 +4,7 @@
    Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
    wip: có trang giới thiệu nhưng chưa dùng được: vẫn bấm được, vẫn hiện nhãn, không tính vào số đã publish.
    local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
+   price: sản phẩm trả phí, hiện thay số lượt dùng, không tính vào số miễn phí.
    thumb: hiện ở khung Featured trên trang chủ khi mục này có nhiều lượt dùng nhất. */
 import type { ImageMetadata } from "astro";
 import circleCharts from "../assets/products/circle-charts.png";
@@ -17,6 +18,7 @@ export type Item = {
   local?: boolean;
   uses?: number;
   wip?: boolean;
+  price?: string;
   note: { vi: string; en: string };
 };
 
@@ -50,7 +52,18 @@ const figmaTemplates: Item[] = [
   },
 ];
 
-const figmaPlugins: Item[] = [];
+const figmaPlugins: Item[] = [
+  {
+    name: "Kusabimaru",
+    href: "/products/kusabimaru/",
+    local: true,
+    price: "$20",
+    note: {
+      vi: "Đặt ảnh chụp màn hình vào thiết bị 3D thật, xoay tới góc ưng ý, tải về PNG nền trong suốt. Chạy trên web, plugin Figma đang chờ duyệt. 50 lượt đầu miễn phí.",
+      en: "Put a screenshot on a real 3D device, turn it to any angle, download a transparent PNG. Runs on the web; the Figma plugin is in review. The first 50 exports are free.",
+    },
+  },
+];
 
 const figmaSkills: Item[] = [
   {
@@ -104,6 +117,7 @@ export const all = groups.flatMap((g) => g.items.map((it) => ({ ...it, kind: g.k
 
 export const isPublished = (it: Item) => Boolean(it.href && !it.wip);
 export const totalPublished = all.filter(isPublished).length;
+export const totalFree = all.filter((it) => isPublished(it) && !it.price).length;
 export const totalUses = all.reduce((n, it) => n + (it.uses ?? 0), 0);
 export const topByUses = all.filter((it) => it.uses).sort((a, b) => b.uses! - a.uses!);
 

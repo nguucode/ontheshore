@@ -1,0 +1,306 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { Image } from "astro:assets";
+import { getLang, langPaths, T, url } from "../../../i18n";
+import macbook from "../../../assets/products/kusabimaru/macbook.png";
+import iphone from "../../../assets/products/kusabimaru/iphone.png";
+
+// App: build từ repo nguucode/kusabimaru (nhánh gh-pages), CI chép vào /products/kusabimaru/app/. Một bản, tiếng Anh.
+// Hai ảnh thiết bị render bằng chính Kusabimaru từ ảnh chụp ontheshore.biz (2026-10-04).
+
+export const getStaticPaths = langPaths;
+
+const lang = getLang(Astro.params.lang);
+const t = T(lang);
+
+const app = "/products/kusabimaru/app/";
+const buy = "https://kafkawaves.gumroad.com/l/kusabimaru";
+const ccby = "https://creativecommons.org/licenses/by/4.0/";
+
+const devices = [
+  { group: "Phone", items: [["iPhone 17 Pro Max", "440 × 956"], ["iPhone 16 Pro Max", "440 × 956"], ["Galaxy S21 Ultra", "384 × 854"]] },
+  { group: "Tablet", items: [["iPad Air 11\"", "820 × 1180"], ["iPad Pro 12.9\"", "1024 × 1366"]] },
+  { group: "Desktop", items: [["MacBook Air 13\"", "1470 × 956"], ["MacBook Pro 16\"", "1728 × 1117"], ["iMac 24\"", "2240 × 1260"], ["Surface Pro", "1440 × 960"]] },
+];
+---
+
+<Base
+  title="Kusabimaru"
+  description={t(
+    "Đặt ảnh chụp màn hình vào thiết bị 3D thật, xoay tới góc ưng ý, tải về PNG nền trong suốt. 50 lượt đầu miễn phí.",
+    "Put a screenshot on a real 3D device, turn it to any angle, download a transparent PNG. The first 50 exports are free."
+  )}
+  lang={lang}
+>
+  <section class="sec kb-hero">
+    <p class="sec-label kb-back"><a href={url(lang, "/products/")}>← Products</a></p>
+    <div class="kb-intro">
+      <p class="kicker">{t("Web app · Plugin Figma", "Web app · Figma plugin")}</p>
+      <h1 class="feature-title">Kusabimaru</h1>
+      <p class="feature-sub">
+        {t(
+          "Đặt ảnh chụp màn hình vào thiết bị 3D thật. Xoay tới góc ưng ý, rồi tải về PNG nền trong suốt 2160 px.",
+          "Put a screenshot on a real 3D device. Turn it to the angle you want, then download a 2160 px transparent PNG."
+        )}
+      </p>
+      <p class="kb-actions">
+        <a class="go" href={app} data-umami-event="kusabimaru-open-app">
+          <span class="go-ring" aria-hidden="true">→</span>{t("Mở app", "Open the app")}
+        </a>
+        <a class="kb-buy" href={buy} data-umami-event="kusabimaru-buy">{t("Mua trọn đời · $20", "Buy lifetime · $20")}</a>
+      </p>
+      <p class="faint">{t("50 lượt xuất đầu miễn phí. Không cần tài khoản.", "The first 50 exports are free. No account needed.")}</p>
+    </div>
+    <figure class="kb-stage">
+      <Image
+        class="kb-mac"
+        src={macbook}
+        widths={[700, 1100, macbook.width]}
+        sizes="(max-width: 60rem) 90vw, 45vw"
+        alt={t("Trang chủ ontheshore.biz trên MacBook Pro 16 inch màu bạc, nghiêng sang trái.", "The ontheshore.biz home page on a silver 16-inch MacBook Pro, turned to the left.")}
+        loading="eager"
+      />
+      <Image
+        class="kb-phone"
+        src={iphone}
+        widths={[300, 500, 875]}
+        sizes="(max-width: 60rem) 32vw, 16vw"
+        alt={t("Bản di động của ontheshore.biz trên iPhone 17 Pro Max màu Deep Blue.", "The mobile ontheshore.biz on a Deep Blue iPhone 17 Pro Max.")}
+        loading="eager"
+      />
+      <figcaption class="faint">{t("Cả hai ảnh làm bằng Kusabimaru, từ ảnh chụp chính trang này.", "Both images were made in Kusabimaru, from screenshots of this site.")}</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Cách dùng", "How it works")}</h2>
+    <ol class="kb-steps span-2">
+      <li>{t("Chọn một trong 9 thiết bị.", "Pick one of 9 devices.")}</li>
+      <li>
+        {t(
+          "Kéo thả, dán hoặc chọn một ảnh PNG, JPG, WebP. Cỡ nên dùng là độ phân giải của chính thiết bị đó, ví dụ 440 × 956 cho iPhone 17 Pro Max.",
+          "Drop, paste or choose a PNG, JPG or WebP. The suggested size is the device's own resolution, such as 440 × 956 for iPhone 17 Pro Max."
+        )}
+      </li>
+      <li>
+        {t(
+          "Kéo để xoay, hoặc chọn một trong 8 góc dựng sẵn. Laptop gập mở được nắp, từ 0 đến 135°.",
+          "Drag to rotate, or use one of 8 angle presets. Laptops open and close their lid, from 0 to 135°."
+        )}
+      </li>
+      <li>{t("Tải về PNG 2160 × 2160, nền trong suốt.", "Download a 2160 × 2160 PNG with a transparent background.")}</li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Thiết bị", "Devices")}</h2>
+    <div class="span-3">
+      <dl class="kb-devices">
+        {
+          devices.map((d) => (
+            <div>
+              <dt>{d.group}</dt>
+              {d.items.map(([name, size]) => (
+                <dd>
+                  {name}
+                  <span class="num">{size}</span>
+                </dd>
+              ))}
+            </div>
+          ))
+        }
+      </dl>
+      <p class="muted">{t("Mỗi máy có sẵn màu chính hãng, ngoài ra chọn được bất kỳ màu nào.", "Each one ships with its official colors, plus any custom color.")}</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Giá", "Pricing")}</h2>
+    <div class="span-2">
+      <p>
+        {t(
+          "50 lượt xuất đầu tiên miễn phí, đếm ngay trong trình duyệt. Sau đó, bản quyền trọn đời giá $20, thanh toán qua Gumroad.",
+          "The first 50 exports are free, counted in the browser. After that, a lifetime license is $20, paid through Gumroad."
+        )}
+      </p>
+      <p>
+        {t(
+          "License key nằm trên biên nhận. Trong app, bấm Enter license, dán key vào là xong. Một key dùng được trên mọi trình duyệt.",
+          "The license key is on the receipt. In the app, click Enter license and paste it in. One key works in any browser."
+        )}
+      </p>
+      <p class="muted">
+        {t(
+          "Plugin Figma đang chờ Figma Community duyệt, và được bán riêng ngay trong Figma.",
+          "The Figma plugin is in review at Figma Community and is sold separately, inside Figma."
+        )}
+      </p>
+    </div>
+    <dl class="proof">
+      <div><dt>{t("lượt xuất miễn phí", "free exports")}</dt><dd class="num">50</dd></div>
+      <div><dt>{t("một lần, dùng trọn đời", "once, for life")}</dt><dd class="num">$20</dd></div>
+      <div><dt>{t("ảnh bị tải lên server", "images uploaded")}</dt><dd class="num">0</dd></div>
+    </dl>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Riêng tư", "Privacy")}</h2>
+    <p class="span-2">
+      {t(
+        "Ảnh được dựng bằng WebGL ngay trong trình duyệt và không rời khỏi máy. Thứ duy nhất được tải về là các mô hình 3D, từ cdn.jsdelivr.net.",
+        "Images are rendered with WebGL in the browser and never leave it. The only downloads are the 3D models, from cdn.jsdelivr.net."
+      )}
+    </p>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-label">{t("Ghi công", "Credits")}</h2>
+    <p class="span-2 muted">
+      {t("Ảnh trên trang dùng mô hình 3D", "The images on this page use the 3D models")}{" "}
+      <a href="https://sketchfab.com/3d-models/macbook-pro-m3-16-inch-2024-8e34fc2b303144f78490007d91ff57c4" rel="noopener">“macbook pro M3 16 inch 2024”</a>{" "}
+      {t("của", "by")} jackbaeten {t("và", "and")}{" "}
+      <a href="https://sketchfab.com/3d-models/iphone-17-pro-max-e7c5674931ae4b0ea1b4eaaabb159fdb" rel="noopener">“IPhone 17 Pro Max”</a>{" "}
+      {t("của", "by")} Taufiq K, {t("giấy phép", "licensed")} <a href={ccby} rel="noopener">CC BY 4.0</a>.{" "}
+      {t(
+        "Đã bỏ logo, đổi màu, đổi tỉ lệ và nén lại. Ghi công cho cả 9 mô hình nằm ở trang Credits trong app. Tên sản phẩm chỉ dùng để mô tả; Kusabimaru không liên kết với hãng thiết bị nào.",
+        "Logos removed, recolored, rescaled and compressed. Credits for all 9 models are on the Credits page in the app. Product names are used descriptively only; Kusabimaru is not affiliated with any device maker."
+      )}
+    </p>
+  </section>
+
+  <script is:inline defer src="https://gumroad.com/js/gumroad.js"></script>
+</Base>
+
+<style>
+  .kb-hero {
+    padding-top: 0.5rem;
+  }
+
+  .kb-back {
+    font-size: 0.85rem;
+  }
+
+  .kb-back::before {
+    display: none;
+  }
+
+  .kb-intro {
+    grid-column: 2;
+  }
+
+  .kb-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.4rem;
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  .kb-buy {
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.3s var(--ease);
+  }
+
+  .kb-buy:hover {
+    border-color: var(--accent);
+  }
+
+  /* MacBook phía sau, iPhone chồng lên góc phải dưới; cả hai trôi nhẹ lệch nhịp */
+  .kb-stage {
+    grid-column: 3 / -1;
+    position: relative;
+    margin: 0;
+    padding-bottom: 3rem;
+  }
+
+  .kb-stage img {
+    display: block;
+    height: auto;
+  }
+
+  .kb-mac {
+    width: 88%;
+    animation: kb-float 7s ease-in-out infinite;
+  }
+
+  .kb-phone {
+    position: absolute;
+    right: var(--pad);
+    bottom: 2.5rem;
+    width: 27%;
+    filter: drop-shadow(0 18px 24px rgb(0 30 70 / 0.18));
+    animation: kb-float 6s ease-in-out -2.5s infinite;
+  }
+
+  .kb-stage figcaption {
+    margin-top: 1.2rem;
+    max-width: min(30ch, 62%); /* chừa chỗ cho iPhone chồng ở góc phải */
+  }
+
+  @keyframes kb-float {
+    50% { transform: translateY(-6px); }
+  }
+
+  .kb-steps {
+    margin: 0;
+    padding-block: 0; /* giữ padding-inline của .sec > * */
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .kb-steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .kb-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--num-font);
+    color: var(--accent);
+  }
+
+  .kb-devices {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 0 var(--pad);
+    margin: 0 0 1.5rem;
+  }
+
+  .kb-devices dt {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    padding-bottom: 0.4rem;
+  }
+
+  .kb-devices dd {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.55rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .kb-devices .num {
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 60rem) {
+    .kb-stage {
+      margin-top: 2.5rem;
+    }
+
+    .kb-devices {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
