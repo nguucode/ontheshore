@@ -55,3 +55,20 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Moving to Cloudflare Pages (GitHub Pages terms rule out a site that sells things). Both deploy the same build
+  # until ontheshore.biz points at Cloudflare; then the github-pages job and public/CNAME go.
+  cloudflare:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: github-pages
+      - run: mkdir site && tar -xf artifact.tar -C site
+      # First run creates the project; afterwards it already exists and this is a no-op.
+      - run: npx -y wrangler@4 pages project create ontheshore --production-branch=main || true
+      - run: npx -y wrangler@4 pages deploy site --project-name=ontheshore --branch=main
