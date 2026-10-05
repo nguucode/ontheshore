@@ -99,7 +99,7 @@ export const community = (uses: string): { name: string; what: Text; href: strin
   },
   {
     name: "Gumroad",
-    what: { vi: "Kusabimaru, mockup thiết bị 3D cho web và Figma", en: "Kusabimaru, 3D device mockups for web and Figma" },
+    what: { vi: "Design tool và tài nguyên trả phí, trong đó có Kusabimaru", en: "Paid design tools and resources, including Kusabimaru" },
     href: "https://kafkawaves.gumroad.com/",
   },
   {

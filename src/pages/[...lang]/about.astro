@@ -115,7 +115,9 @@ const facts = [
         <div class="row">
           <div class="when">{it.name}</div>
           <p class="what">
-            {it.what[lang]} · <a href={it.href}>{it.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")}</a>
+            {it.what[lang]}
+            <br />
+            <a href={it.href}>{it.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")}</a>
           </p>
         </div>
       ))
