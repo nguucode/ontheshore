@@ -5,12 +5,11 @@ import { experience, skills } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
 import { compact, totalUses } from "../data/products";
 
-// Community and Products: mỗi dòng một link thấy rõ, HR in ra giấy vẫn đọc được địa chỉ.
+// Community and Products: ba nơi xem hết sản phẩm (sếp chọn 2026-10-05). Link ghi rõ để in ra giấy vẫn đọc được.
 const products = [
-  { name: "Templates", what: `Free Figma charts and flags, ${compact(totalUses)} uses`, href: "https://www.figma.com/@nguunguyen73" },
-  { name: "Kusabimaru", what: "3D device mockups, web + Figma plugin", href: "https://ontheshore.biz/products/kusabimaru/" },
-  { name: "Figma AI skill", what: "Batch-cleans icon sets", href: "https://www.figma.com/community/skill/89555/flatten-icon-frames" },
-  { name: "Zweihänder", what: "Open-source React UI kit", href: "https://ontheshore.biz/zweihander/" },
+  { name: "Figma", what: `Free templates and an AI skill, ${compact(totalUses)} uses`, href: "https://www.figma.com/@nguunguyen73" },
+  { name: "Gumroad", what: "Kusabimaru, 3D device mockups for web and Figma", href: "https://kafkawaves.gumroad.com/" },
+  { name: "Website", what: "All products, case studies and the Zweihänder UI kit", href: "https://ontheshore.biz/products/" },
 ];
 const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
@@ -136,13 +135,17 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
       .cols p {
         margin: 0;
       }
+      /* dòng Skills và Community and Products có divider như Experience, khoảng đệm nhỏ hơn để vừa 1 trang */
       .skill {
         display: grid;
         grid-template-columns: 24mm 1fr;
         gap: 4mm; /* cùng cột với .job */
+        padding: 1.3mm 0;
+        border-top: 1px solid var(--rule);
       }
-      .skill + .skill {
-        margin-top: 1mm;
+      h2 + .skill {
+        border-top: 0;
+        padding-top: 0;
       }
       .group {
         color: var(--faint);
