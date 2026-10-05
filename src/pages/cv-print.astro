@@ -78,7 +78,7 @@ import { compact, totalUses } from "../data/products";
         color: var(--soft);
       }
       h2 {
-        margin: 6mm 0 2.5mm;
+        margin: 5mm 0 2.5mm;
         font-size: 8pt;
         font-weight: 600;
         letter-spacing: 0.12em;
@@ -93,7 +93,7 @@ import { compact, totalUses } from "../data/products";
         display: grid;
         grid-template-columns: 24mm 1fr;
         gap: 4mm;
-        padding: 2.4mm 0;
+        padding: 2mm 0;
         border-top: 1px solid var(--rule);
       }
       .job:first-of-type {
@@ -127,6 +127,7 @@ import { compact, totalUses } from "../data/products";
       .skill {
         display: grid;
         grid-template-columns: 24mm 1fr;
+        gap: 4mm; /* cùng cột với .job */
       }
       .skill + .skill {
         margin-top: 1mm;
