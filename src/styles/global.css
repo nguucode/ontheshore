@@ -426,8 +426,111 @@ hr {
 
 /* ---------- home: nổi bật (như "triển lãm đang mở") ---------- */
 
+/* slide Featured: gạch accent trên nhãn kiêm thanh thời gian */
+.feature .sec-label::before {
+  display: none;
+}
+
+.feature-head {
+  grid-column: 1;
+}
+
+.feature-head .sec-label {
+  padding: 0;
+}
+
+/* nút: gạch 2px nhìn thấy, vùng bấm 44px nhờ padding (nền chỉ vẽ trong content-box) */
+.feature-bar {
+  display: block;
+  box-sizing: content-box;
+  width: 1.4rem;
+  height: 2px;
+  padding: 21px 0.75rem;
+  margin: -21px -0.75rem calc(1rem - 21px);
+  border: 0;
+  background: linear-gradient(var(--accent), var(--accent)) left / 100% 100% no-repeat, var(--rule);
+  background-origin: content-box;
+  background-clip: content-box;
+  cursor: pointer;
+  animation: fill 7s linear;
+}
+
+.feature-bar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -14px;
+}
+
+.feature:is(:hover, :focus-within) .feature-bar {
+  animation-play-state: paused;
+}
+
+@keyframes fill {
+  from { background-size: 0 100%; }
+}
+
+.sec > .feature-track {
+  grid-column: 2 / -1;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.feature-track::-webkit-scrollbar {
+  display: none;
+}
+
+.feature-slide {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* khớp cột 2 | cột 3–4 của lưới */
+  align-items: start;
+  scroll-snap-align: start;
+}
+
 .feature-text {
-  grid-column: 2;
+  padding-inline: var(--pad);
+}
+
+.feature-slide[data-on] .feature-text > * {
+  animation: rise 0.7s var(--ease) both;
+}
+
+.feature-slide[data-on] .feature-text > :nth-child(2) { animation-delay: 60ms; }
+.feature-slide[data-on] .feature-text > :nth-child(3) { animation-delay: 120ms; }
+.feature-slide[data-on] .feature-text > :nth-child(4) { animation-delay: 180ms; }
+.feature-slide[data-on] .feature-text > :nth-child(n + 5) { animation-delay: 240ms; }
+
+.feature-slide[data-on] .feature-media {
+  animation: settle 1.2s var(--ease) both;
+}
+
+@keyframes settle {
+  from { opacity: 0.4; transform: scale(1.04); }
+}
+
+/* project chưa có ảnh: poster chữ trên nền accent */
+.poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.poster strong {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.poster span {
+  font-size: 0.85rem;
+  opacity: 0.75;
 }
 
 .feature-title {
@@ -460,14 +563,10 @@ hr {
   margin-bottom: 1.1rem;
 }
 
-.feature-media {
-  grid-column: 3 / -1;
-  aspect-ratio: 4 / 3;
-  margin-top: calc(-1 * var(--pad));
-}
-
-.sec > .feature-media {
-  padding: 0;
+/* mọi slide cùng khung (tỉ lệ ảnh Circle Charts) để chiều cao không nhảy; ảnh nền trong suốt thì contain */
+.feature-slide .feature-media {
+  aspect-ratio: 1494 / 960;
+  object-fit: contain;
 }
 
 /* ảnh thật giữ nguyên tỉ lệ gốc, không cắt chữ trên cover */
@@ -889,6 +988,18 @@ code {
 
   .feature-media {
     margin: 2rem 0 0;
+  }
+
+  .sec > .feature-track {
+    margin-top: 1.5rem;
+  }
+
+  .feature-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-text {
+    padding-inline: 1rem;
   }
 
   .ix-row {

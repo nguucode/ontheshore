@@ -6,11 +6,12 @@
    local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
    price: sản phẩm trả phí, hiện thay số lượt dùng, không tính vào số miễn phí.
    kind: nhãn riêng cho mục chạy trên nhiều nền tảng (vd. Kusabimaru: web + plugin Figma).
-   thumb: hiện ở khung Featured trên trang chủ khi mục này có nhiều lượt dùng nhất. */
+   thumb: ảnh ở khung Featured trên trang chủ (mục nhiều lượt dùng nhất và app trả phí). */
 import type { ImageMetadata } from "astro";
 import circleCharts from "../assets/products/circle-charts.png";
 import basicCharts from "../assets/products/basic-charts.png";
 import polarisChart from "../assets/products/polaris-chart.png";
+import kusabimaru from "../assets/products/kusabimaru/macbook.png";
 
 export type Item = {
   name: string;
@@ -68,6 +69,7 @@ const figmaSkills: Item[] = [
 const apps: Item[] = [
   {
     name: "Kusabimaru",
+    thumb: kusabimaru,
     href: "/products/kusabimaru/",
     local: true,
     price: "$20",
