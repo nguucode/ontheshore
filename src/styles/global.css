@@ -448,7 +448,8 @@ hr {
   padding: 21px 0.75rem;
   margin: -21px -0.75rem calc(1rem - 21px);
   border: 0;
-  background: linear-gradient(var(--accent), var(--accent)) left / 100% 100% no-repeat, var(--rule);
+  /* một lớp ảnh duy nhất, để background-size nội suy mượt (2 lớp thì nhảy cóc) */
+  background: var(--rule) linear-gradient(var(--accent), var(--accent)) left / 100% 100% no-repeat;
   background-origin: content-box;
   background-clip: content-box;
   cursor: pointer;
@@ -460,7 +461,8 @@ hr {
   outline-offset: -14px;
 }
 
-.feature:is(:hover, :focus-within) .feature-bar {
+/* chỉ dừng khi đang đọc slide (rê chuột hoặc focus bàn phím vào slide); bấm gạch thì không dừng */
+.feature:has(.feature-track:hover, .feature-track :focus-visible) .feature-bar {
   animation-play-state: paused;
 }
 

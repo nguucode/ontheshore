@@ -21,13 +21,13 @@ const homeProjects = projects.slice(1, 4); // project đầu đã nằm ở slid
 // Có lượt dùng xếp trước, theo số lượt dùng.
 const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0)).slice(0, 3);
 
-// Featured: 3 slide, 1 project đầu + product nhiều lượt dùng nhất + app trả phí.
+// Featured: 3 slide cùng khung: tag nền tảng, kicker "loại · chi tiết", mô tả 120–150 ký tự, một số liệu.
 type Slide = {
   tag: string;
   kicker: string;
   title: string;
-  sub: string;
-  stat?: string;
+  desc: string;
+  stat: { value: string; unit: string };
   href: string;
   cta: string;
   thumb?: ImageMetadata;
@@ -38,34 +38,51 @@ const top = topByUses[0];
 const app = all.find((it) => it.price && it.href)!;
 const slides: Slide[] = [
   lead && {
-    tag: "Case study",
-    kicker: `${lead.data.role} · ${lead.data.year}`,
+    tag: "Shopify App",
+    kicker: `Case study · ${lead.data.year}`,
     title: lead.data.title,
-    sub: lead.data.summary,
+    desc: t(
+      "App Shopify tự gom mọi khoản chi phí, từ giá vốn, phí ship tới tiền quảng cáo, rồi cho chủ shop thấy lợi nhuận ròng thật theo thời gian thực.",
+      "A Shopify app that gathers every cost on its own, from COGS and shipping to ad spend, and shows merchants their true net profit, live."
+    ),
+    stat: { value: "6", unit: t("module lõi, web và iOS", "core modules, web and iOS") },
     href: url(lang, `/projects/${lead.slug}/`),
     cta: t("Xem case study", "Read the case study"),
-    poster: { top: lead.data.year, bottom: lead.data.client ?? lead.data.role },
+    poster: { top: lead.data.year, bottom: lead.data.role },
   },
   {
     tag: "Figma Community",
     kicker: t("Template · miễn phí", "Template · free"),
     title: top.name,
-    sub: top.note[lang],
-    stat: compact(top.uses!),
+    desc: t(
+      "Donut, pie, progress, radial bar và rose chart cho dashboard, dựng bằng Auto Layout, đủ light và dark theme. Template được dùng nhiều nhất.",
+      "Donut, pie, progress, radial bar and rose charts for dashboards, built on Auto Layout, light and dark. The most drawn upon of all the templates."
+    ),
+    stat: { value: compact(top.uses!), unit: t("lượt dùng", "uses") },
     href: top.href!,
     cta: t("Xem trên Figma", "Open in Figma"),
     thumb: top.thumb,
   },
   {
-    tag: "App",
-    kicker: `${app.kind} · ${app.price}`,
+    tag: app.kind!,
+    kicker: `App · ${app.price}`,
     title: app.name,
-    sub: app.note[lang],
+    desc: t(
+      "Đặt ảnh chụp màn hình hoặc frame Figma lên thiết bị 3D thật, xoay tới góc ưng ý, xuất PNG nền trong suốt. Web app đã chạy, plugin đang chờ duyệt.",
+      "Put a screenshot or a Figma frame on a real 3D device, turn it to any angle and export a transparent PNG. Web app live, Figma plugin in review."
+    ),
+    stat: { value: "50", unit: t("lượt xuất đầu miễn phí", "free exports to start") },
     href: url(lang, app.href!),
     cta: t("Xem sản phẩm", "View the product"),
     thumb: app.thumb,
   },
 ].filter(Boolean) as Slide[];
+
+// Mô tả lệch khỏi 120–150 ký tự thì build hỏng, khỏi phải nhớ mà đếm.
+for (const sl of slides) {
+  const n = [...sl.desc].length;
+  if (n < 120 || n > 150) throw new Error(`Featured "${sl.title}" (${lang}): mô tả ${n} ký tự, cần 120–150.`);
+}
 ---
 
 <Base lang={lang}>
@@ -115,13 +132,11 @@ const slides: Slide[] = [
               <span class="tag">{sl.tag}</span>
               <p class="kicker">{sl.kicker}</p>
               <h3 class="feature-title">{sl.title}</h3>
-              <p class="feature-sub">{sl.sub}</p>
-              {sl.stat && (
-                <p class="feature-stat">
-                  <span class="num">{sl.stat}</span>
-                  {t("lượt dùng", "uses")}
-                </p>
-              )}
+              <p class="feature-sub">{sl.desc}</p>
+              <p class="feature-stat">
+                <span class="num">{sl.stat.value}</span>
+                {sl.stat.unit}
+              </p>
               <a class="go" href={sl.href} rel={sl.href.startsWith("http") ? "noopener" : undefined}>
                 <span class="go-ring" aria-hidden="true">→</span>{sl.cta}
               </a>
