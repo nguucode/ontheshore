@@ -68,7 +68,7 @@ export const experience: Job[] = [
       vi: "E-commerce, mobile và web, từ UX flow tới visual. UI kit và WordPress theme ra đời ở đây, dùng nội bộ và được bán ra ngoài.",
       en: "E-commerce, mobile and web, from UX flows to visual production. UI kits and WordPress themes were made here, used in-house and sold beyond its walls.",
     },
-    cv: "E-commerce, mobile and web projects, covering UX flows and visual production. Built UI kits and WordPress themes used in-house and sold on the market.",
+    cv: "", // CV PDF bỏ mô tả để lấy chỗ cho Community and Products (sếp, 2026-10-05)
   },
   {
     when: "2019",

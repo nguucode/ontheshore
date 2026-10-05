@@ -4,6 +4,14 @@
 import { experience, skills } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
 import { compact, totalUses } from "../data/products";
+
+// Community and Products: ba nơi xem hết sản phẩm (sếp chọn 2026-10-05). Link ghi rõ để in ra giấy vẫn đọc được.
+const products = [
+  { name: "Figma", what: `Free templates and an AI skill, ${compact(totalUses)} uses`, href: "https://www.figma.com/@nguunguyen73" },
+  { name: "Gumroad", what: "Kusabimaru, 3D device mockups for web and Figma", href: "https://kafkawaves.gumroad.com/" },
+  { name: "Website", what: "All products, case studies and the Zweihänder UI kit", href: "https://ontheshore.biz/" },
+];
+const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 
 <!doctype html>
@@ -42,9 +50,12 @@ import { compact, totalUses } from "../data/products";
         color: var(--ink);
         background: #fff;
       }
+      /* link phải nhìn ra ngay là bấm được: màu chàm, gạch chân */
       a {
-        color: inherit;
-        text-decoration: none;
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 0.6pt;
+        text-underline-offset: 1.6pt;
       }
       .num {
         font-family: "Space Grotesk", sans-serif;
@@ -78,7 +89,7 @@ import { compact, totalUses } from "../data/products";
         color: var(--soft);
       }
       h2 {
-        margin: 6mm 0 2.5mm;
+        margin: 5mm 0 2.5mm;
         font-size: 8pt;
         font-weight: 600;
         letter-spacing: 0.12em;
@@ -93,7 +104,7 @@ import { compact, totalUses } from "../data/products";
         display: grid;
         grid-template-columns: 24mm 1fr;
         gap: 4mm;
-        padding: 2.4mm 0;
+        padding: 2mm 0;
         border-top: 1px solid var(--rule);
       }
       .job:first-of-type {
@@ -124,12 +135,17 @@ import { compact, totalUses } from "../data/products";
       .cols p {
         margin: 0;
       }
+      /* dòng Skills và Community and Products có divider như Experience, khoảng đệm nhỏ hơn để vừa 1 trang */
       .skill {
         display: grid;
         grid-template-columns: 24mm 1fr;
+        gap: 4mm; /* cùng cột với .job */
+        padding: 1.3mm 0;
+        border-top: 1px solid var(--rule);
       }
-      .skill + .skill {
-        margin-top: 1mm;
+      h2 + .skill {
+        border-top: 0;
+        padding-top: 0;
       }
       .group {
         color: var(--faint);
@@ -151,10 +167,9 @@ import { compact, totalUses } from "../data/products";
     </header>
 
     <p class="summary">
-      7 years designing complex B2B products: fintech, banking CRM, enterprise logistics, healthcare and e-commerce. I treat the
-      design system as a product in its own right, map the problem space before any design work begins, and stay close to
-      engineers, PMs, POs and BAs until it ships. I write front-end code myself and build tools that remove the repetitive parts
-      of design work.
+      7 years designing complex B2B products in fintech, banking CRM, enterprise logistics and healthcare. I map the problem space
+      before drawing screens, treat the design system as a product, and stay with engineers, PMs, POs and BAs until release. I
+      also write front-end code and build design tools.
     </p>
 
     <h2>Experience</h2>
@@ -185,11 +200,17 @@ import { compact, totalUses } from "../data/products";
         }
       </div>
       <div>
-        <h2>Community and open source</h2>
-        <p>
-          Free Figma templates with <span class="num">{compact(totalUses)}</span> uses on Figma Community, plus a published Figma AI
-          skill. Maker of Kusabimaru, a paid 3D device-mockup web app and Figma plugin, and open-source maintainer of Zweihänder, a React UI kit.
-        </p>
+        <h2>Community and Products</h2>
+        {
+          products.map((it) => (
+            <p class="skill">
+              <span class="group">{it.name}</span>
+              <span>
+                {it.what} · <a href={it.href}>{bare(it.href)}</a>
+              </span>
+            </p>
+          ))
+        }
       </div>
     </div>
   </body>
