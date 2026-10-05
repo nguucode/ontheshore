@@ -6,15 +6,17 @@ import macbook from "../../../assets/products/kusabimaru/macbook.png";
 import iphone from "../../../assets/products/kusabimaru/iphone.png";
 
 // App: build từ repo nguucode/kusabimaru (nhánh gh-pages), CI chép vào /products/kusabimaru/app/. Một bản, tiếng Anh.
-// Hai ảnh thiết bị render bằng chính Kusabimaru từ ảnh chụp ontheshore.biz (2026-10-04).
+// Hai ảnh thiết bị render bằng chính Kusabimaru (2026-10-05): landing page Uifry trên MacBook, màn Spotify trên iPhone. Sếp chọn ảnh.
+// Không có nút mua: người dùng mua ngay trong web app hoặc trong plugin Figma.
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-const app = "/products/kusabimaru/app/";
-const buy = "https://kafkawaves.gumroad.com/l/kusabimaru";
+// App chỉ được CI chép vào lúc deploy, nên khi chạy astro dev thì trỏ sang bản trên site thật.
+const app = `${import.meta.env.DEV ? "https://ontheshore.biz" : ""}/products/kusabimaru/app/`;
+const plugin = "https://www.figma.com/community/plugin/1688166563539632268";
 const ccby = "https://creativecommons.org/licenses/by/4.0/";
 
 const devices = [
@@ -47,7 +49,7 @@ const devices = [
         <a class="go" href={app} data-umami-event="kusabimaru-open-app">
           <span class="go-ring" aria-hidden="true">→</span>{t("Mở app", "Open the app")}
         </a>
-        <a class="kb-buy" href={buy} data-umami-event="kusabimaru-buy">{t("Mua trọn đời · $20", "Buy lifetime · $20")}</a>
+        <a class="kb-plugin" href={plugin} rel="noopener" data-umami-event="kusabimaru-open-plugin">{t("Dùng plugin Figma", "Use Figma plugin")}</a>
       </p>
       <p class="faint">{t("50 lượt xuất đầu miễn phí. Không cần tài khoản.", "The first 50 exports are free. No account needed.")}</p>
     </div>
@@ -57,7 +59,7 @@ const devices = [
         src={macbook}
         widths={[700, 1100, macbook.width]}
         sizes="(max-width: 60rem) 90vw, 45vw"
-        alt={t("Trang chủ ontheshore.biz trên MacBook Pro 16 inch màu bạc, nghiêng sang trái.", "The ontheshore.biz home page on a silver 16-inch MacBook Pro, turned to the left.")}
+        alt={t("Landing page một app tài chính trên MacBook Pro 16 inch màu bạc, nghiêng sang trái.", "A finance app landing page on a silver 16-inch MacBook Pro, turned to the left.")}
         loading="eager"
       />
       <Image
@@ -65,10 +67,10 @@ const devices = [
         src={iphone}
         widths={[300, 500, 875]}
         sizes="(max-width: 60rem) 32vw, 16vw"
-        alt={t("Bản di động của ontheshore.biz trên iPhone 17 Pro Max màu Deep Blue.", "The mobile ontheshore.biz on a Deep Blue iPhone 17 Pro Max.")}
+        alt={t("Màn hình phát nhạc trên iPhone 17 Pro Max màu Deep Blue.", "A music player screen on a Deep Blue iPhone 17 Pro Max.")}
         loading="eager"
       />
-      <figcaption class="faint">{t("Cả hai ảnh làm bằng Kusabimaru, từ ảnh chụp chính trang này.", "Both images were made in Kusabimaru, from screenshots of this site.")}</figcaption>
+      <figcaption class="faint">{t("Cả hai ảnh làm bằng Kusabimaru, từ ảnh chụp màn hình.", "Both images were made in Kusabimaru, from plain screenshots.")}</figcaption>
     </figure>
   </section>
 
@@ -94,7 +96,7 @@ const devices = [
 
   <section class="sec">
     <h2 class="sec-label">{t("Thiết bị", "Devices")}</h2>
-    <div class="span-3">
+    <div class="span-3 kb-devices-wrap">
       <dl class="kb-devices">
         {
           devices.map((d) => (
@@ -168,7 +170,6 @@ const devices = [
     </p>
   </section>
 
-  <script is:inline defer src="https://gumroad.com/js/gumroad.js"></script>
 </Base>
 
 <style>
@@ -196,14 +197,14 @@ const devices = [
     margin: 1.8rem 0 0.6rem;
   }
 
-  .kb-buy {
+  .kb-plugin {
     font-size: 0.9rem;
     text-decoration: none;
     border-bottom: 1px solid var(--rule);
     transition: border-color 0.3s var(--ease);
   }
 
-  .kb-buy:hover {
+  .kb-plugin:hover {
     border-color: var(--accent);
   }
 
@@ -264,11 +265,27 @@ const devices = [
     color: var(--accent);
   }
 
-  .kb-devices {
+  /* mỗi nhóm thiết bị nằm đúng một cột của lưới trang, chữ không đè lên đường kẻ dọc */
+  .sec > .kb-devices-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.2fr;
-    gap: 0 var(--pad);
+    grid-template-columns: subgrid;
+    padding-inline: 0;
+  }
+
+  .kb-devices {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
     margin: 0 0 1.5rem;
+  }
+
+  .kb-devices > div,
+  .kb-devices-wrap > p {
+    padding-inline: var(--pad);
+  }
+
+  .kb-devices-wrap > p {
+    grid-column: 1 / -1;
   }
 
   .kb-devices dt {
@@ -298,9 +315,22 @@ const devices = [
       margin-top: 2.5rem;
     }
 
+    .sec > .kb-devices-wrap,
     .kb-devices {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      display: block;
+    }
+
+    .sec > .kb-devices-wrap {
+      padding-inline: 1rem;
+    }
+
+    .kb-devices > div,
+    .kb-devices-wrap > p {
+      padding-inline: 0;
+    }
+
+    .kb-devices > div + div {
+      margin-top: 1.5rem;
     }
   }
 </style>
