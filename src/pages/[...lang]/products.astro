@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Row from "../../components/Row.astro";
 import { getLang, langPaths, T, url } from "../../i18n";
-import { compact, groups, totalFree, totalPublished } from "../../data/products";
+import { compact, groups, totalFree, totalPaid, totalPublished } from "../../data/products";
 
 export const getStaticPaths = langPaths;
 
@@ -13,14 +13,14 @@ const t = T(lang);
 <Base
   title="Products"
   description={t(
-    "Figma template, AI skill và open-source library của Ngưu Nguyễn. Miễn phí, hơn 100k lượt dùng trên Figma Community.",
-    "Free Figma templates, AI skills and open-source libraries by Ngưu Nguyễn. 100k+ uses on Figma Community."
+    "App, Figma template, AI skill và UI kit của Ngưu Nguyễn, có bản miễn phí và trả phí. Hơn 100k lượt dùng trên Figma Community.",
+    "Apps, Figma templates, AI skills and UI kits by Ngưu Nguyễn, free and paid. 100k+ uses on Figma Community."
   )}
   lang={lang}
 >
   <h1>Products</h1>
   <p class="lede">
-    {t(`${totalPublished} thứ đã publish, dùng được ngay. ${totalFree} thứ miễn phí, để ngỏ cho bất kỳ ai cần.`, `${totalPublished} things published, ready to use. ${totalFree} are free, left open for any who need them.`)}
+    {t(`${totalPublished} thứ đã publish, dùng được ngay. ${totalFree} thứ miễn phí, để ngỏ cho bất kỳ ai cần. ${totalPaid} thứ trả phí, có dùng thử.`, `${totalPublished} things published, ready to use. ${totalFree} are free, left open for any who need them. ${totalPaid} paid, with a free trial.`)}
   </p>
 
   {
@@ -37,7 +37,7 @@ const t = T(lang);
                 title={it.name}
                 lead={it.uses ? compact(it.uses) : (it.price ?? "—")}
                 meta={it.uses ? t("lượt dùng", "uses") : undefined}
-                kicker={g.kind}
+                kicker={it.kind ?? g.kind}
                 flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
                 note={it.note[lang]}
                 i={i}

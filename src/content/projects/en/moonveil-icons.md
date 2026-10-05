@@ -4,7 +4,7 @@ role: "Design Engineer"
 year: "2026"
 summary: "An open-source SVG icon library in outline and solid styles, for npm, React, Vue, Web Components, webfont, CDN and CLI. Its forging is not yet finished."
 order: 5
-draft: false
+draft: true
 ---
 
 Links: [GitHub](https://github.com/nguucode/moonveilicons) · [Docs](https://nguucode.github.io/moonveilicons/). Not yet released to npm.

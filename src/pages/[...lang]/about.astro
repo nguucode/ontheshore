@@ -23,7 +23,7 @@ const community = [
     note: templates.map((it) => it.name).join(", "),
   },
   ...byKind("Skill").map((it) => ({ when: "Figma AI skill", name: it.name, href: it.href!, note: it.note[lang], wip: it.wip })),
-  ...byKind("OSS").map((it) => ({
+  ...byKind("Kit").map((it) => ({
     when: "Open source",
     name: it.name,
     href: it.local ? url(lang, it.href!) : it.href!,
