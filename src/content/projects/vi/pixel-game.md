@@ -1,24 +1,24 @@
 ---
 title: "Game mobile pixel art"
-role: "Vai trò chưa được ghi lại"
+role: "Đang cập nhật vai trò"
 year: "—"
-summary: "Game mobile vẽ bằng pixel art. Case study chưa được chép lại."
+summary: "Game mobile vẽ bằng pixel art. Case study đang viết."
 order: 6
 draft: false
 ---
 
 ## Problem
 
-Chưa được chép lại.
+Chưa viết.
 
 ## My role
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Process
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Outcome
 
-Chưa được chép lại.
+Chưa viết.

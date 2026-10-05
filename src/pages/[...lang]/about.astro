@@ -3,34 +3,17 @@ import Base from "../../layouts/Base.astro";
 import { Image } from "astro:assets";
 import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
-import { compact, groups, totalUses } from "../../data/products";
-import { email, linkedin } from "../../data/contact";
-import { experience, skills } from "../../data/cv";
+import { compact, totalUses } from "../../data/products";
+import { email, linkedin, phone } from "../../data/contact";
+import { community as communityOf, experience, skills, summary } from "../../data/cv";
 
 export const getStaticPaths = langPaths;
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-// Community: lấy thẳng từ src/data/products.ts để không lệch với trang Products.
-const byKind = (kind: string) => groups.find((g) => g.kind === kind)!.items;
-const templates = byKind("Figma");
-const community = [
-  {
-    when: `${compact(totalUses)} ${t("lượt dùng", "uses")}`,
-    name: t("Figma template", "Figma templates"),
-    href: "https://www.figma.com/@nguunguyen73",
-    note: templates.map((it) => it.name).join(", "),
-  },
-  ...byKind("Skill").map((it) => ({ when: "Figma AI skill", name: it.name, href: it.href!, note: it.note[lang], wip: it.wip })),
-  ...byKind("Kit").map((it) => ({
-    when: "Open source",
-    name: it.name,
-    href: it.local ? url(lang, it.href!) : it.href!,
-    note: it.note[lang],
-    wip: it.wip,
-  })),
-]
+// Community and Products: cùng nguồn với CV PDF (src/data/cv.ts).
+const community = communityOf(compact(totalUses));
 
 // Số năm và 5 design system/sản phẩm: sếp cung cấp 2026-10-01; 12 domain theo danh sách Domains trong cv.ts (2026-10-02). Lượt dùng template tính từ src/data/products.ts.
 const facts = [
@@ -48,13 +31,9 @@ const facts = [
   <Image class="portrait" src={portrait} width={320} alt={t("Ảnh chân dung Ngưu Nguyễn", "Portrait of Ngưu Nguyễn")} loading="eager" />
   <h1>Ngưu Nguyễn</h1>
   <p class="lede">
-    {
-      t(
-        "Senior Product Designer. 7 năm dành cho sản phẩm B2B phức tạp: fintech, CRM ngân hàng, logistics enterprise. Cư ngụ ở Nha Trang, Việt Nam.",
-        "Senior Product Designer. 7 years spent on complex B2B products: fintech, banking CRM, enterprise logistics. Resides in Nha Trang, Vietnam."
-      )
-    }
+    Senior Product Designer · {t("Nha Trang, Việt Nam · nhận làm remote", "Nha Trang, Vietnam · open to remote")}
   </p>
+  <p>{summary[lang]}</p>
   <p>
     <a class="go" href="/nguu-nguyen-cv.pdf"><span class="go-ring" aria-hidden="true">↓</span>{t("Tải CV (PDF)", "Download CV (PDF)")}</a>
   </p>
@@ -62,20 +41,14 @@ const facts = [
   <h2>How the work is done</h2>
   <p>
     {t(
-      "Thường chọn những sản phẩm có domain phức tạp, nơi sai một li là đi một dặm. Sản phẩm như thế hiếm khi gục ở ý tưởng lớn. Nó gục ở chi tiết: component lệch nhau, handoff ì ạch, cùng một bộ setup bị dựng lại cho mỗi dự án mới.",
-      "Drawn to products where the domain is dense and errors cost dearly. Such products rarely fall at the grand idea. They fall in the details: components that disagree, handoffs that stall, the same setup rebuilt for every new project."
+      "Tôi hợp với những sản phẩm có domain phức tạp, nơi sai sót phải trả giá đắt. Những sản phẩm này hiếm khi hỏng vì ý tưởng lớn. Chúng hỏng ở chi tiết: component không nhất quán, handoff chậm, cùng một bộ setup phải dựng lại cho mỗi dự án.",
+      "I work best on products with dense domains, where mistakes are expensive. These products rarely fail on the big idea. They fail on the details: inconsistent components, slow handoffs, the same setup rebuilt for every project."
     )}
   </p>
   <p>
     {t(
-      "Vì thế design system được coi là một sản phẩm thực thụ. Problem space được vẽ rõ trước khi bắt tay vào design, và công việc bám sát engineer, PM, PO, BA cho tới ngày ship. Front-end do chính tay này viết, tool cũng tự rèn lấy để gạt bỏ phần lặp lại trong việc design.",
-      "So the design system is treated as a product in its own right. The problem space is mapped before any design begins, and the work stays close to engineers, PMs, POs and BAs until it ships. The front end is written by the same hand, and tools are forged to strip the repetition from design work."
-    )}
-  </p>
-  <p>
-    {t(
-      "Ít bộ phận hơn, dùng nhất quán mỗi lần. Người ta nói hệ thống phức tạp trụ được là nhờ vậy.",
-      "Fewer moving parts, used the same way each time. It is said that is how complex systems endure."
+      "Vì vậy tôi đầu tư vào design system và tooling: ít thành phần hơn, dùng nhất quán mỗi lần, để sản phẩm phức tạp vẫn đồng bộ khi lớn dần.",
+      "That is why I invest in the design system and in tooling: fewer moving parts, used the same way every time, so complex products stay consistent as they grow."
     )}
   </p>
 
@@ -119,26 +92,6 @@ const facts = [
   <p>...</p>
   */}
 
-  <h2>Community and open source</h2>
-  <div>
-    {
-      community.map((it) => (
-        <div class="row">
-          <div class="when num">{it.when}</div>
-          <p class="what">
-            <strong>
-              <a href={it.href}>{it.name}</a>
-            </strong>
-            {it.wip && <span class="tag">{t("Đang phát triển", "In development")}</span>}
-            <br />
-            <span class="where">{it.note}</span>
-          </p>
-        </div>
-      ))
-    }
-  </div>
-  <p class="more"><a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a></p>
-
   <h2>Skills</h2>
   <div>
     {
@@ -155,6 +108,21 @@ const facts = [
     }
   </div>
 
+  <h2>Community and Products</h2>
+  <div>
+    {
+      community.map((it) => (
+        <div class="row">
+          <div class="when">{it.name}</div>
+          <p class="what">
+            {it.what[lang]} · <a href={it.href}>{it.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")}</a>
+          </p>
+        </div>
+      ))
+    }
+  </div>
+  <p class="more"><a href={url(lang, "/products/")}>{t("Xem tất cả sản phẩm", "See all products")} →</a></p>
+
   <h2>Contact</h2>
   <p>
     {t("Đang tìm vị trí senior product design làm remote, và nhận dự án freelance.", "Open to remote senior product design roles and freelance projects.")}
@@ -164,5 +132,8 @@ const facts = [
   </p>
   <p>
     <a class="go" href={linkedin.href}><span class="go-ring" aria-hidden="true">→</span>{linkedin.label}</a>
+  </p>
+  <p>
+    <a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a>
   </p>
 </Base>

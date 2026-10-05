@@ -9,9 +9,9 @@ draft: false
 
 ## The product
 
-Revenue on Shopify is plain to see. Net profit is not. It lies scattered across cost of goods, shipping, transaction fees, taxes, ad spend and one-off costs, spread over many tools.
+Revenue on Shopify is plain to see. Net profit is not. It is scattered across cost of goods, shipping, transaction fees, taxes, ad spend and one-off costs, spread over many tools.
 
-TrueProfit gathers those costs on its own and shows net profit as it happens.
+TrueProfit gathers those costs on its own and shows net profit in real time.
 
 What it covers:
 

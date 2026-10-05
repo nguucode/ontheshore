@@ -31,27 +31,27 @@ const figmaTemplates: Item[] = [
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
    thumb: circleCharts,
     uses: 72600,
-    note: { vi: "Circle chart dựng sẵn cho dashboard. Trong các template, đây là cái được dùng nhiều nhất.", en: "Ready-made circle charts for dashboards. Of all the templates, the most drawn upon." },
+    note: { vi: "Circle chart dựng sẵn cho dashboard. Template được dùng nhiều nhất.", en: "Ready-made circle charts for dashboards. My most-used template." },
   },
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
    thumb: basicCharts,
     uses: 18700,
-    note: { vi: "Bar, line, area. Những dạng cơ bản, giữ nguyên sự cơ bản.", en: "Bar, line, area. The plain forms, kept plain." },
+    note: { vi: "Bar, line và area chart cho dashboard thông dụng.", en: "Bar, line and area charts for everyday dashboards." },
   },
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
    thumb: polarisChart,
     uses: 12600,
-    note: { vi: "Chart theo design system Polaris. Đặt giữa các component của nó mà không lộ đường nối.", en: "Charts built on the Polaris design system. Made to sit among its components without a seam." },
+    note: { vi: "Chart theo design system Polaris của Shopify, khớp với các component có sẵn.", en: "Charts built on Shopify's Polaris design system, consistent with its components." },
   },
   {
     name: "Country Flags",
     href: "https://www.figma.com/community/file/1360105018474702873/country-flags",
     uses: 104,
-    note: { vi: "Bộ cờ quốc gia. Những ngọn cờ nhỏ của nhiều xứ sở.", en: "Country flag set. Small banners of many realms." },
+    note: { vi: "Bộ cờ các quốc gia cho Figma.", en: "A set of country flags for Figma." },
   },
 ];
 
@@ -60,8 +60,8 @@ const figmaSkills: Item[] = [
     name: "flatten-icon-frames",
     href: "https://www.figma.com/community/skill/89555/flatten-icon-frames",
     note: {
-      vi: "Xử lý icon frame hàng loạt: outline stroke, union, fill đen, flatten thành một vector. Mỗi lượt bốn trăm cái, không một lời than.",
-      en: "Batch-cleans icon frames: outline stroke, union, black fill, flatten to one vector. Four hundred at a time, without complaint.",
+      vi: "Xử lý icon frame hàng loạt: outline stroke, union, fill đen, flatten thành một vector. Tối đa 400 icon mỗi lượt.",
+      en: "Batch-cleans icon frames: outline stroke, union, black fill, flatten to one vector. Up to 400 icons per run.",
     },
   },
 ];
@@ -85,8 +85,8 @@ const apps: Item[] = [
     local: true,
     wip: true,
     note: {
-      vi: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được. Khách thấy sản phẩm, Figma thì ẩn đi.",
-      en: "Show Figma prototypes to clients with one link: no Figma account, switch phone, tablet, desktop on the page, a rotatable 3D iPhone. The client sees the product. Figma stays hidden.",
+      vi: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được. Khách chỉ thấy sản phẩm, không thấy giao diện Figma.",
+      en: "Show Figma prototypes to clients with one link: no Figma account, switch phone, tablet, desktop on the page, a rotatable 3D iPhone. Clients see the product, not the Figma interface.",
     },
   },
 ];
@@ -96,8 +96,8 @@ const uiKits: Item[] = [
     name: "Zweihänder",
     href: "/zweihander/",
     note: {
-      vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Mới rèn xong Button và Text Input.",
-      en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Only Button and Text Input have been forged so far.",
+      vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
+      en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Button and Text Input are ready so far.",
     },
   },
 ];
