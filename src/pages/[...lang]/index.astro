@@ -56,7 +56,7 @@ const slides: Slide[] = [
     title: top.name,
     desc: t(
       "Donut, pie, progress, radial bar và rose chart cho dashboard, dựng bằng Auto Layout, đủ light và dark theme. Template được dùng nhiều nhất.",
-      "Donut, pie, progress, radial bar and rose charts for dashboards, built on Auto Layout, light and dark. The most drawn upon of all the templates."
+      "Donut, pie, progress, radial bar and rose charts for dashboards, built on Auto Layout, light and dark themes. My most-used Figma template."
     ),
     stat: { value: compact(top.uses!), unit: t("lượt dùng", "uses") },
     href: top.href!,
@@ -93,16 +93,16 @@ for (const sl of slides) {
       <p class="lede">
         {
           t(
-            "Thiết kế sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Product design, business analysis, product ownership, và front-end do cùng một tay dựng nên.",
-            "Designs SaaS and enterprise products: CRM, ERP, fintech, accounting. Product design, business analysis and product ownership, with the front end built by the same hand."
+            "Thiết kế sản phẩm SaaS và enterprise: CRM, ERP, fintech, kế toán. Làm product design, business analysis, product ownership, và tự viết front-end.",
+            "I design SaaS and enterprise products: CRM, ERP, fintech, accounting. Product design, business analysis and product ownership, and I build the front end myself."
           )
         }
       </p>
       <p class="lede">
         {
           t(
-            "Tương truyền phần lớn team dựng hệ thống nặng hơn mức công việc đòi hỏi. Ở đây, phần thừa ấy được cắt bỏ.",
-            "Most teams, it is said, build their systems heavier than the work demands. Here, that weight is cut away."
+            "Phần lớn team dựng hệ thống phức tạp hơn mức công việc cần. Tôi giữ chúng gọn nhất có thể.",
+            "Most teams build systems more complex than the work needs. I keep them as simple as the work allows."
           )
         }
       </p>
@@ -197,7 +197,7 @@ for (const sl of slides) {
     {
       projects.length === 0 ? (
         <div class="empty span-3">
-          {t("Chưa case study nào được chép lại.", "No case study has been set down yet.")} <code>src/content/projects/{lang}/</code>
+          {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
         </div>
       ) : (
         <ul class="ix">
@@ -258,7 +258,7 @@ for (const sl of slides) {
   <section class="sec">
     <h2 class="sec-label">Contact</h2>
     <div class="span-2">
-      <p>{t("Cư ngụ ở Nha Trang, bên bờ vịnh. Tạm thời là vậy.", "Resides in Nha Trang, on the shore of the bay. For now.")}</p>
+      <p>{t("Sống ở Nha Trang, Việt Nam. Nhận làm remote.", "Based in Nha Trang, Vietnam. Open to remote work.")}</p>
       <p><a class="go" href={phone.href}><span class="go-ring" aria-hidden="true">→</span>{phone.value}</a></p>
       <p><a class="go" href={email.href}><span class="go-ring" aria-hidden="true">→</span>{email.value}</a></p>
       <p><a class="go" href={linkedin.href}><span class="go-ring" aria-hidden="true">→</span>{linkedin.label}</a></p>

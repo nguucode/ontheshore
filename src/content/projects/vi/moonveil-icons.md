@@ -2,7 +2,7 @@
 title: "Moonveil Icons"
 role: "Design Engineer"
 year: "2026"
-summary: "Icon library SVG open source, hai style outline và solid, dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Việc rèn vẫn chưa xong."
+summary: "Icon library SVG open source, hai style outline và solid, dùng qua npm, React, Vue, Web Component, webfont, CDN và CLI. Vẫn đang phát triển."
 order: 5
 draft: true
 ---
@@ -11,16 +11,16 @@ Link: [GitHub](https://github.com/nguucode/moonveilicons) · [Docs](https://nguu
 
 ## Problem
 
-Chưa được chép lại.
+Chưa viết.
 
 ## My role
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Process
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Outcome
 
-Chưa được chép lại.
+Chưa viết.

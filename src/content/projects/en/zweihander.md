@@ -2,7 +2,7 @@
 title: "Zweihänder"
 role: "Design Engineer"
 year: "2026"
-summary: "A design system shipped as a React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Open source, MIT. A two-handed name, for a kit still early in its making."
+summary: "A design system shipped as a React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Open source, MIT. Early stage."
 order: 4
 draft: false
 ---

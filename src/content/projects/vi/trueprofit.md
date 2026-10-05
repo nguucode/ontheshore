@@ -11,7 +11,7 @@ draft: false
 
 Trên Shopify, doanh thu thì ai cũng thấy. Lợi nhuận ròng thì không. Nó nằm rải rác ở giá vốn, phí ship, phí giao dịch, thuế, chi phí quảng cáo và các khoản phát sinh, trên nhiều công cụ khác nhau.
 
-TrueProfit tự gom các khoản đó và hiện lợi nhuận ròng ngay khi nó hình thành.
+TrueProfit tự gom các khoản đó và hiện lợi nhuận ròng theo thời gian thực.
 
 App gồm:
 
@@ -26,12 +26,12 @@ App chạy trên web ngay trong Shopify admin và có bản iOS.
 
 ## My role
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Process
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Outcome
 
-Chưa được chép lại.
+Chưa viết.

@@ -2,7 +2,7 @@
 title: "Zweihänder"
 role: "Design Engineer"
 year: "2026"
-summary: "Design system dạng UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Open source, MIT. Mang tên một thanh kiếm hai tay, nay vẫn còn trong lò rèn."
+summary: "Design system dạng UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Open source, MIT. Đang ở giai đoạn đầu."
 order: 4
 draft: false
 ---
@@ -11,16 +11,16 @@ Link: [GitHub](https://github.com/nguucode/zweihander) · [npm](https://www.npmj
 
 ## Problem
 
-Chưa được chép lại.
+Chưa viết.
 
 ## My role
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Process
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Outcome
 
-Chưa được chép lại.
+Chưa viết.

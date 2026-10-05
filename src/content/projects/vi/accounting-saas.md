@@ -1,24 +1,24 @@
 ---
 title: "Accounting SaaS"
-role: "Vai trò chưa được ghi lại"
+role: "Đang cập nhật vai trò"
 year: "—"
-summary: "Sản phẩm SaaS cho kế toán. Case study chưa được chép lại."
+summary: "Sản phẩm SaaS cho kế toán. Case study đang viết."
 order: 2
 draft: false
 ---
 
 ## Problem
 
-Chưa được chép lại.
+Chưa viết.
 
 ## My role
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Process
 
-Chưa được chép lại.
+Chưa viết.
 
 ## Outcome
 
-Chưa được chép lại.
+Chưa viết.

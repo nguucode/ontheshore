@@ -1,16 +1,11 @@
 ---
 // Bản in của CV, khổ A4 một trang, tiếng Anh. Không nằm trong menu hay sitemap.
 // `npm run cv` build rồi in trang này ra public/nguu-nguyen-cv.pdf bằng Chrome (macOS).
-import { experience, skills } from "../data/cv";
+import { community, experience, skills, summary } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
 import { compact, totalUses } from "../data/products";
 
-// Community and Products: ba nơi xem hết sản phẩm (sếp chọn 2026-10-05). Link ghi rõ để in ra giấy vẫn đọc được.
-const products = [
-  { name: "Figma", what: `Free templates and an AI skill, ${compact(totalUses)} uses`, href: "https://www.figma.com/@nguunguyen73" },
-  { name: "Gumroad", what: "Kusabimaru, 3D device mockups for web and Figma", href: "https://kafkawaves.gumroad.com/" },
-  { name: "Website", what: "All products, case studies and the Zweihänder UI kit", href: "https://ontheshore.biz/" },
-];
+const products = community(compact(totalUses)).map((it) => ({ ...it, what: it.what.en }));
 const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 
@@ -166,11 +161,7 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
       </ul>
     </header>
 
-    <p class="summary">
-      7 years designing complex B2B products in fintech, banking CRM, enterprise logistics and healthcare. I map the problem space
-      before drawing screens, treat the design system as a product, and stay with engineers, PMs, POs and BAs until release. I
-      also write front-end code and build design tools.
-    </p>
+    <p class="summary">{summary.en}</p>
 
     <h2>Experience</h2>
     {

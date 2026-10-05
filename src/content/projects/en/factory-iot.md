@@ -1,8 +1,8 @@
 ---
 title: "Factory IoT"
-role: "Role not yet recorded"
+role: "Role to be added"
 year: "—"
-summary: "A mobile app that keeps watch over an IoT system on the factory floor. Its case study is not yet written."
+summary: "A mobile app that monitors an IoT system on the factory floor. Case study in progress."
 order: 3
 draft: false
 ---

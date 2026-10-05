@@ -2,7 +2,7 @@
 title: "Moonveil Icons"
 role: "Design Engineer"
 year: "2026"
-summary: "An open-source SVG icon library in outline and solid styles, for npm, React, Vue, Web Components, webfont, CDN and CLI. Its forging is not yet finished."
+summary: "An open-source SVG icon library in outline and solid styles, for npm, React, Vue, Web Components, webfont, CDN and CLI. Still in development."
 order: 5
 draft: true
 ---
