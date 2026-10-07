@@ -896,6 +896,56 @@ a.ix-title::after {
   font-weight: 500;
 }
 
+/* Danh sách có ảnh trong bài (resource guide) hiện thành lưới thẻ. */
+.prose ul:has(> li > img) {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.prose ul:has(> li > img) > li {
+  border: 1px solid var(--rule);
+  padding: 0 0.9rem 0.9rem;
+  font-size: 0.9em;
+  line-height: 1.55;
+}
+
+.prose ul:has(> li > img) > li > img {
+  width: calc(100% + 1.8rem);
+  max-width: none;
+  margin: 0 -0.9rem 0.75rem;
+  aspect-ratio: 40 / 21;
+  object-fit: cover;
+  object-position: top;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* thẻ không có ảnh: chừa khoảng đầu cho đều */
+.prose ul:has(> li > img) > li:not(:has(> img)) {
+  padding-top: 0.9rem;
+}
+
+.price {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0 0.4em;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.78em;
+  line-height: 1.6;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+.price.paid {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85em;

@@ -1,74 +1,238 @@
 ---
 title: "One source per layer: components, type, colour and imagery for a new site"
 date: 2026-10-07
-summary: "A short list of sources for the parts every site needs, grouped by layer, with a rule for picking one and moving on."
+summary: "Sources for the parts every site needs, grouped by layer, with prices marked and one default pick per layer."
 ---
 
-A new site needs five layers before any layout work starts: components, colour, type and spacing, icons, and imagery. Each layer has dozens of good sources. The cost is not in choosing a bad one. The cost is in mixing three good ones that were never designed to sit together.
+A new site needs five layers before layout work starts: components, colour, type and spacing, icons, and imagery. The risk is not picking a bad source. It is mixing three good ones that were never designed to sit together.
 
-The rule used here: pick one source per layer, and only add a second when the first has a real gap. Everything below is grouped so that choice is quick.
+The rule here: one source per layer. Add a second only when the first has a real gap.
+
+Price tags: <span class="price">Free</span> fully free. <span class="price paid">Free + paid</span> usable for free, with a paid tier that adds more. Prices as of October 2026.
 
 ## Components
 
-**Base layer.** [shadcn/ui](https://ui.shadcn.com/) copies component source into the project instead of installing a package, so the code is yours to change. It is built on Radix primitives and Tailwind. For a Tailwind project that wants class-based components without React, [daisyUI](https://daisyui.com/) and [Flowbite](https://flowbite.com/) cover the same ground with a different trade-off: less code to own, less control over it.
+Pick one base library. Two in one codebase means two definitions of a button.
 
-Pick one of the three. They solve the same problem, and two of them in one codebase means two definitions of a button.
+- ![shadcn/ui homepage](../../../assets/articles/shadcn.jpg)
+  **[shadcn/ui](https://ui.shadcn.com/)** <span class="price">Free</span>\
+  Copies component source into the project. Built on Radix and Tailwind.\
+  **Use when:** you want to own and edit every component.
+- ![daisyUI homepage](../../../assets/articles/daisyui.jpg)
+  **[daisyUI](https://daisyui.com/)** <span class="price">Free</span>\
+  Tailwind plugin with class-based components. Pure CSS, works with any framework.\
+  **Use when:** you want components without React.
+- ![Flowbite homepage](../../../assets/articles/flowbite.jpg)
+  **[Flowbite](https://flowbite.com/)** <span class="price paid">Free + paid</span>\
+  600+ Tailwind components with a matching Figma kit. Pro adds more blocks.\
+  **Use when:** design and code need the same kit.
 
-**Blocks and sections.** Once the base exists, ready-made sections save the most time on marketing pages. [shadcnblocks](https://www.shadcnblocks.com/) has headers, pricing tables and FAQs built on shadcn/ui. [Originkit](https://www.originkit.dev/) is a free set of animated sections. [21st.dev](https://21st.dev/) collects community components (buttons, cards, menus) and ships a prompt with each one, so an AI coding tool can drop it in.
+**Pick:** shadcn/ui for React projects.
 
-**Effects.** [React Bits](https://reactbits.dev/), [Aceternity UI](https://ui.aceternity.com/) and [Magic UI](https://magicui.design/) all specialise in animated text, backgrounds and cards. Use them for one or two moments on a page, not as the base layer. An effect that runs on every card stops reading as an effect.
+## Blocks and effects
 
-**Loading states.** [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton) draws placeholder shapes while data loads. Skeletons that match the final layout prevent the page from jumping when content arrives. If the project already uses shadcn/ui, its own Skeleton component does the same job without another dependency.
+Ready-made sections save the most time on marketing pages. Effects work for one or two moments per page, not as the base layer.
+
+- ![shadcnblocks homepage](../../../assets/articles/shadcnblocks.jpg)
+  **[shadcnblocks](https://www.shadcnblocks.com/)** <span class="price paid">Free + paid</span>\
+  Headers, pricing tables, FAQs built on shadcn/ui. Most of the library is paid.\
+  **Use when:** you need a full section fast.
+- ![Originkit component library](../../../assets/articles/originkit.jpg)
+  **[Originkit](https://www.originkit.dev/)** <span class="price paid">Free + paid</span>\
+  Animated sections and backgrounds. Free tier caps daily copies.\
+  **Use when:** a section needs motion built in.
+- ![21st.dev homepage](../../../assets/articles/21st.jpg)
+  **[21st.dev](https://21st.dev/)** <span class="price paid">Free + paid</span>\
+  Community components, each with a prompt for AI coding tools.\
+  **Use when:** you build with Cursor, Claude or similar.
+- ![React Bits homepage](../../../assets/articles/reactbits.jpg)
+  **[React Bits](https://reactbits.dev/)** <span class="price paid">Free + paid</span>\
+  Animated text, backgrounds and components for React.\
+  **Use when:** a hero needs one striking effect.
+- ![Aceternity UI homepage](../../../assets/articles/aceternity.jpg)
+  **[Aceternity UI](https://ui.aceternity.com/)** <span class="price paid">Free + paid</span>\
+  Cards, backgrounds and landing page blocks with Motion.\
+  **Use when:** a landing page needs polish quickly.
+- ![Magic UI homepage](../../../assets/articles/magicui.jpg)
+  **[Magic UI](https://magicui.design/)** <span class="price paid">Free + paid</span>\
+  150+ animated components, designed to sit next to shadcn/ui.\
+  **Use when:** you already use shadcn/ui.
+- ![react-loading-skeleton on GitHub](../../../assets/articles/skeleton.jpg)
+  **[react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton)** <span class="price">Free</span>\
+  Placeholder shapes while data loads, so the page does not jump.\
+  **Use when:** you are not on shadcn/ui, which has its own Skeleton.
+
+**Pick:** shadcnblocks for sections, one effects library at most.
 
 ## Colour
 
-[Coolors](https://coolors.co/) generates and locks palettes quickly, which is useful for exploration. [Realtime Colors](https://www.realtimecolors.com/) previews a palette on a real page layout, which catches contrast and balance problems that a row of swatches hides.
+Explore with a generator. Ship with a scale.
 
-For production, [Radix Colors](https://www.radix-ui.com/colors) is the safer base. Each hue comes as a 12-step scale where every step has a stated job (backgrounds, borders, solid fills, text), with matching dark-mode scales. Semantic tokens can then point at steps instead of raw hex values, which is what keeps a palette maintainable after the first rebrand.
+- **[Coolors](https://coolors.co/)** <span class="price paid">Free + paid</span>\
+  Generate and lock palettes one colour at a time.\
+  **Use when:** exploring brand colours.
+- ![Realtime Colors homepage](../../../assets/articles/realtimecolors.jpg)
+  **[Realtime Colors](https://www.realtimecolors.com/)** <span class="price">Free</span>\
+  Previews a palette and fonts on a real page layout.\
+  **Use when:** checking contrast and balance before committing.
+- ![Radix Colors scales](../../../assets/articles/radix-colors.jpg)
+  **[Radix Colors](https://www.radix-ui.com/colors)** <span class="price">Free</span>\
+  12-step scales where each step has a job, with matching dark scales.\
+  **Use when:** building tokens for production.
 
-## Type, size and spacing
+**Pick:** Radix Colors. Semantic tokens point at steps, not hex values, which survives a rebrand.
 
-**Fonts.** [Google Fonts](https://fonts.google.com/) is the default for range and hosting. [Fontshare](https://www.fontshare.com/) offers a smaller set of free, more distinctive faces. [Typewolf](https://www.typewolf.com/) is not a font source but a reference: which faces real sites use, and which pairings hold up.
+## Fonts
 
-**Type scale.** [Typescale](https://typescale.com/) and [Modular Scale](https://www.modularscale.com/) generate a set of sizes from a base size and a ratio. [Utopia](https://utopia.fyi/) goes one step further and generates fluid sizes with CSS `clamp()`, so type and spacing scale smoothly between a minimum and maximum viewport instead of jumping at breakpoints.
+- ![Google Fonts share image](../../../assets/articles/google-fonts.jpg)
+  **[Google Fonts](https://fonts.google.com/)** <span class="price">Free</span>\
+  The largest free library, hosted.\
+  **Use when:** you need range and reliability.
+- ![Fontshare font list](../../../assets/articles/fontshare.jpg)
+  **[Fontshare](https://www.fontshare.com/)** <span class="price">Free</span>\
+  A smaller set of free, more distinctive faces.\
+  **Use when:** Google Fonts feels generic.
+- **[Typewolf](https://www.typewolf.com/)** <span class="price">Free</span>\
+  Which fonts real sites use, and which pairings hold up.\
+  **Use when:** choosing a pairing.
 
-A scale of six to eight sizes covers most sites. More than that usually means the scale is being used for one-off fixes.
+## Type scale and spacing
+
+Six to eight sizes cover most sites. More usually means one-off fixes.
+
+- ![Typescale share image](../../../assets/articles/typescale.jpg)
+  **[Typescale](https://typescale.com/)** <span class="price">Free</span>\
+  Fixed scale from a base size and a ratio.\
+  **Use when:** a fixed scale is enough.
+- ![Utopia share image](../../../assets/articles/utopia.jpg)
+  **[Utopia](https://utopia.fyi/)** <span class="price">Free</span>\
+  Fluid type and spacing with CSS `clamp()`. No breakpoint jumps.\
+  **Use when:** the site must scale smoothly across viewports.
+- ![Modular Scale share image](../../../assets/articles/modularscale.jpg)
+  **[Modular Scale](https://www.modularscale.com/)** <span class="price">Free</span>\
+  The original ratio-based scale calculator.\
+  **Use when:** you want to compare ratios side by side.
+
+**Pick:** Utopia.
 
 ## Theme for shadcn/ui
 
-shadcn/ui reads its theme from CSS variables, so a theme generator is the fastest way to set colour, radius and font in one pass. [tweakcn](https://tweakcn.com/editor/theme) is a visual editor with live component previews. The [ZippyStarter generator](https://zippystarter.com/tools/shadcn-ui-theme-generator) and the [shadcn.io generator](https://www.shadcn.io/theme-generator) both output the same CSS variable block. Any of the three is enough; the output is a few dozen lines that can be edited by hand afterwards.
+shadcn/ui reads its theme from CSS variables. Any of these outputs that block; edit by hand afterwards.
+
+- ![tweakcn share image](../../../assets/articles/tweakcn.jpg)
+  **[tweakcn](https://tweakcn.com/editor/theme)** <span class="price paid">Free + paid</span>\
+  Visual editor with live previews and a contrast checker. Pro ($8/month) adds unlimited AI themes.\
+  **Use when:** you want to see every component while tuning.
+- ![ZippyStarter theme generator](../../../assets/articles/zippystarter.jpg)
+  **[ZippyStarter generator](https://zippystarter.com/tools/shadcn-ui-theme-generator)** <span class="price">Free</span>\
+  Generates a full theme from a starting colour.\
+  **Use when:** you have one brand colour and nothing else.
+- ![shadcn.io theme generator](../../../assets/articles/shadcnio.jpg)
+  **[shadcn.io generator](https://www.shadcn.io/theme-generator)** <span class="price">Free</span>\
+  Community theme generator with component previews.\
+  **Use when:** you want to start from someone else's theme.
+
+**Pick:** tweakcn on the free tier.
 
 ## Icons
 
-[Lucide](https://lucide.dev/icons/) is the default icon set for shadcn/ui, so it needs no extra decision there. [Phosphor](https://phosphoricons.com/) offers six weights per icon, from thin to fill, which helps when one set has to serve both dense tables and large marketing headers. [Heroicons](https://heroicons.com/) is a smaller set made by the Tailwind team.
+One icon set per product. Mixing shows in stroke width and corner radius.
 
-One icon set per product. Mixing sets shows up immediately in stroke width and corner radius.
+- ![Lucide share image](../../../assets/articles/lucide.jpg)
+  **[Lucide](https://lucide.dev/icons/)** <span class="price">Free</span>\
+  Default icon set for shadcn/ui.\
+  **Use when:** you are on shadcn/ui.
+- **[Phosphor](https://phosphoricons.com/)** <span class="price">Free</span>\
+  Six weights per icon, from thin to fill.\
+  **Use when:** one set must serve dense tables and large headers.
+- ![Heroicons share image](../../../assets/articles/heroicons.jpg)
+  **[Heroicons](https://heroicons.com/)** <span class="price">Free</span>\
+  Smaller set from the Tailwind team.\
+  **Use when:** you need the basics and nothing more.
+
+**Pick:** Lucide.
 
 ## Illustrations and backgrounds
 
-**Illustrations.** [unDraw](https://undraw.co/illustrations) lets you set one accent colour before download, so the illustration matches the palette. [Storyset](https://storyset.com/) offers several styles per scene and can animate them. [Humaaans](https://www.humaaans.com/) is a mix-and-match kit of people.
+- ![unDraw share image](../../../assets/articles/undraw.jpg)
+  **[unDraw](https://undraw.co/illustrations)** <span class="price">Free</span>\
+  Set an accent colour before download.\
+  **Use when:** illustrations must match the palette.
+- ![Storyset homepage](../../../assets/articles/storyset.jpg)
+  **[Storyset](https://storyset.com/)** <span class="price">Free</span>\
+  Several styles per scene, can be animated. Free use needs attribution.\
+  **Use when:** you want motion in illustrations.
+- ![Humaaans share image](../../../assets/articles/humaaans.jpg)
+  **[Humaaans](https://www.humaaans.com/)** <span class="price">Free</span>\
+  Mix-and-match people.\
+  **Use when:** you need people in many poses.
+- ![Haikei share image](../../../assets/articles/haikei.jpg)
+  **[Haikei](https://haikei.app/)** <span class="price">Free</span>\
+  Generates SVG waves, blobs and layered shapes.\
+  **Use when:** a section needs a background shape.
+- **[SVGBackgrounds](https://www.svgbackgrounds.com/)** <span class="price paid">Free + paid</span>\
+  Ready-made SVG patterns.\
+  **Use when:** you want a pattern without generating one.
+- ![fffuel share image](../../../assets/articles/fffuel.jpg)
+  **[fffuel](https://www.fffuel.co/)** <span class="price">Free</span>\
+  Small generators for gradients, noise, grain and patterns.\
+  **Use when:** you need texture.
 
-**SVG backgrounds.** [Haikei](https://haikei.app/) generates waves, blobs and layered shapes. [SVGBackgrounds](https://www.svgbackgrounds.com/) has ready patterns. [fffuel](https://www.fffuel.co/) is a collection of small generators for gradients, noise, grain and patterns. SVG keeps file size small and scales without blur.
+## Photos and video
 
-## Photos, mockups and image processing
+Free to use under each site's own licence. Read it once per source, especially for recognisable people or brands.
 
-**Photos and video.** [Unsplash](https://unsplash.com/), [Pexels](https://www.pexels.com/) and [Pixabay](https://pixabay.com/) are free to use under their own licences. Read the licence once per source, especially for anything with recognisable people or brands.
+- ![Unsplash homepage](../../../assets/articles/unsplash.jpg)
+  **[Unsplash](https://unsplash.com/)** <span class="price paid">Free + paid</span>\
+  High-quality photos. Unsplash+ adds a premium library.
+- ![Pexels homepage](../../../assets/articles/pexels.jpg)
+  **[Pexels](https://www.pexels.com/)** <span class="price">Free</span>\
+  Photos and a strong video library.
+- ![Pixabay homepage](../../../assets/articles/pixabay.jpg)
+  **[Pixabay](https://pixabay.com/)** <span class="price">Free</span>\
+  Photos, vectors, video, music and sound effects.
 
-**Device mockups.** [Shots](https://shots.so/) places screenshots in device frames with backgrounds and shadows. [MockupBro](https://mockupbro.com/) covers product mockups beyond devices. [MockUPhone](https://mockuphone.com/) is the quickest route to a plain phone or laptop frame.
+## Device mockups
 
-**Processing.** [Squoosh](https://squoosh.app/) compresses and converts images in the browser, with a side-by-side preview, and exports AVIF and WebP. [iLoveIMG](https://www.iloveimg.com/) handles batch resize and crop. [Photopea](https://www.photopea.com/) is a browser editor that opens PSD files.
+- ![Shots share image](../../../assets/articles/shots.jpg)
+  **[Shots](https://shots.so/)** <span class="price paid">Free + paid</span>\
+  Device frames with backgrounds and shadows.\
+  **Use when:** a screenshot needs to look finished.
+- ![MockupBro share image](../../../assets/articles/mockupbro.jpg)
+  **[MockupBro](https://mockupbro.com/)** <span class="price">Free</span>\
+  Product mockups beyond devices, no watermark.\
+  **Use when:** you need print or packaging mockups.
+- ![MockUPhone homepage](../../../assets/articles/mockuphone.jpg)
+  **[MockUPhone](https://mockuphone.com/)** <span class="price">Free</span>\
+  Plain phone, tablet and laptop frames.\
+  **Use when:** you just need a frame.
 
-Compress every image before it ships. A hero photo straight from a stock site is often several megabytes, and most of that can go without visible loss.
+## Image processing
+
+Compress every image before it ships. A stock hero photo is often several megabytes.
+
+- ![Squoosh app](../../../assets/articles/squoosh.jpg)
+  **[Squoosh](https://squoosh.app/)** <span class="price">Free</span>\
+  Compress and convert in the browser. Exports AVIF and WebP.\
+  **Use when:** optimising single images.
+- ![iLoveIMG share image](../../../assets/articles/iloveimg.jpg)
+  **[iLoveIMG](https://www.iloveimg.com/)** <span class="price paid">Free + paid</span>\
+  Batch resize, crop and compress.\
+  **Use when:** processing many images at once.
+- ![Photopea homepage](../../../assets/articles/photopea.jpg)
+  **[Photopea](https://www.photopea.com/)** <span class="price paid">Free + paid</span>\
+  Browser photo editor that opens PSD files. Premium removes ads.\
+  **Use when:** you receive a PSD and have no Photoshop.
 
 ## The short version
 
-| Layer | Default | Add when |
-|---|---|---|
-| Components | shadcn/ui | A section is needed fast: shadcnblocks |
-| Colour | Radix Colors | Exploring a brand palette: Coolors, Realtime Colors |
-| Type scale | Utopia | A fixed scale is enough: Typescale |
-| Theme | tweakcn | |
-| Icons | Lucide | Multiple weights are needed: Phosphor |
-| Images | Unsplash + Squoosh | |
+| Layer | Default | Price | Add when |
+|---|---|---|---|
+| Components | shadcn/ui | Free | A section is needed fast: shadcnblocks |
+| Colour | Radix Colors | Free | Exploring brand colours: Realtime Colors |
+| Type scale | Utopia | Free | A fixed scale is enough: Typescale |
+| Theme | tweakcn | Free tier | |
+| Icons | Lucide | Free | Multiple weights are needed: Phosphor |
+| Images | Unsplash + Squoosh | Free | |
 
 Five layers, five decisions, one source each.
