@@ -24,7 +24,8 @@ Consult these guides before working on related tasks:
 ## Vault (memory)
 
 Durable knowledge for this project lives in the Obsidian vault **ontheshore**, not in this repo and not in chat:
-`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ontheshore`
+`/Volumes/KAFKA/Vault` (external drive KAFKA). Project index, imported below:
+@/Volumes/KAFKA/Vault/10-projects/ontheshore/_context.md
 
 - Before non-trivial work, read the vault's `CLAUDE.md` and follow its read order (starts with `_system/context/governance.md`; design or front-end work also reads `_system/context/design-system.md`).
 - Product decisions, research, briefs, and non-code output go to `10-projects/ontheshore/` in the vault (start from its `_context.md`; it was named `cv-portfolio` before 2026-10-02). Follow the vault's write rules (frontmatter, agent-log).
