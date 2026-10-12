@@ -18,7 +18,7 @@ Nathan Curtis described three ways to staff a design system in [Team Models for 
 |---|---|---|
 | **Solitary** | One product team builds a library mostly for itself; others may adopt it | Fast and grounded in real needs, but priorities tilt toward one product and other teams feel it isn't theirs |
 | **Centralized** | A dedicated team builds the design language and components for many product teams, and ships no product itself | Consistent with clear ownership, but can drift from real needs and become a bottleneck |
-| **Federated** | Designers from several product teams, chosen for reach and expertise, decide for the system while staying on their teams | Close to real needs with shared ownership, but slower decisions and someone has to coordinate |
+| **Federated** | Designers from several product teams, chosen to represent their product areas and for their expertise, decide for the system while staying on their teams | Close to real needs with shared ownership, but slower decisions and someone has to coordinate |
 
 Many large organisations end up with a hybrid: a small central team owns the foundations and the final call, and a network of contributors from product teams feeds it.
 

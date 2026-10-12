@@ -16,7 +16,7 @@ Các phần: [1](/vi/articles/ds-01-what-is-a-design-system/), [2](/vi/articles/
 
 Đọc thêm:
 
-- [WCAG 2.2](https://www.w3.org/TR/WCAG22/): đọc trang [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/) của từng tiêu chí nhắc ở Phần 8, không cần đọc cả chuẩn.
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/): đọc trang [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/) của từng tiêu chí nhắc ở [Phần 8](/vi/articles/ds-08-accessibility/), không cần đọc cả chuẩn.
 - [Radix Colors](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale): phần palette composition.
 - [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/): mục types và aliases.
 

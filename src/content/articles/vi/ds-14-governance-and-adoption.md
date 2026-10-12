@@ -18,7 +18,7 @@ Nathan Curtis mô tả ba cách tổ chức người làm design system trong b�
 |---|---|---|
 | **Solitary** | Một team sản phẩm làm thư viện chủ yếu cho mình; team khác có thể dùng theo | Nhanh, sát nhu cầu thật, nhưng ưu tiên lệch về một sản phẩm và team khác thấy hệ không phải của mình |
 | **Centralized** | Một team riêng làm design language và component cho nhiều team sản phẩm, không tự làm sản phẩm | Nhất quán, rõ người chịu trách nhiệm, nhưng dễ xa nhu cầu thật và thành nút thắt |
-| **Federated** | Designer từ nhiều team sản phẩm, được chọn vì tầm ảnh hưởng và chuyên môn, cùng quyết định cho hệ mà vẫn ở team mình | Sát nhu cầu, nhiều người cùng sở hữu, nhưng quyết định chậm và cần người điều phối |
+| **Federated** | Designer từ nhiều team sản phẩm, được chọn để đại diện cho mảng sản phẩm của mình và vì chuyên môn, cùng quyết định cho hệ mà vẫn ở team mình | Sát nhu cầu, nhiều người cùng sở hữu, nhưng quyết định chậm và cần người điều phối |
 
 Nhiều tổ chức lớn rốt cuộc dùng mô hình lai: một team trung tâm nhỏ giữ nền tảng và quyết định cuối, cộng một mạng lưới người đóng góp từ các team sản phẩm.
 
@@ -44,14 +44,14 @@ Nguyên tắc phía sau: thêm thì dễ, đổi hoặc bỏ thì khó. Một se
 
 **Khi đề xuất** một component hoặc pattern:
 
-- **Useful (hữu ích).** Có bằng chứng nó giúp được nhiều team hoặc dịch vụ, ví dụ ảnh chụp hay link tới chỗ đang dùng thứ tương tự.
-- **Unique (không trùng).** Không trùng thứ đã có. Nếu thay thế cái cũ, phải chứng minh nó tốt hơn.
+- **Useful (hữu ích).** Người đề xuất đưa ra bằng chứng nhiều team hoặc dịch vụ cần nó: ảnh chụp màn hình, hoặc link tới nơi đã có bản tương tự.
+- **Unique (không trùng).** Hệ chưa có thứ gì làm cùng việc. Muốn thay một thứ đang có thì phải cho thấy bản mới tốt hơn.
 
 **Trước khi phát hành:**
 
-- **Usable (dùng được).** Nghiên cứu cho thấy nó hoạt động với nhiều kiểu người dùng, kể cả người khuyết tật.
-- **Consistent (nhất quán).** Dùng lại style và component có sẵn, theo style guide và chuẩn code của hệ.
-- **Versatile (linh hoạt).** Thích nghi được với nhu cầu khác nhau, đã được test trên nhiều trình duyệt, công nghệ hỗ trợ và thiết bị.
+- **Usable (dùng được).** Có kết quả nghiên cứu cho thấy nhiều nhóm người dùng, gồm cả người khuyết tật, dùng được nó.
+- **Consistent (nhất quán).** Nó dựng trên style và component sẵn có, tuân theo style guide và chuẩn code mà hệ đã đặt.
+- **Versatile (linh hoạt).** Nó chịu được nhiều bối cảnh dùng khác nhau và đã qua test trên các trình duyệt, công nghệ hỗ trợ và thiết bị.
 
 Hai tiêu chí đầu làm nhiều việc nhất. Chúng lọc ý tưởng trước khi ai tốn công làm, nên hệ không phình ra mỗi yêu cầu một component. GOV.UK cũng viết rõ cách [đề xuất một component hoặc pattern](https://design-system.service.gov.uk/community/propose-a-component-or-pattern/), đáng đọc như một mẫu cho quy trình của chính bạn.
 
@@ -59,10 +59,10 @@ Hai tiêu chí đầu làm nhiều việc nhất. Chúng lọc ý tưởng trư�
 
 Chuyện này xảy ra liên tục. Các lựa chọn, từ nhẹ đến nặng:
 
-1. **Dùng cái có sẵn theo cách khác.** Thường câu trả lời nằm ở đây.
-2. **Ghép** từ component có sẵn ngay trong sản phẩm, thành một pattern cục bộ.
-3. **Lệch có ghi lại.** Làm riêng, ghi lý do, báo cho team hệ.
-4. **Đóng góp ngược** khi cùng một chỗ lệch xuất hiện ở nhiều nơi.
+1. **Xoay cách dùng thứ đã có.** Phần lớn trường hợp dừng ở bước này.
+2. **Tự ghép trong sản phẩm** từ các component của hệ, giữ thành pattern riêng của sản phẩm đó.
+3. **Đi đường riêng nhưng để lại dấu vết.** Tự làm, viết rõ vì sao, và báo cho team hệ biết.
+4. **Đưa ngược vào hệ** khi nhiều sản phẩm cùng đi một đường riêng giống nhau.
 
 Lệch không phải vấn đề. Lệch âm thầm mới là vấn đề. Hệ cần biết sản phẩm đi đường riêng ở đâu để quyết định có nên mở rộng.
 
@@ -96,10 +96,10 @@ Bài học này đúng cả với team người: luật nào quan trọng thì c
 
 ## Lỗi hay gặp
 
-- **Hệ thành cảnh sát.** Chỉ biết nói không, và team sản phẩm bỏ đi tự làm.
-- **Không có đường đóng góp.** Người muốn giúp không biết bắt đầu từ đâu.
-- **Không đo adoption**, nên cứ tưởng hệ đang được dùng.
-- **Quyết định không được ghi lại.** Sáu tháng sau cùng một câu hỏi lại được tranh luận từ đầu. Ghi quyết định lớn thành ADR (Architecture Decision Record).
+- **Team hệ chỉ biết gác cổng.** Câu trả lời mặc định là "không", nên team sản phẩm thôi hỏi và tự làm.
+- **Muốn góp mà không biết góp ở đâu.** Không có quy trình viết sẵn, người sẵn lòng giúp cũng đành đứng ngoài.
+- **Đoán thay vì đo.** Không có số adoption thì niềm tin "hệ đang được dùng" chỉ là giả định.
+- **Bàn xong không ghi.** Nửa năm sau, đúng câu hỏi đó được mang ra cãi lại. Quyết định lớn nên ghi thành ADR (Architecture Decision Record).
 
 ## Nguồn
 

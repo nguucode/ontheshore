@@ -28,7 +28,7 @@ Như vậy người dùng bản 0.x không có tín hiệu nào cả, nên nhi�
 |---|---|
 | Đổi tên hoặc bỏ prop | Có. Code sản phẩm không biên dịch, hoặc mất tác dụng mà không báo. |
 | Đổi giá trị mặc định của prop | Thường có. Hành vi đổi dù sản phẩm không sửa gì. |
-| Đổi tên hoặc bỏ token | Có, và im lặng. CSS đọc một custom property không tồn tại sẽ rơi về giá trị dự phòng, không báo lỗi. |
+| Đổi tên hoặc bỏ token | Có, và im lặng. CSS đọc một custom property không tồn tại sẽ lặng lẽ nhận giá trị kế thừa hoặc giá trị ban đầu, không báo lỗi. |
 | Đổi giá trị token | Tùy. Màu đậm hơn một chút thì không. Đổi một bậc spacing từ 16px sang 20px thì mọi layout dùng nó đều xê dịch. |
 | Đổi cấu trúc DOM hoặc class | Có thể. Sản phẩm có thể có CSS ghi đè hoặc test dựa vào cấu trúc đó. |
 | Sửa lỗi accessibility | Thường không, nhưng nên ghi rõ. Tên accessible mới có thể làm hỏng test đang tìm theo tên cũ. |
@@ -54,11 +54,11 @@ Một changeset minh họa cho việc đổi tên token ở thư viện 0.x:
 "my-design-system": minor
 ---
 
-Breaking: token `--surface-subtle` đổi tên thành `--surface-muted`.
-Giá trị giữ nguyên (gray-50 ở light, gray-800 ở dark), nên contrast
-của `--muted-foreground` trên nó không đổi.
-Cách nâng cấp: tìm và thay `--surface-subtle` bằng `--surface-muted`
-trong CSS. Tên cũ không còn được xuất ra.
+Breaking: `--surface-subtle` giờ có tên mới là `--surface-muted`.
+Không giá trị nào đổi (light: gray-50, dark: gray-800), chữ dùng
+`--muted-foreground` trên nền này vẫn giữ nguyên contrast.
+Nâng cấp: thay mọi chỗ `--surface-subtle` trong CSS bằng
+`--surface-muted`. Tên cũ đã bị gỡ khỏi file token.
 ```
 
 Nó làm đủ bốn việc: nói rõ là breaking, nói cái gì đổi, nói cái gì không đổi, và nói chính xác người đọc phải làm gì.
@@ -69,7 +69,7 @@ Với thay đổi hình ảnh không đổi API, nên có một mục riêng ki�
 
 Đừng xóa một API công khai trong một bước. Trình tự hợp lý:
 
-1. **Đánh dấu deprecated.** Ghi trong docs và trong code. Tag TSDoc [`@deprecated`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) làm editor gạch ngang tên. Với token, [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/) có thuộc tính `$deprecated`.
+1. **Đánh dấu deprecated.** Ghi trong docs và trong code. Tag [`@deprecated`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) trong doc comment làm editor gạch ngang tên. Với token, [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/) có thuộc tính `$deprecated`.
 2. **Đưa đường thay thế.** Nói rõ dùng gì thay và đổi thế nào. Nếu việc đổi là cơ học, kèm một codemod, tức script tự sửa code sản phẩm.
 3. **Giữ thêm một thời gian.** Ít nhất một bản minor trước 1.0, hoặc tới bản major kế tiếp sau 1.0.
 4. **Xóa**, và ghi việc xóa là breaking.
@@ -92,10 +92,10 @@ Khi làm registry, khai báo đúng dependency giữa các item và kiểm chún
 
 ## Lỗi hay gặp
 
-- **Coi đổi tên token là refactor.** Với người dùng, đó là breaking change.
-- **Changelog viết cho dev của hệ.** "Refactor useFoo hook" không nói gì với người dùng. "Select không còn đóng khi cuộn" thì có.
-- **Release quá thưa.** Thay đổi dồn lại, nâng cấp thành cả một dự án, không ai muốn xếp lịch làm.
-- **Không có lộ trình lên 1.0.** Hệ ở 0.x mãi thì người dùng không bao giờ có cam kết ổn định.
+- **Xếp đổi tên token vào loại refactor nội bộ.** Phía người dùng, việc này làm vỡ CSS của họ, nên phải ghi là breaking.
+- **Changelog chỉ dev của hệ đọc hiểu.** Dòng "Refactor useFoo hook" vô nghĩa với người nâng cấp. Dòng "Select không còn đóng khi cuộn" mới cho họ biết điều gì đổi.
+- **Lâu lắm mới release một lần.** Thay đổi tích lại, việc nâng cấp phình thành một dự án riêng, và không team nào chịu nhận.
+- **Kẹt ở 0.x không thời hạn.** Không có kế hoạch lên 1.0 thì người dùng không bao giờ nhận được cam kết ổn định.
 
 ## Nguồn
 

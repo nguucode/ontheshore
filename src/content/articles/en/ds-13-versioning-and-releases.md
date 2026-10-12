@@ -28,7 +28,7 @@ That leaves 0.x users with no signal at all, so many libraries add their own con
 |---|---|
 | Rename or remove a prop | Yes. Product code stops compiling or silently loses the behaviour. |
 | Change a prop's default value | Usually. Behaviour changes without the product touching anything. |
-| Rename or remove a token | Yes, and quietly. CSS that reads a missing custom property falls back without any error. |
+| Rename or remove a token | Yes, and quietly. CSS that reads a missing custom property silently resolves to the inherited or initial value. |
 | Change a token's value | Depends. A slightly darker shade is not breaking. Moving a spacing step from 16px to 20px shifts every layout that uses it. |
 | Change DOM structure or class names | Possibly. Products may have override CSS or tests that target the structure. |
 | Fix an accessibility bug | Usually not, but call it out. A new accessible name can break a test that queries by the old one. |
@@ -69,7 +69,7 @@ For visual changes with no API change, a separate section such as "Visual change
 
 Do not delete a public API in one step. A workable sequence:
 
-1. **Mark it deprecated.** Say so in the docs and in the code. A TSDoc [`@deprecated`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) tag makes editors strike through the name. For tokens, the [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/) defines a `$deprecated` property.
+1. **Mark it deprecated.** Say so in the docs and in the code. A [`@deprecated`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) tag in a doc comment makes editors strike through the name. For tokens, the [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/) defines a `$deprecated` property.
 2. **Provide the replacement.** Name what to use instead and how to switch. Where the change is mechanical, ship a codemod, a script that rewrites product code.
 3. **Keep it around.** At least one minor release before 1.0, or until the next major after 1.0.
 4. **Remove it**, and record the removal as breaking.

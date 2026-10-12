@@ -16,7 +16,7 @@ Parts: [1](/articles/ds-01-what-is-a-design-system/), [2](/articles/ds-02-mental
 
 Read next:
 
-- [WCAG 2.2](https://www.w3.org/TR/WCAG22/): the [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/) page for each criterion in Part 8, not the whole standard.
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/): the [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/) page for each criterion in [Part 8](/articles/ds-08-accessibility/), not the whole standard.
 - [Radix Colors](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale): the palette composition docs.
 - [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/): the sections on types and aliases.
 
