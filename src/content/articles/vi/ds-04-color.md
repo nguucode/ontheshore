@@ -82,7 +82,7 @@ Có một chi tiết nhiều team vấp phải. Chữ trên nền vàng hoặc a
 
 ## Contrast: luật không thương lượng
 
-WCAG 2.2, Recommendation của W3C từ tháng 12/2024, đặt mức tối thiểu sau ở cấp AA, cấp mà phần lớn luật và hợp đồng yêu cầu:
+WCAG 2.2, Recommendation của W3C từ tháng 10/2023, đặt mức tối thiểu sau ở cấp AA, cấp mà phần lớn luật và hợp đồng yêu cầu:
 
 | Tiêu chí | Áp dụng cho | Tỉ lệ tối thiểu |
 |---|---|---|
@@ -127,7 +127,7 @@ Cách chuyển light và dark ở tầng token nằm trong bài [Theming và mod
 
 ## Nguồn
 
-- W3C, [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/), Recommendation ngày 12/12/2024. Tiêu chí 1.4.1, 1.4.3, 1.4.11.
+- W3C, [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/), Recommendation ngày 5/10/2023, cập nhật ngày 12/12/2024. Tiêu chí 1.4.1, 1.4.3, 1.4.11.
 - W3C, [CSS Color Module Level 4](https://www.w3.org/TR/css-color-4/) (`oklab()`, `oklch()`).
 - Radix Colors, [Understanding the scale](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale).
 - Tailwind CSS, [Colors](https://tailwindcss.com/docs/colors).

@@ -82,7 +82,7 @@ One detail catches many teams. Text on a solid yellow or amber fill usually has 
 
 ## Contrast: the non-negotiable rule
 
-WCAG 2.2, a W3C Recommendation since December 2024, sets these minimums at level AA, the level most laws and contracts ask for:
+WCAG 2.2, a W3C Recommendation since October 2023, sets these minimums at level AA, the level most laws and contracts ask for:
 
 | Criterion | Applies to | Minimum ratio |
 |---|---|---|
@@ -127,7 +127,7 @@ How light and dark switch at the token level is covered in [Theming and modes](/
 
 ## Sources
 
-- W3C, [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/), Recommendation, 12 December 2024. Criteria 1.4.1, 1.4.3, 1.4.11.
+- W3C, [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/), Recommendation, 5 October 2023, updated 12 December 2024. Criteria 1.4.1, 1.4.3, 1.4.11.
 - W3C, [CSS Color Module Level 4](https://www.w3.org/TR/css-color-4/) (`oklab()`, `oklch()`).
 - Radix Colors, [Understanding the scale](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale).
 - Tailwind CSS, [Colors](https://tailwindcss.com/docs/colors).
