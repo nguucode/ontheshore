@@ -2,7 +2,7 @@
 
 Issues and specs for this repo live as markdown files in the vault, not in the repo: `/Volumes/KAFKA/Vault/10-projects/ontheshore/`.
 
-Before writing there, read `/Volumes/KAFKA/Vault/CLAUDE.md` (frontmatter, `_context.md`, `_system/agent-log.md`). Vault content is written in Vietnamese.
+Before writing there, read `/Volumes/KAFKA/Vault/CLAUDE.md` (frontmatter, `_context.md`, `_system/agent-log.md`). Vault content is written in Vietnamese. A `project-flow` ticket thread writes at most its own ticket file; the map thread alone writes the board and `_system/agent-log.md` (`.claude/skills/project-flow/TICKET-THREAD.md`).
 
 ## Conventions
 

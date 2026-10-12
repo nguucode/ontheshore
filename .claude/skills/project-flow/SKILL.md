@@ -70,9 +70,9 @@ Each finding the user picks becomes a new `flow fix` or `flow change` thread (ha
 
 After `to-tickets`, this thread becomes the **map thread**. It does not implement. It hands off one batch at a time.
 
-**The map thread is the only writer of the feature's shared vault files**: `ontheshore-kanban.md` and `_system/agent-log.md`. Ticket threads never touch them and never open a vault PR; they send their closing note to the map thread instead (see [TICKET-THREAD.md](TICKET-THREAD.md)). Parallel ticket threads each opening a vault PR on the same two files is what made the ds-series vault PRs conflict.
+**The map thread is the only writer of the feature's shared vault files**: `ontheshore-kanban.md` and `_system/agent-log.md`. Ticket threads send their closing note to the map thread instead of writing these files or opening a vault PR (see [TICKET-THREAD.md](TICKET-THREAD.md)); the map thread's agent-log lines cover their sessions. Parallel ticket threads each opening a vault PR on the same two files conflict with each other.
 
-0. **Spec and tickets on vault `main` first.** Written through the device folder, Obsidian Git commits them. Written through a vault PR (no folder connected), reply with the PR link and ask the user to merge it; hand off nothing until it is merged. A ticket thread that cannot find its ticket on vault `main` has nowhere to write but its own PR.
+0. **Spec and tickets on vault `main` first** (once per feature, before the first batch). Written through the device folder, Obsidian Git commits them. Written through a vault PR (no folder connected), reply with the PR link and ask the user to merge it; hand off nothing until the PR shows merged. Otherwise ticket threads start from tickets that exist only on an unmerged branch.
 1. List the current batch's tickets with title, vault path and `Blocked by`. The **frontier** is every ticket in the batch with no open blocker. Copy the spec to `/mnt/project-files/<feature>/` and each ticket to `/mnt/project-files/<feature>/issues/`, so a ticket thread can start reading before the user allows the vault. The copies are read-only snapshots; the vault stays the source of truth.
 2. Get the coordinator with `get_channel_session_id`, then `send_message` to it:
 
@@ -87,9 +87,9 @@ After `to-tickets`, this thread becomes the **map thread**. It does not implemen
 
 3. The coordinator posts one project-chat line per ticket and starts a thread on it with that brief (its rules are in project memory, `project-flow-tickets`). Frontier tickets run in parallel.
 4. Each ticket thread messages the coordinator when its PR merges; the coordinator then starts every ticket in the batch that merge unblocked. The map thread keeps the checklist (one line per ticket: waiting, running, merged) from what it reads with `list_thread_sessions` / `fetch_thread`.
-5. Each ticket thread also sends the map thread a closing note (`project-flow: closing <NN> …`). For each one, the map thread updates the kanban row, appends one `_system/agent-log.md` line, and, when the note says `ticket file: not written`, makes the ticket file edits itself (frontmatter `status: done`, `<date>: merged in <PR link>` and the retro notes under `## Comments`). With the device folder connected it writes the vault directly; without it, it keeps every edit for the batch on one vault branch and one vault PR.
+5. Each ticket thread also sends the map thread a closing note (`project-flow: closing <NN> …`). For each one, the map thread updates the kanban row, appends one `_system/agent-log.md` line, and, when the note says `Ticket file: not written`, makes the closing edits from [TICKET-THREAD.md](TICKET-THREAD.md) step 6 to the ticket file itself. Every vault edit follows the vault's write rules (`updated:` bumped). With the device folder connected it writes the vault directly; without it, it keeps every edit for the batch on one vault branch and one vault PR.
 6. When every ticket in the batch is merged: run the [batch retro](#retro-batches) over the batch's closing notes and reply once with the batch's PR list, the vault PR from step 5 if there is one (to merge), and the ranked retro list, asking which to apply. Each one the user picks becomes a `flow change` thread. Once the user answers, hand off the next batch (step 1), so the next batch builds on what this one taught.
-7. After the last batch: update the vault (`_context.md` line, `_system/agent-log.md`) and resolve the thread.
+7. After the last batch: update the vault (`_context.md` line, `_system/agent-log.md`), on the last batch's vault PR when there is one, and resolve the thread.
 
 ## Retro batches
 
