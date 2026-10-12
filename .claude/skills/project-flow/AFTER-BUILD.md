@@ -29,7 +29,7 @@ A review, QA or CI finding sends the work back to the build step to fix, then do
 2. Before pushing, run `npm run build` (the only check this repo has; the deploy workflow runs the same build on `main`). Merging to `main` deploys ontheshore.biz to production, so a PR that fails the build must never reach the user as ready.
 3. Open a draft PR (body per the `pr` skill) and watch it. Fix small CI failures in place; larger ones go back to the build step.
 4. The PR stays draft until CI is green, every acceptance criterion is met (checked by qa-run, or by the review steps for a no-code change) and no follow-up commit is planned. Only then mark it ready and tell the user in one line it is ready to merge, and that merging deploys to production. If a commit becomes needed after that, convert the PR back to draft first and say so in the thread. The user merges it themselves; wait for the merge event. Ask when a conflict cannot be resolved cleanly.
-5. After merge: update the vault (see [SKILL.md](SKILL.md#vault)), write the retro notes, then the thread's closing step (ticket threads: [TICKET-THREAD.md](TICKET-THREAD.md)).
+5. After merge: update the vault (see [SKILL.md](SKILL.md#vault)), write the retro notes, then the thread's closing step. Ticket threads skip the vault update and go straight to [TICKET-THREAD.md](TICKET-THREAD.md) step 6, which carries both.
 
 ## A bug from an earlier PR
 
