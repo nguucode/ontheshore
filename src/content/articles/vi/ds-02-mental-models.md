@@ -14,7 +14,7 @@ Luật quan trọng nhất của mọi mô hình tầng là phụ thuộc chỉ 
 
 ## Atomic Design trong một bảng
 
-Frost mượn hình ảnh hóa học: nguyên tử ghép thành phân tử, phân tử ghép thành cơ thể. Định nghĩa của ông, diễn lại sát nghĩa:
+Frost mượn hình ảnh hóa học: nguyên tử ghép thành phân tử, phân tử ghép thành sinh vật. Định nghĩa của ông, diễn lại sát nghĩa:
 
 | Tầng | Định nghĩa | Ví dụ |
 |---|---|---|
@@ -77,7 +77,7 @@ Cách thứ hai có một lợi thế: mỗi tầng ứng với một **đơn v�
 |---|---|
 | Foundation | File token (CSS, JSON) |
 | Component | Package npm |
-| Pattern, template | Copy mã nguồn (registry), vì sản phẩm hay phải sửa theo mình |
+| Pattern, template | Copy mã nguồn (registry), vì mỗi sản phẩm thường phải chỉnh lại cho riêng mình |
 
 Chọn cách nào cũng được, miễn là viết định nghĩa vào glossary kèm một dòng nói rõ nó *không* phải là gì. Nếu hệ có một nhóm tên "Basics" chứa Badge và Divider, hãy ghi rõ đó vẫn là component, không phải atoms của Atomic Design.
 

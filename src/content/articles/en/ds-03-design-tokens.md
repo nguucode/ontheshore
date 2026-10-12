@@ -56,7 +56,7 @@ The `Alert` component has no idea what red is. It only knows "danger". If you la
 
 Because primitives carry no meaning. If Button uses `gray-500` for its border and Input does too, then darkening the Input border (to reach 3:1 contrast, say) by editing `gray-500` changes Button as well. Two things that look the same today **are not necessarily the same decision**.
 
-Have a machine enforce this rule, not just the docs. The usual approach is a CSS lint rule (Stylelint) that fails when a component's stylesheet calls `var(--gray-500)` or any other primitive. [Part 12](/articles/ds-12-testing-and-quality/) covers this.
+Enforce this rule with tooling, not only documentation. The usual approach is a CSS lint rule (Stylelint) that fails when a component's stylesheet calls `var(--gray-500)` or any other primitive. [Part 12](/articles/ds-12-testing-and-quality/) covers this.
 
 ### When to create component tokens
 
@@ -75,7 +75,7 @@ color    - border - field   - hover
 
 Some systems drop the `color-` prefix for colours. shadcn/ui is one: `--background`, `--foreground`, `--primary`, `--primary-foreground`, `--border`, `--ring`. Other categories keep a prefix: `--space-*`, `--radius-*`, `--text-*`, `--duration-*`.
 
-A convention worth borrowing from shadcn/ui: colours come in **background and foreground pairs**. If there is `--primary`, there is `--primary-foreground`. The pair is checked for contrast together, so using the matching pair guarantees readable text.
+A convention worth borrowing from shadcn/ui: colours come in **background and foreground pairs**. If there is `--primary`, there is `--primary-foreground`. The pair is checked for contrast together, so using the matching pair makes readable text the default.
 
 ### The trap in borrowing names from other systems
 
@@ -127,7 +127,7 @@ Three things make the pipeline trustworthy:
 
 1. **One source.** Pick JSON (or Figma) as the source; the other side only reads. Never hand-edit the generated CSS.
 2. **A check command.** A `tokens:check` step in CI fails when the CSS drifts from the JSON.
-3. **Lint where tokens are used.** Lint stops components from reading primitives or tokens that don't exist. A typo like `var(--primay)` silently falls back to the browser default; only lint catches it.
+3. **Lint where tokens are used.** Lint stops components from reading primitives or tokens that don't exist. A typo like `var(--primay)` silently makes the property invalid, so it falls back to the inherited or initial value; only lint catches it.
 
 **Style Dictionary**, started at Amazon and now an open-source project, is the most widely used tool for building tokens out to several platforms: CSS, iOS, Android. If you only target the web, a short script is enough.
 
@@ -139,8 +139,8 @@ Three things make the pipeline trustworthy:
 | Type | `--text-body`, `--leading-body`, `--font-sans` | [5](/articles/ds-05-typography/) |
 | Spacing | `--space-1` to `--space-12` | [6](/articles/ds-06-spacing-sizing-layout/) |
 | Sizing | `--control-sm`, `--control-md`, `--icon-md` | [6](/articles/ds-06-spacing-sizing-layout/) |
-| Radius | `--radius-sm`, `--radius-md`, `--radius-control` | [6](/articles/ds-06-spacing-sizing-layout/) |
-| Motion | `--duration-fast`, `--ease-standard` | [6](/articles/ds-06-spacing-sizing-layout/) |
+| Radius | `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-control` | [6](/articles/ds-06-spacing-sizing-layout/) |
+| Motion | `--duration-fast`, `--duration-base`, `--duration-slow`, `--ease-standard` | [6](/articles/ds-06-spacing-sizing-layout/) |
 | Layers | `--layer-overlay`, `--layer-toast` | [6](/articles/ds-06-spacing-sizing-layout/) |
 | Focus | `--focus-width`, `--focus-offset` | [8](/articles/ds-08-accessibility/) |
 

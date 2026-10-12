@@ -79,7 +79,7 @@ A system does not make a product better looking on its own. It makes the product
 
 ## When you need one, and when you don't
 
-Nathan Curtis of EightShapes, who has written more than anyone about running design systems, describes three ways to staff one. **Solitary**: one team builds a system for its own product and others follow along. **Centralized**: a dedicated team builds the system for many product teams. **Federated**: designers from several product teams decide together. [Part 14](/articles/ds-14-governance-and-adoption/) goes deeper. The point for now: the size of the system should match the size of the organisation.
+Nathan Curtis of EightShapes, who has written widely about running design systems, describes three ways to staff one. **Solitary**: one team builds a system for its own product and others follow along. **Centralized**: a dedicated team builds the system for many product teams. **Federated**: designers from several product teams decide together. [Part 14](/articles/ds-14-governance-and-adoption/) goes deeper. The point for now: the size of the system should match the size of the organisation.
 
 A practical guide:
 

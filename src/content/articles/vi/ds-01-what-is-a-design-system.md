@@ -79,7 +79,7 @@ Hệ không tự làm sản phẩm đẹp hơn. Nó làm sản phẩm **nhất q
 
 ## Khi nào cần, khi nào chưa
 
-Nathan Curtis (EightShapes), người viết nhiều nhất về cách vận hành design system, chia cách tổ chức team làm hệ thành ba mô hình. **Solitary**: một team làm hệ cho sản phẩm của mình, team khác dùng theo. **Centralized**: một team riêng làm hệ cho nhiều team sản phẩm. **Federated**: designer từ nhiều team sản phẩm cùng quyết định. [Phần 14](/vi/articles/ds-14-governance-and-adoption/) đi sâu hơn. Ý chính ở đây: quy mô hệ phải khớp với quy mô tổ chức.
+Nathan Curtis (EightShapes), người viết nhiều về cách vận hành design system, chia cách tổ chức team làm hệ thành ba mô hình. **Solitary**: một team làm hệ cho sản phẩm của mình, team khác dùng theo. **Centralized**: một team riêng làm hệ cho nhiều team sản phẩm. **Federated**: designer từ nhiều team sản phẩm cùng quyết định. [Phần 14](/vi/articles/ds-14-governance-and-adoption/) đi sâu hơn. Ý chính ở đây: quy mô hệ phải khớp với quy mô tổ chức.
 
 Gợi ý thực tế:
 

@@ -75,7 +75,7 @@ color - border  - field     - hover
 
 Một số hệ bỏ tiền tố `color-` cho màu. shadcn/ui là một ví dụ: `--background`, `--foreground`, `--primary`, `--primary-foreground`, `--border`, `--ring`. Các loại khác vẫn giữ tiền tố: `--space-*`, `--radius-*`, `--text-*`, `--duration-*`.
 
-Một quy ước đáng mượn từ shadcn/ui: màu luôn đi theo **cặp nền và chữ**. Có `--primary` thì có `--primary-foreground`. Cặp này được đo contrast cùng nhau, nên dùng đúng cặp là chắc chắn chữ đọc được.
+Một quy ước đáng mượn từ shadcn/ui: màu luôn đi theo **cặp nền và chữ**. Có `--primary` thì có `--primary-foreground`. Cặp này được đo contrast cùng nhau, nên dùng đúng cặp thì chữ mặc định đọc được.
 
 ### Bẫy khi mượn tên từ hệ khác
 
@@ -127,7 +127,7 @@ Ba điều giúp pipeline đáng tin:
 
 1. **Chỉ một nguồn.** Chọn JSON (hoặc Figma) làm nguồn, bên còn lại chỉ đọc. Không bao giờ sửa tay file CSS sinh ra.
 2. **Có lệnh kiểm tra.** Một bước `tokens:check` trong CI báo lỗi khi file CSS lệch với JSON.
-3. **Có lint ở chỗ dùng.** Lint chặn component đọc primitive hoặc đọc token không tồn tại. Gõ sai tên kiểu `var(--primay)` sẽ âm thầm rơi về giá trị mặc định của trình duyệt; chỉ lint mới bắt được.
+3. **Có lint ở chỗ dùng.** Lint chặn component đọc primitive hoặc đọc token không tồn tại. Gõ sai tên kiểu `var(--primay)` sẽ âm thầm làm thuộc tính mất hiệu lực và rơi về giá trị kế thừa hoặc giá trị ban đầu; chỉ lint mới bắt được.
 
 **Style Dictionary**, do Amazon khởi xướng và nay là dự án mã nguồn mở, là công cụ phổ biến nhất để build token ra nhiều nền tảng: CSS, iOS, Android. Nếu chỉ nhắm tới web, một script ngắn là đủ.
 
@@ -139,8 +139,8 @@ Ba điều giúp pipeline đáng tin:
 | Chữ | `--text-body`, `--leading-body`, `--font-sans` | [5](/vi/articles/ds-05-typography/) |
 | Khoảng cách | `--space-1` đến `--space-12` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
 | Kích thước | `--control-sm`, `--control-md`, `--icon-md` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
-| Bo góc | `--radius-sm`, `--radius-md`, `--radius-control` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
-| Chuyển động | `--duration-fast`, `--ease-standard` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
+| Bo góc | `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-control` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
+| Chuyển động | `--duration-fast`, `--duration-base`, `--duration-slow`, `--ease-standard` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
 | Lớp | `--layer-overlay`, `--layer-toast` | [6](/vi/articles/ds-06-spacing-sizing-layout/) |
 | Focus | `--focus-width`, `--focus-offset` | [8](/vi/articles/ds-08-accessibility/) |
 
