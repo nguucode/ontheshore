@@ -857,6 +857,11 @@ a.ix-title::after {
   object-fit: cover;
 }
 
+.prose {
+  /* URL trần và từ dài xuống dòng thay vì đẩy trang rộng hơn viewport. */
+  overflow-wrap: break-word;
+}
+
 .prose h2 {
   margin-top: 2.4rem;
 }
@@ -877,6 +882,9 @@ a.ix-title::after {
 }
 
 .prose table {
+  /* Bảng rộng hơn cột chữ thì cuộn ngang trong khung của nó, không kéo cả trang. */
+  display: block;
+  overflow-x: auto;
   width: 100%;
   margin: 1.5rem 0;
   border-collapse: collapse;
