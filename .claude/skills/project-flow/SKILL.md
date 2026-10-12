@@ -89,7 +89,7 @@ After `to-tickets`, this thread becomes the **map thread**. It does not implemen
 4. Each ticket thread messages the coordinator when its PR merges; the coordinator then starts every ticket in the batch that merge unblocked. The map thread keeps the checklist (one line per ticket: waiting, running, merged) from what it reads with `list_thread_sessions` / `fetch_thread`.
 5. Each ticket thread also sends the map thread a closing note (`project-flow: closing <NN> …`). For each one, the map thread updates the kanban row, appends one `_system/agent-log.md` line, and, when the note says `Ticket file: not written`, makes the closing edits from [TICKET-THREAD.md](TICKET-THREAD.md) step 6 to the ticket file itself. Every vault edit follows the vault's write rules (`updated:` bumped). With the device folder connected it writes the vault directly; without it, it keeps every edit for the batch on one vault branch and one vault PR.
 6. When every ticket in the batch is merged: run the [batch retro](#retro-batches) over the batch's closing notes and reply once with the batch's PR list, the vault PR from step 5 if there is one (to merge), and the ranked retro list, asking which to apply. Each one the user picks becomes a `flow change` thread. Once the user answers, hand off the next batch (step 1), so the next batch builds on what this one taught.
-7. After the last batch: update the vault (`_context.md` line, `_system/agent-log.md`), on the last batch's vault PR when there is one, and resolve the thread.
+7. Last batch: add the close-out (`_context.md` line, final `_system/agent-log.md` line) to the batch's vault edits before the step 6 reply, so one vault PR carries everything; resolve the thread once it is merged.
 
 ## Retro batches
 
