@@ -882,7 +882,9 @@ a.ix-title::after {
 }
 
 .prose table {
-  /* Bảng rộng hơn cột chữ thì cuộn ngang trong khung của nó, không kéo cả trang. */
+  /* Bảng rộng hơn cột chữ thì cuộn ngang trong khung của nó, không kéo cả trang.
+     shortcut: display:block nên bảng ngắn (ít chữ) chỉ rộng bằng nội dung, không kéo đủ 100%.
+     Hiện mọi bảng trong bài đều đủ chữ để lấp cột; khi có bảng ngắn thì bọc table bằng rehype. */
   display: block;
   overflow-x: auto;
   width: 100%;
