@@ -94,7 +94,7 @@ Exceptions: disabled components, pure decoration and logos.
 
 The ratio comes from the relative luminance of the two colors and runs from 1:1 (same color) to 21:1 (black on white). Do not judge it by eye. Browser DevTools and Figma plugins measure it.
 
-APCA is a newer contrast method under consideration for WCAG 3. WCAG 3 is still a working draft, so the 4.5:1 and 3:1 thresholds of WCAG 2.x remain the standard for conformance. APCA can inform better design. It does not replace the rule.
+APCA is a newer contrast method that has been discussed as a candidate for WCAG 3. WCAG 3 is still a working draft, so the 4.5:1 and 3:1 thresholds of WCAG 2.x remain the standard for conformance. APCA can inform better design. It does not replace the rule.
 
 ### Exceptions are recorded decisions
 

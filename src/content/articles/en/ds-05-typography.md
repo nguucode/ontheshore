@@ -16,7 +16,7 @@ Three rules do most of the work:
 
 ## What a type scale is
 
-A type scale is the set of font sizes the system allows. Think of a shop that sells shirts in S, M, L and XL instead of tailoring each one to the millimetre. Fewer choices, far more consistency.
+A type scale is the set of font sizes the system allows. Think of a shop that sells shirts in S, M, L and XL instead of tailoring each one to the millimeter. Fewer choices, far more consistency.
 
 There are two ways to build one:
 

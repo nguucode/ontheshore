@@ -94,7 +94,7 @@ Ngoại lệ: component đang disabled, phần trang trí thuần túy, logo.
 
 Tỉ lệ được tính từ relative luminance của hai màu, đi từ 1:1 (cùng một màu) tới 21:1 (đen trên trắng). Đừng ước bằng mắt; DevTools của trình duyệt và plugin Figma đo được.
 
-APCA là phương pháp tính contrast mới đang được cân nhắc cho WCAG 3. WCAG 3 vẫn là bản nháp, nên ngưỡng 4.5:1 và 3:1 của WCAG 2.x vẫn là chuẩn để tuân thủ. APCA giúp thiết kế tốt hơn, nhưng không thay được luật.
+APCA là một phương pháp tính contrast mới từng được bàn tới như ứng viên cho WCAG 3. WCAG 3 vẫn là bản nháp, nên ngưỡng 4.5:1 và 3:1 của WCAG 2.x vẫn là chuẩn để tuân thủ. APCA giúp thiết kế tốt hơn, nhưng không thay được luật.
 
 ### Ngoại lệ phải là quyết định được ghi lại
 

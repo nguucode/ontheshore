@@ -61,7 +61,7 @@ The matching tokens look like `--control-md-height`, `--control-md-padding`, `--
 
 ### The smallest tier and target size
 
-WCAG 2.2 criterion 2.5.8 Target Size (Minimum) asks for a pointer target of at least 24 by 24 CSS pixels, with some exceptions, such as enough spacing from neighbouring targets or links inside a sentence. If a system has a tier below 24px for tags or badges, document that the tier is not for interactive controls such as buttons and inputs. Apple's Human Interface Guidelines recommend more, 44 by 44 points, for touch.
+WCAG 2.2 criterion 2.5.8 Target Size (Minimum) asks for a pointer target of at least 24 by 24 CSS pixels, with some exceptions, such as enough spacing from neighboring targets or links inside a sentence. If a system has a tier below 24px for tags or badges, document that the tier is not for interactive controls such as buttons and inputs. Apple's Human Interface Guidelines recommend more, 44 by 44 points, for touch.
 
 ## Radius
 
