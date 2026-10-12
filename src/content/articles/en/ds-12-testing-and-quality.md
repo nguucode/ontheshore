@@ -14,12 +14,12 @@ Think of checking a car before it leaves the factory: paperwork, each part on it
 
 | Layer | Catches | Misses | Common tools |
 |---|---|---|---|
-| **Type check** | Wrong or missing props, such as an icon-only button without `aria-label` | Behaviour | TypeScript |
-| **Lint** | Hard-coded values, primitives used inside components, misspelled token names | Behaviour, visuals | Stylelint (CSS), ESLint or oxlint (JS) |
-| **Build checks** | Generated token files out of sync with the source, missing package dependencies | | Custom scripts in CI |
+| **Type check** | Wrong or missing props, such as an icon-only button without `aria-label` | Runtime logic | TypeScript |
+| **Lint** | Hard-coded values, primitives used inside components, misspelled token names | Runtime logic, visuals | Stylelint (CSS), ESLint or oxlint (JS) |
+| **Build checks** | Generated token files out of sync with the source, a package missing a dependency | | Custom scripts in CI |
 | **Interaction tests** | Clicks, typing or shortcuts that do not produce the right result | Visuals off by a few pixels | Storybook play functions, Testing Library |
-| **Accessibility tests** | Contrast, missing labels, invalid ARIA | Whether focus order makes sense, whether a label is meaningful | axe-core through the a11y addon |
-| **Visual regression** | Unintended visual changes | Visuals that were wrong from the start | Chromatic, Playwright screenshots |
+| **Accessibility tests** | Contrast, missing labels, invalid ARIA | Whether focus order makes sense, whether a label is clear | axe-core through the a11y addon |
+| **Visual regression** | Unintended visual changes | Visuals that were wrong from the start | Chromatic, Playwright snapshots |
 | **Cross-browser** | Bugs that only appear in Firefox or Safari | | Playwright (Chromium, Firefox, WebKit) |
 
 ## Linting tokens: stopping drift at the source
