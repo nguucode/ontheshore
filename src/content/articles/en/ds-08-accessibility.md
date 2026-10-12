@@ -16,7 +16,7 @@ The design system is the architect. When the button has a focus ring, the modal 
 
 ## WCAG 2.2 in five minutes
 
-The Web Content Accessibility Guidelines are a W3C standard. Version 2.2 became a W3C Recommendation on 12 December 2024. It has three levels: A (the minimum), AA (what most laws require) and AAA (the highest, not expected across a whole site).
+The Web Content Accessibility Guidelines are a W3C standard. Version 2.2 became a W3C Recommendation on 5 October 2023, and the current edition, with corrections, is dated 12 December 2024. It has three levels: A (the minimum), AA (what most laws require) and AAA (the highest, not expected across a whole site).
 
 Every criterion sits under one of four principles, known as **POUR**:
 
@@ -89,8 +89,8 @@ W3C's **ARIA Authoring Practices Guide (APG)** describes each widget type (accor
 ## Accessibility patterns worth building in
 
 - **Icon-only buttons must have a name**, ideally enforced by TypeScript, as shown in [Designing components](/articles/ds-07-component-design/).
-- **Loading keeps focus.** Use `aria-busy` rather than `disabled`.
-- **Disabled links.** An `<a>` has no `disabled` attribute. The only way to stop it navigating is to remove `href`, and add `aria-disabled="true"` so assistive technology knows.
+- **Loading keeps focus.** Use `aria-disabled` rather than `disabled`, and say "loading" in text or through a live region.
+- **Disabled links.** An `<a>` has no `disabled` attribute. The only way to stop it navigating is to remove `href`. Without `href` it is no longer exposed as a link, so add `role="link"` and `aria-disabled="true"` to tell assistive technology it is a link that is unavailable.
 - **Form errors.** Tie the message to the input with `aria-describedby` and set `aria-invalid="true"`.
 - **Dialogs.** Give the dialog a name with `aria-labelledby` pointing at its heading, keep focus inside, close on Escape, and return focus on close.
 

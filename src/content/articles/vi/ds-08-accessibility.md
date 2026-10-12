@@ -16,7 +16,7 @@ Design system là kiến trúc sư. Khi Button có focus ring, Modal giữ focus
 
 ## WCAG 2.2 trong năm phút
 
-WCAG (Web Content Accessibility Guidelines) là chuẩn của W3C. Bản 2.2 thành W3C Recommendation ngày 12/12/2024. Chuẩn có ba mức: A (tối thiểu), AA (mức đa số luật yêu cầu) và AAA (cao nhất, không đặt ra cho toàn bộ site).
+WCAG (Web Content Accessibility Guidelines) là chuẩn của W3C. Bản 2.2 thành W3C Recommendation ngày 5/10/2023, và ấn bản hiện hành, có sửa lỗi, đề ngày 12/12/2024. Chuẩn có ba mức: A (tối thiểu), AA (mức đa số luật yêu cầu) và AAA (cao nhất, không đặt ra cho toàn bộ site).
 
 Mọi tiêu chí nằm dưới một trong bốn nguyên tắc, viết tắt là **POUR**:
 
@@ -89,8 +89,8 @@ ARIA sai còn tệ hơn không có ARIA, vì nó nói dối screen reader. `aria
 ## Những mẫu accessibility nên làm sẵn trong component
 
 - **Nút chỉ có icon bắt buộc có tên**, tốt nhất ép bằng TypeScript như trong bài [Thiết kế component](/vi/articles/ds-07-component-design/).
-- **Loading giữ focus.** Dùng `aria-busy` thay vì `disabled`.
-- **Link bị vô hiệu.** Thẻ `<a>` không có thuộc tính `disabled`. Cách duy nhất để nó không điều hướng là bỏ `href`, kèm `aria-disabled="true"` để công nghệ hỗ trợ biết.
+- **Loading giữ focus.** Dùng `aria-disabled` thay vì `disabled`, và báo "đang tải" bằng chữ hoặc qua live region.
+- **Link bị vô hiệu.** Thẻ `<a>` không có thuộc tính `disabled`. Cách duy nhất để nó không điều hướng là bỏ `href`. Mất `href` thì nó không còn được nhận là link, nên thêm `role="link"` và `aria-disabled="true"` để công nghệ hỗ trợ biết đây là link đang không dùng được.
 - **Lỗi form.** Gắn thông báo với input bằng `aria-describedby` và đặt `aria-invalid="true"`.
 - **Dialog.** Đặt tên cho dialog bằng `aria-labelledby` trỏ tới tiêu đề, giữ focus bên trong, Esc để đóng, trả focus khi đóng.
 

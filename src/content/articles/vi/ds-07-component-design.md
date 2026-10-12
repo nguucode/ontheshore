@@ -73,7 +73,7 @@ Các state cần tính tới cho một control tương tác:
 | Invalid / error | Dữ liệu sai | Không bao giờ chỉ báo bằng màu |
 | Read-only | Xem được, không sửa được | Khác disabled: vẫn focus và copy được |
 
-Liệt kê state kỹ sẽ lộ ra những câu hỏi dễ làm sai. Ví dụ một nút đang loading: có nên đặt `disabled` không? Thường là không. Phần tử disabled mất focus, nên người dùng bàn phím vừa bấm Enter bị đẩy focus về đầu trang. Cách tốt hơn là giữ nút focus được, đặt `aria-busy="true"` và bỏ qua click cho tới khi xử lý xong. Bài [Accessibility trong design system](/vi/articles/ds-08-accessibility/) có thêm các mẫu tương tự.
+Liệt kê state kỹ sẽ lộ ra những câu hỏi dễ làm sai. Ví dụ một nút đang loading: có nên đặt `disabled` không? Thường là không. Phần tử disabled không giữ được focus, nên người dùng bàn phím vừa bấm Enter bị mất chỗ; tùy trình duyệt, focus rơi về chính trang. Cách tốt hơn là giữ nút focus được, đặt `aria-disabled="true"`, bỏ qua click cho tới khi xử lý xong, và nói ra bằng chữ điều đang diễn ra, ví dụ đổi label thành "Đang lưu" hoặc báo qua một live region dạng polite. Bài [Accessibility trong design system](/vi/articles/ds-08-accessibility/) có thêm các mẫu tương tự.
 
 Component phức tạp còn có **state của dữ liệu**: rỗng, đang tải, lỗi, một phần tử, hàng nghìn phần tử, một label dài hơn mọi dự tính. Nhiều hệ có component riêng cho những trạng thái này, như empty state, error state và skeleton.
 

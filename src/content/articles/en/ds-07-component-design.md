@@ -73,7 +73,7 @@ The states to plan for on an interactive control:
 | Invalid / error | Bad input | Never shown by colour alone |
 | Read-only | Viewable, not editable | Unlike disabled, still focusable and copyable |
 
-Listing states carefully surfaces questions that are easy to get wrong. Take a button that is loading: should it be `disabled`? Usually not. A disabled element loses focus, so a keyboard user who just pressed Enter has their focus thrown back to the start of the page. A better pattern keeps the button focusable, sets `aria-busy="true"` and ignores clicks until the work finishes. [Accessibility in a design system](/articles/ds-08-accessibility/) covers more patterns like this one.
+Listing states carefully surfaces questions that are easy to get wrong. Take a button that is loading: should it be `disabled`? Usually not. A disabled element cannot hold focus, so a keyboard user who just pressed Enter loses their place; depending on the browser, focus drops back to the page itself. A better pattern keeps the button focusable, marks it `aria-disabled="true"`, ignores clicks until the work finishes, and says what is happening in text, for example by changing the label to "Saving" or announcing it through a polite live region. [Accessibility in a design system](/articles/ds-08-accessibility/) covers more patterns like this one.
 
 Complex components also have **data states**: empty, loading, failed, one item, thousands of items, a label far longer than anyone expected. Many systems give these their own components, such as an empty state, an error state and a skeleton.
 
