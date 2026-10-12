@@ -103,9 +103,9 @@ The lesson holds for human teams too: when a rule matters, move it from memory t
 
 ## Sources
 
-- Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015): https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0
-- GOV.UK Design System, Contribution criteria: https://design-system.service.gov.uk/community/contribution-criteria/
-- GOV.UK Design System, Propose a component or pattern: https://design-system.service.gov.uk/community/propose-a-component-or-pattern/
-- Figma Help Center, View and explore library analytics: https://help.figma.com/hc/en-us/articles/360039238353-View-and-explore-library-analytics
+- [Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015)](https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0)
+- [GOV.UK Design System, Contribution criteria](https://design-system.service.gov.uk/community/contribution-criteria/)
+- [GOV.UK Design System, Propose a component or pattern](https://design-system.service.gov.uk/community/propose-a-component-or-pattern/)
+- [Figma Help Center, View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-View-and-explore-library-analytics)
 
 ← Previous: [Versioning and releasing a design system](/articles/ds-13-versioning-and-releases/) · Next: [Glossary and what to read next](/articles/ds-15-glossary-and-next-steps/) →

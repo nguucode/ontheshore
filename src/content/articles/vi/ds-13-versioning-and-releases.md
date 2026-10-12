@@ -99,10 +99,10 @@ Khi làm registry, khai báo đúng dependency giữa các item và kiểm chún
 
 ## Nguồn
 
-- Semantic Versioning 2.0.0: https://semver.org/
-- Changesets: https://github.com/changesets/changesets
-- shadcn/ui, Registry: https://ui.shadcn.com/docs/registry
-- TypeScript, JSDoc Reference (`@deprecated`): https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
-- W3C Design Tokens Community Group, Design Tokens Format Module 2025.10 (`$deprecated`): https://www.designtokens.org/tr/2025.10/format/
+- [Semantic Versioning 2.0.0](https://semver.org/)
+- [Changesets](https://github.com/changesets/changesets)
+- [shadcn/ui, Registry](https://ui.shadcn.com/docs/registry)
+- [TypeScript, JSDoc Reference (`@deprecated`)](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+- [W3C Design Tokens Community Group, Design Tokens Format Module 2025.10 (`$deprecated`)](https://www.designtokens.org/tr/2025.10/format/)
 
 ← Bài trước: [Testing và cổng chất lượng](/vi/articles/ds-12-testing-and-quality/) · Bài sau: [Governance và adoption](/vi/articles/ds-14-governance-and-adoption/) →

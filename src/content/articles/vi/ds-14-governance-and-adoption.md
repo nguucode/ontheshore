@@ -103,9 +103,9 @@ Bài học này đúng cả với team người: luật nào quan trọng thì c
 
 ## Nguồn
 
-- Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015): https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0
-- GOV.UK Design System, Contribution criteria: https://design-system.service.gov.uk/community/contribution-criteria/
-- GOV.UK Design System, Propose a component or pattern: https://design-system.service.gov.uk/community/propose-a-component-or-pattern/
-- Figma Help Center, View and explore library analytics: https://help.figma.com/hc/en-us/articles/360039238353-View-and-explore-library-analytics
+- [Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015)](https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0)
+- [GOV.UK Design System, Contribution criteria](https://design-system.service.gov.uk/community/contribution-criteria/)
+- [GOV.UK Design System, Propose a component or pattern](https://design-system.service.gov.uk/community/propose-a-component-or-pattern/)
+- [Figma Help Center, View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-View-and-explore-library-analytics)
 
 ← Bài trước: [Versioning và phát hành design system](/vi/articles/ds-13-versioning-and-releases/) · Bài sau: [Glossary và đọc gì tiếp](/vi/articles/ds-15-glossary-and-next-steps/) →

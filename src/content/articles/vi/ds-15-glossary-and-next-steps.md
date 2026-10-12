@@ -128,17 +128,17 @@ Bài tập:
 
 ## Nguồn
 
-- W3C, Web Content Accessibility Guidelines (WCAG) 2.2: https://www.w3.org/TR/WCAG22/
-- W3C WAI, Understanding WCAG 2.2: https://www.w3.org/WAI/WCAG22/Understanding/
-- W3C WAI, ARIA Authoring Practices Guide, Patterns: https://www.w3.org/WAI/ARIA/apg/patterns/
-- W3C Design Tokens Community Group, Design Tokens Format Module 2025.10: https://www.designtokens.org/tr/2025.10/format/
-- Radix Colors, Understanding the scale: https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale
-- Radix Themes: https://www.radix-ui.com/themes
-- shadcn/ui, Theming: https://ui.shadcn.com/docs/theming
-- Storybook, Writing tests: https://storybook.js.org/docs/writing-tests
-- Semantic Versioning 2.0.0: https://semver.org/
-- GOV.UK Design System, Community: https://design-system.service.gov.uk/community/
-- Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015): https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0
+- [W3C, Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/)
+- [W3C WAI, Understanding WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/)
+- [W3C WAI, ARIA Authoring Practices Guide, Patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)
+- [W3C Design Tokens Community Group, Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/)
+- [Radix Colors, Understanding the scale](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale)
+- [Radix Themes](https://www.radix-ui.com/themes)
+- [shadcn/ui, Theming](https://ui.shadcn.com/docs/theming)
+- [Storybook, Writing tests](https://storybook.js.org/docs/writing-tests)
+- [Semantic Versioning 2.0.0](https://semver.org/)
+- [GOV.UK Design System, Community](https://design-system.service.gov.uk/community/)
+- [Nathan Curtis, *Team Models for Scaling a Design System* (EightShapes, 2015)](https://medium.com/eightshapes-llc/team-models-for-scaling-a-design-system-2cf9d03be6a0)
 - Các phần trước trong series đều có mục nguồn riêng ở cuối bài.
 
 ← Bài trước: [Governance và adoption](/vi/articles/ds-14-governance-and-adoption/)

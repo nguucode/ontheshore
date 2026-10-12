@@ -99,10 +99,10 @@ If you run a registry, declare dependencies between items correctly and check th
 
 ## Sources
 
-- Semantic Versioning 2.0.0: https://semver.org/
-- Changesets: https://github.com/changesets/changesets
-- shadcn/ui, Registry: https://ui.shadcn.com/docs/registry
-- TypeScript, JSDoc Reference (`@deprecated`): https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
-- W3C Design Tokens Community Group, Design Tokens Format Module 2025.10 (`$deprecated`): https://www.designtokens.org/tr/2025.10/format/
+- [Semantic Versioning 2.0.0](https://semver.org/)
+- [Changesets](https://github.com/changesets/changesets)
+- [shadcn/ui, Registry](https://ui.shadcn.com/docs/registry)
+- [TypeScript, JSDoc Reference (`@deprecated`)](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+- [W3C Design Tokens Community Group, Design Tokens Format Module 2025.10 (`$deprecated`)](https://www.designtokens.org/tr/2025.10/format/)
 
 ← Previous: [Testing and quality gates](/articles/ds-12-testing-and-quality/) · Next: [Governance and adoption](/articles/ds-14-governance-and-adoption/) →
