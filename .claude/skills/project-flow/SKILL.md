@@ -70,6 +70,9 @@ Each finding the user picks becomes a new `flow fix` or `flow change` thread (ha
 
 After `to-tickets`, this thread becomes the **map thread**. It does not implement. It hands off one batch at a time.
 
+**The map thread is the only writer of the feature's shared vault files**: `ontheshore-kanban.md` and `_system/agent-log.md`. Ticket threads send their closing note to the map thread instead of writing these files or opening a vault PR (see [TICKET-THREAD.md](TICKET-THREAD.md)); the map thread's agent-log lines cover their sessions. Parallel ticket threads each opening a vault PR on the same two files conflict with each other.
+
+0. **Spec and tickets on vault `main` first** (once per feature, before the first batch). Written through the device folder, Obsidian Git commits them. Written through a vault PR (no folder connected), reply with the PR link and ask the user to merge it; hand off nothing until the PR shows merged. Otherwise ticket threads start from tickets that exist only on an unmerged branch.
 1. List the current batch's tickets with title, vault path and `Blocked by`. The **frontier** is every ticket in the batch with no open blocker. Copy the spec to `/mnt/project-files/<feature>/` and each ticket to `/mnt/project-files/<feature>/issues/`, so a ticket thread can start reading before the user allows the vault. The copies are read-only snapshots; the vault stays the source of truth.
 2. Get the coordinator with `get_channel_session_id`, then `send_message` to it:
 
@@ -84,8 +87,9 @@ After `to-tickets`, this thread becomes the **map thread**. It does not implemen
 
 3. The coordinator posts one project-chat line per ticket and starts a thread on it with that brief (its rules are in project memory, `project-flow-tickets`). Frontier tickets run in parallel.
 4. Each ticket thread messages the coordinator when its PR merges; the coordinator then starts every ticket in the batch that merge unblocked. The map thread keeps the checklist (one line per ticket: waiting, running, merged) from what it reads with `list_thread_sessions` / `fetch_thread`.
-5. When every ticket in the batch is merged: run the [batch retro](#retro-batches) over the batch's ticket files and reply once with the batch's PR list and the ranked retro list, asking which to apply. Each one the user picks becomes a `flow change` thread. Once the user answers, hand off the next batch (step 1), so the next batch builds on what this one taught.
-6. After the last batch: update the vault (`_context.md` line, `_system/agent-log.md`) and resolve the thread.
+5. Each ticket thread also sends the map thread a closing note (`project-flow: closing <NN> …`). For each one, the map thread updates the kanban row, appends one `_system/agent-log.md` line, and, when the note says `Ticket file: not written`, makes the closing edits from [TICKET-THREAD.md](TICKET-THREAD.md) step 6 to the ticket file itself. Every vault edit follows the vault's write rules (`updated:` bumped). With the device folder connected it writes the vault directly; without it, it keeps every edit for the batch on one vault branch and one vault PR.
+6. When every ticket in the batch is merged: run the [batch retro](#retro-batches) over the batch's closing notes and reply once with the batch's PR list, the vault PR from step 5 if there is one (to merge), and the ranked retro list, asking which to apply. Each one the user picks becomes a `flow change` thread. Once the user answers, hand off the next batch (step 1), so the next batch builds on what this one taught.
+7. Last batch: add the close-out (`_context.md` line, final `_system/agent-log.md` line) to the batch's vault edits before the step 6 reply, so one vault PR carries everything; resolve the thread once it is merged.
 
 ## Retro batches
 
@@ -93,7 +97,7 @@ Retro runs once per batch of 5 to 10 finished tickets or threads, not once per t
 
 **Every build thread logs friction, it does not run retro.** At its closing step, a thread writes one to three raw notes on what cost it time or went wrong (a file it could not find, a check that would have caught a mistake, a wasted tool call, a missing instruction). Facts, not fixes. `none` is a valid note. Where they go:
 
-- Ticket thread: under `## Comments` in its ticket file, as `<date>: retro: <note>`.
+- Ticket thread: in its closing note to the map thread, which records them under `## Comments` in the ticket file as `<date>: retro: <note>` (the ticket thread writes them there itself when it has the vault folder).
 - Any other `flow fix` or `flow change` thread: a new file `10-projects/ontheshore/retro-inbox/<date>-<thread-slug>.md` with frontmatter `status: open` and the PR link, notes as bullets. One file per thread, so parallel threads never write the same file. No vault reachable from this thread: write the same file to `/mnt/project-files/ontheshore/retro-inbox/` instead.
 
 **The batch retro** is run by the map thread when its batch is merged, or by the thread whose note makes 5 open files across both `retro-inbox/` folders:
@@ -105,4 +109,4 @@ Retro runs once per batch of 5 to 10 finished tickets or threads, not once per t
 
 ## Vault
 
-Specs, tickets and research live in the vault already; docs that ship with the code (README, ADRs, `docs/`) stay in this repo and are not copied. At the end of a flow, add a line to `10-projects/ontheshore/_context.md` and append to `_system/agent-log.md`.
+Specs, tickets and research live in the vault already; docs that ship with the code (README, ADRs, `docs/`) stay in this repo and are not copied. At the end of a flow, add a line to `10-projects/ontheshore/_context.md` and append to `_system/agent-log.md`. Ticket threads skip this: the map thread writes for them.
