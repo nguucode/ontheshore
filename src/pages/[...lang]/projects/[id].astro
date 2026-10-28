@@ -90,14 +90,22 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   </div>
 
   <dialog class="lightbox" aria-label={t("Xem ảnh", "Image preview")}>
-    <img class="lb-img" alt="" />
+    <div class="lb-stage">
+      <img class="lb-img" alt="" />
+      <button class="lb-nav lb-prev" type="button" aria-label={t("Ảnh trước", "Previous image")}>
+        <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M20 4 4 24l16 20" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+      </button>
+      <button class="lb-nav lb-next" type="button" aria-label={t("Ảnh sau", "Next image")}>
+        <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M4 4l16 20L4 44" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+      </button>
+    </div>
     <div class="lb-thumbs"></div>
     <button class="lb-close" type="button" aria-label={t("Đóng", "Close")}>×</button>
   </dialog>
 
   <script>
     // Bấm ảnh bìa hoặc ảnh trong bài (cả gallery) mở preview: ảnh lớn, dải thumbnail mọi ảnh của
-    // trang, nút đóng. Mũi tên trái/phải chuyển ảnh, Esc hoặc bấm nền để đóng.
+    // trang, nút đóng, hai nút qua lại hai bên. Mũi tên trái/phải chuyển ảnh, Esc hoặc bấm nền để đóng.
     const dlg = document.querySelector<HTMLDialogElement>(".lightbox")!;
     const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
     const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
@@ -141,6 +149,8 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     });
 
     dlg.querySelector(".lb-close")!.addEventListener("click", () => dlg.close());
+    dlg.querySelector(".lb-prev")!.addEventListener("click", () => show(cur - 1));
+    dlg.querySelector(".lb-next")!.addEventListener("click", () => show(cur + 1));
     dlg.addEventListener("click", (e) => e.target === dlg && dlg.close());
     dlg.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") show(cur + 1);
