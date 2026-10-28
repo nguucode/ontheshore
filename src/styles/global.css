@@ -892,8 +892,8 @@ a.ix-title::after {
   flex-wrap: wrap;
   gap: 0 1.5rem;
   list-style: none;
-  margin: 0.6rem 0 0;
-  padding: 0.4rem 0 0;
+  margin: 1.25rem 0 0;
+  padding: 1.8rem 0 0; /* trên dưới divider bằng nhau */
   border-top: 1px solid var(--rule);
   font-size: 0.88rem;
   line-height: 1.5;
@@ -906,7 +906,6 @@ a.ix-title::after {
 .project-links li {
   min-width: 0;
   max-width: 100%;
-  padding: 0.6rem 0;
 }
 
 .project-facts dt {
