@@ -1147,7 +1147,7 @@ img.cover,
 
 /* caption gắn với ảnh phía trên, tách xa dải thumbnail phía dưới */
 .lb-cap + .lb-thumbs {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .lightbox::backdrop {
@@ -1224,7 +1224,7 @@ img.cover,
   -webkit-user-drag: none;
   width: 100%;
   /* chừa chỗ cho caption và dải thumbnail trong phần 80% */
-  max-height: calc(80dvh - 11rem);
+  max-height: calc(80dvh - 11.5rem);
   aspect-ratio: 16 / 9;
   object-fit: contain;
 }
