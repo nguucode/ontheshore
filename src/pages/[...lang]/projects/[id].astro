@@ -36,7 +36,7 @@ const { Content } = await render(entry);
     entry.data.facts && (
       <dl class="project-facts">
         {Object.entries(entry.data.facts).map(([label, value]) => (
-          <div>
+          <div class:list={{ link: /^https?:\/\//.test(value) }}>
             <dt>{label}</dt>
             <dd>
               {/^https?:\/\//.test(value) ? (

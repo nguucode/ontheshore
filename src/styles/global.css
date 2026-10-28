@@ -882,6 +882,13 @@ a.ix-title::after {
   padding-top: 0; /* dòng đầu thẳng mép trên đoạn lede */
 }
 
+/* nhóm link (Website, Figma...) tách khỏi thông tin dự án bằng một đường kẻ */
+.project-facts > div:not(.link) + .link {
+  margin-top: 0.6rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--rule);
+}
+
 .project-facts dt {
   color: var(--ink-faint);
 }
