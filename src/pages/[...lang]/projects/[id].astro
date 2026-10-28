@@ -117,6 +117,15 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
     const imgs = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
     let cur = 0;
+    const CAP_MAX = 80; // caption tối đa 80 ký tự để vừa một dòng trên desktop
+
+    // caption rộng tối đa 80% phần ảnh đang hiện (ảnh 16:9, có thể bị co theo chiều cao), luôn một dòng
+    function fitCap() {
+      const shown = Math.min(big.clientWidth, (big.clientHeight * 16) / 9);
+      cap.style.maxWidth = `${Math.round(shown * 0.8)}px`;
+      cap.title = cap.scrollWidth > cap.clientWidth ? cap.textContent ?? "" : "";
+    }
+    addEventListener("resize", () => dlg.open && fitCap());
 
     const thumbs = imgs.map((img, i) => {
       const b = document.createElement("button");
@@ -134,7 +143,10 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       big.alt = imgs[cur].alt;
       // caption: figcaption của ảnh (bỏ số thứ tự "1 / 3 · " của gallery), không có thì dùng alt
       const fc = imgs[cur].closest("figure")?.querySelector("figcaption")?.textContent;
-      cap.textContent = (fc ?? imgs[cur].alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
+      const text = (fc ?? imgs[cur].alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
+      if (import.meta.env.DEV && text.length > CAP_MAX) console.warn(`Caption dài hơn ${CAP_MAX} ký tự:`, text);
+      cap.textContent = text;
+      fitCap();
       thumbs.forEach((b, j) => b.toggleAttribute("aria-current", j === cur));
       thumbs[cur].scrollIntoView({ block: "nearest", inline: "nearest" });
     }
@@ -147,8 +159,8 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       }
       const open = (e: Event) => {
         e.preventDefault();
+        dlg.showModal(); // mở trước để đo được kích thước ảnh cho caption
         show(i);
-        dlg.showModal();
       };
       trigger.addEventListener("click", open);
       trigger.addEventListener("keydown", (e) => {

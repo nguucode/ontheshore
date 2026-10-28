@@ -55,7 +55,7 @@ My work covered three areas. The PM owned merchandising and promotions, and engi
 
 <figure class="shot">
   <img src="/projects/ecommerce-concept/order-lifecycle.svg" alt="Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location" loading="lazy" />
-  <figcaption>Three states stored separately. Failed delivery branches off from in transit and puts the unit back in stock.</figcaption>
+  <figcaption>Three states, stored apart. Failed delivery returns the unit to stock.</figcaption>
 </figure>
 
 ## Decision 1: store three status axes, show one to-do list
@@ -70,7 +70,7 @@ The trade-off: the BA had to own a state-to-tab mapping table, and every new edg
 
 <figure class="shot">
   <img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs, three selected orders and a bulk action bar" loading="lazy" />
-  <figcaption>Task tabs over the three axes. The bulk bar states its scope: this page, or all 42 matching orders.</figcaption>
+  <figcaption>Task tabs over the three axes; the bulk bar states its selection scope.</figcaption>
 </figure>
 
 ## Decision 2: no sync until every SKU is mapped
@@ -82,7 +82,7 @@ The trade-off: the BA had to own a state-to-tab mapping table, and every new edg
 
 <figure class="shot">
   <img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping screen with a queue of unmapped listings and a warning that a name match is not applied automatically" loading="lazy" />
-  <figcaption>A name match is only a suggestion. Sync stays off until the last variant is mapped.</figcaption>
+  <figcaption>A name match is only a suggestion; sync waits for every variant.</figcaption>
 </figure>
 
 ## Decision 3: ship the admin first, storefront second

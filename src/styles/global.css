@@ -1125,9 +1125,12 @@ img.cover,
   place-items: center;
 }
 
+/* caption một dòng; độ rộng tối đa (80% ảnh) do script đặt, dài quá thì cắt "…" */
 .lb-cap {
-  max-width: 60ch;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: rgb(255 255 255 / 0.85);
   font-size: 0.92rem;
   line-height: 1.5;
