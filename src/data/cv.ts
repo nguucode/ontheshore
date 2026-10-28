@@ -8,7 +8,7 @@ export type Job = {
   role: string;
   company: string;
   kind: Text;
-  href?: string; // case study trong site
+  href?: string; // trang project trong site
   what?: Text;
   cv?: string; // ghi đè mô tả trên CV PDF; "" = bỏ mô tả để vừa một trang
 };
@@ -104,7 +104,7 @@ export const community = (uses: string): { name: string; what: Text; href: strin
   },
   {
     name: "Website",
-    what: { vi: "Tất cả sản phẩm, case study và UI kit Zweihänder", en: "All products, case studies and the Zweihänder UI kit" },
+    what: { vi: "Tất cả sản phẩm, project và UI kit Zweihänder", en: "All products, projects and the Zweihänder UI kit" },
     href: "https://ontheshore.biz/",
   },
 ];

@@ -4,30 +4,95 @@ import { getCollection, render } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../../i18n";
 
 export async function getStaticPaths() {
-  const all = await getCollection("projects", (p) => !p.data.draft);
-  return langPaths().flatMap(({ params }) =>
-    byLang(all, getLang(params.lang)).map((p) => ({ params: { ...params, id: p.slug }, props: { entry: p } }))
-  );
+  // Dev hiện cả bài draft để xem trước; build production vẫn loại.
+  const all = await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft);
+  return langPaths().flatMap(({ params }) => {
+    // cùng thứ tự với trang danh sách; case cuối quay về case đầu
+    const list = byLang(all, getLang(params.lang)).sort((a, b) => a.data.order - b.data.order);
+    return list.map((p, i) => ({
+      params: { ...params, id: p.slug },
+      props: { entry: p, next: list.length > 1 ? list[(i + 1) % list.length] : undefined },
+    }));
+  });
 }
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
-const { entry } = Astro.props;
+const { entry, next } = Astro.props;
 const { Content } = await render(entry);
+const isUrl = (v: string) => /^https?:\/\//.test(v);
 ---
 
 <Base title={entry.data.title} description={entry.data.summary} lang={lang}>
   <p class="faint"><a href={url(lang, "/projects/")}>← Projects</a></p>
 
-  <h1 style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
-  <p class="entry-meta num">
-    {entry.data.role} · {entry.data.year}{entry.data.client ? ` · ${entry.data.client}` : ""}
-  </p>
-  <p class="lede">{entry.data.summary}</p>
+  <h1 class="case-title" style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
+  {/* có facts thì role/year đã nằm ở cột phải, bỏ dòng meta cho khỏi lặp */}
+  {
+    !entry.data.facts && (
+      <p class="entry-meta num">
+        {entry.data.role} · {entry.data.year}
+        {entry.data.client ? ` · ${entry.data.client}` : ""}
+      </p>
+    )
+  }
+  <p class="lede case-lede">{entry.data.summary}</p>
+
+  {
+    entry.data.facts && (
+      <aside class="project-facts">
+        <dl>
+          {Object.entries(entry.data.facts)
+            .filter(([, value]) => !isUrl(value))
+            .map(([label, value]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+        </dl>
+        {/* fact có giá trị là URL thì thành link, chữ hiện là nhãn (Website, Figma...) */}
+        <ul class="project-links">
+          {Object.entries(entry.data.facts)
+            .filter(([, value]) => isUrl(value))
+            .map(([label, value]) => (
+              <li>
+                <a class="go" href={value} target="_blank" rel="noopener">
+                  <span class="go-ring" aria-hidden="true">
+                    {label === "Figma" ? (
+                      <svg class="figma-logo" viewBox="312 340 400 600" width="10" height="15">
+                        <path fill="#24CB71" d="M312 840C312 784.772 356.772 740 412 740H512V840C512 895.228 467.228 940 412 940C356.772 940 312 895.228 312 840Z" />
+                        <path fill="#FF7237" d="M512 340V540H612C667.228 540 712 495.228 712 440C712 384.772 667.228 340 612 340H512Z" />
+                        <path fill="#00B6FF" d="M611.167 740C666.395 740 711.167 695.228 711.167 640C711.167 584.772 666.395 540 611.167 540C555.939 540 511.167 584.772 511.167 640C511.167 695.228 555.939 740 611.167 740Z" />
+                        <path fill="#FF3737" d="M312 440C312 495.228 356.772 540 412 540H512V340H412C356.772 340 312 384.772 312 440Z" />
+                        <path fill="#874FFF" d="M312 640C312 695.228 356.772 740 412 740H512V540H412C356.772 540 312 584.772 312 640Z" />
+                      </svg>
+                    ) : (
+                      "↗"
+                    )}
+                  </span>
+                  <span>{label}</span>
+                </a>
+                {/* ảnh xem trước của link, hiện dưới cụm link khi hover hoặc focus */}
+                <span class="link-peek" aria-hidden="true">
+                  {entry.data.previews?.[label] ? (
+                    <img src={entry.data.previews[label]} alt="" loading="lazy" />
+                  ) : (
+                    <span class="placeholder">
+                      <span>{t("Ảnh xem trước chưa có.", "Preview not yet added.")}</span>
+                    </span>
+                  )}
+                </span>
+              </li>
+            ))}
+        </ul>
+      </aside>
+    )
+  }
 
   {
     entry.data.cover ? (
-      <img class="cover" src={entry.data.cover} alt="" />
+      <img class="cover" src={entry.data.cover} alt="" data-caption={entry.data.title} />
     ) : (
       <div class="cover placeholder" aria-hidden="true">
         <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
@@ -35,7 +100,165 @@ const { Content } = await render(entry);
     )
   }
 
-  <div class="prose">
+  <div class="prose case">
     <Content />
   </div>
+
+  {
+    next && (
+      <nav class="next-case" aria-label={t("Project tiếp theo", "Next project")}>
+        {/* ảnh bìa của project kế tiếp, hiện ở cột 1 khi hover hoặc focus tên project */}
+        <div class="next-peek" aria-hidden="true">
+          {next.data.cover ? (
+            <img src={next.data.cover} alt="" loading="lazy" />
+          ) : (
+            <div class="placeholder">
+              <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
+            </div>
+          )}
+        </div>
+        <div class="next-body">
+          <p class="next-label">{t("Project tiếp theo", "Next project")}</p>
+          <a class="go next-link" href={url(lang, `/projects/${next.slug}/`)}>
+            <span class="next-title">{next.data.title}</span>
+            <span class="go-ring" aria-hidden="true">→</span>
+          </a>
+          <p class="next-summary">{next.data.summary}</p>
+        </div>
+      </nav>
+    )
+  }
+
+  <dialog class="lightbox" aria-label={t("Xem ảnh", "Image preview")}>
+    <div class="lb-main">
+      <div class="lb-stage">
+        <img class="lb-img" alt="" draggable="false" />
+        <button class="lb-nav lb-prev" type="button" aria-label={t("Ảnh trước", "Previous image")}>
+          <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M20 4 4 24l16 20" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <button class="lb-nav lb-next" type="button" aria-label={t("Ảnh sau", "Next image")}>
+          <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M4 4l16 20L4 44" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+      </div>
+      <p class="lb-cap" aria-live="polite"></p>
+      <div class="lb-thumbs"></div>
+    </div>
+    <div class="lb-foot">
+      <button class="lb-close" type="button" aria-label={t("Đóng", "Close")}>×</button>
+    </div>
+  </dialog>
+
+  <script>
+    // Bấm ảnh mở preview. Ảnh đơn (bìa, ảnh trong bài) chỉ hiện chính nó. Ảnh trong gallery chạy
+    // trong gallery đó: dải thumbnail, hai nút qua lại, phím mũi tên. Esc, nút đóng hoặc bấm nền để đóng.
+    const dlg = document.querySelector<HTMLDialogElement>(".lightbox")!;
+    const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
+    const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
+    const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
+    let group: HTMLImageElement[] = [];
+    let thumbs: HTMLButtonElement[] = [];
+    let cur = 0;
+    const CAP_MAX = 80; // caption tối đa 80 ký tự để vừa một dòng trên desktop
+
+    // caption rộng tối đa 80% phần ảnh đang hiện (ảnh 16:9, có thể bị co theo chiều cao), một dòng.
+    // Màn hẹp: 80% ảnh quá chật, caption lấy gần hết bề ngang màn hình và được 2 dòng (CSS).
+    const narrow = matchMedia("(max-width: 40rem)");
+    function fitCap() {
+      const shown = Math.min(big.clientWidth, (big.clientHeight * 16) / 9);
+      cap.style.maxWidth = narrow.matches ? "" : `${Math.round(shown * 0.8)}px`;
+      cap.title = cap.scrollWidth > cap.clientWidth ? cap.textContent ?? "" : "";
+    }
+    addEventListener("resize", () => dlg.open && fitCap());
+
+    function show(i: number) {
+      cur = (i + group.length) % group.length;
+      const img = group[cur];
+      big.src = img.getAttribute("src")!;
+      big.alt = img.alt;
+      // caption: figcaption của ảnh (bỏ số thứ tự "1 / 7 · " của gallery); ảnh bìa dùng tiêu đề trang
+      const fc = img.closest("figure")?.querySelector("figcaption")?.textContent;
+      const text = (fc ?? img.dataset.caption ?? img.alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
+      if (import.meta.env.DEV && !text) console.warn("Ảnh chưa có caption:", img.getAttribute("src"));
+      if (import.meta.env.DEV && text.length > CAP_MAX) console.warn(`Caption dài hơn ${CAP_MAX} ký tự:`, text);
+      cap.textContent = text;
+      fitCap();
+      thumbs.forEach((b, j) => b.toggleAttribute("aria-current", j === cur));
+      thumbs[cur]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+
+    function open(imgs: HTMLImageElement[], i: number) {
+      group = imgs;
+      dlg.classList.toggle("single", imgs.length === 1); // ảnh đơn: ẩn thumbnail và nút qua lại
+      strip.replaceChildren();
+      thumbs =
+        imgs.length > 1
+          ? imgs.map((img, j) => {
+              const b = document.createElement("button");
+              b.type = "button";
+              b.setAttribute("aria-label", img.alt || `Image ${j + 1}`);
+              b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
+              b.addEventListener("click", () => show(j));
+              strip.append(b);
+              return b;
+            })
+          : [];
+      dlg.showModal(); // mở trước để đo được kích thước ảnh cho caption
+      show(i);
+    }
+
+    const galleries = [...document.querySelectorAll<HTMLElement>(".prose .gallery")];
+    for (const img of document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")) {
+      const gal = galleries.find((g) => g.contains(img));
+      const imgs = gal ? [...gal.querySelectorAll<HTMLImageElement>("img")] : [img];
+      const i = imgs.indexOf(img);
+      const trigger = img.closest("a") ?? img;
+      if (trigger === img) {
+        img.tabIndex = 0;
+        img.setAttribute("role", "button");
+      }
+      const go = (e: Event) => {
+        e.preventDefault();
+        open(imgs, i);
+      };
+      trigger.addEventListener("click", go);
+      trigger.addEventListener("keydown", (e) => {
+        const k = (e as KeyboardEvent).key;
+        if (trigger === img && (k === "Enter" || k === " ")) go(e);
+      });
+    }
+
+    dlg.querySelector(".lb-close")!.addEventListener("click", () => dlg.close());
+    dlg.querySelector(".lb-prev")!.addEventListener("click", () => show(cur - 1));
+    dlg.querySelector(".lb-next")!.addEventListener("click", () => show(cur + 1));
+    dlg.addEventListener("click", (e) => e.target === dlg && dlg.close());
+    dlg.addEventListener("keydown", (e) => {
+      if (group.length < 2) return;
+      if (e.key === "ArrowRight") show(cur + 1);
+      if (e.key === "ArrowLeft") show(cur - 1);
+    });
+
+    // Gallery Design: thay thanh cuộn bằng dải thumbnail, bấm để tới ảnh, ảnh đang xem sáng hơn.
+    for (const gal of document.querySelectorAll<HTMLElement>(".prose .gallery")) {
+      const slides = [...gal.querySelectorAll<HTMLElement>(".shot")];
+      const nav = document.createElement("div");
+      nav.className = "gallery-thumbs";
+      const btns = slides.map((slide, i) => {
+        const img = slide.querySelector("img")!;
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", img.alt || `Design ${i + 1}`);
+        b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
+        b.addEventListener("click", () => gal.scrollTo({ left: slide.offsetLeft - slides[0].offsetLeft, behavior: "smooth" }));
+        nav.append(b);
+        return b;
+      });
+      const mark = () => {
+        const i = Math.round(gal.scrollLeft / (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : 1));
+        btns.forEach((b, j) => b.toggleAttribute("aria-current", j === i));
+      };
+      gal.addEventListener("scroll", mark, { passive: true });
+      gal.after(nav);
+      mark();
+    }
+  </script>
 </Base>

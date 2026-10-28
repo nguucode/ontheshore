@@ -2,7 +2,7 @@
 title: "Pixel-art mobile game"
 role: "Role to be added"
 year: "—"
-summary: "A mobile game, drawn in pixel art. Case study in progress."
+summary: "A mobile game, drawn in pixel art. Project page in progress."
 order: 6
 draft: false
 ---

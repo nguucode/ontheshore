@@ -262,7 +262,6 @@ main.sheet:not(:has(> .sec)) {
 }
 
 .sheet > .ix,
-.sheet > .cover,
 .sheet > .sec,
 .sheet > .band {
   grid-column: 1 / -1;
@@ -315,6 +314,50 @@ h1 {
   line-height: 1.3;
   color: var(--accent);
   margin: 0 0 0.9rem;
+}
+
+/* ---------- typography trang case study ----------
+   Thang chữ (body 15.5px): title 44 › lede 19 › section 24 › body 15.5 › chú thích 13.
+   Nhịp dọc: trước section 4rem, title section → nội dung 1rem (tỉ lệ 4:1 để ranh giới rõ),
+   đoạn → đoạn 1rem, khối ảnh/số liệu 2rem. Selector .prose.case để thắng các luật .prose chung ở dưới. */
+.case-title {
+  font-size: clamp(2.1rem, 3.2vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.case-lede {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.prose.case h2 {
+  margin: 4rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* gạch chàm trước tiêu đề section, cùng dấu hiệu với h2 các trang khác */
+.prose.case h2::before {
+  content: "";
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  margin-bottom: 1rem;
+  background: var(--accent);
+}
+
+.prose.case li + li {
+  margin-top: 0.5rem;
+}
+
+.prose.case .shot,
+.prose.case .stats,
+.prose.case .gallery {
+  margin-block: 2rem;
 }
 
 h2 {
@@ -857,6 +900,118 @@ a.ix-title::after {
   object-fit: cover;
 }
 
+/* Facts của project: cột 4, bắt đầu ngang đoạn lede (đặt ngay sau .lede nên grid tự xếp
+   vào cùng hàng), trải 3 hàng (lede, bìa, bài) để sticky theo suốt bài.
+   Mỗi dòng: nhãn 2 phần, giá trị 3 phần, cùng cỡ chữ, không kẻ. */
+.sheet > .project-facts {
+  grid-column: 4;
+  grid-row: span 3;
+  align-self: start;
+  position: sticky;
+  top: 2rem;
+  margin: 0 1rem;
+  padding-inline: 0;
+}
+
+.project-facts dl {
+  margin: 0;
+}
+
+.project-facts dl > div {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.project-facts dl > div:first-child {
+  padding-top: 0; /* dòng đầu thẳng mép trên đoạn lede */
+}
+
+/* nhóm link (Website, Figma...) tách khỏi thông tin dự án bằng một đường kẻ */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 1.8rem 0 0; /* trên dưới divider bằng nhau */
+  border-top: 1px solid var(--rule);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.project-links:empty {
+  display: none;
+}
+
+.project-links {
+  position: relative;
+}
+
+.project-links li {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ảnh xem trước của từng link: cùng một chỗ ngay dưới cụm link, chỉ hiện khi hover/focus link đó */
+.link-peek {
+  position: absolute;
+  top: calc(100% + 1.25rem);
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.link-peek img,
+.link-peek .placeholder {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.project-links a:hover + .link-peek,
+.project-links a:focus-visible + .link-peek {
+  opacity: 1;
+  transform: none;
+}
+
+.project-facts dt {
+  color: var(--ink-faint);
+}
+
+.project-facts dd {
+  margin: 0;
+}
+
+/* link dùng nút .go của site; nhãn dài cỡ nào cũng một dòng, cắt "…", vòng mũi tên giữ nguyên */
+.project-links .go {
+  max-width: 100%;
+}
+
+.project-links .go-ring {
+  flex-shrink: 0;
+}
+
+/* link Figma theo ref brand: logo màu giữ nguyên, hover thì vòng nền đen thay vì accent */
+.project-links .go:has(.figma-logo):hover .go-ring {
+  background: #000;
+  border-color: #000;
+}
+
+.project-links .go > span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .prose {
   /* URL trần và từ dài xuống dòng thay vì đẩy trang rộng hơn viewport. */
   overflow-wrap: break-word;
@@ -872,6 +1027,445 @@ a.ix-title::after {
   display: block;
   margin: 1.5rem 0;
   border: 1px solid var(--rule);
+}
+
+/* Ảnh case study (bìa, ảnh trong bài, gallery): khung 16:9 cùng cỡ, rộng hơn cột chữ,
+   cách đường kẻ cột 0.5rem thay vì cả --pad. */
+.sheet > .cover {
+  padding-inline: 0.5rem;
+}
+
+.prose .shot,
+.prose .gallery {
+  margin-inline: calc(0.5rem - var(--pad));
+}
+
+.prose .shot {
+  margin-block: 1.5rem;
+}
+
+.prose .shot img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  margin: 0;
+}
+
+.prose figcaption {
+  margin-top: 0.5rem;
+  padding-inline: calc(var(--pad) - 0.5rem); /* thẳng hàng chữ thân bài, ảnh thì nới ra */
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+/* Số liệu chính: con số to, nhãn và nguồn (kèm baseline) nhỏ bên dưới. */
+.prose .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 1.5rem 0;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+/* 4 số thì xếp 2×2 để không thừa một ô lẻ; màn hẹp thì xếp dọc */
+.prose .stats:has(> :nth-child(4)) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 40rem) {
+  .prose .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose .stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem 1.1rem;
+  background: var(--bg);
+}
+
+.prose .stats dt {
+  order: 1;
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+.prose .stats dd {
+  margin: 0;
+}
+
+.prose .stats .v {
+  font-family: var(--num-font);
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.prose .stats .src {
+  order: 2;
+  color: var(--ink-faint);
+  font-size: 0.78em;
+  line-height: 1.45;
+}
+
+/* Cuối case: dẫn sang case tiếp theo theo thứ tự trang Projects.
+   Trải cột 1–3: cột 1 là ảnh xem trước (hiện khi hover tên), cột 2–3 là chữ. */
+.sheet > .next-case {
+  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: subgrid;
+  margin-top: 5rem;
+  padding-inline: 0;
+}
+
+.next-body {
+  grid-column: 2 / 4;
+  padding: 2rem var(--pad) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.next-peek {
+  grid-column: 1;
+  align-self: start;
+  margin: 2rem var(--pad) 0;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.next-peek img,
+.next-peek .placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.next-case:has(.next-link:hover, .next-link:focus-visible) .next-peek {
+  opacity: 1;
+  transform: none;
+}
+
+.next-label {
+  margin: 0 0 0.75rem;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+.next-link {
+  gap: 1rem;
+  white-space: normal;
+}
+
+.next-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+
+.next-link .go-ring {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.next-summary {
+  max-width: 34rem;
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* Preview ảnh (lightbox): không khung, ảnh lớn nằm thẳng trên nền tối, dải thumbnail và nút đóng tròn bên dưới. */
+img.cover,
+.prose .shot img {
+  cursor: zoom-in;
+}
+
+/* Chiều cao màn hình chia 80/20: phần trên (ảnh, caption, thumbnail) căn giữa trong 80%,
+   nút đóng căn giữa trong 20% còn lại. */
+.lightbox {
+  width: 80vw; /* ảnh preview rộng 80% màn hình */
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 auto;
+  /* bấm nhanh nút qua lại = double-click: không để trình duyệt bôi chọn ảnh, khung */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  overflow: visible;
+}
+
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: 80fr 20fr;
+  grid-template-columns: minmax(0, 1fr); /* dải thumbnail dài không kéo rộng cột */
+}
+
+.lb-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.lb-foot {
+  display: grid;
+  place-items: center;
+}
+
+/* caption một dòng; độ rộng tối đa (80% ảnh) do script đặt, dài quá thì cắt "…" */
+.lb-cap {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.lb-cap:empty {
+  display: none;
+}
+
+/* ảnh đơn: không có dải thumbnail, không có nút qua lại */
+.lightbox.single .lb-thumbs,
+.lightbox.single .lb-nav {
+  display: none;
+}
+
+/* caption gắn với ảnh phía trên, tách xa dải thumbnail phía dưới */
+.lb-cap + .lb-thumbs {
+  margin-top: 1.5rem;
+}
+
+.lightbox::backdrop {
+  background: rgb(14 18 27 / 0.94);
+}
+
+.lb-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* nút qua lại: vùng bấm phủ hết khoảng trống hai bên ảnh (mỗi bên 10vw), cao bằng ảnh,
+   mũi tên ở giữa. Bấm lệch một chút vẫn chuyển ảnh, không rơi ra nền và đóng preview. */
+.lb-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 10vw;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease);
+}
+
+.lb-nav:hover {
+  opacity: 1;
+}
+
+.lb-prev {
+  left: -10vw;
+}
+
+.lb-next {
+  right: -10vw;
+}
+
+@media (max-width: 40rem) {
+  /* màn hẹp: lề 10vw không đủ chỗ, nút nằm đè mép ảnh trên nền tối mờ */
+  .lb-nav {
+    top: 50%;
+    bottom: auto;
+    width: 2.25rem;
+    height: 3rem;
+    background: rgb(14 18 27 / 0.6);
+    transform: translateY(-50%);
+  }
+
+  .lb-prev {
+    left: 0;
+  }
+
+  .lb-next {
+    right: 0;
+  }
+
+  /* màn hẹp: caption rộng gần hết màn hình (tràn đều hai bên ảnh) và được xuống tối đa 2 dòng */
+  .lb-cap {
+    width: calc(100vw - 2rem);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+  }
+}
+
+.lb-img {
+  -webkit-user-drag: none;
+  width: 100%;
+  /* chừa chỗ cho caption và dải thumbnail trong phần 80% */
+  max-height: calc(80dvh - 11.5rem);
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.lb-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+.lb-thumbs button {
+  flex: 0 0 auto;
+  width: 5.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: opacity 0.2s var(--ease);
+}
+
+/* ảnh đang xem chỉ phân biệt bằng độ sáng, không viền */
+.lb-thumbs button:hover,
+.lb-thumbs button[aria-current] {
+  opacity: 1;
+}
+
+.lb-thumbs img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.lb-close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: none;
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.lb-close:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #0e121b;
+}
+
+/* Gallery cuối case: cuộn ngang, mỗi màn rộng bằng ảnh trong bài; caption "1 / 5" báo còn ảnh. */
+.prose .gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 1rem;
+  margin-block: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+/* thanh cuộn ẩn, dải thumbnail bên dưới thay vai trò điều hướng */
+.prose .gallery {
+  scrollbar-width: none;
+}
+
+.prose .gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.prose.case .gallery:has(+ .gallery-thumbs) {
+  margin-bottom: 0.75rem;
+}
+
+.gallery-thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.5rem;
+  margin: 0 calc(0.5rem - var(--pad)) 2rem;
+}
+
+.gallery-thumbs button {
+  padding: 0;
+  border: 1px solid var(--rule);
+  background: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s var(--ease);
+}
+
+.gallery-thumbs button:hover,
+.gallery-thumbs button[aria-current] {
+  opacity: 1;
+}
+
+.gallery-thumbs button[aria-current] {
+  border-color: var(--accent);
+}
+
+.gallery-thumbs img {
+  display: block;
+  width: 100%;
+  margin: 0; /* gỡ lề và viền của .prose img */
+  border: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 60rem) {
+  .gallery-thumbs {
+    margin-inline: -0.5rem;
+  }
+}
+
+.prose .gallery .shot {
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.prose .gallery:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .prose blockquote {
@@ -1052,6 +1646,30 @@ code {
   .sheet > *,
   .sec > * {
     padding-inline: 1rem;
+  }
+
+  .next-peek {
+    display: none;
+  }
+
+  .next-body {
+    padding-inline: 1rem;
+  }
+
+  .sheet > .project-facts {
+    position: static;
+    margin: 0 1rem 2.5rem;
+    padding-inline: 0;
+  }
+
+  /* màn hẹp: cột chữ đệm 1rem nên ảnh chỉ nới 0.5rem mỗi bên */
+  .prose .shot,
+  .prose .gallery {
+    margin-inline: -0.5rem;
+  }
+
+  .prose figcaption {
+    padding-inline: 0.5rem;
   }
 
   .sec {

@@ -2,7 +2,7 @@
 title: "IoT nhà máy"
 role: "Đang cập nhật vai trò"
 year: "—"
-summary: "Mobile app giám sát hệ thống IoT trong nhà máy. Case study đang viết."
+summary: "Mobile app giám sát hệ thống IoT trong nhà máy. Trang project đang viết."
 order: 3
 draft: false
 ---

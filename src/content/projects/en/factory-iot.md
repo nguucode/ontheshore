@@ -2,7 +2,7 @@
 title: "Factory IoT"
 role: "Role to be added"
 year: "—"
-summary: "A mobile app that monitors an IoT system on the factory floor. Case study in progress."
+summary: "A mobile app that monitors an IoT system on the factory floor. Project page in progress."
 order: 3
 draft: false
 ---

@@ -2,7 +2,7 @@
 title: "Accounting SaaS"
 role: "Role to be added"
 year: "—"
-summary: "An accounting SaaS product. Case study in progress."
+summary: "An accounting SaaS product. Project page in progress."
 order: 2
 draft: false
 ---
