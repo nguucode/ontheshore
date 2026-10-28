@@ -1117,7 +1117,6 @@ img.cover,
   max-height: 70vh;
   aspect-ratio: 16 / 9;
   object-fit: contain;
-  border-radius: 0.5rem;
 }
 
 .lb-thumbs {
@@ -1133,7 +1132,6 @@ img.cover,
   width: 5.5rem;
   padding: 0;
   border: 0;
-  border-radius: 0.4rem;
   background: none;
   cursor: pointer;
   overflow: hidden;
@@ -1141,14 +1139,10 @@ img.cover,
   transition: opacity 0.2s var(--ease);
 }
 
+/* ảnh đang xem chỉ phân biệt bằng độ sáng, không viền */
 .lb-thumbs button:hover,
 .lb-thumbs button[aria-current] {
   opacity: 1;
-}
-
-.lb-thumbs button[aria-current] {
-  outline: 2px solid #fff;
-  outline-offset: 1px;
 }
 
 .lb-thumbs img {
