@@ -969,6 +969,11 @@ a.ix-title::after {
   flex-shrink: 0;
 }
 
+/* link Figma: logo màu thay mũi tên; hover thì logo một màu theo chữ của vòng (trắng ở theme sáng) */
+.project-links .go:hover .figma-logo path {
+  fill: currentColor;
+}
+
 .project-links .go > span:last-child {
   min-width: 0;
   overflow: hidden;
