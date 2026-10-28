@@ -316,12 +316,48 @@ h1 {
   margin: 0 0 0.9rem;
 }
 
-/* tiêu đề trang case study: to hơn h1 thường, cách đoạn lede xa hơn */
+/* ---------- typography trang case study ----------
+   Thang chữ (body 15.5px): title 44 › lede 19 › section 24 › body 15.5 › chú thích 13.
+   Nhịp dọc: trước section 4rem, title section → nội dung 1rem (tỉ lệ 4:1 để ranh giới rõ),
+   đoạn → đoạn 1rem, khối ảnh/số liệu 2rem. Selector .prose.case để thắng các luật .prose chung ở dưới. */
 .case-title {
   font-size: clamp(2.1rem, 3.2vw, 2.75rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
+}
+
+.case-lede {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.prose.case h2 {
+  margin: 4rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* gạch chàm trước tiêu đề section, cùng dấu hiệu với h2 các trang khác */
+.prose.case h2::before {
+  content: "";
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  margin-bottom: 1rem;
+  background: var(--accent);
+}
+
+.prose.case li + li {
+  margin-top: 0.5rem;
+}
+
+.prose.case .shot,
+.prose.case .stats,
+.prose.case .gallery {
+  margin-block: 2rem;
 }
 
 h2 {

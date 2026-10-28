@@ -31,7 +31,7 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       </p>
     )
   }
-  <p class="lede">{entry.data.summary}</p>
+  <p class="lede case-lede">{entry.data.summary}</p>
 
   {
     entry.data.facts && (
@@ -73,7 +73,7 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     )
   }
 
-  <div class="prose">
+  <div class="prose case">
     <Content />
   </div>
 </Base>
