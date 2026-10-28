@@ -6,9 +6,11 @@ summary: "A concept case study: a seller admin and storefront for a D2C home goo
 cover: "/projects/ecommerce-concept/cover.svg"
 facts:
   Year: "2022"
-  Duration: "6 months"
-  Role: "Lead"
-  Team: "11"
+  Duration: "6 months, March to August"
+  Role: "Lead Product Designer, seller admin and storefront checkout"
+  Team: "11 people: 1 PM, 1 BA, 6 engineers, 2 QA and me"
+  Channels: "Own website, Shopee, TikTok Shop"
+  Platform: "Desktop web admin, mobile-first storefront"
 order: 99
 draft: true
 ---

@@ -856,26 +856,37 @@ a.ix-title::after {
   object-fit: cover;
 }
 
-/* Facts của project: cột 4, ngang hàng ảnh bìa (đặt ngay sau .cover nên grid tự xếp vào cùng hàng). */
+/* Facts của project: cột 4, bắt đầu ngang đoạn lede (đặt ngay sau .lede nên grid tự xếp
+   vào cùng hàng), trải 2 hàng để không đẩy ảnh bìa xuống. Mỗi dòng: nhãn trái, giá trị phải, không kẻ. */
 .sheet > .project-facts {
   grid-column: 4;
+  grid-row: span 2;
   align-self: start;
+  margin: 0 var(--pad);
+  padding-inline: 0;
+}
+
+.project-facts > div {
   display: grid;
-  gap: 1.1rem;
-  margin: 0;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.project-facts > div:first-child {
+  padding-top: 0; /* dòng đầu thẳng mép trên đoạn lede */
 }
 
 .project-facts dt {
   color: var(--ink-faint);
   font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 
 .project-facts dd {
-  margin: 0.15rem 0 0;
-  font-family: var(--num-font);
-  font-size: 1.05rem;
-  font-weight: 500;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .prose {
@@ -1185,8 +1196,8 @@ code {
   }
 
   .sheet > .project-facts {
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: 2.5rem;
+    margin: 0 1rem 2.5rem;
+    padding-inline: 0;
   }
 
   /* màn hẹp: cột chữ đệm 1rem nên ảnh chỉ nới 0.5rem mỗi bên */

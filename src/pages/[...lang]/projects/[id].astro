@@ -33,16 +33,6 @@ const { Content } = await render(entry);
   <p class="lede">{entry.data.summary}</p>
 
   {
-    entry.data.cover ? (
-      <img class="cover" src={entry.data.cover} alt="" />
-    ) : (
-      <div class="cover placeholder" aria-hidden="true">
-        <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
-      </div>
-    )
-  }
-
-  {
     entry.data.facts && (
       <dl class="project-facts">
         {Object.entries(entry.data.facts).map(([label, value]) => (
@@ -52,6 +42,16 @@ const { Content } = await render(entry);
           </div>
         ))}
       </dl>
+    )
+  }
+
+  {
+    entry.data.cover ? (
+      <img class="cover" src={entry.data.cover} alt="" />
+    ) : (
+      <div class="cover placeholder" aria-hidden="true">
+        <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
+      </div>
     )
   }
 
