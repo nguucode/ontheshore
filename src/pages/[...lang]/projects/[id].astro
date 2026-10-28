@@ -96,8 +96,8 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
 
   {
     next && (
-      <nav class="next-case" aria-label={t("Case study tiếp theo", "Next case study")}>
-        <p class="next-label">{t("Case study tiếp theo", "Next case study")}</p>
+      <nav class="next-case" aria-label={t("Project tiếp theo", "Next project")}>
+        <p class="next-label">{t("Project tiếp theo", "Next project")}</p>
         <a class="go next-link" href={url(lang, `/projects/${next.slug}/`)}>
           <span class="next-title">{next.data.title}</span>
           <span class="go-ring" aria-hidden="true">→</span>

@@ -2,7 +2,7 @@
 title: "Accounting SaaS"
 role: "Đang cập nhật vai trò"
 year: "—"
-summary: "Sản phẩm SaaS cho kế toán. Case study đang viết."
+summary: "Sản phẩm SaaS cho kế toán. Trang project đang viết."
 order: 2
 draft: false
 ---

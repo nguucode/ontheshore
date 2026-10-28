@@ -2,7 +2,7 @@
 title: "One stock number, three channels"
 role: "Lead Product Designer (concept)"
 year: "2022"
-summary: "A concept case study: a seller admin and storefront for a D2C home goods brand selling on its own site, Shopee and TikTok Shop. Scenario and numbers are illustrative."
+summary: "A concept project: a seller admin and storefront for a D2C home goods brand selling on its own site, Shopee and TikTok Shop. Scenario and numbers are illustrative."
 cover: "/projects/ecommerce-concept/cover.svg"
 facts:
   Year: "2022"

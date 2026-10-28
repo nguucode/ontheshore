@@ -39,7 +39,7 @@ const app = all.find((it) => it.price && it.href)!;
 const slides: Slide[] = [
   lead && {
     tag: "Shopify App",
-    kicker: `Case study · ${lead.data.year}`,
+    kicker: `Project · ${lead.data.year}`,
     title: lead.data.title,
     desc: t(
       "App Shopify tự gom mọi khoản chi phí, từ giá vốn, phí ship tới tiền quảng cáo, rồi cho chủ shop thấy lợi nhuận ròng thật theo thời gian thực.",
@@ -47,7 +47,7 @@ const slides: Slide[] = [
     ),
     stat: { value: "6", unit: t("module lõi, web và iOS", "core modules, web and iOS") },
     href: url(lang, `/projects/${lead.slug}/`),
-    cta: t("Xem case study", "Read the case study"),
+    cta: t("Xem project", "View the project"),
     poster: { top: lead.data.year, bottom: lead.data.role },
   },
   {
@@ -197,7 +197,7 @@ for (const sl of slides) {
     {
       projects.length === 0 ? (
         <div class="empty span-3">
-          {t("Chưa có case study nào.", "No case studies yet.")} <code>src/content/projects/{lang}/</code>
+          {t("Chưa có project nào.", "No projects yet.")} <code>src/content/projects/{lang}/</code>
         </div>
       ) : (
         <ul class="ix">
