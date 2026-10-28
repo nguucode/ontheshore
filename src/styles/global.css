@@ -856,6 +856,28 @@ a.ix-title::after {
   object-fit: cover;
 }
 
+/* Facts của project: cột 4, ngang hàng ảnh bìa (đặt ngay sau .cover nên grid tự xếp vào cùng hàng). */
+.sheet > .project-facts {
+  grid-column: 4;
+  align-self: start;
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+}
+
+.project-facts dt {
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.project-facts dd {
+  margin: 0.15rem 0 0;
+  font-family: var(--num-font);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
 .prose {
   /* URL trần và từ dài xuống dòng thay vì đẩy trang rộng hơn viewport. */
   overflow-wrap: break-word;
@@ -892,7 +914,7 @@ a.ix-title::after {
   line-height: 1.5;
 }
 
-/* Số liệu chính: số "sau" to, số "trước" và nguồn nhỏ bên dưới. */
+/* Số liệu chính: con số to, nhãn và nguồn (kèm baseline) nhỏ bên dưới. */
 .prose .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -939,15 +961,6 @@ a.ix-title::after {
   line-height: 1.1;
   color: var(--accent);
   white-space: nowrap;
-}
-
-.prose .stats .v small {
-  display: block;
-  margin-top: 0.2rem;
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--ink-faint);
 }
 
 .prose .stats .src {
@@ -1158,6 +1171,11 @@ code {
   .sheet > *,
   .sec > * {
     padding-inline: 1rem;
+  }
+
+  .sheet > .project-facts {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 2.5rem;
   }
 
   .sec {

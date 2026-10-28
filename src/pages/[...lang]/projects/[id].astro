@@ -36,6 +36,19 @@ const { Content } = await render(entry);
     )
   }
 
+  {
+    entry.data.facts && (
+      <dl class="project-facts">
+        {Object.entries(entry.data.facts).map(([label, value]) => (
+          <div>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
   <div class="prose">
     <Content />
   </div>

@@ -1,25 +1,24 @@
 ---
 title: "One stock number, three channels"
 role: "Lead Product Designer (concept)"
-year: "Concept"
+year: "2022"
 summary: "A concept case study: a seller admin and storefront for a D2C home goods brand selling on its own site, Shopee and TikTok Shop. Scenario and numbers are illustrative."
 cover: "/projects/ecommerce-concept/cover.svg"
+facts:
+  Year: "2022"
+  Duration: "6 months"
+  Role: "Lead"
+  Team: "11"
 order: 99
 draft: true
 ---
 
-> **Concept case study.** The brand, team, timeline and every project number on this page are illustrative. They exist to test a case study structure. Industry benchmarks are real and cited.
-
-| | |
-|---|---|
-| **Situation** | A mid-size home goods brand sold the same SKUs on its own site, Shopee and TikTok Shop, with stock tracked in spreadsheets. |
-| **Role** | Lead Product Designer. Owned the seller admin end to end, co-owned the storefront checkout with the PM. 1 PM, 1 BA, 4 engineers, 7 months. |
-| **Key decision** | Treat the SKU, not the order, as the unit that connects seller and buyer, and ship the admin to the ops team four weeks before the new storefront. |
+A mid-size home goods brand sold the same SKUs on its own site, Shopee and TikTok Shop, with stock tracked in spreadsheets. As Lead Product Designer in a team of 11, I owned the seller admin end to end and co-owned the storefront checkout with the PM over six months. The key decision was to treat the SKU, not the order, as the unit that connects seller and buyer, and to ship the admin to the ops team four weeks before the new storefront.
 
 <dl class="stats">
-  <div><dt>Oversell incidents per month</dt><dd class="v">6<small>from 41</small></dd></div>
-  <div><dt>Median order handling time</dt><dd class="v">9 min<small>from 26</small></dd></div>
-  <div><dt>Own-site checkout completion</dt><dd class="v">44%<small>from 31%</small></dd></div>
+  <div><dt>Oversell incidents per month</dt><dd class="v">6</dd></div>
+  <div><dt>Median order handling time</dt><dd class="v">9 min</dd></div>
+  <div><dt>Own-site checkout completion</dt><dd class="v">44%</dd></div>
 </dl>
 
 ## Every oversell started as a spreadsheet lag
@@ -33,10 +32,10 @@ The brand's own site had a second problem. Shipping fees only appeared at the la
 Each number compares 12 weeks after launch with the 8 weeks before it.
 
 <dl class="stats">
-  <div><dt>Oversell incidents per month</dt><dd class="v">6<small>from 41</small></dd><dd class="src">Cancelled orders tagged "out of stock" in the admin, compared with the spreadsheet log</dd></div>
-  <div><dt>Median order handling time</dt><dd class="v">9 min<small>from 26</small></dd><dd class="src">Order created to handed to carrier, from admin timestamps</dd></div>
-  <div><dt>Own-site checkout completion</dt><dd class="v">44%<small>from 31%</small></dd><dd class="src">GA4 funnel, sessions reaching checkout to purchase</dd></div>
-  <div><dt>COD failed-delivery rate</dt><dd class="v">11%<small>from 14%</small></dd><dd class="src">Carrier return reports, GHN and GHTK</dd></div>
+  <div><dt>Oversell incidents per month</dt><dd class="v">6</dd><dd class="src">Baseline 41. Cancelled orders tagged "out of stock" in the admin, compared with the spreadsheet log</dd></div>
+  <div><dt>Median order handling time</dt><dd class="v">9 min</dd><dd class="src">Baseline 26 min. Order created to handed to carrier, from admin timestamps</dd></div>
+  <div><dt>Own-site checkout completion</dt><dd class="v">44%</dd><dd class="src">Baseline 31%. GA4 funnel, sessions reaching checkout to purchase</dd></div>
+  <div><dt>COD failed-delivery rate</dt><dd class="v">11%</dd><dd class="src">Baseline 14%. Carrier return reports, GHN and GHTK</dd></div>
 </dl>
 
 Checkout completion is not conversion rate. For reference, [Littledata's Shopify median conversion](https://www.littledata.io/average/ecommerce-conversion-rate-(all-devices)) is 1.4% (Oct 2026). The COD change is small and overlaps a seasonal dip, so I report it without claiming the design caused it.
