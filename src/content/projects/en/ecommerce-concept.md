@@ -5,10 +5,10 @@ year: "2022"
 summary: "A concept case study: a seller admin and storefront for a D2C home goods brand selling on its own site, Shopee and TikTok Shop. Scenario and numbers are illustrative."
 cover: "/projects/ecommerce-concept/cover.svg"
 facts:
-  Duration: "6 months"
-  Role: "Lead Product Designer"
-  Team: "11 people: 1 PM, 1 BA, 6 engineers, 2 QA and me"
   Platform: "Desktop, Tablet, Phone"
+  Team: "11 people: 1 PM, 1 BA, 6 engineers, 2 QA and me"
+  Role: "Lead Product Designer"
+  Duration: "6 months"
   Website: "https://google.com" # tạm, thay bằng link thật
   Figma: "https://google.com" # tạm, thay bằng link thật
 order: 99
