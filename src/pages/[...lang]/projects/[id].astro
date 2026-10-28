@@ -52,8 +52,9 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
             .filter(([, value]) => isUrl(value))
             .map(([label, value]) => (
               <li>
-                <a href={value} target="_blank" rel="noopener">
-                  <span>{label}</span>↗
+                <a class="go" href={value} target="_blank" rel="noopener">
+                  <span class="go-ring" aria-hidden="true">↗</span>
+                  <span>{label}</span>
                 </a>
               </li>
             ))}

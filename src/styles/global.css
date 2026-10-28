@@ -890,7 +890,7 @@ a.ix-title::after {
 .project-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 1.25rem;
+  gap: 0 1.5rem;
   list-style: none;
   margin: 0.6rem 0 0;
   padding: 0.4rem 0 0;
@@ -917,18 +917,19 @@ a.ix-title::after {
   margin: 0;
 }
 
-/* link dài cỡ nào cũng chỉ một dòng: chữ cắt bằng "…", mũi tên luôn hiện */
-.project-links a {
-  display: inline-flex;
-  gap: 0.25rem;
+/* link dùng nút .go của site; nhãn dài cỡ nào cũng một dòng, cắt "…", vòng mũi tên giữ nguyên */
+.project-links .go {
   max-width: 100%;
 }
 
-.project-links a span {
+.project-links .go-ring {
+  flex-shrink: 0;
+}
+
+.project-links .go > span:last-child {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .prose {
