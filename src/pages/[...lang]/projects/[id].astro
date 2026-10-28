@@ -21,9 +21,15 @@ const { Content } = await render(entry);
   <p class="faint"><a href={url(lang, "/projects/")}>← Projects</a></p>
 
   <h1 style={`view-transition-name:p-${entry.slug}`}>{entry.data.title}</h1>
-  <p class="entry-meta num">
-    {entry.data.role} · {entry.data.year}{entry.data.client ? ` · ${entry.data.client}` : ""}
-  </p>
+  {/* có facts thì role/year đã nằm ở cột phải, bỏ dòng meta cho khỏi lặp */}
+  {
+    !entry.data.facts && (
+      <p class="entry-meta num">
+        {entry.data.role} · {entry.data.year}
+        {entry.data.client ? ` · ${entry.data.client}` : ""}
+      </p>
+    )
+  }
   <p class="lede">{entry.data.summary}</p>
 
   {

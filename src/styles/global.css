@@ -895,9 +895,19 @@ a.ix-title::after {
   border: 1px solid var(--rule);
 }
 
-/* Ảnh case study: khung cố định 16:9 trong cột chữ, ảnh nào cũng cùng cỡ. */
+/* Ảnh case study (bìa, ảnh trong bài, gallery): khung 16:9 cùng cỡ, rộng hơn cột chữ,
+   cách đường kẻ cột 0.5rem thay vì cả --pad. */
+.sheet > .cover {
+  padding-inline: 0.5rem;
+}
+
+.prose .shot,
+.prose .gallery {
+  margin-inline: calc(0.5rem - var(--pad));
+}
+
 .prose .shot {
-  margin: 1.5rem 0;
+  margin-block: 1.5rem;
 }
 
 .prose .shot img {
@@ -909,6 +919,7 @@ a.ix-title::after {
 
 .prose figcaption {
   margin-top: 0.5rem;
+  padding-inline: calc(var(--pad) - 0.5rem); /* thẳng hàng chữ thân bài, ảnh thì nới ra */
   color: var(--ink-soft);
   font-size: 0.85em;
   line-height: 1.5;
@@ -976,7 +987,7 @@ a.ix-title::after {
   grid-auto-flow: column;
   grid-auto-columns: 100%;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin-block: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: contain;
@@ -1176,6 +1187,16 @@ code {
   .sheet > .project-facts {
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 2.5rem;
+  }
+
+  /* màn hẹp: cột chữ đệm 1rem nên ảnh chỉ nới 0.5rem mỗi bên */
+  .prose .shot,
+  .prose .gallery {
+    margin-inline: -0.5rem;
+  }
+
+  .prose figcaption {
+    padding-inline: 0.5rem;
   }
 
   .sec {
