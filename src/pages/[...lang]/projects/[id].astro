@@ -6,14 +6,19 @@ import { byLang, getLang, langPaths, T, url } from "../../../i18n";
 export async function getStaticPaths() {
   // Dev hiện cả bài draft để xem trước; build production vẫn loại.
   const all = await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft);
-  return langPaths().flatMap(({ params }) =>
-    byLang(all, getLang(params.lang)).map((p) => ({ params: { ...params, id: p.slug }, props: { entry: p } }))
-  );
+  return langPaths().flatMap(({ params }) => {
+    // cùng thứ tự với trang danh sách; case cuối quay về case đầu
+    const list = byLang(all, getLang(params.lang)).sort((a, b) => a.data.order - b.data.order);
+    return list.map((p, i) => ({
+      params: { ...params, id: p.slug },
+      props: { entry: p, next: list.length > 1 ? list[(i + 1) % list.length] : undefined },
+    }));
+  });
 }
 
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
-const { entry } = Astro.props;
+const { entry, next } = Astro.props;
 const { Content } = await render(entry);
 const isUrl = (v: string) => /^https?:\/\//.test(v);
 ---
@@ -88,6 +93,19 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   <div class="prose case">
     <Content />
   </div>
+
+  {
+    next && (
+      <nav class="next-case" aria-label={t("Case study tiếp theo", "Next case study")}>
+        <p class="next-label">{t("Case study tiếp theo", "Next case study")}</p>
+        <a class="go next-link" href={url(lang, `/projects/${next.slug}/`)}>
+          <span class="next-title">{next.data.title}</span>
+          <span class="go-ring" aria-hidden="true">→</span>
+        </a>
+        <p class="next-summary">{next.data.summary}</p>
+      </nav>
+    )
+  }
 
   <dialog class="lightbox" aria-label={t("Xem ảnh", "Image preview")}>
     <div class="lb-main">

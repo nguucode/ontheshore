@@ -1084,6 +1084,44 @@ a.ix-title::after {
   line-height: 1.45;
 }
 
+/* Cuối case: dẫn sang case tiếp theo theo thứ tự trang Projects */
+.next-case {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.next-label {
+  margin: 0 0 0.75rem;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+.next-link {
+  gap: 1rem;
+  white-space: normal;
+}
+
+.next-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+
+.next-link .go-ring {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.next-summary {
+  max-width: 34rem;
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
 /* Preview ảnh (lightbox): không khung, ảnh lớn nằm thẳng trên nền tối, dải thumbnail và nút đóng tròn bên dưới. */
 img.cover,
 .prose .shot img {
