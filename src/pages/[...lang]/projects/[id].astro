@@ -41,7 +41,7 @@ const { Content } = await render(entry);
             <dd>
               {/^https?:\/\//.test(value) ? (
                 <a href={value} target="_blank" rel="noopener">
-                  {new URL(value).hostname.replace(/^www\./, "")} ↗
+                  <span>{new URL(value).hostname.replace(/^www\./, "")}</span>↗
                 </a>
               ) : (
                 value

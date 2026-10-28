@@ -894,7 +894,22 @@ a.ix-title::after {
 }
 
 .project-facts dd {
+  min-width: 0; /* cho cột giá trị co lại để link cắt "…" được */
   margin: 0;
+}
+
+/* link dài cỡ nào cũng chỉ một dòng: tên miền cắt bằng "…", mũi tên luôn hiện */
+.project-facts .link a {
+  display: inline-flex;
+  gap: 0.25rem;
+  max-width: 100%;
+}
+
+.project-facts .link a span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .prose {
