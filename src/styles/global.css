@@ -1145,6 +1145,11 @@ img.cover,
   display: none;
 }
 
+/* caption gắn với ảnh phía trên, tách xa dải thumbnail phía dưới */
+.lb-cap + .lb-thumbs {
+  margin-top: 1rem;
+}
+
 .lightbox::backdrop {
   background: rgb(14 18 27 / 0.94);
 }
