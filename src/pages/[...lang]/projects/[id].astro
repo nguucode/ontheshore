@@ -38,7 +38,15 @@ const { Content } = await render(entry);
         {Object.entries(entry.data.facts).map(([label, value]) => (
           <div>
             <dt>{label}</dt>
-            <dd>{value}</dd>
+            <dd>
+              {/^https?:\/\//.test(value) ? (
+                <a href={value} target="_blank" rel="noopener">
+                  {new URL(value).hostname.replace(/^www\./, "")} ↗
+                </a>
+              ) : (
+                value
+              )}
+            </dd>
           </div>
         ))}
       </dl>

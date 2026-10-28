@@ -10,7 +10,7 @@ const projects = defineCollection({
     client: z.string().optional(),
     summary: z.string(),
     cover: z.string().optional(), // đường dẫn ảnh trong public/, bỏ trống thì hiện placeholder
-    facts: z.record(z.string(), z.string()).optional(), // nhãn → giá trị, hiện ở cột phải cạnh ảnh bìa
+    facts: z.record(z.string(), z.string()).optional(), // nhãn → giá trị, hiện ở cột phải; giá trị là URL thì thành link
     order: z.number().default(99),
     draft: z.boolean().default(false),
   }),

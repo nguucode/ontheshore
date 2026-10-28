@@ -857,20 +857,25 @@ a.ix-title::after {
 }
 
 /* Facts của project: cột 4, bắt đầu ngang đoạn lede (đặt ngay sau .lede nên grid tự xếp
-   vào cùng hàng), trải 2 hàng để không đẩy ảnh bìa xuống. Mỗi dòng: nhãn trái, giá trị phải, không kẻ. */
+   vào cùng hàng), trải 3 hàng (lede, bìa, bài) để sticky theo suốt bài.
+   Mỗi dòng: nhãn 2 phần, giá trị 3 phần, cùng cỡ chữ, không kẻ. */
 .sheet > .project-facts {
   grid-column: 4;
-  grid-row: span 2;
+  grid-row: span 3;
   align-self: start;
+  position: sticky;
+  top: 2rem;
   margin: 0 var(--pad);
   padding-inline: 0;
 }
 
 .project-facts > div {
   display: grid;
-  grid-template-columns: 4.5rem 1fr;
+  grid-template-columns: 2fr 3fr;
   gap: 0.75rem;
   padding: 0.35rem 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .project-facts > div:first-child {
@@ -879,14 +884,10 @@ a.ix-title::after {
 
 .project-facts dt {
   color: var(--ink-faint);
-  font-size: 0.78rem;
-  line-height: 1.6;
 }
 
 .project-facts dd {
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.5;
 }
 
 .prose {
@@ -1196,6 +1197,7 @@ code {
   }
 
   .sheet > .project-facts {
+    position: static;
     margin: 0 1rem 2.5rem;
     padding-inline: 0;
   }

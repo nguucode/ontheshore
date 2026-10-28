@@ -11,6 +11,8 @@ facts:
   Team: "11 people: 1 PM, 1 BA, 6 engineers, 2 QA and me"
   Channels: "Own website, Shopee, TikTok Shop"
   Platform: "Desktop web admin, mobile-first storefront"
+  Website: "Not live, concept project"
+  Figma: "Not shared, concept project"
 order: 99
 draft: true
 ---
