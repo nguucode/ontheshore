@@ -15,7 +15,12 @@ draft: true
 | **Situation** | A mid-size home goods brand sold the same SKUs on its own site, Shopee and TikTok Shop, with stock tracked in spreadsheets. |
 | **Role** | Lead Product Designer. Owned the seller admin end to end, co-owned the storefront checkout with the PM. 1 PM, 1 BA, 4 engineers, 7 months. |
 | **Key decision** | Treat the SKU, not the order, as the unit that connects seller and buyer, and ship the admin to the ops team four weeks before the new storefront. |
-| **Outcome** | Oversell incidents from 41 to 6 per month. Median order handling time from 26 to 9 minutes. Own-site checkout completion from 31% to 44%. |
+
+<dl class="stats">
+  <div><dt>Oversell incidents per month</dt><dd class="v">6<small>from 41</small></dd></div>
+  <div><dt>Median order handling time</dt><dd class="v">9 min<small>from 26</small></dd></div>
+  <div><dt>Own-site checkout completion</dt><dd class="v">44%<small>from 31%</small></dd></div>
+</dl>
 
 ## Every oversell started as a spreadsheet lag
 
@@ -25,12 +30,14 @@ The brand's own site had a second problem. Shipping fees only appeared at the la
 
 ## What changed, measured against eight weeks of pre-launch logs
 
-| Metric | Before | After (12 weeks post-launch) | Source |
-|---|---|---|---|
-| Oversell incidents per month | 41 | 6 | Cancelled orders tagged "out of stock" in the admin, compared with the spreadsheet log |
-| Median order handling time | 26 min | 9 min | Order created to handed to carrier, from admin timestamps |
-| Own-site checkout completion | 31% | 44% | GA4 funnel, sessions reaching checkout to purchase |
-| COD failed-delivery rate | 14% | 11% | Carrier return reports, GHN and GHTK |
+Each number compares 12 weeks after launch with the 8 weeks before it.
+
+<dl class="stats">
+  <div><dt>Oversell incidents per month</dt><dd class="v">6<small>from 41</small></dd><dd class="src">Cancelled orders tagged "out of stock" in the admin, compared with the spreadsheet log</dd></div>
+  <div><dt>Median order handling time</dt><dd class="v">9 min<small>from 26</small></dd><dd class="src">Order created to handed to carrier, from admin timestamps</dd></div>
+  <div><dt>Own-site checkout completion</dt><dd class="v">44%<small>from 31%</small></dd><dd class="src">GA4 funnel, sessions reaching checkout to purchase</dd></div>
+  <div><dt>COD failed-delivery rate</dt><dd class="v">11%<small>from 14%</small></dd><dd class="src">Carrier return reports, GHN and GHTK</dd></div>
+</dl>
 
 Checkout completion is not conversion rate. For reference, [Littledata's Shopify median conversion](https://www.littledata.io/average/ecommerce-conversion-rate-(all-devices)) is 1.4% (Oct 2026). The COD change is small and overlaps a seasonal dip, so I report it without claiming the design caused it.
 
@@ -42,7 +49,10 @@ I ran seller interviews and shadowed the ops team, defined the order and invento
 
 An order has three independent states: payment (prepaid, or COD pending until the carrier pays out), fulfillment, and returns. Stock has three numbers per location: available, committed to open orders, and incoming. Oversells happen when "available" on one channel ignores "committed" on another. Money arrives from two directions: marketplaces pay out minus fees, carriers pay out COD minus shipping. Both have to match back to individual orders.
 
-![Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location](/projects/ecommerce-concept/order-lifecycle.svg)
+<figure class="shot">
+  <img src="/projects/ecommerce-concept/order-lifecycle.svg" alt="Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location" loading="lazy" />
+  <figcaption>Three states stored separately. Failed delivery branches off from in transit and puts the unit back in stock.</figcaption>
+</figure>
 
 ## Decision 1: store three status axes, show one to-do list
 
@@ -54,13 +64,19 @@ The ops team already knew Shopee's tab model and had no time for retraining. Thr
 
 The trade-off: the BA had to own a state-to-tab mapping table, and every new edge case meant updating it.
 
-![Order list with task tabs, three selected orders and a bulk action bar that states the selection scope](/projects/ecommerce-concept/order-list.svg)
+<figure class="shot">
+  <img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs, three selected orders and a bulk action bar" loading="lazy" />
+  <figcaption>Task tabs over the three axes. The bulk bar states its scope: this page, or all 42 matching orders.</figcaption>
+</figure>
 
 ## Decision 2: no sync until every SKU is mapped
 
 Engineering proposed auto-matching marketplace listings to internal SKUs by product name, to launch sync faster. I prototyped it on the real catalog. Variant names differed across channels for 18% of listings, so auto-match would have produced silent stock errors, which are worse than visible ones. We built a mapping screen and an unmapped-listings queue instead. Sync for a product switches on only once all its variants are mapped. This added three weeks.
 
-![SKU mapping screen with a queue of unmapped listings and a warning that a name match is not applied automatically](/projects/ecommerce-concept/sku-mapping.svg)
+<figure class="shot">
+  <img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping screen with a queue of unmapped listings and a warning that a name match is not applied automatically" loading="lazy" />
+  <figcaption>A name match is only a suggestion. Sync stays off until the last variant is mapped.</figcaption>
+</figure>
 
 ## Decision 3: ship the admin first, storefront second
 
@@ -72,14 +88,37 @@ Rollout went to 2 ops staff for one week, then the full team for three weeks, th
 
 In the admin, inventory shows available, committed and incoming per location, and alerts fire on available only. Each location carries a channel buffer, so a marketplace never lists the last unit. COD reconciliation matches each carrier payout session to its orders and deducted fees. It shipped in week 10.
 
-![Inventory view by location with low and out-of-stock alerts and an editable channel buffer](/projects/ecommerce-concept/inventory.svg)
-
 On the storefront, the product page shows the shipping fee and a delivery date before add to cart. Checkout is guest by default, with one line explaining why the phone number is required: the courier calls before delivery. A COD confirmation goes out on Zalo before the order is packed. I framed that as a hypothesis to A/B test, not a proven fix.
-
-![Product page showing shipping fee and delivery date, next to a guest checkout with cash on delivery selected](/projects/ecommerce-concept/storefront.svg)
 
 ## What I would do differently
 
 - **Decision 1.** I underestimated the mapping table. It grew from 9 to 27 state combinations. Next time I would design the edge cases, such as a partial refund on a COD order, before the happy-path tabs.
 - **Decision 2.** The three-week delay was right, but I should have shown engineering the 18% mismatch data before proposing the alternative, not after. It would have saved a week of debate.
 - **Decision 3.** I would push the reconciliation screen into the first release. Ops spent the gap reconciling by hand, which was exactly the work we set out to remove.
+
+## Screens
+
+Scroll sideways for the full set. Each screen opens at full size.
+
+<div class="gallery" tabindex="0" role="region" aria-label="Screens, scroll sideways">
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/order-list.svg"><img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs and bulk actions" loading="lazy" /></a>
+    <figcaption>1 / 5 · Orders: task tabs and bulk actions</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/inventory.svg"><img src="/projects/ecommerce-concept/inventory.svg" alt="Inventory by location with low and out-of-stock alerts and channel buffers" loading="lazy" /></a>
+    <figcaption>2 / 5 · Inventory: available, committed, incoming per location</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/sku-mapping.svg"><img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping with unmapped listings queue" loading="lazy" /></a>
+    <figcaption>3 / 5 · SKU mapping: the gate before sync</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/cod-reconciliation.svg"><img src="/projects/ecommerce-concept/cod-reconciliation.svg" alt="COD reconciliation matching carrier payout sessions to orders, with two unmatched orders" loading="lazy" /></a>
+    <figcaption>4 / 5 · COD reconciliation: payout sessions matched to orders</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/storefront.svg"><img src="/projects/ecommerce-concept/storefront.svg" alt="Product page with shipping fee and delivery date, and a guest checkout with COD selected" loading="lazy" /></a>
+    <figcaption>5 / 5 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
+  </figure>
+</div>

@@ -262,7 +262,6 @@ main.sheet:not(:has(> .sec)) {
 }
 
 .sheet > .ix,
-.sheet > .cover,
 .sheet > .sec,
 .sheet > .band {
   grid-column: 1 / -1;
@@ -872,6 +871,113 @@ a.ix-title::after {
   display: block;
   margin: 1.5rem 0;
   border: 1px solid var(--rule);
+}
+
+/* Ảnh case study: khung cố định 16:9 trong cột chữ, ảnh nào cũng cùng cỡ. */
+.prose .shot {
+  margin: 1.5rem 0;
+}
+
+.prose .shot img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  margin: 0;
+}
+
+.prose figcaption {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+/* Số liệu chính: số "sau" to, số "trước" và nguồn nhỏ bên dưới. */
+.prose .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 1.5rem 0;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+/* 4 số thì xếp 2×2 để không thừa một ô lẻ; màn hẹp thì xếp dọc */
+.prose .stats:has(> :nth-child(4)) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 40rem) {
+  .prose .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose .stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem 1.1rem;
+  background: var(--bg);
+}
+
+.prose .stats dt {
+  order: 1;
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+.prose .stats dd {
+  margin: 0;
+}
+
+.prose .stats .v {
+  font-family: var(--num-font);
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.prose .stats .v small {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.prose .stats .src {
+  order: 2;
+  color: var(--ink-faint);
+  font-size: 0.78em;
+  line-height: 1.45;
+}
+
+/* Gallery cuối case: cuộn ngang, mỗi màn rộng bằng ảnh trong bài; caption "1 / 5" báo còn ảnh. */
+.prose .gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  padding-bottom: 0.75rem;
+}
+
+.prose .gallery .shot {
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.prose .gallery:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .prose blockquote {
