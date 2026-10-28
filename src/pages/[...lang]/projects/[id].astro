@@ -4,7 +4,8 @@ import { getCollection, render } from "astro:content";
 import { byLang, getLang, langPaths, T, url } from "../../../i18n";
 
 export async function getStaticPaths() {
-  const all = await getCollection("projects", (p) => !p.data.draft);
+  // Dev hiện cả bài draft để xem trước; build production vẫn loại.
+  const all = await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft);
   return langPaths().flatMap(({ params }) =>
     byLang(all, getLang(params.lang)).map((p) => ({ params: { ...params, id: p.slug }, props: { entry: p } }))
   );
