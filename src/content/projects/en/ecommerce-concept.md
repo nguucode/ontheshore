@@ -114,35 +114,35 @@ On the storefront:
 
 ## Design
 
-The full set of seven designs. Pick a thumbnail or swipe; each opens at full size.
+Seven more designs from the project. Pick a thumbnail or swipe; each opens at full size.
 
 <div class="gallery" tabindex="0" role="region" aria-label="Design gallery">
   <figure class="shot">
-    <a href="/projects/ecommerce-concept/cover.svg"><img src="/projects/ecommerce-concept/cover.svg" alt="One stock number shared by the website, Shopee and TikTok Shop" loading="lazy" /></a>
-    <figcaption>1 / 7 · Cover: one stock number shared by three channels</figcaption>
+    <a href="/projects/ecommerce-concept/order-detail.svg"><img src="/projects/ecommerce-concept/order-detail.svg" alt="Order detail with payment, fulfillment and return states and an activity log" loading="lazy" /></a>
+    <figcaption>1 / 7 · Order detail: three states and the activity log on one page</figcaption>
   </figure>
   <figure class="shot">
-    <a href="/projects/ecommerce-concept/order-lifecycle.svg"><img src="/projects/ecommerce-concept/order-lifecycle.svg" alt="Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location" loading="lazy" /></a>
-    <figcaption>2 / 7 · Domain: three order states and three stock numbers</figcaption>
-  </figure>
-  <figure class="shot">
-    <a href="/projects/ecommerce-concept/order-list.svg"><img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs, three selected orders and a bulk action bar" loading="lazy" /></a>
-    <figcaption>3 / 7 · Orders: task tabs and a bulk bar with clear scope</figcaption>
-  </figure>
-  <figure class="shot">
-    <a href="/projects/ecommerce-concept/sku-mapping.svg"><img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping screen with a queue of unmapped listings" loading="lazy" /></a>
-    <figcaption>4 / 7 · SKU mapping: the gate before sync</figcaption>
+    <a href="/projects/ecommerce-concept/product-editor.svg"><img src="/projects/ecommerce-concept/product-editor.svg" alt="Product editor with a variant matrix and per-channel listing toggles" loading="lazy" /></a>
+    <figcaption>2 / 7 · Product editor: variants listed per channel</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/inventory.svg"><img src="/projects/ecommerce-concept/inventory.svg" alt="Inventory by location with low and out-of-stock alerts and channel buffers" loading="lazy" /></a>
-    <figcaption>5 / 7 · Inventory: low and out-of-stock alerts, channel buffers</figcaption>
+    <figcaption>3 / 7 · Inventory: low and out-of-stock alerts, channel buffers</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/channels.svg"><img src="/projects/ecommerce-concept/channels.svg" alt="Sales channel connections with sync status and a sync log" loading="lazy" /></a>
+    <figcaption>4 / 7 · Sales channels: sync status and log</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/cod-reconciliation.svg"><img src="/projects/ecommerce-concept/cod-reconciliation.svg" alt="COD reconciliation matching carrier payout sessions to orders, with two unmatched orders" loading="lazy" /></a>
-    <figcaption>6 / 7 · COD reconciliation: payout sessions matched to orders</figcaption>
+    <figcaption>5 / 7 · COD reconciliation: payout sessions matched to orders</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/storefront.svg"><img src="/projects/ecommerce-concept/storefront.svg" alt="Product page with shipping fee and delivery date, and a guest checkout with COD selected" loading="lazy" /></a>
-    <figcaption>7 / 7 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
+    <figcaption>6 / 7 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/buyer-tracking.svg"><img src="/projects/ecommerce-concept/buyer-tracking.svg" alt="Zalo COD confirmation message and buyer order tracking on mobile" loading="lazy" /></a>
+    <figcaption>7 / 7 · Buyer side: Zalo COD confirmation and order tracking</figcaption>
   </figure>
 </div>

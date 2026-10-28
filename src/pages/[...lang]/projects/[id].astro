@@ -115,7 +115,7 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
     const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
     const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
-    // mỗi ảnh một lần: gallery Design lặp lại ảnh trong bài, preview chỉ giữ lần xuất hiện đầu
+    // mỗi ảnh một lần: nếu một ảnh xuất hiện hai chỗ, preview chỉ giữ lần đầu
     const all = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
     const srcs = [...new Set(all.map((img) => img.getAttribute("src")!))];
     const imgs = srcs.map((src) => all.find((img) => img.getAttribute("src") === src)!);
