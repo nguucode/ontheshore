@@ -15,13 +15,7 @@ order: 99
 draft: true
 ---
 
-A mid-size home goods brand sold the same SKUs on its own site, Shopee and TikTok Shop, with stock tracked in spreadsheets. As Lead Product Designer in a team of 11, I owned the seller admin end to end and co-owned the storefront checkout with the PM over six months. The key decision was to treat the SKU, not the order, as the unit that connects seller and buyer, and to ship the admin to the ops team four weeks before the new storefront.
-
-<dl class="stats">
-  <div><dt>Oversell incidents per month</dt><dd class="v">6</dd></div>
-  <div><dt>Median order handling time</dt><dd class="v">9 min</dd></div>
-  <div><dt>Own-site checkout completion</dt><dd class="v">44%</dd></div>
-</dl>
+The key decision was to treat the SKU, not the order, as the unit that connects seller and buyer, and to ship the admin to the ops team four weeks before the new storefront.
 
 ## Every oversell started as a spreadsheet lag
 
@@ -99,27 +93,19 @@ On the storefront, the product page shows the shipping fee and a delivery date b
 
 ## Screens
 
-Scroll sideways for the full set. Each screen opens at full size.
+Screens not shown above. Scroll sideways; each opens at full size.
 
 <div class="gallery" tabindex="0" role="region" aria-label="Screens, scroll sideways">
   <figure class="shot">
-    <a href="/projects/ecommerce-concept/order-list.svg"><img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs and bulk actions" loading="lazy" /></a>
-    <figcaption>1 / 5 · Orders: task tabs and bulk actions</figcaption>
-  </figure>
-  <figure class="shot">
     <a href="/projects/ecommerce-concept/inventory.svg"><img src="/projects/ecommerce-concept/inventory.svg" alt="Inventory by location with low and out-of-stock alerts and channel buffers" loading="lazy" /></a>
-    <figcaption>2 / 5 · Inventory: available, committed, incoming per location</figcaption>
-  </figure>
-  <figure class="shot">
-    <a href="/projects/ecommerce-concept/sku-mapping.svg"><img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping with unmapped listings queue" loading="lazy" /></a>
-    <figcaption>3 / 5 · SKU mapping: the gate before sync</figcaption>
+    <figcaption>1 / 3 · Inventory: available, committed, incoming per location</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/cod-reconciliation.svg"><img src="/projects/ecommerce-concept/cod-reconciliation.svg" alt="COD reconciliation matching carrier payout sessions to orders, with two unmatched orders" loading="lazy" /></a>
-    <figcaption>4 / 5 · COD reconciliation: payout sessions matched to orders</figcaption>
+    <figcaption>2 / 3 · COD reconciliation: payout sessions matched to orders</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/storefront.svg"><img src="/projects/ecommerce-concept/storefront.svg" alt="Product page with shipping fee and delivery date, and a guest checkout with COD selected" loading="lazy" /></a>
-    <figcaption>5 / 5 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
+    <figcaption>3 / 3 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
   </figure>
 </div>
