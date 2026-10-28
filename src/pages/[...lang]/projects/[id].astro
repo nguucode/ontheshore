@@ -119,10 +119,12 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     let cur = 0;
     const CAP_MAX = 80; // caption tối đa 80 ký tự để vừa một dòng trên desktop
 
-    // caption rộng tối đa 80% phần ảnh đang hiện (ảnh 16:9, có thể bị co theo chiều cao), luôn một dòng
+    // caption rộng tối đa 80% phần ảnh đang hiện (ảnh 16:9, có thể bị co theo chiều cao), một dòng.
+    // Màn hẹp: 80% ảnh quá chật, caption lấy gần hết bề ngang màn hình và được 2 dòng (CSS).
+    const narrow = matchMedia("(max-width: 40rem)");
     function fitCap() {
       const shown = Math.min(big.clientWidth, (big.clientHeight * 16) / 9);
-      cap.style.maxWidth = `${Math.round(shown * 0.8)}px`;
+      cap.style.maxWidth = narrow.matches ? "" : `${Math.round(shown * 0.8)}px`;
       cap.title = cap.scrollWidth > cap.clientWidth ? cap.textContent ?? "" : "";
     }
     addEventListener("resize", () => dlg.open && fitCap());

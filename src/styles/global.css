@@ -1197,6 +1197,15 @@ img.cover,
   .lb-next {
     right: 0;
   }
+
+  /* màn hẹp: caption rộng gần hết màn hình (tràn đều hai bên ảnh) và được xuống tối đa 2 dòng */
+  .lb-cap {
+    width: calc(100vw - 2rem);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+  }
 }
 
 .lb-img {
