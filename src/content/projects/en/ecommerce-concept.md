@@ -5,6 +5,7 @@ year: "2022"
 summary: "A concept case study: a seller admin and storefront for a D2C home goods brand selling on its own site, Shopee and TikTok Shop. Scenario and numbers are illustrative."
 cover: "/projects/ecommerce-concept/cover.svg"
 facts:
+  Year: "2022"
   Platform: "Desktop, Tablet, Phone"
   Team: "11 people: 1 PM, 1 BA, 6 engineers, 2 QA and me"
   Role: "Lead Product Designer"
@@ -19,9 +20,10 @@ The key decision was to treat the SKU, not the order, as the unit that connects 
 
 ## Every oversell started as a spreadsheet lag
 
-The ops team re-keyed stock into three channels twice a day. Between updates, the same last unit sold on two channels. Each oversell meant a cancelled order. On Shopee, cancellations count against the shop's performance score, and a low score can get listings restricted. Buyers saw the other side of it: a product marked in stock, then a cancellation SMS a day later.
-
-The brand's own site had a second problem. Shipping fees only appeared at the last checkout step, and account creation was mandatory. Both match [Baymard's top abandonment causes](https://baymard.com/lists/cart-abandonment-rate): extra costs at 40%, forced accounts at 18% (2025).
+- **Oversells.** The ops team re-keyed stock into three channels twice a day. Between updates, the same last unit sold on two channels and the order had to be cancelled.
+- **Shop penalties.** On Shopee, cancellations count against the shop's performance score, and a low score can get listings restricted.
+- **Buyer trust.** Buyers saw a product marked in stock, then a cancellation SMS a day later.
+- **Checkout friction on the own site.** Shipping fees only appeared at the last step and account creation was mandatory. Both match [Baymard's top abandonment causes](https://baymard.com/lists/cart-abandonment-rate): extra costs at 40%, forced accounts at 18% (2025).
 
 ## What changed, measured against eight weeks of pre-launch logs
 
@@ -34,7 +36,8 @@ Each number compares 12 weeks after launch with the 8 weeks before it.
   <div><dt>COD failed-delivery rate</dt><dd class="v">11%</dd><dd class="src">Baseline 14%. Carrier return reports, GHN and GHTK</dd></div>
 </dl>
 
-Checkout completion is not conversion rate. For reference, [Littledata's Shopify median conversion](https://www.littledata.io/average/ecommerce-conversion-rate-(all-devices)) is 1.4% (Oct 2026). The COD change is small and overlaps a seasonal dip, so I report it without claiming the design caused it.
+- **Checkout completion is not conversion rate.** For reference, [Littledata's Shopify median conversion](https://www.littledata.io/average/ecommerce-conversion-rate-(all-devices)) is 1.4% (Oct 2026).
+- **The COD change is small** and overlaps a seasonal dip, so I report it without claiming the design caused it.
 
 ## My part and the team's
 
@@ -46,7 +49,9 @@ My work covered three areas. The PM owned merchandising and promotions, and engi
 
 ## How one order moves, and where it breaks
 
-An order has three independent states: payment (prepaid, or COD pending until the carrier pays out), fulfillment, and returns. Stock has three numbers per location: available, committed to open orders, and incoming. Oversells happen when "available" on one channel ignores "committed" on another. Money arrives from two directions: marketplaces pay out minus fees, carriers pay out COD minus shipping. Both have to match back to individual orders.
+- **Order states.** Three independent axes: payment (prepaid, or COD pending until the carrier pays out), fulfillment, and returns.
+- **Stock numbers.** Three per location: available, committed to open orders, and incoming. Oversells happen when "available" on one channel ignores "committed" on another.
+- **Money flows.** Marketplaces pay out minus fees; carriers pay out COD minus shipping. Both have to match back to individual orders.
 
 <figure class="shot">
   <img src="/projects/ecommerce-concept/order-lifecycle.svg" alt="Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location" loading="lazy" />
@@ -70,7 +75,10 @@ The trade-off: the BA had to own a state-to-tab mapping table, and every new edg
 
 ## Decision 2: no sync until every SKU is mapped
 
-Engineering proposed auto-matching marketplace listings to internal SKUs by product name, to launch sync faster. I prototyped it on the real catalog. Variant names differed across channels for 18% of listings, so auto-match would have produced silent stock errors, which are worse than visible ones. We built a mapping screen and an unmapped-listings queue instead. Sync for a product switches on only once all its variants are mapped. This added three weeks.
+- **Proposal.** Engineering wanted to auto-match marketplace listings to internal SKUs by product name, to launch sync faster.
+- **Test.** I prototyped it on the real catalog. Variant names differed across channels for 18% of listings, so auto-match would have produced silent stock errors, which are worse than visible ones.
+- **Chosen.** A mapping screen and an unmapped-listings queue. Sync for a product switches on only once all its variants are mapped.
+- **Cost.** Three extra weeks.
 
 <figure class="shot">
   <img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping screen with a queue of unmapped listings and a warning that a name match is not applied automatically" loading="lazy" />
@@ -79,15 +87,24 @@ Engineering proposed auto-matching marketplace listings to internal SKUs by prod
 
 ## Decision 3: ship the admin first, storefront second
 
-A joint launch would have looked better in a deck. But the storefront's accuracy depended on admin data: a "2 left" badge is only true if stock is synced. The ops team got four weeks on the new admin while the old site stayed live. Those weeks surfaced 23 mapping and status bugs before any buyer saw a stock number.
+A joint launch would have looked better in a deck. But the storefront's accuracy depended on admin data: a "2 left" badge is only true if stock is synced.
 
-Rollout went to 2 ops staff for one week, then the full team for three weeks, then the storefront at 20% of traffic for two weeks before 100%. The old spreadsheets stayed read-only for a month as a fallback. Nobody opened them after week two.
+- **Weeks 1 to 4: admin only.** 2 ops staff for one week, then the full team for three, while the old site stayed live. This surfaced 23 mapping and status bugs before any buyer saw a stock number.
+- **Weeks 5 and 6: storefront at 20% of traffic,** then 100%.
+- **Fallback.** The old spreadsheets stayed read-only for a month. Nobody opened them after week two.
 
 ## The admin and the storefront, joined by the same stock number
 
-In the admin, inventory shows available, committed and incoming per location, and alerts fire on available only. Each location carries a channel buffer, so a marketplace never lists the last unit. COD reconciliation matches each carrier payout session to its orders and deducted fees. It shipped in week 10.
+In the admin:
 
-On the storefront, the product page shows the shipping fee and a delivery date before add to cart. Checkout is guest by default, with one line explaining why the phone number is required: the courier calls before delivery. A COD confirmation goes out on Zalo before the order is packed. I framed that as a hypothesis to A/B test, not a proven fix.
+- **Inventory alerts** fire on available stock only, and each location carries a channel buffer so a marketplace never lists the last unit.
+- **COD reconciliation** matches each carrier payout session to its orders and deducted fees. It shipped in week 10.
+
+On the storefront:
+
+- **Product page** shows the shipping fee and a delivery date before add to cart.
+- **Checkout** is guest by default, with one line explaining why the phone number is required: the courier calls before delivery.
+- **COD confirmation** goes out on Zalo before the order is packed. I framed that as a hypothesis to A/B test, not a proven fix.
 
 ## What I would do differently
 
@@ -102,7 +119,7 @@ Screens not shown above. Scroll sideways; each opens at full size.
 <div class="gallery" tabindex="0" role="region" aria-label="Screens, scroll sideways">
   <figure class="shot">
     <a href="/projects/ecommerce-concept/inventory.svg"><img src="/projects/ecommerce-concept/inventory.svg" alt="Inventory by location with low and out-of-stock alerts and channel buffers" loading="lazy" /></a>
-    <figcaption>1 / 3 · Inventory: available, committed, incoming per location</figcaption>
+    <figcaption>1 / 3 · Inventory: low and out-of-stock alerts, channel buffers</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/cod-reconciliation.svg"><img src="/projects/ecommerce-concept/cod-reconciliation.svg" alt="COD reconciliation matching carrier payout sessions to orders, with two unmatched orders" loading="lazy" /></a>
