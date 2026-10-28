@@ -1098,6 +1098,10 @@ img.cover,
   height: 100dvh;
   max-height: none;
   margin: 0 auto;
+  /* bấm nhanh nút qua lại = double-click: không để trình duyệt bôi chọn ảnh, khung */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   padding: 0;
   border: 0;
   background: none;
@@ -1152,21 +1156,21 @@ img.cover,
   justify-content: center;
 }
 
-/* nút qua lại: giữa khoảng trống hai bên ảnh (mỗi bên 10vw), ngang tâm ảnh */
+/* nút qua lại: vùng bấm phủ hết khoảng trống hai bên ảnh (mỗi bên 10vw), cao bằng ảnh,
+   mũi tên ở giữa. Bấm lệch một chút vẫn chuyển ảnh, không rơi ra nền và đóng preview. */
 .lb-nav {
   position: absolute;
-  top: 50%;
+  top: 0;
+  bottom: 0;
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 4rem;
+  width: 10vw;
   padding: 0;
   border: 0;
   background: none;
   color: #fff;
   opacity: 0.75;
   cursor: pointer;
-  transform: translateY(-50%);
   transition: opacity 0.2s var(--ease);
 }
 
@@ -1175,19 +1179,22 @@ img.cover,
 }
 
 .lb-prev {
-  left: calc(-5vw - 1.5rem);
+  left: -10vw;
 }
 
 .lb-next {
-  right: calc(-5vw - 1.5rem);
+  right: -10vw;
 }
 
 @media (max-width: 40rem) {
   /* màn hẹp: lề 10vw không đủ chỗ, nút nằm đè mép ảnh trên nền tối mờ */
   .lb-nav {
+    top: 50%;
+    bottom: auto;
     width: 2.25rem;
     height: 3rem;
     background: rgb(14 18 27 / 0.6);
+    transform: translateY(-50%);
   }
 
   .lb-prev {
@@ -1209,6 +1216,7 @@ img.cover,
 }
 
 .lb-img {
+  -webkit-user-drag: none;
   width: 100%;
   /* chừa chỗ cho caption và dải thumbnail trong phần 80% */
   max-height: calc(80dvh - 11rem);
