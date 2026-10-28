@@ -1091,8 +1091,9 @@ img.cover,
 }
 
 .lightbox {
-  width: min(92vw, 72rem);
-  max-height: 92vh;
+  width: 80vw; /* ảnh preview rộng 80% màn hình */
+  max-width: none;
+  max-height: 96vh;
   padding: 0;
   border: 0;
   background: none;
