@@ -1084,6 +1084,102 @@ a.ix-title::after {
   line-height: 1.45;
 }
 
+/* Preview ảnh (lightbox): khung trắng, ảnh lớn, dải thumbnail, nút đóng tròn bên dưới. */
+img.cover,
+.prose .shot img {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  width: min(92vw, 72rem);
+  max-height: 92vh;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  border: 1px solid var(--rule);
+  border-radius: 0.75rem;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.lightbox[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.lightbox::backdrop {
+  background: rgb(14 18 27 / 0.72);
+}
+
+.lb-img {
+  width: 100%;
+  max-height: 70vh;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+}
+
+.lb-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+.lb-thumbs button {
+  flex: 0 0 auto;
+  width: 5.5rem;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: opacity 0.2s var(--ease);
+}
+
+.lb-thumbs button:hover,
+.lb-thumbs button[aria-current] {
+  opacity: 1;
+}
+
+.lb-thumbs button[aria-current] {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.lb-thumbs img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.lb-close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.lb-close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
 /* Gallery cuối case: cuộn ngang, mỗi màn rộng bằng ảnh trong bài; caption "1 / 5" báo còn ảnh. */
 .prose .gallery {
   display: grid;

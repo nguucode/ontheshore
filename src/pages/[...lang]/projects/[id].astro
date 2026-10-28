@@ -88,4 +88,63 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   <div class="prose case">
     <Content />
   </div>
+
+  <dialog class="lightbox" aria-label={t("Xem ảnh", "Image preview")}>
+    <img class="lb-img" alt="" />
+    <div class="lb-thumbs"></div>
+    <button class="lb-close" type="button" aria-label={t("Đóng", "Close")}>×</button>
+  </dialog>
+
+  <script>
+    // Bấm ảnh bìa hoặc ảnh trong bài (cả gallery) mở preview: ảnh lớn, dải thumbnail mọi ảnh của
+    // trang, nút đóng. Mũi tên trái/phải chuyển ảnh, Esc hoặc bấm nền để đóng.
+    const dlg = document.querySelector<HTMLDialogElement>(".lightbox")!;
+    const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
+    const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
+    const imgs = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
+    let cur = 0;
+
+    const thumbs = imgs.map((img, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", img.alt || `Image ${i + 1}`);
+      b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
+      b.addEventListener("click", () => show(i));
+      strip.append(b);
+      return b;
+    });
+
+    function show(i: number) {
+      cur = (i + imgs.length) % imgs.length;
+      big.src = imgs[cur].getAttribute("src")!;
+      big.alt = imgs[cur].alt;
+      thumbs.forEach((b, j) => b.toggleAttribute("aria-current", j === cur));
+      thumbs[cur].scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+
+    imgs.forEach((img, i) => {
+      const trigger = img.closest("a") ?? img;
+      if (trigger === img) {
+        img.tabIndex = 0;
+        img.setAttribute("role", "button");
+      }
+      const open = (e: Event) => {
+        e.preventDefault();
+        show(i);
+        dlg.showModal();
+      };
+      trigger.addEventListener("click", open);
+      trigger.addEventListener("keydown", (e) => {
+        const k = (e as KeyboardEvent).key;
+        if (trigger === img && (k === "Enter" || k === " ")) open(e);
+      });
+    });
+
+    dlg.querySelector(".lb-close")!.addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", (e) => e.target === dlg && dlg.close());
+    dlg.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(cur + 1);
+      if (e.key === "ArrowLeft") show(cur - 1);
+    });
+  </script>
 </Base>
