@@ -115,7 +115,10 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
     const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
     const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
-    const imgs = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
+    // mỗi ảnh một lần: gallery Design lặp lại ảnh trong bài, preview chỉ giữ lần xuất hiện đầu
+    const all = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
+    const srcs = [...new Set(all.map((img) => img.getAttribute("src")!))];
+    const imgs = srcs.map((src) => all.find((img) => img.getAttribute("src") === src)!);
     let cur = 0;
     const CAP_MAX = 80; // caption tối đa 80 ký tự để vừa một dòng trên desktop
 
@@ -154,7 +157,8 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       thumbs[cur].scrollIntoView({ block: "nearest", inline: "nearest" });
     }
 
-    imgs.forEach((img, i) => {
+    all.forEach((img) => {
+      const i = srcs.indexOf(img.getAttribute("src")!);
       const trigger = img.closest("a") ?? img;
       if (trigger === img) {
         img.tabIndex = 0;
@@ -180,5 +184,29 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       if (e.key === "ArrowRight") show(cur + 1);
       if (e.key === "ArrowLeft") show(cur - 1);
     });
+
+    // Gallery Design: thay thanh cuộn bằng dải thumbnail, bấm để tới ảnh, ảnh đang xem sáng hơn.
+    for (const gal of document.querySelectorAll<HTMLElement>(".prose .gallery")) {
+      const slides = [...gal.querySelectorAll<HTMLElement>(".shot")];
+      const nav = document.createElement("div");
+      nav.className = "gallery-thumbs";
+      const btns = slides.map((slide, i) => {
+        const img = slide.querySelector("img")!;
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", img.alt || `Design ${i + 1}`);
+        b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
+        b.addEventListener("click", () => gal.scrollTo({ left: slide.offsetLeft - slides[0].offsetLeft, behavior: "smooth" }));
+        nav.append(b);
+        return b;
+      });
+      const mark = () => {
+        const i = Math.round(gal.scrollLeft / (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : 1));
+        btns.forEach((b, j) => b.toggleAttribute("aria-current", j === i));
+      };
+      gal.addEventListener("scroll", mark, { passive: true });
+      gal.after(nav);
+      mark();
+    }
   </script>
 </Base>

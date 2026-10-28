@@ -1294,7 +1294,60 @@ img.cover,
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: contain;
-  padding-bottom: 0.75rem;
+}
+
+/* thanh cuộn ẩn, dải thumbnail bên dưới thay vai trò điều hướng */
+.prose .gallery {
+  scrollbar-width: none;
+}
+
+.prose .gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.prose.case .gallery:has(+ .gallery-thumbs) {
+  margin-bottom: 0.75rem;
+}
+
+.gallery-thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.5rem;
+  margin: 0 calc(0.5rem - var(--pad)) 2rem;
+}
+
+.gallery-thumbs button {
+  padding: 0;
+  border: 1px solid var(--rule);
+  background: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s var(--ease);
+}
+
+.gallery-thumbs button:hover,
+.gallery-thumbs button[aria-current] {
+  opacity: 1;
+}
+
+.gallery-thumbs button[aria-current] {
+  border-color: var(--accent);
+}
+
+.gallery-thumbs img {
+  display: block;
+  width: 100%;
+  margin: 0; /* gỡ lề và viền của .prose img */
+  border: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 60rem) {
+  .gallery-thumbs {
+    margin-inline: -0.5rem;
+  }
 }
 
 .prose .gallery .shot {

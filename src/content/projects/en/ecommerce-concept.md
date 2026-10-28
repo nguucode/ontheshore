@@ -112,21 +112,37 @@ On the storefront:
 - **Decision 2.** The three-week delay was right, but I should have shown engineering the 18% mismatch data before proposing the alternative, not after. It would have saved a week of debate.
 - **Decision 3.** I would push the reconciliation screen into the first release. Ops spent the gap reconciling by hand, which was exactly the work we set out to remove.
 
-## Screens
+## Design
 
-Screens not shown above. Scroll sideways; each opens at full size.
+The full set of seven designs. Pick a thumbnail or swipe; each opens at full size.
 
-<div class="gallery" tabindex="0" role="region" aria-label="Screens, scroll sideways">
+<div class="gallery" tabindex="0" role="region" aria-label="Design gallery">
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/cover.svg"><img src="/projects/ecommerce-concept/cover.svg" alt="One stock number shared by the website, Shopee and TikTok Shop" loading="lazy" /></a>
+    <figcaption>1 / 7 · Cover: one stock number shared by three channels</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/order-lifecycle.svg"><img src="/projects/ecommerce-concept/order-lifecycle.svg" alt="Diagram of the payment, fulfillment and return states of one order, with the three stock numbers per location" loading="lazy" /></a>
+    <figcaption>2 / 7 · Domain: three order states and three stock numbers</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/order-list.svg"><img src="/projects/ecommerce-concept/order-list.svg" alt="Order list with task tabs, three selected orders and a bulk action bar" loading="lazy" /></a>
+    <figcaption>3 / 7 · Orders: task tabs and a bulk bar with clear scope</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/ecommerce-concept/sku-mapping.svg"><img src="/projects/ecommerce-concept/sku-mapping.svg" alt="SKU mapping screen with a queue of unmapped listings" loading="lazy" /></a>
+    <figcaption>4 / 7 · SKU mapping: the gate before sync</figcaption>
+  </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/inventory.svg"><img src="/projects/ecommerce-concept/inventory.svg" alt="Inventory by location with low and out-of-stock alerts and channel buffers" loading="lazy" /></a>
-    <figcaption>1 / 3 · Inventory: low and out-of-stock alerts, channel buffers</figcaption>
+    <figcaption>5 / 7 · Inventory: low and out-of-stock alerts, channel buffers</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/cod-reconciliation.svg"><img src="/projects/ecommerce-concept/cod-reconciliation.svg" alt="COD reconciliation matching carrier payout sessions to orders, with two unmatched orders" loading="lazy" /></a>
-    <figcaption>2 / 3 · COD reconciliation: payout sessions matched to orders</figcaption>
+    <figcaption>6 / 7 · COD reconciliation: payout sessions matched to orders</figcaption>
   </figure>
   <figure class="shot">
     <a href="/projects/ecommerce-concept/storefront.svg"><img src="/projects/ecommerce-concept/storefront.svg" alt="Product page with shipping fee and delivery date, and a guest checkout with COD selected" loading="lazy" /></a>
-    <figcaption>3 / 3 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
+    <figcaption>7 / 7 · Storefront: cost and delivery before the cart, guest checkout</figcaption>
   </figure>
 </div>
