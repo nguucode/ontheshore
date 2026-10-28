@@ -869,7 +869,11 @@ a.ix-title::after {
   padding-inline: 0;
 }
 
-.project-facts > div {
+.project-facts dl {
+  margin: 0;
+}
+
+.project-facts dl > div {
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 0.75rem;
@@ -878,15 +882,26 @@ a.ix-title::after {
   line-height: 1.5;
 }
 
-.project-facts > div:first-child {
+.project-facts dl > div:first-child {
   padding-top: 0; /* dòng đầu thẳng mép trên đoạn lede */
 }
 
 /* nhóm link (Website, Figma...) tách khỏi thông tin dự án bằng một đường kẻ */
-.project-facts > div:not(.link) + .link {
-  margin-top: 0.6rem;
-  padding-top: 0.95rem;
+.project-links {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0.6rem 0 0;
   border-top: 1px solid var(--rule);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.project-links:empty {
+  display: none;
+}
+
+.project-links li {
+  padding: 0.35rem 0;
 }
 
 .project-facts dt {
@@ -894,18 +909,17 @@ a.ix-title::after {
 }
 
 .project-facts dd {
-  min-width: 0; /* cho cột giá trị co lại để link cắt "…" được */
   margin: 0;
 }
 
-/* link dài cỡ nào cũng chỉ một dòng: tên miền cắt bằng "…", mũi tên luôn hiện */
-.project-facts .link a {
+/* link dài cỡ nào cũng chỉ một dòng: chữ cắt bằng "…", mũi tên luôn hiện */
+.project-links a {
   display: inline-flex;
   gap: 0.25rem;
   max-width: 100%;
 }
 
-.project-facts .link a span {
+.project-links a span {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;

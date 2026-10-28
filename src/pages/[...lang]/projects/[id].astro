@@ -15,6 +15,7 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const isUrl = (v: string) => /^https?:\/\//.test(v);
 ---
 
 <Base title={entry.data.title} description={entry.data.summary} lang={lang}>
@@ -34,22 +35,30 @@ const { Content } = await render(entry);
 
   {
     entry.data.facts && (
-      <dl class="project-facts">
-        {Object.entries(entry.data.facts).map(([label, value]) => (
-          <div class:list={{ link: /^https?:\/\//.test(value) }}>
-            <dt>{label}</dt>
-            <dd>
-              {/^https?:\/\//.test(value) ? (
+      <aside class="project-facts">
+        <dl>
+          {Object.entries(entry.data.facts)
+            .filter(([, value]) => !isUrl(value))
+            .map(([label, value]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+        </dl>
+        {/* fact có giá trị là URL thì thành link, chữ hiện là nhãn (Website, Figma...) */}
+        <ul class="project-links">
+          {Object.entries(entry.data.facts)
+            .filter(([, value]) => isUrl(value))
+            .map(([label, value]) => (
+              <li>
                 <a href={value} target="_blank" rel="noopener">
-                  <span>{new URL(value).hostname.replace(/^www\./, "")}</span>↗
+                  <span>{label}</span>↗
                 </a>
-              ) : (
-                value
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
+              </li>
+            ))}
+        </ul>
+      </aside>
     )
   }
 
