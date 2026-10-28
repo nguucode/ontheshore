@@ -865,7 +865,7 @@ a.ix-title::after {
   align-self: start;
   position: sticky;
   top: 2rem;
-  margin: 0 0.5rem; /* cùng lề với ảnh case: cách đường kẻ cột 0.5rem */
+  margin: 0 1rem;
   padding-inline: 0;
 }
 
