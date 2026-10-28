@@ -38,7 +38,11 @@ Checkout completion is not conversion rate. For reference, [Littledata's Shopify
 
 ## My part and the team's
 
-I ran seller interviews and shadowed the ops team, defined the order and inventory model with the BA, and designed every admin screen. The PM and I split the storefront: I owned the product page and checkout, the PM owned merchandising and promotions. Engineering chose the sync architecture. I argued for the reconciliation screen to be in the first release, and lost that argument until week 10.
+My work covered three areas. The PM owned merchandising and promotions, and engineering owned the sync architecture.
+
+- **Design direction.** Ran seller interviews and shadowed the ops team, then set the direction both the admin and the storefront followed.
+- **Design system.** Set up and maintained one component library for both products: data tables, status tags, stat cards and form patterns, with token names agreed with engineering.
+- **UI/UX delivery.** Defined the order and inventory model with the BA, designed every admin screen, and owned the storefront product page and checkout.
 
 ## How one order moves, and where it breaks
 
