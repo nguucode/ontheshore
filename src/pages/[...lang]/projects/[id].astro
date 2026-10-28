@@ -97,12 +97,24 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   {
     next && (
       <nav class="next-case" aria-label={t("Project tiếp theo", "Next project")}>
-        <p class="next-label">{t("Project tiếp theo", "Next project")}</p>
-        <a class="go next-link" href={url(lang, `/projects/${next.slug}/`)}>
-          <span class="next-title">{next.data.title}</span>
-          <span class="go-ring" aria-hidden="true">→</span>
-        </a>
-        <p class="next-summary">{next.data.summary}</p>
+        {/* ảnh bìa của project kế tiếp, hiện ở cột 1 khi hover hoặc focus tên project */}
+        <div class="next-peek" aria-hidden="true">
+          {next.data.cover ? (
+            <img src={next.data.cover} alt="" loading="lazy" />
+          ) : (
+            <div class="placeholder">
+              <span>{t("Ảnh bìa chưa có.", "Cover image not yet added.")}</span>
+            </div>
+          )}
+        </div>
+        <div class="next-body">
+          <p class="next-label">{t("Project tiếp theo", "Next project")}</p>
+          <a class="go next-link" href={url(lang, `/projects/${next.slug}/`)}>
+            <span class="next-title">{next.data.title}</span>
+            <span class="go-ring" aria-hidden="true">→</span>
+          </a>
+          <p class="next-summary">{next.data.summary}</p>
+        </div>
       </nav>
     )
   }
