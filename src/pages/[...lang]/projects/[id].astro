@@ -73,6 +73,16 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
                   </span>
                   <span>{label}</span>
                 </a>
+                {/* ảnh xem trước của link, hiện dưới cụm link khi hover hoặc focus */}
+                <span class="link-peek" aria-hidden="true">
+                  {entry.data.previews?.[label] ? (
+                    <img src={entry.data.previews[label]} alt="" loading="lazy" />
+                  ) : (
+                    <span class="placeholder">
+                      <span>{t("Ảnh xem trước chưa có.", "Preview not yet added.")}</span>
+                    </span>
+                  )}
+                </span>
               </li>
             ))}
         </ul>

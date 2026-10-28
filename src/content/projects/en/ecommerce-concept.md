@@ -12,6 +12,9 @@ facts:
   Duration: "6 months"
   Website: "https://google.com" # tạm, thay bằng link thật
   Figma: "https://google.com" # tạm, thay bằng link thật
+previews:
+  Website: "/projects/ecommerce-concept/website-preview.svg"
+  Figma: "/projects/ecommerce-concept/figma-preview.svg"
 order: 99
 draft: true
 ---

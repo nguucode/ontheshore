@@ -947,9 +947,40 @@ a.ix-title::after {
   display: none;
 }
 
+.project-links {
+  position: relative;
+}
+
 .project-links li {
   min-width: 0;
   max-width: 100%;
+}
+
+/* ảnh xem trước của từng link: cùng một chỗ ngay dưới cụm link, chỉ hiện khi hover/focus link đó */
+.link-peek {
+  position: absolute;
+  top: calc(100% + 1.25rem);
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.link-peek img,
+.link-peek .placeholder {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.project-links a:hover + .link-peek,
+.project-links a:focus-visible + .link-peek {
+  opacity: 1;
+  transform: none;
 }
 
 .project-facts dt {
