@@ -1247,6 +1247,12 @@ img.cover,
   display: none;
 }
 
+/* ảnh đơn: không có dải thumbnail, không có nút qua lại */
+.lightbox.single .lb-thumbs,
+.lightbox.single .lb-nav {
+  display: none;
+}
+
 /* caption gắn với ảnh phía trên, tách xa dải thumbnail phía dưới */
 .lb-cap + .lb-thumbs {
   margin-top: 1.5rem;

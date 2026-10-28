@@ -149,16 +149,14 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   </dialog>
 
   <script>
-    // Bấm ảnh bìa hoặc ảnh trong bài (cả gallery) mở preview: ảnh lớn, dải thumbnail mọi ảnh của
-    // trang, nút đóng, hai nút qua lại hai bên. Mũi tên trái/phải chuyển ảnh, Esc hoặc bấm nền để đóng.
+    // Bấm ảnh mở preview. Ảnh đơn (bìa, ảnh trong bài) chỉ hiện chính nó. Ảnh trong gallery chạy
+    // trong gallery đó: dải thumbnail, hai nút qua lại, phím mũi tên. Esc, nút đóng hoặc bấm nền để đóng.
     const dlg = document.querySelector<HTMLDialogElement>(".lightbox")!;
     const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
     const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
     const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
-    // mỗi ảnh một lần: nếu một ảnh xuất hiện hai chỗ, preview chỉ giữ lần đầu
-    const all = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
-    const srcs = [...new Set(all.map((img) => img.getAttribute("src")!))];
-    const imgs = srcs.map((src) => all.find((img) => img.getAttribute("src") === src)!);
+    let group: HTMLImageElement[] = [];
+    let thumbs: HTMLButtonElement[] = [];
     let cur = 0;
     const CAP_MAX = 80; // caption tối đa 80 ký tự để vừa một dòng trên desktop
 
@@ -172,55 +170,69 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     }
     addEventListener("resize", () => dlg.open && fitCap());
 
-    const thumbs = imgs.map((img, i) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", img.alt || `Image ${i + 1}`);
-      b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
-      b.addEventListener("click", () => show(i));
-      strip.append(b);
-      return b;
-    });
-
     function show(i: number) {
-      cur = (i + imgs.length) % imgs.length;
-      big.src = imgs[cur].getAttribute("src")!;
-      big.alt = imgs[cur].alt;
-      // caption: figcaption của ảnh (bỏ số thứ tự "1 / 3 · " của gallery); ảnh bìa dùng tiêu đề trang
-      const fc = imgs[cur].closest("figure")?.querySelector("figcaption")?.textContent;
-      const text = (fc ?? imgs[cur].dataset.caption ?? imgs[cur].alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
-      if (import.meta.env.DEV && !text) console.warn("Ảnh chưa có caption:", imgs[cur].getAttribute("src"));
+      cur = (i + group.length) % group.length;
+      const img = group[cur];
+      big.src = img.getAttribute("src")!;
+      big.alt = img.alt;
+      // caption: figcaption của ảnh (bỏ số thứ tự "1 / 7 · " của gallery); ảnh bìa dùng tiêu đề trang
+      const fc = img.closest("figure")?.querySelector("figcaption")?.textContent;
+      const text = (fc ?? img.dataset.caption ?? img.alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
+      if (import.meta.env.DEV && !text) console.warn("Ảnh chưa có caption:", img.getAttribute("src"));
       if (import.meta.env.DEV && text.length > CAP_MAX) console.warn(`Caption dài hơn ${CAP_MAX} ký tự:`, text);
       cap.textContent = text;
       fitCap();
       thumbs.forEach((b, j) => b.toggleAttribute("aria-current", j === cur));
-      thumbs[cur].scrollIntoView({ block: "nearest", inline: "nearest" });
+      thumbs[cur]?.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
 
-    all.forEach((img) => {
-      const i = srcs.indexOf(img.getAttribute("src")!);
+    function open(imgs: HTMLImageElement[], i: number) {
+      group = imgs;
+      dlg.classList.toggle("single", imgs.length === 1); // ảnh đơn: ẩn thumbnail và nút qua lại
+      strip.replaceChildren();
+      thumbs =
+        imgs.length > 1
+          ? imgs.map((img, j) => {
+              const b = document.createElement("button");
+              b.type = "button";
+              b.setAttribute("aria-label", img.alt || `Image ${j + 1}`);
+              b.innerHTML = `<img src="${img.getAttribute("src")}" alt="" />`;
+              b.addEventListener("click", () => show(j));
+              strip.append(b);
+              return b;
+            })
+          : [];
+      dlg.showModal(); // mở trước để đo được kích thước ảnh cho caption
+      show(i);
+    }
+
+    const galleries = [...document.querySelectorAll<HTMLElement>(".prose .gallery")];
+    for (const img of document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")) {
+      const gal = galleries.find((g) => g.contains(img));
+      const imgs = gal ? [...gal.querySelectorAll<HTMLImageElement>("img")] : [img];
+      const i = imgs.indexOf(img);
       const trigger = img.closest("a") ?? img;
       if (trigger === img) {
         img.tabIndex = 0;
         img.setAttribute("role", "button");
       }
-      const open = (e: Event) => {
+      const go = (e: Event) => {
         e.preventDefault();
-        dlg.showModal(); // mở trước để đo được kích thước ảnh cho caption
-        show(i);
+        open(imgs, i);
       };
-      trigger.addEventListener("click", open);
+      trigger.addEventListener("click", go);
       trigger.addEventListener("keydown", (e) => {
         const k = (e as KeyboardEvent).key;
-        if (trigger === img && (k === "Enter" || k === " ")) open(e);
+        if (trigger === img && (k === "Enter" || k === " ")) go(e);
       });
-    });
+    }
 
     dlg.querySelector(".lb-close")!.addEventListener("click", () => dlg.close());
     dlg.querySelector(".lb-prev")!.addEventListener("click", () => show(cur - 1));
     dlg.querySelector(".lb-next")!.addEventListener("click", () => show(cur + 1));
     dlg.addEventListener("click", (e) => e.target === dlg && dlg.close());
     dlg.addEventListener("keydown", (e) => {
+      if (group.length < 2) return;
       if (e.key === "ArrowRight") show(cur + 1);
       if (e.key === "ArrowLeft") show(cur - 1);
     });
