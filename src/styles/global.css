@@ -888,6 +888,9 @@ a.ix-title::after {
 
 /* nhóm link (Website, Figma...) tách khỏi thông tin dự án bằng một đường kẻ */
 .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
   list-style: none;
   margin: 0.6rem 0 0;
   padding: 0.6rem 0 0;
@@ -901,6 +904,8 @@ a.ix-title::after {
 }
 
 .project-links li {
+  min-width: 0;
+  max-width: 100%;
   padding: 0.35rem 0;
 }
 
