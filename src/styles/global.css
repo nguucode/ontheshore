@@ -1084,7 +1084,7 @@ a.ix-title::after {
   line-height: 1.45;
 }
 
-/* Preview ảnh (lightbox): khung trắng, ảnh lớn, dải thumbnail, nút đóng tròn bên dưới. */
+/* Preview ảnh (lightbox): không khung, ảnh lớn nằm thẳng trên nền tối, dải thumbnail và nút đóng tròn bên dưới. */
 img.cover,
 .prose .shot img {
   cursor: zoom-in;
@@ -1093,11 +1093,11 @@ img.cover,
 .lightbox {
   width: min(92vw, 72rem);
   max-height: 92vh;
-  padding: clamp(1rem, 3vw, 2.5rem);
-  border: 1px solid var(--rule);
-  border-radius: 0.75rem;
-  background: var(--bg);
-  color: var(--ink);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  overflow: visible;
 }
 
 .lightbox[open] {
@@ -1108,7 +1108,7 @@ img.cover,
 }
 
 .lightbox::backdrop {
-  background: rgb(14 18 27 / 0.72);
+  background: rgb(14 18 27 / 0.94);
 }
 
 .lb-img {
@@ -1116,7 +1116,6 @@ img.cover,
   max-height: 70vh;
   aspect-ratio: 16 / 9;
   object-fit: contain;
-  border: 1px solid var(--rule);
   border-radius: 0.5rem;
 }
 
@@ -1132,7 +1131,7 @@ img.cover,
   flex: 0 0 auto;
   width: 5.5rem;
   padding: 0;
-  border: 1px solid var(--rule);
+  border: 0;
   border-radius: 0.4rem;
   background: none;
   cursor: pointer;
@@ -1147,7 +1146,7 @@ img.cover,
 }
 
 .lb-thumbs button[aria-current] {
-  outline: 2px solid var(--accent);
+  outline: 2px solid #fff;
   outline-offset: 1px;
 }
 
@@ -1167,7 +1166,7 @@ img.cover,
   border: 1px solid currentColor;
   border-radius: 50%;
   background: none;
-  color: var(--ink);
+  color: #fff;
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
@@ -1175,9 +1174,9 @@ img.cover,
 }
 
 .lb-close:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+  background: #fff;
+  border-color: #fff;
+  color: #0e121b;
 }
 
 /* Gallery cuối case: cuộn ngang, mỗi màn rộng bằng ảnh trong bài; caption "1 / 5" báo còn ảnh. */
