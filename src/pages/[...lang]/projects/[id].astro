@@ -90,17 +90,22 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
   </div>
 
   <dialog class="lightbox" aria-label={t("Xem ảnh", "Image preview")}>
-    <div class="lb-stage">
-      <img class="lb-img" alt="" />
-      <button class="lb-nav lb-prev" type="button" aria-label={t("Ảnh trước", "Previous image")}>
-        <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M20 4 4 24l16 20" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
-      </button>
-      <button class="lb-nav lb-next" type="button" aria-label={t("Ảnh sau", "Next image")}>
-        <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M4 4l16 20L4 44" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
-      </button>
+    <div class="lb-main">
+      <div class="lb-stage">
+        <img class="lb-img" alt="" />
+        <button class="lb-nav lb-prev" type="button" aria-label={t("Ảnh trước", "Previous image")}>
+          <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M20 4 4 24l16 20" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <button class="lb-nav lb-next" type="button" aria-label={t("Ảnh sau", "Next image")}>
+          <svg viewBox="0 0 24 48" width="24" height="48" aria-hidden="true"><path d="M4 4l16 20L4 44" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+      </div>
+      <p class="lb-cap" aria-live="polite"></p>
+      <div class="lb-thumbs"></div>
     </div>
-    <div class="lb-thumbs"></div>
-    <button class="lb-close" type="button" aria-label={t("Đóng", "Close")}>×</button>
+    <div class="lb-foot">
+      <button class="lb-close" type="button" aria-label={t("Đóng", "Close")}>×</button>
+    </div>
   </dialog>
 
   <script>
@@ -109,6 +114,7 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
     const dlg = document.querySelector<HTMLDialogElement>(".lightbox")!;
     const big = dlg.querySelector<HTMLImageElement>(".lb-img")!;
     const strip = dlg.querySelector<HTMLElement>(".lb-thumbs")!;
+    const cap = dlg.querySelector<HTMLElement>(".lb-cap")!;
     const imgs = [...document.querySelectorAll<HTMLImageElement>("img.cover, .prose .shot img")];
     let cur = 0;
 
@@ -126,6 +132,9 @@ const isUrl = (v: string) => /^https?:\/\//.test(v);
       cur = (i + imgs.length) % imgs.length;
       big.src = imgs[cur].getAttribute("src")!;
       big.alt = imgs[cur].alt;
+      // caption: figcaption của ảnh (bỏ số thứ tự "1 / 3 · " của gallery), không có thì dùng alt
+      const fc = imgs[cur].closest("figure")?.querySelector("figcaption")?.textContent;
+      cap.textContent = (fc ?? imgs[cur].alt).replace(/^\s*\d+ \/ \d+ · /, "").trim();
       thumbs.forEach((b, j) => b.toggleAttribute("aria-current", j === cur));
       thumbs[cur].scrollIntoView({ block: "nearest", inline: "nearest" });
     }

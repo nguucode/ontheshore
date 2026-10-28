@@ -1090,10 +1090,14 @@ img.cover,
   cursor: zoom-in;
 }
 
+/* Chiều cao màn hình chia 80/20: phần trên (ảnh, caption, thumbnail) căn giữa trong 80%,
+   nút đóng căn giữa trong 20% còn lại. */
 .lightbox {
   width: 80vw; /* ảnh preview rộng 80% màn hình */
   max-width: none;
-  max-height: 96vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 auto;
   padding: 0;
   border: 0;
   background: none;
@@ -1102,10 +1106,36 @@ img.cover,
 }
 
 .lightbox[open] {
+  display: grid;
+  grid-template-rows: 80fr 20fr;
+  grid-template-columns: minmax(0, 1fr); /* dải thumbnail dài không kéo rộng cột */
+}
+
+.lb-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.lb-foot {
+  display: grid;
+  place-items: center;
+}
+
+.lb-cap {
+  max-width: 60ch;
+  margin: 0;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.lb-cap:empty {
+  display: none;
 }
 
 .lightbox::backdrop {
@@ -1168,7 +1198,8 @@ img.cover,
 
 .lb-img {
   width: 100%;
-  max-height: 70vh;
+  /* chừa chỗ cho caption và dải thumbnail trong phần 80% */
+  max-height: calc(80dvh - 11rem);
   aspect-ratio: 16 / 9;
   object-fit: contain;
 }
