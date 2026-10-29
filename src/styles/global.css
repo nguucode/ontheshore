@@ -707,9 +707,15 @@ img.feature-media {
   transition: opacity 0.3s var(--ease);
 }
 
+/* focus chỉ tính khi dùng bàn phím: bấm chuột vào link thì focus ở lại, không được giữ ảnh.
+   Đang hover dòng nào thì chỉ ảnh dòng đó hiện. */
 .row-job:hover .row-media,
-.row-job:focus-within .row-media {
+.row-job:has(:focus-visible) .row-media {
   opacity: 1;
+}
+
+:has(> .row-job:hover) > .row-job:not(:hover) .row-media {
+  opacity: 0;
 }
 
 /* placeholder cho ảnh chưa có: kẻ sọc + nhãn */
