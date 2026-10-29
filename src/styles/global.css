@@ -1736,7 +1736,11 @@ code {
 
   .ix-row {
     display: grid;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); /* cột trái = 1/2 cột phải, không nở theo chữ dài */
+  }
+
+  .ix-title {
+    overflow-wrap: anywhere; /* email dài xuống dòng thay vì đẩy lệch cột */
   }
 
   .ix-row > div {
