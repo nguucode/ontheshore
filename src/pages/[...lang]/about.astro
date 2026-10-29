@@ -83,7 +83,7 @@ const facts = [
             <br />
             <span class="where">
               {e.site ? <a class="co" href={e.site} target="_blank" rel="noopener">{e.company}</a> : e.company} ·{" "}
-              {e.href ? <a href={url(lang, e.href)}>{cap(e.kind[lang])}</a> : cap(e.kind[lang])}
+              {e.href ? <a href={url(lang, e.href)}>{e.hrefText ?? cap(e.kind[lang])}</a> : cap(e.kind[lang])}
             </span>
             {e.what && (
               <>

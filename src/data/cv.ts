@@ -11,6 +11,7 @@ export type Job = {
   company: string;
   kind: Text;
   href?: string; // trang project trong site
+  hrefText?: string; // chữ của link project trên About (CV PDF vẫn dùng kind)
   site?: string; // website công ty, tên công ty thành link mở tab mới. Chưa có URL thì để trống.
   what?: Text;
   cv?: string; // ghi đè mô tả trên CV PDF; "" = bỏ mô tả để vừa một trang
@@ -57,6 +58,7 @@ export const experience: Job[] = [
     site: "https://firegroup.io/",
     kind: { vi: "TrueProfit, Shopify app về profit analytics", en: "TrueProfit, a Shopify profit analytics app" },
     href: "/projects/trueprofit/",
+    hrefText: "TrueProfit",
     what: {
       vi: "Thiết kế end-to-end, từ research, prototype tới handoff. Xây dựng và phụ trách design library lõi, làm việc trực tiếp với engineer để code khớp với thiết kế.",
       en: "Led end-to-end design from research and prototyping to handoff. Built and owned the core design library, working directly with engineers on implementation accuracy.",
