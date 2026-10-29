@@ -1784,13 +1784,17 @@ code {
     margin-bottom: 3.5rem;
   }
 
+  /* footer mobile: hai dòng trên dưới (địa điểm, rồi email) */
   .site-foot {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-block: 1.25rem;
   }
 
   .site-foot > * {
-    padding: 1rem;
+    min-height: 0;
+    padding: 0 1rem;
   }
 }
 
