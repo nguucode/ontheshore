@@ -853,6 +853,11 @@ a.ix-title::after {
   font-size: 0.9rem;
 }
 
+/* link website công ty: cùng màu chữ xám của dòng, chỉ giữ gạch chân */
+.row .what .where a.co {
+  color: inherit;
+}
+
 /* ---------- About: ảnh chân dung + con số ---------- */
 
 .portrait {

@@ -18,6 +18,8 @@ const community = communityOf(compact(totalUses));
 
 // Ảnh công ty theo tên file (xem ghi chú đầu src/data/cv.ts). Thiếu ảnh thì dùng khung kẻ sọc.
 const companyImages = import.meta.glob<{ default: ImageMetadata }>("../../assets/companies/*.{jpg,jpeg,png,webp}", { eager: true });
+// mô tả công ty: viết hoa chữ đầu khi hiện trên About (dữ liệu giữ chữ thường vì CV in nó trong ngoặc)
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const companyImage = (company: string) =>
   Object.entries(companyImages).find(([path]) => path.split("/").pop()!.replace(/\.\w+$/, "") === slug(company))?.[1].default;
@@ -80,8 +82,8 @@ const facts = [
             <strong>{e.role}</strong>
             <br />
             <span class="where">
-              {e.site ? <a href={e.site} target="_blank" rel="noopener">{e.company}</a> : e.company} ·{" "}
-              {e.href ? <a href={url(lang, e.href)}>{e.kind[lang]}</a> : e.kind[lang]}
+              {e.site ? <a class="co" href={e.site} target="_blank" rel="noopener">{e.company}</a> : e.company} ·{" "}
+              {e.href ? <a href={url(lang, e.href)}>{cap(e.kind[lang])}</a> : cap(e.kind[lang])}
             </span>
             {e.what && (
               <>
