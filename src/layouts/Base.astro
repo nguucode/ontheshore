@@ -123,7 +123,7 @@ const nav = [
     <nav class="rail-r" aria-label={t("Điều hướng chính", "Main")}>
       {
         nav.map((item) => (
-          <a href={url(lang, item.href)} aria-current={(item.href === "/" ? bare === "/" : bare.startsWith(item.href)) ? "page" : undefined}>
+          <a href={url(lang, item.href)} data-astro-prefetch="viewport" aria-current={(item.href === "/" ? bare === "/" : bare.startsWith(item.href)) ? "page" : undefined}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d={item.icon} />
             </svg>
@@ -149,6 +149,20 @@ const nav = [
         setTheme(next);
         try { localStorage.setItem("theme", next); } catch {}
       });
+
+      // Bấm menu: chuyển trạng thái chọn ngay, không đợi trang mới tải xong.
+      // Bấm Back (trang lấy lại từ bfcache) thì trả về mục của trang này.
+      const menu = document.querySelector(".rail-r");
+      const here = menu.querySelector("[aria-current]");
+      const select = (a) => {
+        for (const x of menu.querySelectorAll("a")) x.removeAttribute("aria-current");
+        a?.setAttribute("aria-current", "page");
+      };
+      menu.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (a && !(e.metaKey || e.ctrlKey || e.shiftKey || e.button)) select(a);
+      });
+      addEventListener("pageshow", (e) => e.persisted && select(here));
 
       // Link nội dung mở tab mới (kể cả link trong markdown).
       // Trừ: menu, logo, nút ngôn ngữ (hai rail), "View all" (.more),
