@@ -18,17 +18,19 @@ const t = T(lang);
   )}
   lang={lang}
 >
-  <h1>Products</h1>
-  <p class="lede">
-    {t(`${totalPublished} sản phẩm đã publish. ${totalFree} miễn phí, ${totalPaid} trả phí có dùng thử.`, `${totalPublished} products published. ${totalFree} free, ${totalPaid} paid with a free trial.`)}
-  </p>
+  <section class="sec">
+    <h1 class="sec-label">Products</h1>
+    <p class="lede span-2">
+      {t(`${totalPublished} sản phẩm đã publish. ${totalFree} miễn phí, ${totalPaid} trả phí có dùng thử.`, `${totalPublished} products published. ${totalFree} free, ${totalPaid} paid with a free trial.`)}
+    </p>
+  </section>
 
   {
     groups.map((g) => (
-      <>
-        <h2>{g.heading[lang]}</h2>
+      <section class="sec">
+        <h2 class="sec-label">{g.heading[lang]}</h2>
         {g.items.length === 0 ? (
-          <div class="empty">{t("Mục này chưa có gì được publish.", "Nothing has been published here yet.")}</div>
+          <div class="empty span-3">{t("Mục này chưa có gì được publish.", "Nothing has been published here yet.")}</div>
         ) : (
           <ul class="ix">
             {g.items.map((it, i) => (
@@ -45,15 +47,16 @@ const t = T(lang);
             ))}
           </ul>
         )}
-      </>
+      </section>
     ))
   }
 
-  <hr />
-  <p class="faint">
-    {t("Hồ sơ đầy đủ:", "Full profile:")}{" "}
-    <a href="https://www.figma.com/@nguunguyen73" rel="noopener">
-      figma.com/@nguunguyen73
-    </a>
-  </p>
+  <section class="sec">
+    <p class="faint span-3">
+      {t("Hồ sơ đầy đủ:", "Full profile:")}{" "}
+      <a href="https://www.figma.com/@nguunguyen73" rel="noopener">
+        figma.com/@nguunguyen73
+      </a>
+    </p>
+  </section>
 </Base>
