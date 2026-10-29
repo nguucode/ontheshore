@@ -2,8 +2,8 @@
    Hai rail cố định, lưới 4 cột có kẻ đường dọc, một màu chàm. JS chỉ cho nút sáng/tối và link tab mới. */
 
 :root {
-  /* Sáng/tối: theo máy, hoặc theo nút trên rail trái (data-theme trên <html>). */
-  color-scheme: light dark;
+  /* Sáng/tối: mặc định sáng, đổi bằng nút trên rail trái (data-theme trên <html>). */
+  color-scheme: light;
   --ink: light-dark(#1c1d21, #e7e8ec);
   --ink-soft: light-dark(#565a64, #a9adb8);
   --ink-faint: light-dark(#8a8d96, #737784);
@@ -124,7 +124,7 @@ svg {
   text-decoration: none;
 }
 
-/* Ngôn ngữ + nút sáng/tối ở đáy rail trái: xếp dọc trên desktop, cùng hàng trên mobile. */
+/* Ngôn ngữ + nút sáng/tối ở đáy rail trái: hai ô xếp dọc có kẻ ngang trên desktop, cùng hàng trên mobile. */
 .tools {
   display: flex;
   flex-direction: column;
@@ -141,8 +141,11 @@ svg {
 .theme {
   display: grid;
   place-items: center;
-  padding: 0 0 1.1rem;
+  width: 100%;
+  height: calc(var(--foot-h) + 1px); /* cao bằng footer (kể cả viền trên của footer) */
+  padding: 0;
   border: 0;
+  border-top: 1px solid var(--line);
   background: none;
   color: var(--accent);
   cursor: pointer;
@@ -1580,7 +1583,10 @@ code {
   }
 
   .theme {
+    width: auto;
+    height: auto;
     padding: 0.3rem;
+    border-top: 0;
   }
 
   .lang {
