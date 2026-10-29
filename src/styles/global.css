@@ -853,9 +853,15 @@ a.ix-title::after {
   font-size: 0.9rem;
 }
 
-/* link website công ty: cùng màu chữ xám của dòng, chỉ giữ gạch chân */
+/* link website công ty: cùng màu chữ xám của dòng, gạch chân chỉ khi hover/focus */
 .row .what .where a.co {
   color: inherit;
+  text-decoration: none;
+}
+
+.row .what .where a.co:hover,
+.row .what .where a.co:focus-visible {
+  text-decoration: underline;
 }
 
 /* ---------- About: ảnh chân dung + con số ---------- */
