@@ -777,7 +777,7 @@ a.ix-title::after {
   text-decoration: underline;
 }
 
-/* chỉ số sau tiêu đề: chỉ hiện trên mobile (xem media 60rem) */
+/* chỉ số sau tiêu đề: chỉ hiện trên mobile (xem media 79.99rem) */
 .ix-metric {
   display: none;
   margin-left: 0.35rem;
@@ -1482,7 +1482,7 @@ img.cover,
   object-fit: cover;
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 79.99rem) {
   .gallery-thumbs {
     margin-inline: -0.5rem;
   }
@@ -1589,7 +1589,7 @@ code {
 
 /* ---------- mobile: rail trái thành thanh trên, rail phải thành tab bar dưới ---------- */
 
-@media (max-width: 60rem) {
+@media (max-width: 79.99rem) {
   body {
     display: block;
     padding-bottom: 4.5rem;
