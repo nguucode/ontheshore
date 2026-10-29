@@ -1,6 +1,8 @@
 /* Dữ liệu dùng chung cho trang About và CV PDF (/cv-print/). Sửa ở đây, cả hai đổi theo.
    Nguồn: LinkedIn của sếp (đọc 2026-10-01). Nêu tên công ty; số liệu và màn hình nội bộ không đưa lên.
-   Sau khi sửa: chạy `npm run cv` để in lại public/nguu-nguyen-cv.pdf. */
+   Sau khi sửa: chạy `npm run cv` để in lại public/nguu-nguyen-cv.pdf.
+   Ảnh công ty (hiện khi hover dòng Experience trên About): src/assets/companies/<slug>.{jpg,png,webp},
+   slug = tên công ty viết thường, khoảng trắng thành "-", vd "tma-solutions.jpg". Chưa có ảnh thì hiện khung kẻ sọc. */
 type Text = { vi: string; en: string };
 
 export type Job = {
@@ -9,6 +11,7 @@ export type Job = {
   company: string;
   kind: Text;
   href?: string; // trang project trong site
+  site?: string; // website công ty, tên công ty thành link mở tab mới. Chưa có URL thì để trống.
   what?: Text;
   cv?: string; // ghi đè mô tả trên CV PDF; "" = bỏ mô tả để vừa một trang
 };
