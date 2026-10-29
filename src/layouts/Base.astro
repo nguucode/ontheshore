@@ -43,7 +43,6 @@ const nav = [
   { href: "/about/", label: "About me", icon: "M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" },
   { href: "/projects/", label: "Projects", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" },
   { href: "/products/", label: "Products", icon: "M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" },
-  { href: "/articles/", label: "Articles", icon: "M5 5h14M5 10h14M5 15h9M5 20h6" },
   { href: "/contact/", label: "Contact", icon: "M3 6h18v12H3zM3 6l9 7 9-7" },
 ];
 ---
@@ -125,9 +124,6 @@ const nav = [
           </a>
         ))
       }
-      <a class="status" href={url(lang, "/contact/")}>
-        <strong>Open to work</strong>
-      </a>
     </nav>
 
     <main class="sheet">
@@ -149,7 +145,7 @@ const nav = [
       });
 
       // Link nội dung mở tab mới (kể cả link trong markdown).
-      // Trừ: menu, logo, nút ngôn ngữ, ô Open to work (hai rail), "View all" (.more),
+      // Trừ: menu, logo, nút ngôn ngữ (hai rail), "View all" (.more),
       // mailto:/tel: (mở app) và #neo trong trang.
       for (const a of document.querySelectorAll("a[href]")) {
         if (a.closest(".rail-l, .rail-r, .more") || /^(mailto:|tel:|#)/.test(a.getAttribute("href"))) continue;
