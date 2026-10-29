@@ -147,14 +147,13 @@ svg {
   border: 0;
   border-top: 1px solid var(--line);
   background: none;
-  color: var(--accent);
+  color: var(--ink-soft); /* cả icon lẫn nhãn */
   font: inherit;
   cursor: pointer;
 }
 
-/* Nhãn chữ của hai ô màu trung tính; icon giữ màu nhấn. */
-.lang > span,
-.theme > span > span {
+/* Nhãn chữ của hai ô màu trung tính. */
+.lang > span {
   color: var(--ink-soft);
 }
 
