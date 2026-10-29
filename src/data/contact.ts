@@ -8,6 +8,5 @@ export const contacts = [
   email,
   linkedin,
   { label: "Zalo", value: "0339195925", href: "https://zalo.me/0339195925" },
-  { label: "Facebook", value: "nguukim.nguyen", href: "https://www.facebook.com/nguukim.nguyen/?locale=vi_VN" },
-  { label: "Figma", value: "@nguunguyen73", href: "https://www.figma.com/@nguunguyen73" },
+  { label: "WhatsApp", value: "0339195925", href: "https://wa.me/84339195925" },
 ];
