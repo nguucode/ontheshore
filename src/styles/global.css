@@ -1587,9 +1587,9 @@ code {
   padding: 0.1em 0.35em;
 }
 
-/* ---------- mobile: rail trái thành thanh trên, rail phải thành tab bar dưới ---------- */
+/* ---------- mobile (≤60rem): rail trái thành thanh trên, rail phải thành tab bar dưới ---------- */
 
-@media (max-width: 79.99rem) {
+@media (max-width: 60rem) {
   body {
     display: block;
     padding-bottom: 4.5rem;
@@ -1669,7 +1669,10 @@ code {
     padding: 0.7rem 0.2rem;
     font-size: 0.64rem;
   }
+}
 
+/* mobile + tablet (<1280px): nội dung một cột. Tablet vẫn giữ hai rail như desktop. */
+@media (max-width: 79.99rem) {
   /* mobile: không kẻ dọc ở mọi trang (trang con dùng selector mạnh hơn nên phải nêu riêng) */
   .sheet,
   .sec,
@@ -1682,6 +1685,12 @@ code {
 
   main.sheet {
     padding: 2.5rem 0 1rem;
+  }
+
+  /* tablet: giới hạn bề rộng nội dung ~46rem, căn giữa. Mobile hẹp hơn nên max() về 0, không ảnh hưởng. */
+  main.sheet,
+  .site-foot {
+    padding-inline: max(0px, calc((100% - 46rem) / 2));
   }
 
   .sheet > *,
