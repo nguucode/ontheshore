@@ -78,6 +78,8 @@ const nav = [
       let saved;
       try { saved = localStorage.getItem("theme"); } catch {}
       setTheme(saved === "dark" ? "dark" : "light");
+      // Vừa đổi ngôn ngữ (xem script cuối trang): bỏ hiệu ứng hiện dần để chỉ còn crossfade.
+      try { if (sessionStorage.getItem("lang-keep")) document.documentElement.dataset.langSwitch = ""; } catch {}
     </script>
     <link rel="alternate" hreflang="vi" href={new URL(url("vi", bare), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(url("en", bare), Astro.site)} />
@@ -102,7 +104,7 @@ const nav = [
         <span class="mark-name">Ngưu Nguyễn</span>
       </a>
       <div class="tools">
-        <a class="lang" href={url(other, bare)} hreflang={other} lang={other}>
+        <a class="lang" href={url(other, bare)} hreflang={other} lang={other} data-astro-prefetch="viewport">
           {
             // Cờ của ngôn ngữ sẽ chuyển sang, khớp với nhãn bên dưới.
             other === "en" ? (
@@ -163,6 +165,27 @@ const nav = [
         if (a && !(e.metaKey || e.ctrlKey || e.shiftKey || e.button)) select(a);
       });
       addEventListener("pageshow", (e) => e.persisted && select(here));
+
+      // Đổi ngôn ngữ giữ chỗ đang đọc: nhớ khối đang ở đầu màn hình và đã cuộn qua bao nhiêu phần của nó,
+      // trang kia cuộn tới đúng khối đó (hai bản có cùng cấu trúc nhưng chữ dài ngắn khác nhau).
+      const blocks = () => [...document.querySelectorAll("main.sheet > *, .site-foot")];
+      document.querySelector(".lang").addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        const all = blocks();
+        const i = all.findIndex((b) => b.getBoundingClientRect().bottom > 0);
+        const r = all[i]?.getBoundingClientRect();
+        const keep = { path: new URL(e.currentTarget.href).pathname, i, f: r ? -r.top / r.height : 0 };
+        try { sessionStorage.setItem("lang-keep", JSON.stringify(keep)); } catch {}
+      });
+      try {
+        const keep = JSON.parse(sessionStorage.getItem("lang-keep"));
+        sessionStorage.removeItem("lang-keep");
+        const b = keep?.path === location.pathname && blocks()[keep.i];
+        if (b) {
+          const r = b.getBoundingClientRect();
+          scrollTo({ top: scrollY + r.top + keep.f * r.height, behavior: "instant" });
+        }
+      } catch {}
 
       // Link nội dung mở tab mới (kể cả link trong markdown).
       // Trừ: menu, logo, nút ngôn ngữ (hai rail), "View all" (.more),
