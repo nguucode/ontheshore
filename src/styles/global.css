@@ -152,6 +152,12 @@ svg {
   cursor: pointer;
 }
 
+/* Nhãn chữ của hai ô màu trung tính; icon giữ màu nhấn. */
+.lang > span,
+.theme > span > span {
+  color: var(--ink-soft);
+}
+
 /* Icon + tên chế độ sẽ chuyển sang, cùng kiểu ô ngôn ngữ. */
 .theme > span {
   display: flex;
@@ -176,8 +182,8 @@ svg {
 
 /* Cờ 3:2, cùng khung cho cả hai ngôn ngữ. Viền mảnh để sọc trắng không tan vào nền. */
 .lang .flag {
-  width: 1.5rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 0.8rem;
   stroke: none;
   border-radius: 2px;
   box-shadow: 0 0 0 1px var(--rule);
