@@ -108,8 +108,8 @@ svg {
 .mark-name {
   writing-mode: vertical-rl;
   font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 500; /* cùng nét với h1, không giãn chữ */
+  letter-spacing: -0.015em;
 }
 
 .lang {
