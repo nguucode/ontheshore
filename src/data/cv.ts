@@ -1,6 +1,8 @@
 /* Dữ liệu dùng chung cho trang About và CV PDF (/cv-print/). Sửa ở đây, cả hai đổi theo.
    Nguồn: LinkedIn của sếp (đọc 2026-10-01). Nêu tên công ty; số liệu và màn hình nội bộ không đưa lên.
-   Sau khi sửa: chạy `npm run cv` để in lại public/nguu-nguyen-cv.pdf. */
+   Sau khi sửa: chạy `npm run cv` để in lại public/nguu-nguyen-cv.pdf.
+   Ảnh công ty (hiện khi hover dòng Experience trên About): src/assets/companies/<slug>.{jpg,png,webp},
+   slug = tên công ty viết thường, khoảng trắng thành "-", vd "tma-solutions.jpg". Chưa có ảnh thì hiện khung kẻ sọc. */
 type Text = { vi: string; en: string };
 
 export type Job = {
@@ -9,6 +11,7 @@ export type Job = {
   company: string;
   kind: Text;
   href?: string; // trang project trong site
+  site?: string; // website công ty, tên công ty thành link mở tab mới. Chưa có URL thì để trống.
   what?: Text;
   cv?: string; // ghi đè mô tả trên CV PDF; "" = bỏ mô tả để vừa một trang
 };
@@ -18,6 +21,7 @@ export const experience: Job[] = [
     when: "2023 — 2026",
     role: "Senior Product Designer",
     company: "TMA Solutions",
+    site: "https://www.tmasolutions.vn/",
     kind: { vi: "outsourcing phần mềm enterprise", en: "enterprise software outsourcing" },
     what: {
       vi: "Dẫn dắt product design cho nhiều dự án enterprise chạy song song trong fintech, healthcare, logistics. Cách làm system-first giữ chất lượng đồng đều giữa các dự án, thay vì mỗi dự án lại dựng lại từ đầu.",
@@ -28,6 +32,7 @@ export const experience: Job[] = [
     when: "2023",
     role: "Product Designer",
     company: "CyberLogitec",
+    site: "https://cyberlogitec.com.vn/",
     kind: { vi: "phần mềm logistics enterprise", en: "enterprise logistics software" },
     what: {
       vi: "Định hướng design trong product team, biến các workflow vận hành phức tạp thành giao diện riêng cho từng vai trò.",
@@ -38,6 +43,7 @@ export const experience: Job[] = [
     when: "2021 — 2023",
     role: "UI/UX Designer",
     company: "Aperia Solutions",
+    site: "https://www.aperia.com/",
     kind: { vi: "CRM cho ngân hàng và fintech", en: "banking and fintech CRM" },
     what: {
       vi: "Phụ trách UX cho các trang sản phẩm và workflow chính, duy trì design system trong Figma, làm việc cùng PO và BA suốt quá trình delivery.",
@@ -48,6 +54,7 @@ export const experience: Job[] = [
     when: "2020 — 2021",
     role: "Product Designer",
     company: "FireGroup Technology",
+    site: "https://firegroup.io/",
     kind: { vi: "TrueProfit, Shopify app về profit analytics", en: "TrueProfit, a Shopify profit analytics app" },
     href: "/projects/trueprofit/",
     what: {
@@ -70,6 +77,7 @@ export const experience: Job[] = [
     when: "2019",
     role: "UI/UX Design Intern",
     company: "Kyanon Digital",
+    site: "https://kyanon.digital/",
     kind: { vi: "digital agency", en: "digital agency" },
   },
 ];

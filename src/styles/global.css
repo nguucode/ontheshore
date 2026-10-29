@@ -689,6 +689,29 @@ img.feature-media {
   margin-bottom: 5.5rem;
 }
 
+/* About: ảnh công ty hiện ở cột trái khi hover một dòng Experience (chỉ desktop, xem media 79.99rem).
+   Dòng nằm ở cột 2–3; ảnh lùi sang trái đúng một cột, trừ đệm hai bên. */
+.row-job {
+  position: relative;
+}
+
+.row-media {
+  position: absolute;
+  top: 0.9rem;
+  right: calc(100% + 2 * var(--pad));
+  width: calc((100% + 2 * var(--pad)) / 2 - 2 * var(--pad));
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.row-job:hover .row-media,
+.row-job:focus-within .row-media {
+  opacity: 1;
+}
+
 /* placeholder cho ảnh chưa có: kẻ sọc + nhãn */
 .placeholder {
   display: grid;
@@ -1759,6 +1782,11 @@ code {
 
   .ix-title {
     overflow-wrap: anywhere; /* email dài xuống dòng thay vì đẩy lệch cột */
+  }
+
+  /* một cột, không có cột trái để đặt ảnh công ty */
+  .row-media {
+    display: none;
   }
 
   /* danh sách có chỉ số: một cột, chỉ số nằm sau tên */
