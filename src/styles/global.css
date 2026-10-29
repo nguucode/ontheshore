@@ -20,7 +20,7 @@
   --pad: 1.5rem; /* đệm trong mỗi ô lưới */
   --rail-l: 6rem;
   --rail-r: 6.5rem;
-  --foot-h: 4.25rem; /* footer và ô "Open to work" cao bằng nhau */
+  --foot-h: 4.25rem; /* chiều cao footer */
 }
 
 :root[data-theme="light"] {
@@ -166,7 +166,7 @@ svg {
   height: 1.4rem;
 }
 
-/* ---------- rail phải: nav chàm + ô trạng thái ---------- */
+/* ---------- rail phải: nav chàm ---------- */
 
 .rail-r {
   grid-column: 3;
@@ -206,25 +206,6 @@ svg {
 .rail-r a:hover svg {
   transform: translateY(-2px);
 }
-
-.rail-r a.status {
-  margin-top: auto;
-  display: grid;
-  place-items: center;
-  height: calc(var(--foot-h) + 1px); /* cao bằng footer (kể cả viền trên của footer) */
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--ink);
-  padding: 0 0.4rem;
-  text-align: center;
-  line-height: 1.35;
-}
-
-.status strong {
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
 
 @keyframes breathe {
   0% { box-shadow: 0 0 0 0 rgba(47, 143, 91, 0.45); }
@@ -1625,10 +1606,6 @@ code {
     flex: 1;
     padding: 0.7rem 0.2rem;
     font-size: 0.64rem;
-  }
-
-  .rail-r a.status {
-    display: none;
   }
 
   .sheet,
