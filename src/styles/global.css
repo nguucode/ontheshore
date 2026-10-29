@@ -174,9 +174,13 @@ svg {
   display: none;
 }
 
-.lang svg {
-  width: 1.4rem;
-  height: 1.4rem;
+/* Cờ 3:2, cùng khung cho cả hai ngôn ngữ. Viền mảnh để sọc trắng không tan vào nền. */
+.lang .flag {
+  width: 1.5rem;
+  height: 1rem;
+  stroke: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--rule);
 }
 
 /* ---------- rail phải: nav chàm ---------- */
