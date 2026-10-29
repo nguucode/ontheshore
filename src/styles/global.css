@@ -777,6 +777,15 @@ a.ix-title::after {
   text-decoration: underline;
 }
 
+/* chỉ số sau tiêu đề: chỉ hiện trên mobile (xem media 60rem) */
+.ix-metric {
+  display: none;
+  margin-left: 0.35rem;
+  font-family: var(--num-font);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
 .ix-note {
   font-size: 0.86rem;
   color: var(--ink-soft);
@@ -1741,6 +1750,23 @@ code {
 
   .ix-title {
     overflow-wrap: anywhere; /* email dài xuống dòng thay vì đẩy lệch cột */
+  }
+
+  /* danh sách có chỉ số: một cột, chỉ số nằm sau tên */
+  .ix-row-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .ix-row-inline .ix-lead {
+    display: none;
+  }
+
+  .ix-row-inline .ix-main {
+    grid-column: 1 / -1;
+  }
+
+  .ix-row-inline .ix-metric {
+    display: inline;
   }
 
   .ix-row > div {

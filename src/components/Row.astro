@@ -1,6 +1,7 @@
 ---
 /* Một dòng kiểu "tin tức" bảo tàng: [lead lớn + meta nhỏ] | [kicker nhỏ / tiêu đề / ghi chú].
-   vt: tên view transition, để tiêu đề "bay" sang h1 của trang chi tiết. */
+   vt: tên view transition, để tiêu đề "bay" sang h1 của trang chi tiết.
+   inline: trên mobile bỏ cột lead, đưa chỉ số vào sau tiêu đề "Tên (12.6k uses)". Tắt khi lead là nhãn (Contact). */
 interface Props {
   href?: string;
   title: string;
@@ -11,15 +12,18 @@ interface Props {
   flag?: string;
   vt?: string;
   i?: number;
+  inline?: boolean;
 }
 
-const { href, title, lead = "", meta, kicker, note, flag, vt, i = 0 } = Astro.props;
+const { href, title, lead = "", meta, kicker, note, flag, vt, i = 0, inline = true } = Astro.props;
 const external = href?.startsWith("http");
 // email dài: cho xuống dòng ngay sau @ (không áp cho handle kiểu @name)
 const at = title.indexOf("@", 1);
+// "—" là chưa có số liệu: không hiện ngoặc rỗng
+const metric = lead && lead !== "—" ? [lead, meta].filter(Boolean).join(" ") : "";
 ---
 
-<li class="ix-row" style={`--i:${i}`}>
+<li class:list={["ix-row", inline && "ix-row-inline"]} style={`--i:${i}`}>
   <div class="ix-lead">
     <span class="num">{lead}</span>
     {meta && <small>{meta}</small>}
@@ -35,6 +39,7 @@ const at = title.indexOf("@", 1);
         <span class="ix-title">{at > 0 ? <>{title.slice(0, at + 1)}<wbr />{title.slice(at + 1)}</> : title}</span>
       )
     }
+    {inline && metric && <span class="ix-metric">({metric})</span>}
     {flag && <span class="tag">{flag}</span>}
     {note && <p class="ix-note">{note}</p>}
   </div>

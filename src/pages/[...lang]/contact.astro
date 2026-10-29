@@ -21,7 +21,7 @@ const t = T(lang);
     </div>
 
     <ul class="ix">
-      {contacts.map((c, i) => <Row href={c.href} title={c.value} lead={c.label} i={i} />)}
+      {contacts.map((c, i) => <Row href={c.href} title={c.value} lead={c.label} i={i} inline={false} />)}
     </ul>
   </section>
 </Base>
