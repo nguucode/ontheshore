@@ -65,10 +65,9 @@ const nav = [
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#003c88" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#14284f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#003c88" />
     <script is:inline>
-      // Sáng/tối: lựa chọn đã lưu, không có thì theo máy. Chạy trước khi vẽ để không nháy màu.
+      // Sáng/tối: lựa chọn đã lưu, không có thì sáng. Chạy trước khi vẽ để không nháy màu.
       // Màu thanh địa chỉ (theme-color) đổi theo, bất kể máy đang sáng hay tối.
       function setTheme(theme) {
         document.documentElement.dataset.theme = theme;
@@ -77,7 +76,7 @@ const nav = [
       }
       let saved;
       try { saved = localStorage.getItem("theme"); } catch {}
-      setTheme(saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+      setTheme(saved === "dark" ? "dark" : "light");
     </script>
     <link rel="alternate" hreflang="vi" href={new URL(url("vi", bare), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(url("en", bare), Astro.site)} />
