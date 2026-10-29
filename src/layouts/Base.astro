@@ -172,9 +172,10 @@ const nav = [
       document.querySelector(".lang").addEventListener("click", (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
         const all = blocks();
-        const i = all.findIndex((b) => b.getBoundingClientRect().bottom > 0);
+        const i = scrollY > 0 ? all.findIndex((b) => b.getBoundingClientRect().bottom > 0) : -1;
         const r = all[i]?.getBoundingClientRect();
-        const keep = { path: new URL(e.currentTarget.href).pathname, i, f: r ? -r.top / r.height : 0 };
+        // khối đã cuộn qua mép trên: nhớ tỉ lệ; khối còn nằm dưới mép trên: nhớ khoảng cách px tới mép
+        const keep = { path: new URL(e.currentTarget.href).pathname, i, f: r && r.top < 0 ? -r.top / r.height : 0, y: r && r.top > 0 ? r.top : 0 };
         try { sessionStorage.setItem("lang-keep", JSON.stringify(keep)); } catch {}
       });
       try {
@@ -183,7 +184,7 @@ const nav = [
         const b = keep?.path === location.pathname && blocks()[keep.i];
         if (b) {
           const r = b.getBoundingClientRect();
-          scrollTo({ top: scrollY + r.top + keep.f * r.height, behavior: "instant" });
+          scrollTo({ top: scrollY + r.top + keep.f * r.height - keep.y, behavior: "instant" });
         }
       } catch {}
 
