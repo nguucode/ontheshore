@@ -1661,10 +1661,12 @@ code {
     font-size: 0.64rem;
   }
 
+  /* mobile: không kẻ dọc ở mọi trang (trang con dùng selector mạnh hơn nên phải nêu riêng) */
   .sheet,
   .sec,
   .ix,
-  .ix-row {
+  .ix-row,
+  main.sheet:not(:has(> .sec)) {
     display: block;
     background-image: none;
   }
