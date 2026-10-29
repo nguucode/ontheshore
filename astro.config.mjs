@@ -6,6 +6,8 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://ontheshore.biz",
   trailingSlash: "always",
+  // Chỉ link có data-astro-prefetch (menu) được tải trước, để bấm menu trên mobile ra trang ngay.
+  prefetch: true,
   redirects: {
     "/cv/": "/about/",
     "/vi/cv/": "/vi/about/",

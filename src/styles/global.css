@@ -220,13 +220,19 @@ svg {
   transition: transform 0.4s var(--ease);
 }
 
-.rail-r a:hover,
 .rail-r a[aria-current="page"] {
   background: rgba(255, 255, 255, 0.09);
 }
 
-.rail-r a:hover svg {
-  transform: translateY(-2px);
+/* hover chỉ cho chuột: trên màn cảm ứng :hover dính lại sau khi chạm, thành hai mục cùng sáng */
+@media (hover: hover) {
+  .rail-r a:hover {
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .rail-r a:hover svg {
+    transform: translateY(-2px);
+  }
 }
 
 @keyframes breathe {
