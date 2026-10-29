@@ -90,17 +90,12 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Tools", items: ["Figma", "FigJam", "Storybook", "Miro", "Jira", "Confluence", "Notion", "Microsoft\u00a0365"] },
 ];
 
-// Community and Products: ba nơi xem hết sản phẩm (sếp chọn 2026-10-05). Dùng chung cho CV PDF và trang About.
+// Community and Products: hai nơi xem hết sản phẩm (sếp chọn 2026-10-05, bỏ Gumroad 2026-10-29). Dùng chung cho CV PDF và trang About.
 export const community = (uses: string): { name: string; what: Text; href: string }[] => [
   {
     name: "Figma",
     what: { vi: `Template miễn phí và một AI skill, ${uses} lượt dùng`, en: `Free templates and an AI skill, ${uses} uses` },
     href: "https://www.figma.com/@nguunguyen73",
-  },
-  {
-    name: "Gumroad",
-    what: { vi: "Design tool và tài nguyên trả phí, trong đó có Kusabimaru", en: "Paid design tools and resources, including Kusabimaru" },
-    href: "https://kafkawaves.gumroad.com/",
   },
   {
     name: "Website",
