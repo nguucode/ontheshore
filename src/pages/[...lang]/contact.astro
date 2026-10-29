@@ -14,10 +14,12 @@ const t = T(lang);
     "Liên hệ Ngưu Nguyễn để thuê UI/UX designer freelance: điện thoại, email, Zalo, LinkedIn, Facebook, Figma.",
     "Hire Ngưu Nguyễn for freelance UI/UX design. Reach out by phone, email, Zalo, LinkedIn, Facebook or Figma."
   )} lang={lang}>
-  <h1>Contact</h1>
-  <p class="lede">{t("Sống ở Nha Trang, Việt Nam. Nhận làm remote.", "Based in Nha Trang, Vietnam. Open to remote work.")}</p>
+  <section class="sec">
+    <h1 class="sec-label">Contact</h1>
+    <p class="lede span-2">{t("Sống ở Nha Trang, Việt Nam. Nhận làm remote.", "Based in Nha Trang, Vietnam. Open to remote work.")}</p>
 
-  <ul class="ix">
-    {contacts.map((c, i) => <Row href={c.href} title={c.value} lead={c.label} i={i} />)}
-  </ul>
+    <ul class="ix">
+      {contacts.map((c, i) => <Row href={c.href} title={c.value} lead={c.label} i={i} />)}
+    </ul>
+  </section>
 </Base>

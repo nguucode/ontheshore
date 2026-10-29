@@ -18,32 +18,34 @@ const projects = byLang(await getCollection("projects", (p) => import.meta.env.D
     "Project UI/UX của Ngưu Nguyễn: Shopify analytics app, accounting SaaS, React design system, icon library, IoT app. Problem, role, process, outcome.",
     "UI/UX projects by Ngưu Nguyễn: a Shopify analytics app, an accounting SaaS, a React design system, an icon library and an IoT app."
   )} lang={lang}>
-  <h1>Projects</h1>
-  <p class="lede">{t("Từng project: problem, role, process, outcome.", "Each project: problem, role, process, outcome.")}</p>
+  <section class="sec">
+    <h1 class="sec-label">Projects</h1>
+    <p class="lede span-2">{t("Từng project: problem, role, process, outcome.", "Each project: problem, role, process, outcome.")}</p>
 
-  {
-    projects.length === 0 ? (
-      <div class="empty">
-        <p style="margin:0 0 .6rem">{t("Chưa project nào được publish.", "No project has been published yet.")}</p>
-        <p style="margin:0" class="faint">
-          <code>src/content/projects/{lang}/_template.md</code>
-        </p>
-      </div>
-    ) : (
-      <ul class="ix">
-        {projects.map((p, i) => (
-          <Row
-            href={url(lang, `/projects/${p.slug}/`)}
-            title={p.data.title}
-            lead={p.data.year}
-            meta={p.data.client}
-            kicker={p.data.role}
-            note={p.data.summary}
-            vt={`p-${p.slug}`}
-            i={i}
-          />
-        ))}
-      </ul>
-    )
-  }
+    {
+      projects.length === 0 ? (
+        <div class="empty span-3">
+          <p style="margin:0 0 .6rem">{t("Chưa project nào được publish.", "No project has been published yet.")}</p>
+          <p style="margin:0" class="faint">
+            <code>src/content/projects/{lang}/_template.md</code>
+          </p>
+        </div>
+      ) : (
+        <ul class="ix">
+          {projects.map((p, i) => (
+            <Row
+              href={url(lang, `/projects/${p.slug}/`)}
+              title={p.data.title}
+              lead={p.data.year}
+              meta={p.data.client}
+              kicker={p.data.role}
+              note={p.data.summary}
+              vt={`p-${p.slug}`}
+              i={i}
+            />
+          ))}
+        </ul>
+      )
+    }
+  </section>
 </Base>
