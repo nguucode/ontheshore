@@ -1886,6 +1886,18 @@ code {
   navigation: auto;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: ease;
+}
+
+/* vừa đổi ngôn ngữ: chữ chỉ crossfade tại chỗ, không trồi lên lại từ đầu */
+[data-lang-switch] .sec,
+[data-lang-switch] .ix-row {
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
