@@ -451,6 +451,11 @@ hr {
   margin-top: 1.25rem;
 }
 
+/* câu mở đầu trang con: màu chữ thường, không dùng màu nhấn như h1 trang chủ */
+.headline {
+  color: var(--ink);
+}
+
 /* trang con: intro rồi tới danh sách trong cùng section */
 .intro + .ix {
   margin-top: 3.5rem;
