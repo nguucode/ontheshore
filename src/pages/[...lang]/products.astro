@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Row from "../../components/Row.astro";
 import { getLang, langPaths, T, url } from "../../i18n";
-import { compact, groups, totalFree, totalPaid, totalPublished } from "../../data/products";
+import { compact, groups, totalFree, totalPaid, totalPublished, totalUses } from "../../data/products";
 
 export const getStaticPaths = langPaths;
 
@@ -20,9 +20,15 @@ const t = T(lang);
 >
   <section class="sec">
     <h1 class="sec-label">Products</h1>
-    <p class="lede span-2">
-      {t(`${totalPublished} sản phẩm đã publish. ${totalFree} miễn phí, ${totalPaid} trả phí có dùng thử.`, `${totalPublished} products published. ${totalFree} free, ${totalPaid} paid with a free trial.`)}
-    </p>
+    <div class="intro">
+      <p class="headline">{t("App, Figma template và kit tôi làm cho designer khác dùng.", "Apps, Figma templates and kits I make for other designers.")}</p>
+      <p class="lede">
+        {t(
+          `${totalPublished} sản phẩm đã publish: ${totalFree} miễn phí, ${totalPaid} trả phí có dùng thử. Riêng template trên Figma Community đã có ${compact(totalUses)} lượt dùng.`,
+          `${totalPublished} published: ${totalFree} free, ${totalPaid} paid with a free trial. The Figma Community templates alone have ${compact(totalUses)} uses.`
+        )}
+      </p>
+    </div>
   </section>
 
   {
