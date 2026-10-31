@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import nhaTrang from "../../assets/nha-trang.jpg";
 import { getCollection } from "astro:content";
+import { byYear } from "../../data/projects";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
 import { all, compact, topByUses, totalFree, totalUses } from "../../data/products";
 import { email, linkedin, phone } from "../../data/contact";
@@ -15,7 +16,7 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
 const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort(byYear);
 const homeProjects = projects.slice(1, 4); // project đầu đã nằm ở slide Featured
 
 // Có lượt dùng xếp trước, theo số lượt dùng.
