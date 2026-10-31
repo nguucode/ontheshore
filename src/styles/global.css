@@ -90,6 +90,13 @@ svg {
   border-right: 1px solid var(--line);
 }
 
+/* desktop: đường kẻ đầu tiên của lưới .sheet đã nằm ở mép này, viền rail sẽ thành 2px */
+@media (min-width: 80rem) {
+  .rail-l {
+    border-right: 0;
+  }
+}
+
 .mark {
   display: flex;
   flex-direction: column;
