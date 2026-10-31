@@ -8,8 +8,9 @@ facts:
   Team: "Tôi và 2 designer, cùng CEO, tech lead và PO phía khách"
   Vai trò: "Product Owner, BA, Lead Product Designer"
   Thời gian: "3 năm, ship theo quý"
+cover: "/projects/cross-border-marketplace/cover.svg"
 order: 0
-draft: true
+draft: false
 ---
 
 Quyết định then chốt là gắn mọi quy tắc theo quốc gia vào sản phẩm thay vì vào quốc gia, sau khi seller trong vòng MVP test không quản lý nổi danh mục được tổ chức theo chiều ngược lại.
@@ -45,7 +46,10 @@ Tôi làm ở phía vendor, kiêm bốn vai. CEO, tech lead và PO phía khách 
 - **Fulfilment.** Giống dropshipping: seller ở Việt Nam chỉ đóng gói và gửi hàng khi người mua ở nước ngoài đã đặt.
 - **Ngoài phạm vi bài này.** Voucher, campaign, đổi trả và payout có trong nền tảng nhưng không được kể ở đây.
 
-<!-- TODO hình: sơ đồ Product → Country → Variants và hai trục trạng thái của order (bản dựng lại) -->
+<figure class="shot">
+  <img src="/projects/cross-border-marketplace/order-states.svg" alt="Sơ đồ một đơn hàng theo dõi trên hai trục, thanh toán và giao hàng, theo mô hình Shopify" loading="lazy" />
+  <figcaption>Thanh toán và giao hàng là hai trục riêng, theo mô hình Shopify.</figcaption>
+</figure>
 
 ## Quyết định 1: thử cross-border trên lõi nội địa, rồi chạy cả hai
 
@@ -70,15 +74,16 @@ Khi trong công ty chưa ai có kinh nghiệm e-commerce, một mô hình đơn 
 - **Test.** Trong MVP test, seller thấy quản lý sản phẩm theo cách này quá khó. Cùng một sản phẩm nằm dưới nhiều quốc gia và phải cập nhật ở từng chỗ.
 - **Lựa chọn.** Product → Country → Variants. Seller quản lý một sản phẩm; quốc gia là một phần bên trong nó, mỗi quốc gia mang phí dropship riêng.
 
-<!-- TODO hình: hai cấu trúc đặt cạnh nhau, bản bị bỏ và bản được chọn -->
+<figure class="shot">
+  <img src="/projects/cross-border-marketplace/product-structure.svg" alt="Hai cấu trúc sản phẩm đặt cạnh nhau: Country, Product, Variants bị bỏ; Product, Country, Variants được ship" loading="lazy" />
+  <figcaption>Cấu trúc bị bỏ lặp lại mỗi sản phẩm dưới từng quốc gia.</figcaption>
+</figure>
 
 ## Một sản phẩm, từ seller đến người mua ở nước ngoài
 
 - **Seller app.** Trình sửa sản phẩm mở từ sản phẩm, có phần quốc gia hiện phí cho từng nước nhận.
 - **Admin.** Đơn hàng hiện thanh toán và giao hàng thành hai trạng thái, để team thấy đơn nào đã trả tiền mà vẫn chờ gửi.
 - **Buyer app.** Người mua ở nước ngoài thấy sản phẩm cùng chi phí cho đúng nước của họ.
-
-<!-- TODO hình: product editor, order admin, buyer product page (bản dựng lại) -->
 
 ## Design system
 
@@ -88,13 +93,10 @@ Khi trong công ty chưa ai có kinh nghiệm e-commerce, một mô hình đơn 
 
 ## Về hình ảnh
 
-Các thiết kế trong bài là bản dựng lại. Tên khách, thuật ngữ và dữ liệu đã được thay đổi, số liệu của dự án không công bố.
+Các sơ đồ là bản dựng lại đã giản lược. Màn hình, tên và dữ liệu của khách không được đưa vào, số liệu của dự án không công bố.
 
 ## Nếu làm lại
 
 - **Tài liệu.** Tôi sẽ lưu tài liệu dự án theo timeline ngay từ tháng đầu. Dự án lớn đến mức không ai nhớ hết, và mỗi lần chuyển giao là một lần dựng lại ngữ cảnh.
 - **Quyết định 3.** Tôi sẽ lồng dần tính năng cross-border vào lúc seller còn đang bán nội địa, hướng dẫn họ từng bước, rồi mới giao bản cross-border hoàn chỉnh.
 
-## Design
-
-<!-- TODO: 7 ảnh bản dựng lại, khác các ảnh trong bài, theo mẫu gallery của trang project -->
