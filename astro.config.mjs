@@ -17,6 +17,9 @@ export default defineConfig({
   },
   // Trang redirect không vào sitemap.
   integrations: [sitemap({ filter: (page) => !/\/(cv|cv-print|shopify-profit-analytics)\/$/.test(page) })],
+  // Chỉ dùng tsconfig của project. Worktree nằm trong .claude/worktrees của repo chính, Vite tự dò
+  // lên tsconfig cha (không có node_modules) và lỗi "Tsconfig not found astro/tsconfigs/strict".
+  vite: { tsconfig: "./tsconfig.json" },
   build: {
     format: "directory",
   },
