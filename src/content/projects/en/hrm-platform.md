@@ -5,12 +5,10 @@ year: "2024"
 summary: "An HRM product for an enterprise client, built by an IT outsourcing team with no prior HRM experience. Shipped and in daily use."
 facts:
   Year: "2024"
-  Platform: "TODO" # Web / Desktop / Mobile
   Team: "3 designers (me and 2 juniors), 50 developers"
   Role: "Lead Product Designer, product consultant"
-  Duration: "TODO"
-order: 99
-draft: true
+order: 2.5
+draft: false
 ---
 
 The key decisions were to build the product in the order the seat model dictates, and to make a transfer as fast in the system as it had been in chat.
@@ -24,7 +22,6 @@ The key decisions were to build the product in the order the seat model dictates
 ## Outcome
 
 - **Shipped.** The product is live and the client's staff use it daily.
-- **Scope.** TODO: module names.
 - **One system.** A single design system, used by the two junior designers and all fifty developers.
 - **No usage metrics.** The product and its data belong to the client, so this page reports no numbers beyond team size.
 
@@ -42,8 +39,6 @@ The product is position based. Every change to the organisation goes through a s
 - **Person.** The employee, with their own record.
 - **Seat (position).** A place in the org chart, created and approved before anyone is hired into it. It exists whether filled or vacant. Department and reporting line live on the seat.
 - **Assignment.** A person placed in a seat. Hiring, promotion and transfer all create or change an assignment.
-
-<!-- TODO: diagram Person / Seat / Assignment -->
 
 ## Decision 1: build in the order the seat model dictates
 
@@ -80,8 +75,6 @@ The product follows a single seat through its changes.
 - **Transfer request.** A manager, lead or HR picks the person and the target seat, and sets an effective date. The target seat locks once the request is sent.
 - **Approval.** Every required level gets the request at the same time, in the product and in the Transfers chat bot. Each approver can approve from either place.
 - **Effective date.** When all approvals are in, the assignment changes on the effective date and the seat lock is released.
-
-<!-- TODO: screens, one per step, captions up to 80 characters, each pointing to a decision -->
 
 ## What I would do differently
 
