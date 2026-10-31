@@ -5,12 +5,10 @@ year: "2024"
 summary: "Sản phẩm HRM cho một khách hàng doanh nghiệp, do một đội IT outsourcing chưa từng làm HRM xây dựng. Đã ship và đang được dùng hằng ngày."
 facts:
   Năm: "2024"
-  Nền tảng: "TODO" # Web / Desktop / Mobile
   Team: "3 designer (tôi và 2 junior), 50 developer"
   Vai trò: "Lead Product Designer, product consultant"
-  Thời gian: "TODO"
-order: 99
-draft: true
+order: 2.5
+draft: false
 ---
 
 Hai quyết định chính: xây sản phẩm theo đúng thứ tự mà mô hình ghế đòi hỏi, và làm cho một lần điều chuyển trên hệ thống nhanh ngang với nhắn tin.
@@ -24,7 +22,6 @@ Hai quyết định chính: xây sản phẩm theo đúng thứ tự mà mô hì
 ## Kết quả
 
 - **Đã ship.** Sản phẩm đang chạy thật, nhân viên của khách dùng hằng ngày.
-- **Phạm vi.** TODO: tên các module.
 - **Một hệ thống.** Một design system duy nhất, 2 designer junior và cả 50 developer cùng dùng.
 - **Không có số liệu sử dụng.** Sản phẩm và dữ liệu thuộc về khách, nên trang này không đưa con số nào ngoài cỡ team.
 
@@ -42,8 +39,6 @@ Sản phẩm xây theo mô hình vị trí. Mọi thay đổi trong tổ chức 
 - **Người.** Nhân viên, với hồ sơ của riêng họ.
 - **Ghế (vị trí).** Một chỗ trong sơ đồ tổ chức, được tạo và duyệt trước khi tuyển ai vào. Ghế tồn tại dù có người ngồi hay đang trống. Phòng ban và quan hệ báo cáo nằm trên ghế.
 - **Phân công.** Một người được xếp vào một ghế. Tuyển dụng, thăng chức và điều chuyển đều tạo mới hoặc thay đổi một phân công.
-
-<!-- TODO: sơ đồ Người / Ghế / Phân công -->
 
 ## Quyết định 1: xây theo thứ tự mà mô hình ghế đòi hỏi
 
@@ -80,8 +75,6 @@ Sản phẩm đi theo một cái ghế qua các lần thay đổi của nó.
 - **Tạo yêu cầu điều chuyển.** Manager, lead hoặc HR chọn người và ghế đích, rồi đặt ngày hiệu lực. Ghế đích bị khóa ngay khi gửi yêu cầu.
 - **Duyệt.** Mọi cấp cần duyệt nhận yêu cầu cùng lúc, trong sản phẩm và trong bot chat Điều chuyển. Mỗi người duyệt có thể duyệt ở chỗ nào cũng được.
 - **Ngày hiệu lực.** Khi đủ duyệt, phân công đổi vào ngày hiệu lực và ghế được mở khóa.
-
-<!-- TODO: màn hình cho từng bước, caption tối đa 80 ký tự, mỗi ảnh trỏ về một quyết định -->
 
 ## Nếu làm lại
 
