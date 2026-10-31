@@ -713,6 +713,7 @@ img.feature-media {
   top: 0.9rem;
   right: calc(100% + 2 * var(--pad));
   width: calc((100% + 2 * var(--pad)) / 2 - 2 * var(--pad));
+  height: auto; /* <Image> có thuộc tính height, không gỡ thì aspect-ratio bị bỏ qua */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   opacity: 0;
