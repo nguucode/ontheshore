@@ -8,8 +8,9 @@ facts:
   Team: "Me and 2 designers, with the client's CEO, tech lead and PO"
   Role: "Product Owner, BA, Lead Product Designer"
   Duration: "3 years, shipped quarterly"
+cover: "/projects/cross-border-marketplace/cover.svg"
 order: 0
-draft: true
+draft: false
 ---
 
 The key decision was to hang every country-specific rule on the product rather than on the country, after sellers in the MVP test could not manage a catalogue organised the other way round.
@@ -45,12 +46,10 @@ I worked on the vendor side, across four roles. The client's CEO, tech lead and 
 - **Fulfilment.** Works like dropshipping: the seller in Vietnam packs and ships the item only once a buyer abroad has ordered it.
 - **Outside this story.** Vouchers, campaigns, returns and payouts exist in the platform but are not covered here.
 
-<!-- TODO hình: sơ đồ Product → Country → Variants và hai trục trạng thái của order (bản dựng lại)
 <figure class="shot">
-  <img src="/projects/cross-border-marketplace/order-lifecycle.svg" alt="" loading="lazy" />
-  <figcaption></figcaption>
+  <img src="/projects/cross-border-marketplace/order-states.svg" alt="Diagram of one order tracked on two axes, payment and fulfilment, modelled on Shopify" loading="lazy" />
+  <figcaption>Payment and fulfilment as two axes, modelled on Shopify.</figcaption>
 </figure>
--->
 
 ## Decision 1: test cross-border on the domestic core, then run both
 
@@ -75,15 +74,16 @@ Without in-house e-commerce experience, an order model designed from scratch wou
 - **Test.** In the MVP test, sellers found it too hard to manage products this way. The same product sat under several countries and had to be maintained in each.
 - **Chosen.** Product → Country → Variants. The seller manages one product; countries are a section inside it, and each country brings its own dropshipping fee.
 
-<!-- TODO hình: hai cấu trúc đặt cạnh nhau, bản bị bỏ và bản được chọn -->
+<figure class="shot">
+  <img src="/projects/cross-border-marketplace/product-structure.svg" alt="Two product structures side by side: Country, Product, Variants dropped; Product, Country, Variants shipped" loading="lazy" />
+  <figcaption>The dropped structure repeated each product under every country.</figcaption>
+</figure>
 
 ## One product, from seller to buyer abroad
 
 - **Seller app.** The product editor opens on the product, with a countries section that shows the fees for each destination.
 - **Admin.** Orders show payment and fulfilment as two states, so the team can see what is paid and still waiting to ship.
 - **Buyer app.** Buyers abroad see the product with the costs for their own country.
-
-<!-- TODO hình: product editor, order admin, buyer product page (bản dựng lại) -->
 
 ## Design system
 
@@ -93,13 +93,10 @@ Without in-house e-commerce experience, an order model designed from scratch wou
 
 ## About the visuals
 
-The designs shown are reconstructions. Client names, terms and data have been changed, and the project's figures are not published.
+The diagrams are simplified reconstructions. Client screens, names and data are left out, and the project's figures are not published.
 
 ## What I would do differently
 
 - **Documentation.** I would store project documents along the project timeline from the first month. The project grew too large for anyone to hold in memory, and handing work over meant rebuilding context each time.
 - **Decision 3.** I would bring cross-border features in gradually while sellers were still selling domestically, guiding them one step at a time, and deliver the full cross-border flow after that.
 
-## Design
-
-<!-- TODO: 7 ảnh bản dựng lại, khác các ảnh trong bài, theo mẫu gallery của trang project -->
