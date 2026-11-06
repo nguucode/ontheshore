@@ -17,12 +17,11 @@ const t = T(lang);
 
 const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
   .sort(byYear);
-const homeProjects = projects.slice(1, 4); // project đầu đã nằm ở slide Featured
 
 // Có lượt dùng xếp trước, theo số lượt dùng.
 const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0)).slice(0, 3);
 
-// Featured: 3 slide cùng khung: tag nền tảng, kicker "loại · chi tiết", mô tả 120–150 ký tự, một số liệu.
+// Featured: 5 slide cùng khung: tag nền tảng, kicker "loại · chi tiết", mô tả 120–150 ký tự, một số liệu.
 type Slide = {
   tag: string;
   kicker: string;
@@ -34,23 +33,14 @@ type Slide = {
   thumb?: ImageMetadata;
   poster?: { top: string; bottom: string };
 };
-const lead = projects[0];
 const top = topByUses[0];
 const app = all.find((it) => it.price && it.href)!;
+const shot = all.find((it) => it.name === "ShoreShot")!;
+const accountkit = projects.find((p) => p.slug === "accountkit")!;
+const zweihander = projects.find((p) => p.slug === "zweihander")!;
+// project đã nằm ở slide Featured thì không lặp lại ở danh sách Projects
+const homeProjects = projects.filter((p) => p !== accountkit && p !== zweihander).slice(0, 3);
 const slides: Slide[] = [
-  lead && {
-    tag: "Shopify App",
-    kicker: `Project · ${lead.data.year}`,
-    title: lead.data.title,
-    desc: t(
-      "App Shopify tự gom mọi khoản chi phí, từ giá vốn, phí ship tới tiền quảng cáo, rồi cho chủ shop thấy lợi nhuận ròng thật theo thời gian thực.",
-      "A Shopify app that gathers every cost on its own, from COGS and shipping to ad spend, and shows merchants their true net profit, live."
-    ),
-    stat: { value: "6", unit: t("module lõi, web và iOS", "core modules, web and iOS") },
-    href: url(lang, `/projects/${lead.slug}/`),
-    cta: t("Xem project", "View the project"),
-    poster: { top: lead.data.year, bottom: lead.data.role },
-  },
   {
     tag: "Figma Community",
     kicker: t("Template · miễn phí", "Template · free"),
@@ -77,7 +67,46 @@ const slides: Slide[] = [
     cta: t("Xem sản phẩm", "View the product"),
     thumb: app.thumb,
   },
-].filter(Boolean) as Slide[];
+  {
+    tag: shot.kind!,
+    kicker: t("App · miễn phí", "App · free"),
+    title: shot.name,
+    desc: t(
+      "Chụp màn hình, chú thích bằng khung, chữ hoặc bút, rồi copy hoặc dán thẳng vào app đang dùng. Chạy nền ở thanh menu macOS, khay hệ thống Windows.",
+      "Capture your screen, mark it up with shapes, text or a pen, then copy it or paste it straight into the app you were using. Runs from the menu bar."
+    ),
+    stat: { value: "3", unit: t("kiểu chụp: vùng, cửa sổ, cả màn hình", "capture modes: area, window, full screen") },
+    href: shot.href!,
+    cta: t("Xem trang app", "Visit the site"),
+    thumb: shot.thumb,
+  },
+  {
+    tag: t("SaaS kế toán", "Accounting SaaS"),
+    kicker: `Project · ${accountkit.data.year}`,
+    title: accountkit.data.title,
+    desc: t(
+      "Design system, thiết kế sản phẩm và quy trình làm việc với Claude Code cho SaaS kế toán ở Úc, để CEO tự làm prototype thể hiện ý tưởng.",
+      "A design system, product design and a Claude Code workflow for an Australian accounting SaaS, so the CEO can build a prototype to show an idea."
+    ),
+    stat: { value: "6", unit: t("tháng, team 7 người", "months, team of 7") },
+    href: url(lang, `/projects/${accountkit.slug}/`),
+    cta: t("Xem project", "View the project"),
+    poster: { top: accountkit.data.year, bottom: accountkit.data.role },
+  },
+  {
+    tag: "React + Figma",
+    kicker: `Project · ${zweihander.data.year}`,
+    title: "Zweihänder",
+    desc: t(
+      "Design system cho React tôi dựng lại công khai, lấy code làm nguồn token duy nhất để Figma đi theo, nên design và code không lệch nhau nữa.",
+      "A React design system I rebuilt in public, with code as the only source of tokens and Figma following, so design and code cannot drift apart."
+    ),
+    stat: { value: "6", unit: t("tuần, mã nguồn mở", "weeks, open source") },
+    href: url(lang, `/projects/${zweihander.slug}/`),
+    cta: t("Xem project", "View the project"),
+    poster: { top: zweihander.data.year, bottom: zweihander.data.role },
+  },
+];
 
 // Mô tả lệch khỏi 120–150 ký tự thì build hỏng, khỏi phải nhớ mà đếm.
 for (const sl of slides) {
