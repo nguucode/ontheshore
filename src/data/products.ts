@@ -6,12 +6,13 @@
    local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
    price: sản phẩm trả phí, hiện thay số lượt dùng, không tính vào số miễn phí.
    kind: nhãn riêng cho mục chạy trên nhiều nền tảng (vd. Kusabimaru: web + plugin Figma).
-   thumb: ảnh ở khung Featured trên trang chủ (mục nhiều lượt dùng nhất và app trả phí). */
+   thumb: ảnh ở khung Featured trên trang chủ (mục nhiều lượt dùng nhất và các app). */
 import type { ImageMetadata } from "astro";
 import circleCharts from "../assets/products/circle-charts.png";
 import basicCharts from "../assets/products/basic-charts.png";
 import polarisChart from "../assets/products/polaris-chart.png";
 import kusabimaru from "../assets/products/kusabimaru/macbook.png";
+import shoreshot from "../assets/products/shoreshot.jpg";
 
 export type Item = {
   name: string;
@@ -82,6 +83,7 @@ const apps: Item[] = [
   },
   {
     name: "ShoreShot",
+    thumb: shoreshot,
     href: "https://shoreshot.ontheshore.biz",
     kind: "macOS + Windows",
     free: true,
