@@ -72,13 +72,12 @@ const apps: Item[] = [
   {
     name: "Kusabimaru",
     thumb: kusabimaru,
-    href: "/products/kusabimaru/",
-    local: true,
+    href: "https://kusabimaru.ontheshore.biz",
     price: "$20",
     kind: "Web + Figma plugin",
     note: {
-      vi: "Web app và plugin Figma. Đặt ảnh chụp màn hình hoặc frame vào thiết bị 3D thật, xoay tới góc ưng ý, xuất PNG nền trong suốt. Web app dùng được ngay, plugin đang chờ Figma duyệt. 50 lượt đầu miễn phí.",
-      en: "A web app and a Figma plugin. Put a screenshot or a frame on a real 3D device, turn it to any angle, export a transparent PNG. The web app is live; the plugin is in Figma review. The first 50 exports are free.",
+      vi: "Web app và plugin Figma. Đặt ảnh chụp màn hình hoặc frame vào thiết bị 3D thật, xoay tới góc ưng ý, xuất PNG nền trong suốt. 50 lượt đầu miễn phí.",
+      en: "A web app and a Figma plugin. Put a screenshot or a frame on a real 3D device, turn it to any angle, export a transparent PNG. The first 50 exports are free.",
     },
   },
   {

@@ -37,6 +37,8 @@ jobs:
           ref: gh-pages
           path: dist/products/kusabimaru/app
           token: ${{ secrets.KUSABIMARU_READ_TOKEN }}
+      # The same branch carries the Kusabimaru landing page, served at /products/kusabimaru/
+      - run: mv dist/products/kusabimaru/app/landing/* dist/products/kusabimaru/ && rmdir dist/products/kusabimaru/app/landing
       # ontheshore.biz is a custom domain on the Cloudflare Pages project (GitHub Pages terms rule out a site that sells things)
       - run: npx -y wrangler@4 pages deploy dist --project-name=ontheshore --branch=main
         env:
