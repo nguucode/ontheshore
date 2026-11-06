@@ -80,13 +80,12 @@ const apps: Item[] = [
     },
   },
   {
-    name: "Blasphemous",
-    href: "/products/blasphemous/",
-    local: true,
-    wip: true,
+    name: "ShoreShot",
+    href: "https://shoreshot.ontheshore.biz",
+    kind: "macOS + Windows",
     note: {
-      vi: "Trình chiếu prototype Figma cho khách bằng một link: không cần tài khoản Figma, chuyển phone, tablet, desktop ngay trên trang, iPhone 3D xoay được. Khách chỉ thấy sản phẩm, không thấy giao diện Figma.",
-      en: "Show Figma prototypes to clients with one link: no Figma account, switch phone, tablet, desktop on the page, a rotatable 3D iPhone. Clients see the product, not the Figma interface.",
+      vi: "App chụp màn hình và chú thích. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Miễn phí, mã nguồn mở.",
+      en: "A screenshot and annotation app. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Free and open source.",
     },
   },
 ];
