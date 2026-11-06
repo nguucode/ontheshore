@@ -84,8 +84,8 @@ const apps: Item[] = [
     href: "https://shoreshot.ontheshore.biz",
     kind: "macOS + Windows",
     note: {
-      vi: "App chụp màn hình và chú thích cho macOS, Windows. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Miễn phí, mã nguồn mở.",
-      en: "A screenshot and annotation app for macOS and Windows. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Free and open source.",
+      vi: "App chụp màn hình và chú thích. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Miễn phí, mã nguồn mở.",
+      en: "A screenshot and annotation app. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Free and open source.",
     },
   },
 ];
