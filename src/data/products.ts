@@ -21,6 +21,7 @@ export type Item = {
   uses?: number;
   wip?: boolean;
   price?: string;
+  free?: boolean; // hiện nhãn "Free" thay cho "—"
   kind?: string; // ghi đè nhãn nhóm trên từng dòng
   note: { vi: string; en: string };
 };
@@ -83,9 +84,10 @@ const apps: Item[] = [
     name: "ShoreShot",
     href: "https://shoreshot.ontheshore.biz",
     kind: "macOS + Windows",
+    free: true,
     note: {
-      vi: "App chụp màn hình và chú thích. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Miễn phí, mã nguồn mở.",
-      en: "A screenshot and annotation app. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Free and open source.",
+      vi: "App chụp màn hình và chú thích. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Mã nguồn mở.",
+      en: "A screenshot and annotation app. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Open source.",
     },
   },
 ];

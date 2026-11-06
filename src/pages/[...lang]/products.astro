@@ -37,7 +37,7 @@ const t = T(lang);
               <Row
                 href={it.href && (it.local ? url(lang, it.href) : it.href)}
                 title={it.name}
-                lead={it.uses ? compact(it.uses) : (it.price ?? "—")}
+                lead={it.uses ? compact(it.uses) : (it.price ?? (it.free ? t("Miễn phí", "Free") : "—"))}
                 meta={it.uses ? t("lượt dùng", "uses") : undefined}
                 kicker={it.kind ?? g.kind}
                 flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
