@@ -45,8 +45,8 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      # Stays at /products/kusabimaru/ too until the subdomain is verified.
-      - run: mv dist/products/kusabimaru/app/landing/* dist/products/kusabimaru/ && rmdir dist/products/kusabimaru/app/landing
+      # /products/kusabimaru/ redirects to the subdomain (public/_redirects); only the app stays on this site.
+      - run: rm -rf dist/products/kusabimaru/app/landing
       # ontheshore.biz is a custom domain on the Cloudflare Pages project (GitHub Pages terms rule out a site that sells things)
       - run: npx -y wrangler@4 pages deploy dist --project-name=ontheshore --branch=main
         env:
