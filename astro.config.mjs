@@ -17,13 +17,10 @@ export default defineConfig({
     // AccountKit từng ẩn danh là "Accounting SaaS" (2026-10-01 → 2026-10-31)
     "/projects/accounting-saas/": "/projects/accountkit/",
     "/vi/projects/accounting-saas/": "/vi/projects/accountkit/",
-    // Trang Kusabimaru giờ là landing tiếng Anh build từ repo kusabimaru, CI chép vào /products/kusabimaru/
-    "/vi/products/kusabimaru/": "/products/kusabimaru/",
   },
   // Trang redirect không vào sitemap.
   integrations: [sitemap({
-      filter: (page) => !/\/(cv|cv-print|shopify-profit-analytics|accounting-saas)\/$/.test(page) && !page.endsWith("/vi/products/kusabimaru/"),
-      customPages: ["https://ontheshore.biz/products/kusabimaru/"],
+      filter: (page) => !/\/(cv|cv-print|shopify-profit-analytics|accounting-saas)\/$/.test(page),
     })],
   // Chỉ dùng tsconfig của project. Worktree nằm trong .claude/worktrees của repo chính, Vite tự dò
   // lên tsconfig cha (không có node_modules) và lỗi "Tsconfig not found astro/tsconfigs/strict".
