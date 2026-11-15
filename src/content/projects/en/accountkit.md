@@ -92,7 +92,7 @@ A prototype let the CEO show the team an idea instead of describing it, and that
 
 ## Try this workflow (free)
 
-AccountKit's design system and prompts belong to the company, so I cannot share them here. The same workflow runs on [Zweihänder](/projects/zweihander/), my open-source design system. Its [Storybook](https://zweihander.ontheshore.biz/storybook/) is the component source a prototype is built from.
+AccountKit's design system and prompts belong to the company, so I cannot share them here. The same workflow runs on [Marram](/projects/marram/), my open-source design system. Its [Storybook](https://marram.ontheshore.biz/storybook/) is the component source a prototype is built from.
 
 ## About the visuals
 

@@ -37,9 +37,9 @@ const top = topByUses[0];
 const app = all.find((it) => it.price && it.href)!;
 const shot = all.find((it) => it.name === "ShoreShot")!;
 const accountkit = projects.find((p) => p.slug === "accountkit")!;
-const zweihander = projects.find((p) => p.slug === "zweihander")!;
+const marram = projects.find((p) => p.slug === "marram")!;
 // project đã nằm ở slide Featured thì không lặp lại ở danh sách Projects
-const homeProjects = projects.filter((p) => p !== accountkit && p !== zweihander).slice(0, 3);
+const homeProjects = projects.filter((p) => p !== accountkit && p !== marram).slice(0, 3);
 const slides: Slide[] = [
   {
     tag: "Figma Community",
@@ -95,16 +95,16 @@ const slides: Slide[] = [
   },
   {
     tag: "React + Figma",
-    kicker: `Project · ${zweihander.data.year}`,
-    title: "Zweihänder",
+    kicker: `Project · ${marram.data.year}`,
+    title: "Marram",
     desc: t(
       "Design system cho React tôi dựng lại công khai, lấy code làm nguồn token duy nhất để Figma đi theo, nên design và code không lệch nhau nữa.",
       "A React design system I rebuilt in public, with code as the only source of tokens and Figma following, so design and code cannot drift apart."
     ),
     stat: { value: "6", unit: t("tuần, mã nguồn mở", "weeks, open source") },
-    href: url(lang, `/projects/${zweihander.slug}/`),
+    href: url(lang, `/projects/${marram.slug}/`),
     cta: t("Xem project", "View the project"),
-    poster: { top: zweihander.data.year, bottom: zweihander.data.role },
+    poster: { top: marram.data.year, bottom: marram.data.role },
   },
 ];
 

@@ -1,6 +1,6 @@
 # Third-party skills
 
-Skill folders in `.claude/skills/` copied from upstream, by way of the zweihander repo (`nguucode/zweihander`, `.claude/skills/`), where they were vendored first. `project-flow` is ours, adapted from zweihander's copy for this repo (tracker path, ship checks). zweihander's `zw-build` is not copied: it builds design-system components, which live in that repo.
+Skill folders in `.claude/skills/` copied from upstream, by way of the marram repo (`nguucode/marram`, `.claude/skills/`), where they were vendored first. `project-flow` is ours, adapted from marram's copy for this repo (tracker path, ship checks). marram's `zw-build` is not copied: it builds design-system components, which live in that repo.
 
 Local edits: mattpocock `code-review` renamed to `matt-code-review` (folder and `name:`) because Claude Code's built-in `/code-review` shadows it; references in `ask-matt`, `implement`, `implement-spec` and `tdd` updated to match. Everything else is verbatim.
 

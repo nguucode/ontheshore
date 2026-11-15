@@ -109,7 +109,7 @@ export const community = (uses: string): { name: string; what: Text; href: strin
   },
   {
     name: "Website",
-    what: { vi: "Tất cả sản phẩm, project và UI kit Zweihänder", en: "All products, projects and the Zweihänder UI kit" },
+    what: { vi: "Tất cả sản phẩm, project và UI kit Marram", en: "All products, projects and the Marram UI kit" },
     href: "https://ontheshore.biz/",
   },
 ];
