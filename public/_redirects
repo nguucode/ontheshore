@@ -2,3 +2,9 @@
 /products/kusabimaru https://kusabimaru.ontheshore.biz/ 301
 /vi/products/kusabimaru/ https://kusabimaru.ontheshore.biz/ 301
 /vi/products/kusabimaru https://kusabimaru.ontheshore.biz/ 301
+/zweihander/* https://marram.ontheshore.biz/:splat 301
+/zweihander https://marram.ontheshore.biz/ 301
+/projects/zweihander/ /projects/marram/ 301
+/projects/zweihander /projects/marram/ 301
+/vi/projects/zweihander/ /vi/projects/marram/ 301
+/vi/projects/zweihander /vi/projects/marram/ 301

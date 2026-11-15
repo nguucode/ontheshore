@@ -2,7 +2,7 @@
 title: "One token source, every change checked"
 role: "Senior Product Designer"
 year: "2026"
-summary: "Zweihänder, a React design system I rebuilt in public in six weeks, because the systems I ran at previous companies are under NDA. Open source, MIT, early stage."
+summary: "Marram, a React design system I rebuilt in public in six weeks, because the systems I ran at previous companies are under NDA. Open source, MIT, early stage."
 facts:
   Year: "2026"
   Duration: "6 weeks"
@@ -10,9 +10,8 @@ facts:
   Team: "Me, with AI agents writing most of the code"
   Platform: "React, Figma"
   License: "MIT"
-  GitHub: "https://github.com/nguucode/zweihander"
-  npm: "https://www.npmjs.com/package/zweihander"
-  Storybook: "https://zweihander.ontheshore.biz/storybook/"
+  GitHub: "https://github.com/nguucode/marram"
+  Storybook: "https://marram.ontheshore.biz/storybook/"
 order: 4
 draft: false
 ---
@@ -31,7 +30,7 @@ On every team I joined, the design system did not exist yet, and the cost showed
 
 ## What the public rebuild shows
 
-At the companies I have no numbers I can publish. What changed was visible: the team designed in one direction, and output stayed even from one designer to the next. For Zweihänder everything is measured.
+At the companies I have no numbers I can publish. What changed was visible: the team designed in one direction, and output stayed even from one designer to the next. For Marram everything is measured.
 
 <dl class="stats">
   <div><dt>Components and patterns</dt><dd class="v">62</dd><dd class="src">Entry points in package.json on main, 28 Oct 2026</dd></div>
@@ -41,7 +40,7 @@ At the companies I have no numbers I can publish. What changed was visible: the 
 </dl>
 
 - **Accessibility is tested, not certified.** Every component has automated axe checks set to fail the build, plus play tests for keyboard behaviour. That is not a WCAG audit.
-- **No outside adoption yet.** Zweihänder has no known consumers, so I make no claim about usage or speed.
+- **No outside adoption yet.** Marram has no known consumers, so I make no claim about usage or speed.
 
 ## I set the direction and the rules; AI wrote most of the code
 
@@ -107,7 +106,7 @@ When AI writes most of the code, the gate holds quality, not the reviewer's memo
 
 ## What I left out
 
-The systems I built at previous companies: their names, clients, screens and the industries narrow enough to identify them. Every image and number on this page comes from Zweihänder.
+The systems I built at previous companies: their names, clients, screens and the industries narrow enough to identify them. Every image and number on this page comes from Marram.
 
 ## What I would do differently
 
@@ -116,4 +115,4 @@ The systems I built at previous companies: their names, clients, screens and the
 - **Decision 1.** I would bring Table in earlier. It is the component that proves a system is ready for ERP work.
 - **Working with AI.** The clearer the rules, the more often AI gets it right first time. My job moved from drawing components to writing the rules they follow.
 
-<!-- TODO: add figures for the domain section (component lifecycle, three token tiers) and each decision, then a "## Design" gallery of 7 images (dark mode, Compact density, 5 radius presets, AppShell 3 surfaces, NavSidebar, Avatar and Tag 17 hues, docs home). Images go in public/projects/zweihander/. -->
+<!-- TODO: add figures for the domain section (component lifecycle, three token tiers) and each decision, then a "## Design" gallery of 7 images (dark mode, Compact density, 5 radius presets, AppShell 3 surfaces, NavSidebar, Avatar and Tag 17 hues, docs home). Images go in public/projects/marram/. -->

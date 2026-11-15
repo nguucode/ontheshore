@@ -14,7 +14,7 @@ A thread started for one ticket skips this file and follows [TICKET-THREAD.md](T
 - **User-invoked skills** (`disable-model-invocation: true`: setup-matt-pocock-skills, grill-with-docs, to-spec, to-tickets, implement, improve-codebase-architecture) cannot be reached through the Skill tool. Read `.claude/skills/<name>/SKILL.md` and follow it as if the user had typed the command.
 - **Model-invoked skills** (research, prototype, tdd, diagnosing-bugs, matt-code-review, ponytail-*): call the Skill tool.
 - **Built-ins** (`code-review`, `security-review`, `run`) and `a11y-enforcer:a11y-check`: call the Skill tool.
-- Repo conventions sit on top of every step: `docs/agents/*.md` (tracker in the vault, `CONTEXT.md`, ADRs). This flow is the only implementation process. Changes to Zweihänder components belong in the zweihander repo (its own `project-flow` and `COMPONENTS.md`), not here.
+- Repo conventions sit on top of every step: `docs/agents/*.md` (tracker in the vault, `CONTEXT.md`, ADRs). This flow is the only implementation process. Changes to Marram components belong in the marram repo (its own `project-flow` and `COMPONENTS.md`), not here.
 - This repo has no test runner yet. When a step calls for a failing test first (`tdd`, `diagnosing-bugs`), say so in the checklist and prove the change with `npm run build` plus `run` instead, until a runner is added.
 - The tracker lives in the vault on the user's Mac. Reach it with the device folder tools (`/Volumes/KAFKA/Vault`); if none are connected, call `connect_device` and wait. Write vault files in Vietnamese, following `/Volumes/KAFKA/Vault/CLAUDE.md`.
 

@@ -95,8 +95,8 @@ const apps: Item[] = [
 
 const uiKits: Item[] = [
   {
-    name: "Zweihänder",
-    href: "/zweihander/",
+    name: "Marram",
+    href: "https://marram.ontheshore.biz",
     note: {
       vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
       en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Button and Text Input are ready so far.",

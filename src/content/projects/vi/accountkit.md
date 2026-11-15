@@ -92,7 +92,7 @@ Prototype giúp CEO cho cả team thấy ý tưởng thay vì phải kể lại 
 
 ## Hãy thử với quy trình này (Miễn phí)
 
-Design system và prompt của AccountKit thuộc về công ty, nên tôi không thể đưa ra đây. Cùng quy trình này chạy được trên [Zweihänder](/vi/projects/zweihander/), design system mã nguồn mở của tôi. [Storybook](https://zweihander.ontheshore.biz/storybook/) của nó chính là nguồn component để một prototype được dựng lên.
+Design system và prompt của AccountKit thuộc về công ty, nên tôi không thể đưa ra đây. Cùng quy trình này chạy được trên [Marram](/vi/projects/marram/), design system mã nguồn mở của tôi. [Storybook](https://marram.ontheshore.biz/storybook/) của nó chính là nguồn component để một prototype được dựng lên.
 
 ## Về hình ảnh
 

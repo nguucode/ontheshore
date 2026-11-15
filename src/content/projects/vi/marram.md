@@ -2,7 +2,7 @@
 title: "Một nguồn token, mọi thay đổi đều được kiểm"
 role: "Senior Product Designer"
 year: "2026"
-summary: "Zweihänder, design system cho React mà tôi dựng lại công khai trong sáu tuần, vì các hệ tôi vận hành ở những công ty trước thuộc NDA. Open source, MIT, đang ở giai đoạn đầu."
+summary: "Marram, design system cho React mà tôi dựng lại công khai trong sáu tuần, vì các hệ tôi vận hành ở những công ty trước thuộc NDA. Open source, MIT, đang ở giai đoạn đầu."
 facts:
   Năm: "2026"
   Thời gian: "6 tuần"
@@ -10,9 +10,8 @@ facts:
   Team: "Tôi, cùng agent AI viết phần lớn code"
   Nền tảng: "React, Figma"
   License: "MIT"
-  GitHub: "https://github.com/nguucode/zweihander"
-  npm: "https://www.npmjs.com/package/zweihander"
-  Storybook: "https://zweihander.ontheshore.biz/storybook/"
+  GitHub: "https://github.com/nguucode/marram"
+  Storybook: "https://marram.ontheshore.biz/storybook/"
 order: 4
 draft: false
 ---
@@ -31,7 +30,7 @@ draft: false
 
 ## Bản dựng lại công khai cho thấy gì
 
-Ở các công ty, tôi không có số nào được phép công bố. Thay đổi thì nhìn thấy được: cả team thiết kế theo một hướng, output đều nhau giữa các designer. Với Zweihänder thì mọi thứ đều đo được.
+Ở các công ty, tôi không có số nào được phép công bố. Thay đổi thì nhìn thấy được: cả team thiết kế theo một hướng, output đều nhau giữa các designer. Với Marram thì mọi thứ đều đo được.
 
 <dl class="stats">
   <div><dt>Component và pattern</dt><dd class="v">62</dd><dd class="src">Entry point trong package.json trên main, 28/10/2026</dd></div>
@@ -41,7 +40,7 @@ draft: false
 </dl>
 
 - **Accessibility được test, không được chứng nhận.** Mọi component có kiểm tra axe tự động, lỗi là build hỏng, cùng play test cho thao tác bàn phím. Đó không phải một lần audit WCAG.
-- **Chưa có ai dùng bên ngoài.** Zweihänder chưa có consumer nào được biết, nên tôi không nhận gì về mức sử dụng hay tốc độ.
+- **Chưa có ai dùng bên ngoài.** Marram chưa có consumer nào được biết, nên tôi không nhận gì về mức sử dụng hay tốc độ.
 
 ## Tôi đặt hướng đi và luật chơi, AI viết phần lớn code
 
@@ -107,7 +106,7 @@ Khi AI viết phần lớn code, cổng kiểm mới là thứ giữ chất lư�
 
 ## Những gì tôi lược bỏ
 
-Các hệ tôi dựng ở công ty trước: tên, khách hàng, màn hình, và những ngành hẹp đến mức đoán ra được. Mọi hình và số trên trang này đều từ Zweihänder.
+Các hệ tôi dựng ở công ty trước: tên, khách hàng, màn hình, và những ngành hẹp đến mức đoán ra được. Mọi hình và số trên trang này đều từ Marram.
 
 ## Nếu làm lại
 
@@ -116,4 +115,4 @@ Các hệ tôi dựng ở công ty trước: tên, khách hàng, màn hình, và
 - **Quyết định 1.** Tôi sẽ đưa Table vào sớm hơn. Đó là component chứng minh một hệ đã sẵn sàng cho việc ERP.
 - **Làm việc với AI.** Luật càng rõ, AI càng làm đúng ngay lần đầu. Việc của tôi chuyển từ vẽ component sang viết luật cho chúng.
 
-<!-- TODO: add figures for the domain section (component lifecycle, three token tiers) and each decision, then a "## Design" gallery of 7 images (dark mode, Compact density, 5 radius presets, AppShell 3 surfaces, NavSidebar, Avatar and Tag 17 hues, docs home). Images go in public/projects/zweihander/. -->
+<!-- TODO: add figures for the domain section (component lifecycle, three token tiers) and each decision, then a "## Design" gallery of 7 images (dark mode, Compact density, 5 radius presets, AppShell 3 surfaces, NavSidebar, Avatar and Tag 17 hues, docs home). Images go in public/projects/marram/. -->
