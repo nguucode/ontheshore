@@ -860,6 +860,16 @@ a.ix-title::after {
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
 }
 
+.ix-media.placeholder {
+  background: repeating-linear-gradient(-45deg, var(--bg) 0 8px, var(--line) 8px 9px);
+}
+
+/* mỗi .ix-row có animation nên là một stacking context: nâng cả dòng để ảnh nằm trên dòng dưới */
+.ix-row:has(.ix-media):hover,
+.ix-row:has(.ix-media):has(:focus-visible) {
+  z-index: 1;
+}
+
 .ix-row:hover .ix-media,
 .ix-row:has(:focus-visible) .ix-media {
   opacity: 1;

@@ -240,7 +240,7 @@ for (const sl of slides) {
               kicker={p.data.role}
               note={p.data.summary}
               vt={`p-${p.slug}`}
-            media={p.data.soon ? undefined : p.data.cover}
+            media={p.data.soon ? undefined : (p.data.cover ?? "")}
               i={i}
             />
           ))}

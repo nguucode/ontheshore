@@ -13,7 +13,7 @@ interface Props {
   vt?: string;
   i?: number;
   inline?: boolean;
-  media?: string; // ảnh preview hiện ở cột lead khi hover dòng (desktop)
+  media?: string; // ảnh preview hiện ở cột lead khi hover dòng (desktop); "" = chưa có ảnh, hiện placeholder
 }
 
 const { href, title, lead = "", meta, kicker, note, flag, vt, i = 0, inline = true, media } = Astro.props;
@@ -28,7 +28,13 @@ const metric = lead && lead !== "—" ? [lead, meta].filter(Boolean).join(" ") :
   <div class="ix-lead">
     <span class="num">{lead}</span>
     {meta && <small>{meta}</small>}
-    {media && <img class="ix-media" src={media} alt="" loading="lazy" decoding="async" />}
+    {
+      media ? (
+        <img class="ix-media" src={media} alt="" loading="lazy" decoding="async" />
+      ) : media === "" ? (
+        <div class="ix-media placeholder" aria-hidden="true"><span>{title}</span></div>
+      ) : null
+    }
   </div>
   <div class="ix-main">
     {kicker && <small class="ix-kicker">{kicker}</small>}
