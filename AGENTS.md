@@ -36,7 +36,7 @@ Durable knowledge for this project lives in the Obsidian vault **ontheshore**, n
 - Every implementation (new work, fix, behaviour change) follows `.claude/skills/project-flow/` by default: `flow idea`, `flow fix` or `flow change` (`flow tidy` for a repo health check). After `to-tickets`, each ticket runs in its own thread. Skip it only when the user says so.
 - Skills: when a skill in `.claude/skills/` overlaps a built-in or plugin skill, use the one in `.claude/skills/` (`matt-code-review` for standards + spec review). The flow's bug-hunt step still uses the built-in `/code-review` on purpose. Sources and licenses: `.claude/skills/THIRD_PARTY.md`.
 - Before pushing, `npm run build` must pass. Merging to `main` deploys ontheshore.biz.
-- A fresh worktree has no `node_modules`. Install with `npm install --cache "$TMPDIR/npm-cache"`: the sandbox cannot write `~/.npm`, and npm reports that as "cache folder contains root-owned files".
+- In a fresh worktree, install with `npm install --cache "$TMPDIR/npm-cache"`: the sandbox cannot write `~/.npm`, which npm reports as "cache folder contains root-owned files".
 
 ## Agent skills
 
