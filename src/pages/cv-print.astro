@@ -3,9 +3,8 @@
 // `npm run cv` build rồi in trang này ra public/nguu-nguyen-cv.pdf bằng Chrome (macOS).
 import { community, experience, skills, summary } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
-import { compact, totalUses } from "../data/products";
 
-const products = community(compact(totalUses)).map((it) => ({ ...it, what: it.what.en }));
+const products = community.map((it) => ({ ...it, what: it.what.en }));
 const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 
