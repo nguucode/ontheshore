@@ -94,11 +94,33 @@ A prototype let the CEO show the team an idea instead of describing it, and that
 
 AccountKit's Storybook, design system and prompts are under NDA, so I cannot show them here. As a stand-in, I built [Fortify](https://crm.ontheshore.biz), a front-end CRM for a US insurance agency running on mock data. The prototype was built entirely with Claude Code. The [source code](https://github.com/nguucode/fortify) is open.
 
-<figure class="shot">
-  <img src="/projects/accountkit/fortify.png" alt="Fortify's Today screen for a producer: new leads, pipeline by stage, goal pacing and the day's tasks" loading="lazy" />
-  <figcaption>Fortify, a prototype built with Claude Code.</figcaption>
-</figure>
-
-## About the visuals
-
-The diagrams are simplified reconstructions. AccountKit's screens, data and internal rules are left out.
+<div class="gallery" tabindex="0" role="region" aria-label="Fortify screens, scroll sideways">
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify.png"><img src="/projects/accountkit/fortify.png" alt="Fortify's Today screen for a producer" loading="lazy" /></a>
+    <figcaption>1 / 7 · Today: leads, pipeline, goal pacing and the day's tasks</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-pipeline.png"><img src="/projects/accountkit/fortify-pipeline.png" alt="Pipeline board with five stages and a needs-attention banner" loading="lazy" /></a>
+    <figcaption>2 / 7 · Pipeline: Opportunities by stage, with stale deals flagged</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-accounts.png"><img src="/projects/accountkit/fortify-accounts.png" alt="Accounts list with a term ribbon in each row" loading="lazy" /></a>
+    <figcaption>3 / 7 · Accounts: the book, with a 12-month term ribbon per row</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-accounts-detail.png"><img src="/projects/accountkit/fortify-accounts-detail.png" alt="Account page for a household with tabs, open tasks and contacts" loading="lazy" /></a>
+    <figcaption>4 / 7 · Account: policies, renewals, service and activity in one place</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-renewals.png"><img src="/projects/accountkit/fortify-renewals.png" alt="Renewals list with expiry, premium change and risk" loading="lazy" /></a>
+    <figcaption>5 / 7 · Renewals: work items before each term expires</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-service.png"><img src="/projects/accountkit/fortify-service.png" alt="Service request board" loading="lazy" /></a>
+    <figcaption>6 / 7 · Service: requests from intake to done</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-reports.png"><img src="/projects/accountkit/fortify-reports.png" alt="Pipeline report with stage bars and lost reasons" loading="lazy" /></a>
+    <figcaption>7 / 7 · Reports: pipeline, retention and commission by role</figcaption>
+  </figure>
+</div>
