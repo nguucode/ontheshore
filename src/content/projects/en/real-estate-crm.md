@@ -1,7 +1,7 @@
 ---
 title: "Fortify - Real-estate CRM"
 role: "Senior UI/UX Designer"
-year: "—"
+year: "2025"
 summary: "A sales platform that moved a property group's whole sales force off spreadsheet inventories, built around the state of each unit."
 facts:
   Platform: "Web admin, Mobile app for brokers"
