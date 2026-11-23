@@ -2,7 +2,7 @@
 title: "TrueProfit"
 role: "Product Designer"
 year: "2020 — 2021"
-summary: "A Shopify app that shows merchants their true net profit, live, by gathering every cost on its own. Web and iOS."
+summary: "A Shopify app that shows merchants their true net profit, live, by gathering every cost on its own: goods, shipping, fees, taxes and ad spend. Web and iOS."
 order: 1
 draft: true
 ---

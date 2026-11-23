@@ -3,7 +3,7 @@ title: "Tên project"
 role: "Lead Product Designer"
 year: "2025"
 client: "Tên client (bỏ dòng này nếu NDA)"
-summary: "Một câu: làm gì, cho ai, kết quả gì."
+summary: "Một câu 140–170 ký tự (build kiểm tra): project làm gì, cho ai, kết quả gì. Viết đủ dài để dòng trong danh sách project luôn hiện đúng ba dòng chữ ở desktop."
 cover: "/projects/ten-project/cover.png" # tỉ lệ 3:2, bỏ dòng này thì hiện placeholder
 order: 1
 draft: true

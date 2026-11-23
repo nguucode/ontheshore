@@ -2,7 +2,7 @@
 title: "AccountKit v3.0"
 role: "Senior Product Designer"
 year: "2026"
-summary: "With AI, turning an idea into something real and shipping it faster is what most product teams now hope for. Over six months I built the design system, designed the product and set up a way of working with Claude Code, so that the CEO, not only me, could build a prototype to show the team an idea."
+summary: "A design system, product design and a Claude Code workflow for an Australian accounting SaaS, built over six months so the CEO, not only me, could prototype an idea."
 facts:
   Year: "2026"
   Duration: "6 months"

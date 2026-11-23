@@ -1,6 +1,8 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const inRange = (s: string) => [...s].length >= 140 && [...s].length <= 170;
+
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
   schema: z.object({
@@ -15,7 +17,13 @@ const projects = defineCollection({
     order: z.number().default(99),
     draft: z.boolean().default(false),
     soon: z.boolean().default(false), // "Coming soon": hiện một dòng trong danh sách, không link, không có trang chi tiết
-  }),
+  })
+    // summary 140–170 ký tự để dòng trong danh sách luôn đủ 3 dòng chữ ở desktop; lệch thì build hỏng.
+    // Miễn: mục "soon" (chưa có nội dung).
+    .refine((d) => d.soon || inRange(d.summary), {
+      message: "summary cần 140–170 ký tự",
+      path: ["summary"],
+    }),
 });
 
 const articles = defineCollection({

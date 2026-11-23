@@ -2,7 +2,7 @@
 title: "Fortify - Insurance CRM"
 role: "Senior UI/UX Designer"
 year: "2026"
-summary: "A CRM for a US insurance agency that I took from domain research to a working front-end in three days with Claude Code: 201 user stories written first, then every one of them built."
+summary: "A CRM for a US insurance agency that I took from domain research to a working front-end in three days with Claude Code: 201 user stories written first, then all built."
 cover: "/projects/accountkit/fortify.png"
 facts:
   Year: "2026"

@@ -2,7 +2,7 @@
 title: "Market - E-commerce Platform"
 role: "Lead Product Designer"
 year: "2023"
-summary: "Một marketplace nhiều người bán, do một team outsource chưa từng làm e-commerce xây dựng, chuyển sang bán xuyên biên giới giữa chừng: hàng nằm ở Việt Nam, bán cho người mua ở nước ngoài."
+summary: "Marketplace nhiều người bán, do một team outsource chưa từng làm e-commerce xây dựng, giữa chừng chuyển sang bán xuyên biên giới: hàng ở Việt Nam, người mua ở nước ngoài."
 facts:
   Nền tảng: "Web app, Mobile app"
   Team: "Tôi và 2 designer, cùng CEO, tech lead và PO phía khách"

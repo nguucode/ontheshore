@@ -884,7 +884,7 @@ a.ix-title::after {
   font-size: 0.86rem;
   color: var(--ink-soft);
   margin: 0.3rem 0 0;
-  max-width: 60ch;
+  max-width: 49ch; /* mô tả 140–170 ký tự (build kiểm tra) luôn thành đúng 3 dòng ở desktop; đo được 46–52ch đều giữ 3 dòng */
 }
 
 /* ảnh preview của project: hiện ở cột lead khi hover dòng, cùng cách với .row-media ở About.

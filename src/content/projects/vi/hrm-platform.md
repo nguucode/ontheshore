@@ -2,7 +2,7 @@
 title: "Ba designer, năm mươi developer, một HRM xây quanh cái ghế"
 role: "Lead Product Designer"
 year: "2024"
-summary: "Sản phẩm HRM cho một khách hàng doanh nghiệp, do một đội IT outsourcing chưa từng làm HRM xây dựng. Đã ship và đang được dùng hằng ngày."
+summary: "Sản phẩm HRM cho một khách hàng doanh nghiệp, do một đội IT outsourcing chưa từng làm HRM thiết kế và xây dựng. Sản phẩm đã ship và đang được dùng hằng ngày."
 facts:
   Năm: "2024"
   Team: "3 designer (tôi và 2 junior), 50 developer"

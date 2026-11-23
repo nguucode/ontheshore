@@ -2,7 +2,7 @@
 title: "Fortify - Insurance CRM"
 role: "Senior UI/UX Designer"
 year: "2026"
-summary: "CRM cho một đại lý bảo hiểm ở Mỹ, tôi đi từ research nghiệp vụ tới một front-end chạy được trong ba ngày cùng Claude Code: viết đủ 201 user story trước, rồi dựng hết từng story một."
+summary: "CRM cho một đại lý bảo hiểm ở Mỹ, tôi đi từ research nghiệp vụ tới front-end chạy được trong ba ngày cùng Claude Code: viết đủ 201 user story trước, rồi dựng hết."
 cover: "/projects/accountkit/fortify.png"
 facts:
   Năm: "2026"
