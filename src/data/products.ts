@@ -1,4 +1,4 @@
-/* Kiểm kê thật từ Figma Community @nguunguyen73, 19/09/2026.
+/* Kiểm kê thật từ Figma Community @nguunguyen73, 23/11/2026.
    Số liệu đọc trực tiếp từ trang profile.
    Thêm mục mới: thêm object vào đúng mảng, không cần sửa gì khác.
    Mục chưa dùng được (chưa có href) hiện nhãn "Đang phát triển", không bấm được, không tính vào số đã publish.
@@ -6,7 +6,7 @@
    local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
    price: sản phẩm trả phí, hiện thay số lượt dùng, không tính vào số miễn phí.
    kind: nhãn riêng cho mục chạy trên nhiều nền tảng (vd. Kusabimaru: web + plugin Figma).
-   thumb: ảnh ở khung Featured trên trang chủ (mục nhiều lượt dùng nhất và các app). */
+   thumb: ảnh ở khung Featured trên trang chủ và ảnh preview khi hover dòng ở trang Products; không có thì hiện placeholder. */
 import type { ImageMetadata } from "astro";
 import circleCharts from "../assets/products/circle-charts.png";
 import basicCharts from "../assets/products/basic-charts.png";
@@ -32,43 +32,47 @@ const figmaTemplates: Item[] = [
     name: "Circle Charts",
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
    thumb: circleCharts,
-    uses: 72600,
+    uses: 73900,
     note: { vi: "Circle chart dựng sẵn cho dashboard. Template được dùng nhiều nhất.", en: "Ready-made circle charts for dashboards. My most-used template." },
   },
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
    thumb: basicCharts,
-    uses: 18700,
+    uses: 19000,
     note: { vi: "Bar, line và area chart cho dashboard thông dụng.", en: "Bar, line and area charts for everyday dashboards." },
   },
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
    thumb: polarisChart,
-    uses: 12600,
+    uses: 12700,
     note: { vi: "Chart theo design system Polaris của Shopify, khớp với các component có sẵn.", en: "Charts built on Shopify's Polaris design system, consistent with its components." },
   },
   {
     name: "Country Flags",
     href: "https://www.figma.com/community/file/1360105018474702873/country-flags",
-    uses: 104,
+    uses: 105,
     note: { vi: "Bộ cờ các quốc gia cho Figma.", en: "A set of country flags for Figma." },
   },
-];
-
-const figmaSkills: Item[] = [
   {
-    name: "flatten-icon-frames",
-    href: "https://www.figma.com/community/skill/89555/flatten-icon-frames",
-    note: {
-      vi: "Xử lý icon frame hàng loạt: outline stroke, union, fill đen, flatten thành một vector. Tối đa 400 icon mỗi lượt.",
-      en: "Batch-cleans icon frames: outline stroke, union, black fill, flatten to one vector. Up to 400 icons per run.",
-    },
+    name: "Marram Design System",
+    href: "https://www.figma.com/community/file/1703248516247985173/marram-design-system",
+    uses: 3,
+    note: { vi: "File Figma của design system Marram, đi cùng bộ component React.", en: "The Figma file for the Marram design system, paired with its React components." },
   },
 ];
 
 const apps: Item[] = [
+  {
+    name: "Marram",
+    href: "https://marram.ontheshore.biz",
+    kind: "React UI kit",
+    note: {
+      vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
+      en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Button and Text Input are ready so far.",
+    },
+  },
   {
     name: "Kusabimaru",
     thumb: kusabimaru,
@@ -93,22 +97,9 @@ const apps: Item[] = [
   },
 ];
 
-const uiKits: Item[] = [
-  {
-    name: "Marram",
-    href: "https://marram.ontheshore.biz",
-    note: {
-      vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
-      en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Button and Text Input are ready so far.",
-    },
-  },
-];
-
 export const groups = [
   { kind: "App", heading: { vi: "Apps", en: "Apps" }, items: apps },
   { kind: "Figma", heading: { vi: "Figma — Templates", en: "Figma — Templates" }, items: figmaTemplates },
-  { kind: "Skill", heading: { vi: "Figma — AI Skills", en: "Figma — AI Skills" }, items: figmaSkills },
-  { kind: "Kit", heading: { vi: "UI Kits", en: "UI Kits" }, items: uiKits },
 ];
 
 export const all = groups.flatMap((g) => g.items.map((it) => ({ ...it, kind: it.kind ?? g.kind })));
