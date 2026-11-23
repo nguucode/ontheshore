@@ -273,6 +273,7 @@ for (const sl of slides) {
             kicker={it.kind}
             flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
             note={it.note[lang]}
+            media={it.thumb?.src ?? ""}
             i={i}
           />
         ))
