@@ -1,6 +1,6 @@
 # Ticket thread
 
-A thread started to implement one ticket from a `flow idea` map. One ticket, one branch, one PR, one fresh context. Runs without stopping: the user already approved the spec and the ticket split. The user merges the PR.
+A thread started to implement one ticket from a `flow idea` map. One ticket, one branch, one PR, one fresh context. Runs without stopping: the user already approved the spec and the ticket split. The merge is the user's call (see [AFTER-BUILD.md](AFTER-BUILD.md), Ship step 4).
 
 **Vault writes.** Everything the vault needs from this thread goes in the closing note to the map thread (step 6). The one exception: with the device folder connected, the thread writes its own ticket file (steps 2 and 6, `updated:` bumped). Kanban, `_system/agent-log.md` and vault PRs belong to the map thread, which logs this session for it (see [Tickets become threads](SKILL.md#tickets-become-threads)); this overrides the vault's own "append to agent-log after writing" rule.
 
