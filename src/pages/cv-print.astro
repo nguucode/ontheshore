@@ -47,13 +47,6 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
         display: flex;
         flex-direction: column;
       }
-      footer.contact {
-        margin-top: auto;
-        padding-top: 3mm;
-      }
-      header .contact {
-        font-size: 10pt;
-      }
       /* link phải nhìn ra ngay là bấm được: màu chàm, gạch chân */
       a {
         color: var(--accent);
@@ -81,6 +74,13 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
         margin: 2.5mm 0 0;
         font-size: 8.6pt;
         color: var(--soft);
+      }
+      footer.contact {
+        margin-top: auto;
+        padding-top: 3mm;
+      }
+      header .contact {
+        font-size: 10pt;
       }
       h2 {
         margin: 5mm 0 2.5mm;
