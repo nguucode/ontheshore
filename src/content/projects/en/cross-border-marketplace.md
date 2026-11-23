@@ -1,7 +1,7 @@
 ---
 title: "Market - E-commerce Platform"
 role: "Lead Product Designer"
-year: "2023"
+year: "2022"
 summary: "A multi-vendor marketplace, built by an outsourcing team with no e-commerce background, that turned cross-border midway: goods stocked in Vietnam, sold to buyers abroad."
 facts:
   Platform: "Web app, Mobile app"

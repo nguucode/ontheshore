@@ -2,7 +2,7 @@
 import Base from "../../../layouts/Base.astro";
 import Row from "../../../components/Row.astro";
 import { getCollection } from "astro:content";
-import { byOrder } from "../../../data/projects";
+import { byYear } from "../../../data/projects";
 import { byLang, getLang, langPaths, T, url } from "../../../i18n";
 
 export const getStaticPaths = langPaths;
@@ -10,7 +10,7 @@ export const getStaticPaths = langPaths;
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-const projects = byLang(await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft), lang).sort(byOrder);
+const projects = byLang(await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft), lang).sort(byYear);
 ---
 
 <Base title="Projects" description={t(
