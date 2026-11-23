@@ -94,11 +94,33 @@ Prototype giúp CEO cho cả team thấy ý tưởng thay vì phải kể lại 
 
 Storybook, design system và prompt của AccountKit nằm trong thỏa thuận bảo mật (NDA), nên tôi không thể đưa ra đây. Thay vào đó, tôi dựng [Fortify](https://crm.ontheshore.biz) làm bản demo: một CRM chỉ có front-end cho một đại lý bảo hiểm ở Mỹ, chạy trên dữ liệu giả lập. Toàn bộ prototype được tạo bằng Claude Code. [Mã nguồn](https://github.com/nguucode/fortify) được công khai.
 
-<figure class="shot">
-  <img src="/projects/accountkit/fortify.png" alt="Màn Today của Fortify cho producer: lead mới, pipeline theo từng giai đoạn, tiến độ chỉ tiêu và việc trong ngày" loading="lazy" />
-  <figcaption>Fortify, prototype dựng bằng Claude Code.</figcaption>
-</figure>
-
-## Về hình ảnh
-
-Các sơ đồ trong bài là bản dựng lại đã được giản lược. Màn hình, dữ liệu và luật nội bộ của AccountKit không được đưa vào.
+<div class="gallery" tabindex="0" role="region" aria-label="Màn hình Fortify, cuộn ngang">
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify.png"><img src="/projects/accountkit/fortify.png" alt="Màn Today của Fortify cho producer" loading="lazy" /></a>
+    <figcaption>1 / 7 · Today: lead mới, pipeline, tiến độ chỉ tiêu và việc trong ngày</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-pipeline.png"><img src="/projects/accountkit/fortify-pipeline.png" alt="Bảng Pipeline năm giai đoạn và dải cảnh báo cần xử lý" loading="lazy" /></a>
+    <figcaption>2 / 7 · Pipeline: Opportunity theo giai đoạn, đánh dấu deal bị đọng</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-accounts.png"><img src="/projects/accountkit/fortify-accounts.png" alt="Danh sách Accounts có dải kỳ hạn ở mỗi dòng" loading="lazy" /></a>
+    <figcaption>3 / 7 · Accounts: toàn bộ khách, mỗi dòng có dải kỳ hạn 12 tháng</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-accounts-detail.png"><img src="/projects/accountkit/fortify-accounts-detail.png" alt="Trang Account của một hộ gia đình với các tab, task đang mở và liên hệ" loading="lazy" /></a>
+    <figcaption>4 / 7 · Account: policy, renewal, service và activity ở một chỗ</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-renewals.png"><img src="/projects/accountkit/fortify-renewals.png" alt="Danh sách Renewals với hạn hết, mức đổi phí và rủi ro" loading="lazy" /></a>
+    <figcaption>5 / 7 · Renewals: việc cần làm trước khi mỗi kỳ hạn hết</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-service.png"><img src="/projects/accountkit/fortify-service.png" alt="Bảng yêu cầu Service" loading="lazy" /></a>
+    <figcaption>6 / 7 · Service: yêu cầu từ lúc nhận tới lúc xong</figcaption>
+  </figure>
+  <figure class="shot">
+    <a href="/projects/accountkit/fortify-reports.png"><img src="/projects/accountkit/fortify-reports.png" alt="Báo cáo Pipeline với thanh theo giai đoạn và lý do mất deal" loading="lazy" /></a>
+    <figcaption>7 / 7 · Reports: pipeline, retention và commission theo role</figcaption>
+  </figure>
+</div>
