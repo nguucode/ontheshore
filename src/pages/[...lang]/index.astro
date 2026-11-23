@@ -154,6 +154,10 @@ for (const sl of slides) {
       <button class="feature-bar" type="button" aria-label={t("Slide kế", "Next slide")}></button>
       <h2 class="sec-label">Featured</h2>
     </div>
+    <div class="feature-nav">
+      <button type="button" data-dir="-1" aria-label={t("Slide trước", "Previous slide")}>←</button>
+      <button type="button" data-dir="1" aria-label={t("Slide kế", "Next slide")}>→</button>
+    </div>
     <div class="feature-track">
       {
         slides.map((sl, i) => (
@@ -195,7 +199,7 @@ for (const sl of slides) {
 
   <script>
     // Slide Featured: scroll-snap gốc. Gạch accent trên nhãn là thanh thời gian:
-    // chạy hết hoặc bấm vào thì sang slide kế; đổi slide (tự hay vuốt) thì chạy lại từ đầu.
+    // chạy hết hoặc bấm vào thì sang slide kế; đổi slide (tự, vuốt hay bấm nút ← →) thì chạy lại từ đầu.
     // Reduced-motion tắt animation nên không tự chuyển.
     for (const root of document.querySelectorAll<HTMLElement>("[data-slider]")) {
       const track = root.querySelector<HTMLElement>(".feature-track")!;
@@ -216,9 +220,13 @@ for (const sl of slides) {
         },
         { passive: true }
       );
-      const next = () => track.scrollTo({ left: ((cur + 1) % slides.length) * track.clientWidth, behavior: "smooth" });
-      bar.addEventListener("animationend", next);
-      bar.addEventListener("click", next);
+      // vòng tròn cả hai chiều: lùi ở slide đầu thì về slide cuối
+      const go = (d: number) =>
+        track.scrollTo({ left: ((cur + d + slides.length) % slides.length) * track.clientWidth, behavior: "smooth" });
+      bar.addEventListener("animationend", () => go(1));
+      bar.addEventListener("click", () => go(1));
+      for (const b of root.querySelectorAll<HTMLElement>(".feature-nav button"))
+        b.addEventListener("click", () => go(Number(b.dataset.dir)));
     }
   </script>
 
