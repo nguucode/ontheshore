@@ -13,15 +13,15 @@ const t = T(lang);
 <Base
   title="Products"
   description={t(
-    "App, Figma template, AI skill và UI kit của Ngưu Nguyễn, có bản miễn phí và trả phí. Hơn 100k lượt dùng trên Figma Community.",
-    "Apps, Figma templates, AI skills and UI kits by Ngưu Nguyễn, free and paid. 100k+ uses on Figma Community."
+    "App và Figma template của Ngưu Nguyễn, có bản miễn phí và trả phí. Hơn 100k lượt dùng trên Figma Community.",
+    "Apps and Figma templates by Ngưu Nguyễn, free and paid. 100k+ uses on Figma Community."
   )}
   lang={lang}
 >
   <section class="sec">
     <h1 class="sec-label">Products</h1>
     <div class="intro">
-      <p class="headline">{t("App, Figma template và kit tôi làm cho người dùng.", "Apps, Figma templates and kits I make for users.")}</p>
+      <p class="headline">{t("App và Figma template tôi làm cho người dùng.", "Apps and Figma templates I make for users.")}</p>
     </div>
   </section>
 
@@ -42,6 +42,7 @@ const t = T(lang);
                 kicker={it.kind ?? g.kind}
                 flag={!it.href || it.wip ? t("Đang phát triển", "In development") : undefined}
                 note={it.note[lang]}
+                media={it.thumb?.src ?? ""}
                 i={i}
               />
             ))}
@@ -50,13 +51,4 @@ const t = T(lang);
       </section>
     ))
   }
-
-  <section class="sec">
-    <p class="faint span-3">
-      {t("Hồ sơ đầy đủ:", "Full profile:")}{" "}
-      <a href="https://www.figma.com/@nguunguyen73" rel="noopener">
-        figma.com/@nguunguyen73
-      </a>
-    </p>
-  </section>
 </Base>
