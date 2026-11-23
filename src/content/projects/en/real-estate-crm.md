@@ -8,7 +8,7 @@ facts:
   Role: "Senior UI/UX Designer, vendor side"
   Status: "In production for over 2 years"
 order: 3
-draft: false
+draft: true
 ---
 
 The key decision was to build the platform around the unit for sale, not the lead, and to hang every other module off that unit's state.
