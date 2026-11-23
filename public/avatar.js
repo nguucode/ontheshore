@@ -183,13 +183,25 @@
     addEventListener("keydown", awake);
     awake();
     // Chuyển trang (site là MPA): trang cũ ghi lại hướng nhìn và mức cười, trang mới dựng lại y như vậy.
+    // Mới vào site hoặc tải lại trang thì chào: cười tít GREET ms, rồi về mỉm cười, sau đó theo luật thường.
+    let restored = false;
     try {
       const s = JSON.parse(sessionStorage.getItem("avatar"));
-      if (s && Date.now() - s.t < 4000) {
-        x = gx = hx = tx = s.x; y = gy = hy = ty = s.y; mood = s.m; grinR = grinRT = s.g; nextRoll = performance.now() + 1500;
+      // isFinite: bản ghi hỏng hoặc từ phiên bản script cũ thì bỏ qua, kẻo NaN lọt vào mọi toạ độ.
+      if (s && Number.isFinite(s.x + s.y + s.m) && Date.now() - s.t < 4000 && performance.getEntriesByType("navigation")[0]?.type !== "reload") {
+        restored = true;
+        x = gx = hx = tx = s.x; y = gy = hy = ty = s.y; mood = s.m; grinR = grinRT = s.g ? 1 : 0; nextRoll = performance.now() + 1500;
         if (s.m > 0.5) { lastMove = performance.now(); idleTimer = setTimeout(kick, IDLE + 20); }
       }
     } catch {}
+    if (!restored) {
+      const GREET = 1400, SMILE = 1500, now = performance.now();
+      grinR = grinRT = 1;
+      lastMove = now + GREET + SMILE - IDLE; // mỉm cười SMILE ms sau khi hết cười tít, rồi mới về vô cảm
+      nextRoll = now + GREET + SMILE; // di chuột trong lúc chào không gieo lại biểu cảm
+      setTimeout(() => { grinRT = 0; kick(); }, GREET);
+      idleTimer = setTimeout(kick, GREET + SMILE + 20);
+    }
     addEventListener("pagehide", () => {
       try { sessionStorage.setItem("avatar", JSON.stringify({ x: tx, y: ty, m: mood, g: grinRT, t: Date.now() })); } catch {}
     });
