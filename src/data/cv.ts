@@ -5,6 +5,9 @@
    slug = tên công ty viết thường, khoảng trắng thành "-", vd "tma-solutions.jpg". Chưa có ảnh thì hiện khung kẻ sọc. */
 type Text = { vi: string; en: string };
 
+// Chức danh hiển thị: tiêu đề trang, schema, About và CV PDF.
+export const jobTitle = "Senior Product Designer, UI/UX";
+
 export type Job = {
   when: string;
   role: string;

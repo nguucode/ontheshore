@@ -1,7 +1,7 @@
 ---
 // Bản in của CV, khổ A4 một trang, tiếng Anh. Không nằm trong menu hay sitemap.
 // `npm run cv` build rồi in trang này ra public/nguu-nguyen-cv.pdf bằng Chrome (macOS).
-import { community, experience, skills, summary } from "../data/cv";
+import { community, experience, jobTitle, skills, summary } from "../data/cv";
 import { email, linkedin, phone } from "../data/contact";
 
 const products = community.map((it) => ({ ...it, what: it.what.en }));
@@ -43,6 +43,16 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
         font: 9.6pt/1.5 "Be Vietnam Pro", sans-serif;
         color: var(--ink);
         background: #fff;
+        /* cột flex để footer bám đáy trang */
+        display: flex;
+        flex-direction: column;
+      }
+      footer.contact {
+        margin-top: auto;
+        padding-top: 3mm;
+      }
+      header .contact {
+        font-size: 10pt;
       }
       /* link phải nhìn ra ngay là bấm được: màu chàm, gạch chân */
       a {
@@ -53,14 +63,6 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
       }
       .num {
         font-family: "Space Grotesk", sans-serif;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        gap: 8mm;
-        padding-bottom: 5mm;
-        border-bottom: 2px solid var(--accent);
       }
       h1 {
         margin: 0;
@@ -76,13 +78,9 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
         font-weight: 500;
       }
       .contact {
-        margin: 0;
-        list-style: none;
-        padding: 0;
-        text-align: right;
+        margin: 2.5mm 0 0;
         font-size: 8.6pt;
         color: var(--soft);
-        white-space: nowrap;
       }
       h2 {
         margin: 5mm 0 2.5mm;
@@ -150,16 +148,11 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
   </head>
   <body>
     <header>
-      <div>
-        <h1>Nguu (Roland) Nguyen</h1>
-        <p class="title">Senior Product Designer</p>
-      </div>
-      <ul class="contact">
-        <li>Nha Trang, Vietnam · open to remote</li>
-        <li><a href={email.href}>{email.value}</a> · <a href={phone.href}>{phone.value}</a></li>
-        <li><a href={linkedin.href}>linkedin.com/in/{linkedin.value}</a></li>
-        <li><a href="https://ontheshore.biz/">ontheshore.biz</a></li>
-      </ul>
+      <h1>Nguu (Roland) Nguyen</h1>
+      <p class="title">{jobTitle}</p>
+      <p class="contact">
+        <a href={linkedin.href}>LinkedIn</a> · <a href="https://ontheshore.biz/">Portfolio</a>
+      </p>
     </header>
 
     <p class="summary">{summary.en}</p>
@@ -205,5 +198,9 @@ const bare = (u: string) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, 
         }
       </div>
     </div>
+
+    <footer class="contact">
+      <a href={email.href}>{email.value}</a> · <a href={phone.href}>{phone.value}</a>
+    </footer>
   </body>
 </html>
