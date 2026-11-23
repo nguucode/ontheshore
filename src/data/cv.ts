@@ -30,17 +30,6 @@ export const experience: Job[] = [
     },
   },
   {
-    when: "2023",
-    role: "Product Designer",
-    company: "CyberLogitec",
-    site: "https://cyberlogitec.com.vn/",
-    kind: { vi: "phần mềm logistics enterprise", en: "enterprise logistics software" },
-    what: {
-      vi: "Định hướng design trong product team, biến các workflow vận hành phức tạp thành giao diện riêng cho từng vai trò.",
-      en: "Led design direction in the product team, turning dense operational workflows into role-specific interfaces.",
-    },
-  },
-  {
     when: "2021 — 2023",
     role: "UI/UX Designer",
     company: "Aperia Solutions",
@@ -98,16 +87,16 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Tools", items: ["Figma", "FigJam", "Storybook", "Miro", "Jira", "Confluence", "Notion", "Microsoft\u00a0365"] },
 ];
 
-// Community and Products: hai nơi xem hết sản phẩm (sếp chọn 2026-10-05, bỏ Gumroad 2026-10-29). Dùng chung cho CV PDF và trang About.
-export const community = (uses: string): { name: string; what: Text; href: string }[] => [
+// Community and Products: hai nơi xem hết sản phẩm (sếp chọn 2026-10-05, bỏ Gumroad 2026-10-29; chữ sửa 2026-11-23, "100k+" viết cứng vì số chính xác đã có ở chỗ khác). Dùng chung cho CV PDF và trang About.
+export const community: { name: string; what: Text; href: string }[] = [
   {
     name: "Figma",
-    what: { vi: `Template miễn phí và một AI skill, ${uses} lượt dùng`, en: `Free templates and an AI skill, ${uses} uses` },
+    what: { vi: "Template miễn phí, 100k+ lượt dùng", en: "Free templates, 100k+ uses" },
     href: "https://www.figma.com/@nguunguyen73",
   },
   {
     name: "Website",
-    what: { vi: "Tất cả sản phẩm, project và UI kit Marram", en: "All products, projects and the Marram UI kit" },
+    what: { vi: "Project và sản phẩm của tôi", en: "My projects and products" },
     href: "https://ontheshore.biz/",
   },
 ];

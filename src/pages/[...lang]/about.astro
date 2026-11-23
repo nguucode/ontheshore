@@ -6,7 +6,7 @@ import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
 import { compact, totalUses } from "../../data/products";
 import { email, linkedin, phone } from "../../data/contact";
-import { community as communityOf, experience, skills, summary } from "../../data/cv";
+import { community, experience, skills, summary } from "../../data/cv";
 
 export const getStaticPaths = langPaths;
 
@@ -14,7 +14,6 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
 // Community and Products: cùng nguồn với CV PDF (src/data/cv.ts).
-const community = communityOf(compact(totalUses));
 
 // Ảnh công ty theo tên file (xem ghi chú đầu src/data/cv.ts). Thiếu ảnh thì dùng khung kẻ sọc.
 const companyImages = import.meta.glob<{ default: ImageMetadata }>("../../assets/companies/*.{jpg,jpeg,png,webp}", { eager: true });
