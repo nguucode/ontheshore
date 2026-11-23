@@ -1,0 +1,42 @@
+---
+/* Avatar vẽ tay ở rail trái: SVG tách lớp, đầu và mắt nhìn theo con trỏ, có biểu cảm.
+   Toạ độ theo hình gốc (khung 1932). Không có JS, màn cảm ứng, hoặc người dùng tắt chuyển động: hiện mặt cười tĩnh bên dưới.
+   Chuyển động nằm ở public/avatar.js, nạp bằng script thường (không module, không bundle) ngay sau markup: nó phải chạy
+   trước khung hình đầu tiên để khi chuyển trang avatar hiện lại đúng tư thế cũ, không nháy về mặt cười nhìn thẳng.
+   Quyết định thiết kế: vault 10-projects/ontheshore/avatar-look-at.md. */
+const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 1300 1200 1535 975 1535C760 1535 600 1300 588 950Z";
+---
+
+<span class="avatar" data-avatar>
+  <svg viewBox="390 330 1170 1260" aria-hidden="true">
+    <defs>
+      <clipPath id="av-face"><path data-warp="face" d={FACE}></path></clipPath>
+      <clipPath id="av-eye-1"><path d="M698 1002Q785 985 874 996Q785 1095 698 1002Z"></path></clipPath>
+      <clipPath id="av-eye1"><path d="M988 996Q1075 980 1160 990Q1075 1090 988 996Z"></path></clipPath>
+    </defs>
+    <g data-l="ears" stroke="currentColor" stroke-width="24" fill="var(--bg)">
+      <ellipse cx="580" cy="1045" rx="105" ry="110"></ellipse>
+      <ellipse cx="1358" cy="1017" rx="95" ry="133"></ellipse>
+    </g>
+    <path data-l="back" fill="currentColor" d="M772 528L1000 470L1300 560C1400 600 1450 700 1455 840L1380 885L640 900L640 1100L597 1097C555 1075 515 1040 515 975C515 920 530 870 557 830C555 780 560 740 572 700C600 590 680 525 772 528Z"></path>
+    <path data-warp="face" fill="var(--bg)" d={FACE}></path>
+    <path data-warp="face" d={FACE} fill="none" stroke="currentColor" stroke-width="30"></path>
+    <g clip-path="url(#av-face)">
+      <g data-l="feat" fill="none" stroke="currentColor" stroke-linecap="round">
+        <path data-brow stroke-width="19" d="M730 872Q790 828 854 858M1046 856Q1106 814 1170 850"></path>
+        <g stroke="none" fill="currentColor">
+          <g clip-path="url(#av-eye-1)"><circle data-eye="-1" cx="790" cy="1017" r="27"></circle></g>
+          <g clip-path="url(#av-eye1)"><circle data-eye="1" cx="1068" cy="1011" r="27"></circle></g>
+        </g>
+        <path data-lid="-1" stroke-width="17" d="M706 1002Q785 985 866 996"></path>
+        <path data-lid="1" stroke-width="17" d="M996 996Q1075 980 1152 990"></path>
+        <path data-mouth stroke-width="25" d="M905 1342Q975 1362 1040 1306"></path>
+        <ellipse data-o cx="975" cy="1342" rx="0" ry="0" stroke-width="22" opacity="0"></ellipse>
+      </g>
+      <path data-warp="nose" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="21" d="M935 1109C915 1130 904 1154 910 1174C916 1193 929 1202 943 1208"></path>
+    </g>
+    <path data-warp="hair" fill="currentColor" d="M772 528C820 430 950 385 1040 385C1180 385 1290 450 1325 548C1420 560 1490 680 1505 860C1508 895 1500 915 1480 918C1450 905 1415 897 1390 900C1375 990 1345 1055 1300 1088C1283 1097 1268 1085 1272 1060C1280 1010 1282 960 1272 915C1215 890 1125 835 1075 724L1057 885C960 875 860 830 800 745C760 780 668 800 660 870C656 940 656 1020 655 1100C615 1085 578 1060 555 1030C545 950 560 860 576 788C560 700 600 590 772 528Z"></path>
+  </svg>
+</span>
+
+<script is:inline src="/avatar.js"></script>

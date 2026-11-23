@@ -1,5 +1,5 @@
 /* ontheshore.biz — bản thử theo tinh thần Yamatane Museum.
-   Hai rail cố định, lưới 4 cột có kẻ đường dọc, một màu chàm. JS chỉ cho nút sáng/tối và link tab mới. */
+   Hai rail cố định, lưới 4 cột có kẻ đường dọc, một màu chàm. JS chỉ cho nút sáng/tối, link tab mới và avatar ở rail trái (components/Avatar.astro). */
 
 :root {
   /* Sáng/tối: mặc định sáng, đổi bằng nút trên rail trái (data-theme trên <html>). */
@@ -106,10 +106,19 @@ svg {
   text-decoration: none;
 }
 
-.mark img {
+/* Avatar vẽ tay (components/Avatar.astro). Nét và mảng tô lấy màu từ attribute của từng phần,
+   nên tắt stroke mặc định của `svg` ở trên để mảng tóc không bị viền thêm. */
+.avatar {
+  display: block;
   width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 50%;
+}
+
+.avatar svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  stroke: none;
 }
 
 .mark-name {
@@ -1756,9 +1765,8 @@ code {
     gap: 0.6rem;
   }
 
-  .mark img {
+  .avatar {
     width: 2.2rem;
-    height: 2.2rem;
   }
 
   .mark-name {
