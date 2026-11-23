@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- Nguồn của public/og.png (1200x630). Sửa chữ ở đây rồi chụp lại từ thư mục gốc repo:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+       --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=10000 \
+       --screenshot=public/og.png "file://$PWD/scripts/og.html" -->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600&family=Space+Grotesk:wght@500&display=block"
+    />
+    <style>
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #fff;
+        border-right: 150px solid #003c88;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 65px;
+        padding-left: 88px;
+        font-family: "Be Vietnam Pro", sans-serif;
+      }
+      img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
+      h1 {
+        margin: 0;
+        font-size: 80px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.01em;
+        color: #0f1320;
+      }
+      .title {
+        margin: 26px 0 0;
+        font-size: 36px;
+        font-weight: 500;
+        color: #003c88;
+      }
+      .site {
+        margin: 56px 0 0;
+        font: 500 24px "Space Grotesk", sans-serif;
+        letter-spacing: 0.1em;
+        color: #6b7080;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../src/assets/portrait.png" alt="" />
+    <div>
+      <h1>Ngưu Nguyễn</h1>
+      <p class="title">Senior Product Designer, UI/UX</p>
+      <p class="site">ONTHESHORE.BIZ</p>
+    </div>
+  </body>
+</html>
