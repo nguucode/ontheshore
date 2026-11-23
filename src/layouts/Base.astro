@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Avatar from "../components/Avatar.astro";
 import { type Lang, T, url } from "../i18n";
 import { contacts, email, phone } from "../data/contact";
 
@@ -100,7 +101,7 @@ const nav = [
   <body>
     <header class="rail-l">
       <a class="mark" href={url(lang, "/")} aria-label="Ngưu Nguyễn">
-        <img src="/avatar.png" alt="" width="96" height="96" />
+        <Avatar />
         <span class="mark-name">Ngưu Nguyễn</span>
       </a>
       <div class="tools">
