@@ -2,7 +2,7 @@
 // Quyết định thiết kế: vault 10-projects/ontheshore/avatar-look-at.md.
   (() => {
   // Mỗi lớp trượt theo hướng nhìn với một hệ số riêng (nhân với STRENGTH). x, y trong [-1, 1].
-  const STRENGTH = 85, EASE = 0.16; // biên độ xoay (đơn vị viewBox) và độ trễ, sếp chốt 2026-11-23
+  const STRENGTH = 120, EASE = 0.16; // biên độ xoay (đơn vị viewBox) và độ trễ, sếp chốt 2026-11-23 (biên độ: 85 rồi nâng lên 120)
   const HAIR = 0.25; // cả khối tóc đi theo hướng nhìn ít nhất chừng này; tóc sau dùng đúng số này để dính liền tóc trước
   const DEPTH = { ears: [-0.08, -0.04], back: [HAIR, HAIR * 0.8], feat: [1, 0.8] };
   // Mắt: liếc tới đích trước (lead), đầu theo sau thì trả về gần giữa (hold). x/up/down: tầm đi của con ngươi.
@@ -32,9 +32,13 @@
   const HEAD = [985, 960, 590];
   // tip: 0 ở chân tóc, 1 ở ngọn. mid: 1 trong dải lọn mái giữa trán. free: 0 ở mép tóc ghim vào viền đầu bên trái.
   const tip = (y) => c01((y - 700) / 250), mid = (x) => c01((x - 700) / 100) * c01((1180 - x) / 100), free = (x) => c01((x - 560) / 90);
+  // side: 1 ở trán, giảm dần về 0 ở hai tóc mai (x gần mép mặt, y dưới chân mày).
+  const side = (x, y) => mix(1, c01((x - 600) / 260) * c01((1400 - x) / 260), c01((y - 780) / 120));
   const BULGE = {
     // Ngọn lọn mái giữa nhô trước trán nên đi xa hơn nét mặt; mép trái ghim để không hở mặt giữa tóc trước và tóc sau.
-    hair: (x, y, s) => HAIR + (Math.max(s * (1 + 0.5 * tip(y) * mid(x)), HAIR) - HAIR) * free(x),
+    // Tóc mai nằm ở bên hông đầu nên đi ít hơn hẳn phần trán (side); không có nó, ở biên độ lớn tóc mai trượt thành khối vuông
+    // và lọn bên phải thò qua tai.
+    hair: (x, y, s) => HAIR + (Math.max(s * side(x, y) * (1 + 0.5 * tip(y) * mid(x)), HAIR) - HAIR) * free(x),
     // Chóp mũi nhô nhất nên sống mũi đổi độ cong khi quay đầu.
     nose: (x, y, s) => s * (1 + 0.5 * Math.sin(Math.PI * c01((y - 1109) / 99))),
     // Nửa trên khuôn mặt đứng yên, càng xuống cằm càng lệch theo hướng nhìn.
