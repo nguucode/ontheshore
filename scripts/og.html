@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- Nguồn của public/og.png (1200x630). Sửa ở đây rồi chụp lại từ thư mục gốc repo:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+       --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=10000 \
+       --screenshot=public/og.png "file://$PWD/scripts/og.html"
+     Avatar là bản sao hình của public/favicon.svg, đổi màu đen sang tông chàm qua --av-ink/--av-face/--av-rim. -->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600&family=Space+Grotesk:wght@500&display=block" />
+    <style>
+      :root { --ink:#1c1d21; --soft:#565a64; --faint:#8a8d96; --accent:#003c88; --line:rgba(0,60,136,.1); --rule:rgba(0,60,136,.16); }
+      * { box-sizing: border-box; margin: 0; }
+      body { width:1200px; height:630px; overflow:hidden; background:#fff; color:var(--ink); font-family:"Be Vietnam Pro",sans-serif; -webkit-font-smoothing:antialiased; }
+      .num { font-family:"Space Grotesk",sans-serif; letter-spacing:-0.01em; }
+
+      /* Nền màu rail, lưới kẻ dọc mờ, avatar vẽ tay của rail trái, chữ trắng. */
+      body { background:var(--accent); color:#fff; display:grid; grid-template-columns:repeat(4,1fr); position:relative; }
+      body > i.v { border-right:1px solid rgba(255,255,255,.1); }
+      .wrap { position:absolute; inset:0; padding:64px 72px; display:flex; flex-direction:column; }
+      .label { font:500 22px "Space Grotesk",sans-serif; letter-spacing:.1em; color:rgba(255,255,255,.7); }
+      .avatar { position:absolute; right:50px; top:50%; width:460px; height:460px; transform:translateY(-50%); }
+      h1 { margin-top:auto; font-size:88px; font-weight:600; line-height:1.05; letter-spacing:-0.02em; }
+      .title { margin-top:20px; font-size:36px; font-weight:500; color:rgba(255,255,255,.82); }
+      :root { --av-ink:#0a2350; --av-face:#fff; --av-rim:#fff; }
+    </style>
+  </head>
+  <body>
+    <i class="v"></i><i class="v"></i><i class="v"></i><i></i>
+    <div class="wrap">
+      <p class="label">ONTHESHORE.BIZ</p>
+      <svg class="avatar" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="305 290 1340 1340">
+  <g fill="var(--av-face)" stroke="var(--av-rim)" stroke-width="150" stroke-linejoin="round">
+    <ellipse cx="580" cy="1045" rx="105" ry="110"/>
+    <ellipse cx="1358" cy="1017" rx="95" ry="133"/>
+    <path d="M772 528L1000 470L1300 560C1400 600 1450 700 1455 840L1380 885L640 900L640 1100L597 1097C555 1075 515 1040 515 975C515 920 530 870 557 830C555 780 560 740 572 700C600 590 680 525 772 528Z"/>
+    <path d="M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 1300 1200 1535 975 1535C760 1535 600 1300 588 950Z"/>
+    <path d="M772 528C820 430 950 385 1040 385C1180 385 1290 450 1325 548C1420 560 1490 680 1505 860C1508 895 1500 915 1480 918C1450 905 1415 897 1390 900L1300 1088L655 1100C615 1085 578 1060 555 1030C545 950 560 860 576 788C560 700 600 590 772 528Z"/>
+  </g>
+  <g fill="var(--av-face)" stroke="var(--av-ink)" stroke-width="40">
+    <ellipse cx="580" cy="1045" rx="105" ry="110"/>
+    <ellipse cx="1358" cy="1017" rx="95" ry="133"/>
+  </g>
+  <path fill="var(--av-ink)" d="M772 528L1000 470L1300 560C1400 600 1450 700 1455 840L1380 885L640 900L640 1100L597 1097C555 1075 515 1040 515 975C515 920 530 870 557 830C555 780 560 740 572 700C600 590 680 525 772 528Z"/>
+  <path fill="var(--av-face)" stroke="var(--av-ink)" stroke-width="48" d="M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 1300 1200 1535 975 1535C760 1535 600 1300 588 950Z"/>
+  <g fill="none" stroke="var(--av-ink)" stroke-linecap="round">
+    <path stroke-width="32" d="M730 872Q790 828 854 858M1046 856Q1106 814 1170 850"/>
+    <path stroke-width="30" d="M706 1002Q785 985 866 996M996 996Q1075 980 1152 990"/>
+    <path stroke-width="40" d="M905 1342Q975 1362 1040 1306"/>
+    <path stroke-width="32" d="M935 1109C915 1130 904 1154 910 1174C916 1193 929 1202 943 1208"/>
+  </g>
+  <g fill="var(--av-ink)">
+    <path d="M757 1003Q790 996 823 1002A34 34 0 0 1 757 1003Z"/>
+    <path d="M1035 997Q1068 990 1101 996A34 34 0 0 1 1035 997Z"/>
+    <path d="M772 528C820 430 950 385 1040 385C1180 385 1290 450 1325 548C1420 560 1490 680 1505 860C1508 895 1500 915 1480 918C1450 905 1415 897 1390 900C1375 990 1345 1055 1300 1088C1283 1097 1268 1085 1272 1060C1280 1010 1282 960 1272 915C1215 890 1125 835 1075 724L1057 885C960 875 860 830 800 745C760 780 668 800 660 870C656 940 656 1020 655 1100C615 1085 578 1060 555 1030C545 950 560 860 576 788C560 700 600 590 772 528Z"/>
+  </g>
+</svg>
+      <h1>Ngưu Nguyễn</h1>
+      <p class="title">Senior Product Designer, UI/UX</p>
+    </div>
+  </body>
+</html>

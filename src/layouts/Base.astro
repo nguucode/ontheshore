@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Avatar from "../components/Avatar.astro";
 import { type Lang, T, url } from "../i18n";
 import { contacts, email, phone } from "../data/contact";
+import { jobTitle } from "../data/cv";
 
 interface Props {
   title?: string; // bỏ trống = trang chủ
@@ -12,11 +13,11 @@ interface Props {
 
 const { title, lang } = Astro.props;
 const t = T(lang);
-const description = Astro.props.description ?? "Product Designer, UI/UX";
+const description = Astro.props.description ?? jobTitle;
 
 const site = "OnTheShore";
 const name = t("Ngưu (Roland) Nguyễn", "Nguu (Roland) Nguyen");
-const fullTitle = title ? `${title} — ${site}` : `${name} — Product Designer, UI/UX`;
+const fullTitle = title ? `${title} — ${site}` : `${name} — ${jobTitle}`;
 const path = Astro.url.pathname;
 const bare = path.replace(/^\/vi(?=\/)/, ""); // đường dẫn không kèm /vi
 const other: Lang = lang === "en" ? "vi" : "en";
@@ -31,7 +32,7 @@ const person = {
   "@type": "Person",
   name,
   alternateName: ["Ngưu Nguyễn", "Roland Nguyen"],
-  jobTitle: "Product Designer, UI/UX",
+  jobTitle,
   url: Astro.site,
   image: new URL("/avatar.png", Astro.site),
   email: email.value,

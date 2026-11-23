@@ -6,7 +6,7 @@ import portrait from "../../assets/portrait.png";
 import { getLang, langPaths, T, url } from "../../i18n";
 import { compact, totalUses } from "../../data/products";
 import { email, linkedin, phone } from "../../data/contact";
-import { community, experience, skills, summary } from "../../data/cv";
+import { community, experience, jobTitle, skills, summary } from "../../data/cv";
 
 export const getStaticPaths = langPaths;
 
@@ -39,7 +39,7 @@ const facts = [
   <Image class="portrait" src={portrait} width={320} alt={t("Ảnh chân dung Ngưu Nguyễn", "Portrait of Ngưu Nguyễn")} loading="eager" />
   <h1>{t("Ngưu (Roland) Nguyễn", "Nguu (Roland) Nguyen")}</h1>
   <p class="lede">
-    Senior Product Designer · {t("Nha Trang, Việt Nam · nhận làm remote", "Nha Trang, Vietnam · open to remote")}
+    {jobTitle} · {t("Nha Trang, Việt Nam · nhận làm remote", "Nha Trang, Vietnam · open to remote")}
   </p>
   <p>{summary[lang]}</p>
   <p>
