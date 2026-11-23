@@ -14,6 +14,7 @@ const projects = defineCollection({
     previews: z.record(z.string(), z.string()).optional(), // nhãn link → ảnh xem trước khi hover link đó
     order: z.number().default(99),
     draft: z.boolean().default(false),
+    soon: z.boolean().default(false), // "Coming soon": hiện một dòng trong danh sách, không link, không có trang chi tiết
   }),
 });
 

@@ -1,15 +1,15 @@
 ---
-title: "One product, priced for every country it ships to"
-role: "Product Owner, BA and Lead Product Designer"
+title: "Market - E-commerce Platform"
+role: "Lead Product Designer"
 year: "2023"
 summary: "A multi-vendor marketplace, built by an outsourcing team with no e-commerce background, that turned cross-border halfway through: goods stocked in Vietnam, sold to buyers abroad."
 facts:
   Platform: "Web app, Mobile app"
   Team: "Me and 2 designers, with the client's CEO, tech lead and PO"
-  Role: "Product Owner, BA, Lead Product Designer"
+  Role: "Lead Product Designer"
   Duration: "3 years, shipped quarterly"
 cover: "/projects/cross-border-marketplace/cover.svg"
-order: 0
+order: 5
 draft: false
 ---
 

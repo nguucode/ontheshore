@@ -8,7 +8,7 @@ facts:
   Team: "3 designers (me and 2 juniors), 50 developers"
   Role: "Lead Product Designer, product consultant"
 order: 2.5
-draft: false
+draft: true
 ---
 
 The key decisions were to build the product in the order the seat model dictates, and to make a transfer as fast in the system as it had been in chat.

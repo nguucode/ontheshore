@@ -1,13 +1,13 @@
 ---
-title: "One unit, one owner"
-role: "Product Owner, BA and Lead Designer"
+title: "Fortify - Real-estate CRM"
+role: "Senior UI/UX Designer"
 year: "—"
 summary: "A sales platform that moved a property group's whole sales force off spreadsheet inventories, built around the state of each unit."
 facts:
   Platform: "Web admin, Mobile app for brokers"
-  Role: "Product Owner, BA and Lead Designer, vendor side"
+  Role: "Senior UI/UX Designer, vendor side"
   Status: "In production for over 2 years"
-order: 1.5
+order: 3
 draft: false
 ---
 

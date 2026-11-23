@@ -2,7 +2,7 @@
 import Base from "../../../layouts/Base.astro";
 import Row from "../../../components/Row.astro";
 import { getCollection } from "astro:content";
-import { byYear } from "../../../data/projects";
+import { byOrder } from "../../../data/projects";
 import { byLang, getLang, langPaths, T, url } from "../../../i18n";
 
 export const getStaticPaths = langPaths;
@@ -10,12 +10,12 @@ export const getStaticPaths = langPaths;
 const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
-const projects = byLang(await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft), lang).sort(byYear);
+const projects = byLang(await getCollection("projects", (p) => import.meta.env.DEV || !p.data.draft), lang).sort(byOrder);
 ---
 
 <Base title="Projects" description={t(
-    "Project UI/UX của Ngưu Nguyễn: Shopify analytics app, accounting SaaS, React design system, icon library, IoT app. Problem, role, process, outcome.",
-    "UI/UX projects by Ngưu Nguyễn: a Shopify analytics app, an accounting SaaS, a React design system, an icon library and an IoT app."
+    "Project UI/UX của Ngưu Nguyễn: design system React, accounting SaaS, CRM bất động sản, sàn e-commerce. Problem, role, process, outcome.",
+    "UI/UX projects by Ngưu Nguyễn: a React design system, an accounting SaaS, a real-estate CRM and an e-commerce platform."
   )} lang={lang}>
   <section class="sec">
     <h1 class="sec-label">Projects</h1>
@@ -35,7 +35,7 @@ const projects = byLang(await getCollection("projects", (p) => import.meta.env.D
         <ul class="ix">
           {projects.map((p, i) => (
             <Row
-              href={url(lang, `/projects/${p.slug}/`)}
+              href={p.data.soon ? undefined : url(lang, `/projects/${p.slug}/`)}
               title={p.data.title}
               lead={p.data.year}
               meta={p.data.client}
