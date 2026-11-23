@@ -528,34 +528,33 @@ hr {
   pointer-events: none;
 }
 
-.feature-nav button {
+/* .feature đứng trước để cỡ 44px thắng 2rem của .go-ring khai báo phía dưới */
+.feature .feature-nav button {
   position: absolute;
-  top: calc(100cqw * 480 / 1494); /* giữa khung ảnh 1494 / 960 */
+  top: calc(100cqw * 480 / 1494); /* giữa khung 1494 / 960; ảnh cao hơn (Kusabimaru) thì nút vẫn đứng yên chỗ này, không nhảy theo slide */
   translate: 0 -50%;
-  display: grid;
-  place-items: center;
-  width: 2.75rem; /* 44px */
+  width: 2.75rem; /* 44px; vòng tròn, transition và :active dùng chung với .go-ring */
   height: 2.75rem;
-  border: 1px solid currentColor;
-  border-radius: 50%;
   background: var(--bg);
   color: var(--accent);
   font: inherit;
   cursor: pointer;
   pointer-events: auto;
-  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.4s var(--ease);
 }
 
-.feature-nav button:first-child { left: 1rem; }
-.feature-nav button:last-child { right: 1rem; }
+.feature-nav button:first-child { left: var(--pad); }
+.feature-nav button:last-child { right: var(--pad); }
 
-.feature-nav button:hover {
-  background: var(--accent);
-  color: var(--bg);
-}
+/* chỉ khi có chuột thật: trên màn chạm :hover dính lại sau khi chạm, nút sẽ kẹt màu và thanh thời gian kẹt dừng */
+@media (hover: hover) {
+  .feature-nav button:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
 
-.feature-nav button:active {
-  transform: scale(0.96);
+  .feature:has(.feature-nav:hover) .feature-bar {
+    animation-play-state: paused;
+  }
 }
 
 .feature-nav button:focus-visible {
@@ -589,8 +588,8 @@ hr {
   outline-offset: -14px;
 }
 
-/* chỉ dừng khi đang đọc slide (rê chuột vào slide hoặc nút ← →, focus bàn phím vào slide); bấm gạch thì không dừng */
-.feature:has(.feature-track:hover, .feature-nav:hover, .feature-track :focus-visible) .feature-bar {
+/* chỉ dừng khi đang đọc slide (rê chuột vào slide, focus bàn phím vào slide hoặc nút); bấm gạch thì không dừng */
+.feature:has(.feature-track:hover, :is(.feature-track, .feature-nav) :focus-visible) .feature-bar {
   animation-play-state: paused;
 }
 
@@ -718,7 +717,8 @@ img.feature-media {
   white-space: nowrap;
 }
 
-.go-ring {
+.go-ring,
+.feature-nav button {
   display: grid;
   place-items: center;
   width: 2rem;
@@ -734,7 +734,8 @@ img.feature-media {
   transform: translateX(3px);
 }
 
-.go:active .go-ring {
+.go:active .go-ring,
+.feature-nav button:active {
   transform: scale(0.96);
 }
 
@@ -1900,7 +1901,7 @@ code {
     container-type: normal;
   }
 
-  .feature-nav button {
+  .feature .feature-nav button {
     position: static;
     translate: none;
   }
