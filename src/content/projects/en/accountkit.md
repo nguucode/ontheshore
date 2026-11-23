@@ -92,7 +92,12 @@ A prototype let the CEO show the team an idea instead of describing it, and that
 
 ## See a demo: Fortify
 
-AccountKit's design system and prompts belong to the company, so I cannot share them here. [Fortify](https://crm.ontheshore.biz) is a public demo I built with AI from a written spec and its own design system: a front-end CRM for a US insurance agency, running on mock data. The [source code](https://github.com/nguucode/fortify) is open.
+AccountKit's Storybook, design system and prompts are under NDA, so I cannot show them here. As a stand-in, I built [Fortify](https://crm.ontheshore.biz), a front-end CRM for a US insurance agency running on mock data. The prototype was built entirely with Claude Code. The [source code](https://github.com/nguucode/fortify) is open.
+
+<figure class="shot">
+  <img src="/projects/accountkit/fortify.png" alt="Fortify's Today screen for a producer: new leads, pipeline by stage, goal pacing and the day's tasks" loading="lazy" />
+  <figcaption>Fortify, a prototype built with Claude Code.</figcaption>
+</figure>
 
 ## About the visuals
 
