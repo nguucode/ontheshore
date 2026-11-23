@@ -1,65 +1,36 @@
 <!doctype html>
-<!-- Nguồn của public/og.png (1200x630). Sửa chữ ở đây rồi chụp lại từ thư mục gốc repo:
+<!-- Nguồn của public/og.png (1200x630). Sửa ở đây rồi chụp lại từ thư mục gốc repo:
      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
        --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=10000 \
-       --screenshot=public/og.png "file://$PWD/scripts/og.html" -->
+       --screenshot=public/og.png "file://$PWD/scripts/og.html"
+     Avatar lấy thẳng public/favicon.svg, nên file đó phải là XML hợp lệ. -->
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600&family=Space+Grotesk:wght@500&display=block"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600&family=Space+Grotesk:wght@500&display=block" />
     <style>
-      body {
-        margin: 0;
-        width: 1200px;
-        height: 630px;
-        overflow: hidden;
-        background: #fff;
-        border-right: 80px solid #003c88;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        gap: 65px;
-        padding-left: 88px;
-        font-family: "Be Vietnam Pro", sans-serif;
-      }
-      img {
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        object-fit: cover;
-        filter: grayscale(1);
-      }
-      h1 {
-        margin: 0;
-        font-size: 80px;
-        font-weight: 600;
-        line-height: 1;
-        letter-spacing: -0.01em;
-        color: #0f1320;
-      }
-      .title {
-        margin: 26px 0 0;
-        font-size: 36px;
-        font-weight: 500;
-        color: #003c88;
-      }
-      .site {
-        margin: 56px 0 0;
-        font: 500 24px "Space Grotesk", sans-serif;
-        letter-spacing: 0.1em;
-        color: #6b7080;
-      }
+      :root { --ink:#1c1d21; --soft:#565a64; --faint:#8a8d96; --accent:#003c88; --line:rgba(0,60,136,.1); --rule:rgba(0,60,136,.16); }
+      * { box-sizing: border-box; margin: 0; }
+      body { width:1200px; height:630px; overflow:hidden; background:#fff; color:var(--ink); font-family:"Be Vietnam Pro",sans-serif; -webkit-font-smoothing:antialiased; }
+      .num { font-family:"Space Grotesk",sans-serif; letter-spacing:-0.01em; }
+
+      /* Nền màu rail, lưới kẻ dọc mờ, avatar vẽ tay của rail trái, chữ trắng. */
+      body { background:var(--accent); color:#fff; display:grid; grid-template-columns:repeat(4,1fr); position:relative; }
+      body > i.v { border-right:1px solid rgba(255,255,255,.1); }
+      .wrap { position:absolute; inset:0; padding:64px 72px; display:flex; flex-direction:column; }
+      .label { font:500 22px "Space Grotesk",sans-serif; letter-spacing:.1em; color:rgba(255,255,255,.7); }
+      .avatar { position:absolute; right:50px; top:50%; width:460px; height:460px; transform:translateY(-50%); }
+      h1 { margin-top:auto; font-size:88px; font-weight:600; line-height:1.05; letter-spacing:-0.02em; }
+      .title { margin-top:20px; font-size:36px; font-weight:500; color:rgba(255,255,255,.82); }
     </style>
   </head>
   <body>
-    <img src="../src/assets/portrait.png" alt="" />
-    <div>
+    <i class="v"></i><i class="v"></i><i class="v"></i><i></i>
+    <div class="wrap">
+      <p class="label">ONTHESHORE.BIZ</p>
+      <img class="avatar" src="../public/favicon.svg" alt="" />
       <h1>Ngưu Nguyễn</h1>
       <p class="title">Senior Product Designer, UI/UX</p>
-      <p class="site">ONTHESHORE.BIZ</p>
     </div>
   </body>
 </html>
