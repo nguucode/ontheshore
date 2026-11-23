@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "find \"$(git rev-parse --git-common-dir)/objects/pack\" -name '._*' -delete 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
