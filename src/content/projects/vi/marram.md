@@ -1,18 +1,18 @@
 ---
-title: "Một nguồn token, mọi thay đổi đều được kiểm"
-role: "Senior Product Designer"
+title: "Marram - Design System"
+role: "Lead Product Designer"
 year: "2026"
 summary: "Marram, design system cho React mà tôi dựng lại công khai trong sáu tuần, vì các hệ tôi vận hành ở những công ty trước thuộc NDA. Open source, MIT, đang ở giai đoạn đầu."
 facts:
   Năm: "2026"
   Thời gian: "6 tuần"
-  Vai trò: "Senior Product Designer"
+  Vai trò: "Lead Product Designer"
   Team: "Tôi, cùng agent AI viết phần lớn code"
   Nền tảng: "React, Figma"
   License: "MIT"
   GitHub: "https://github.com/nguucode/marram"
   Storybook: "https://marram.ontheshore.biz/storybook/"
-order: 4
+order: 1
 draft: false
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: "One token source, every change checked"
-role: "Senior Product Designer"
+title: "Marram - Design System"
+role: "Lead Product Designer"
 year: "2026"
 summary: "Marram, a React design system I rebuilt in public in six weeks, because the systems I ran at previous companies are under NDA. Open source, MIT, early stage."
 facts:
   Year: "2026"
   Duration: "6 weeks"
-  Role: "Senior Product Designer"
+  Role: "Lead Product Designer"
   Team: "Me, with AI agents writing most of the code"
   Platform: "React, Figma"
   License: "MIT"
   GitHub: "https://github.com/nguucode/marram"
   Storybook: "https://marram.ontheshore.biz/storybook/"
-order: 4
+order: 1
 draft: false
 ---
 

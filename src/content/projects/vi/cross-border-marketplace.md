@@ -1,5 +1,5 @@
 ---
-title: "Một sản phẩm, có giá riêng cho từng nước nhận hàng"
+title: "Market - E-commerce Platform"
 role: "Product Owner, BA và Lead Product Designer"
 year: "2023"
 summary: "Một marketplace nhiều người bán, do một team outsource chưa từng làm e-commerce xây dựng, chuyển sang bán xuyên biên giới giữa chừng: hàng nằm ở Việt Nam, bán cho người mua ở nước ngoài."
@@ -9,7 +9,7 @@ facts:
   Vai trò: "Product Owner, BA, Lead Product Designer"
   Thời gian: "3 năm, ship theo quý"
 cover: "/projects/cross-border-marketplace/cover.svg"
-order: 0
+order: 5
 draft: false
 ---
 

@@ -8,7 +8,7 @@ facts:
   Team: "3 designer (tôi và 2 junior), 50 developer"
   Vai trò: "Lead Product Designer, product consultant"
 order: 2.5
-draft: false
+draft: true
 ---
 
 Hai quyết định chính: xây sản phẩm theo đúng thứ tự mà mô hình ghế đòi hỏi, và làm cho một lần điều chuyển trên hệ thống nhanh ngang với nhắn tin.

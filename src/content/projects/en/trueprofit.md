@@ -4,7 +4,7 @@ role: "Product Designer"
 year: "2020 — 2021"
 summary: "A Shopify app that shows merchants their true net profit, live, by gathering every cost on its own. Web and iOS."
 order: 1
-draft: false
+draft: true
 ---
 
 ## The product
