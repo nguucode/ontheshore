@@ -589,8 +589,8 @@ hr {
   outline-offset: -14px;
 }
 
-/* chỉ dừng khi đang đọc slide (rê chuột hoặc focus bàn phím vào slide); bấm gạch thì không dừng */
-.feature:has(.feature-track:hover, .feature-track :focus-visible) .feature-bar {
+/* chỉ dừng khi đang đọc slide (rê chuột vào slide hoặc nút ← →, focus bàn phím vào slide); bấm gạch thì không dừng */
+.feature:has(.feature-track:hover, .feature-nav:hover, .feature-track :focus-visible) .feature-bar {
   animation-play-state: paused;
 }
 
