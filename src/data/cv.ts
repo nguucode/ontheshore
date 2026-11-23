@@ -87,16 +87,16 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Tools", items: ["Figma", "FigJam", "Storybook", "Miro", "Jira", "Confluence", "Notion", "Microsoft\u00a0365"] },
 ];
 
-// Community and Products: hai nơi xem hết sản phẩm (sếp chọn 2026-10-05, bỏ Gumroad 2026-10-29; chữ sửa 2026-11-23, "+100k" viết cứng vì số chính xác đã có ở chỗ khác). Dùng chung cho CV PDF và trang About.
+// Community and Products: hai nơi xem hết sản phẩm (sếp chọn 2026-10-05, bỏ Gumroad 2026-10-29; chữ sửa 2026-11-23, "100k+" viết cứng vì số chính xác đã có ở chỗ khác). Dùng chung cho CV PDF và trang About.
 export const community: { name: string; what: Text; href: string }[] = [
   {
     name: "Figma",
-    what: { vi: "Toàn template miễn phí, +100k lượt dùng", en: "All free templates, +100k uses" },
+    what: { vi: "Template miễn phí, 100k+ lượt dùng", en: "Free templates, 100k+ uses" },
     href: "https://www.figma.com/@nguunguyen73",
   },
   {
     name: "Website",
-    what: { vi: "Công việc, sản phẩm và project của tôi", en: "My work, products and projects" },
+    what: { vi: "Project và sản phẩm của tôi", en: "My projects and products" },
     href: "https://ontheshore.biz/",
   },
 ];
