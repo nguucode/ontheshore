@@ -90,9 +90,9 @@ If I did it again, I would not stop at teaching the team the tools, because work
 
 A prototype let the CEO show the team an idea instead of describing it, and that was the biggest change this process brought. **But finishing a feature, in UX and in engineering, still takes the people who do that work.**
 
-## Try this workflow (free)
+## See a demo: Fortify
 
-AccountKit's design system and prompts belong to the company, so I cannot share them here. The same workflow runs on [Marram](/projects/marram/), my open-source design system. Its [Storybook](https://marram.ontheshore.biz/storybook/) is the component source a prototype is built from.
+AccountKit's design system and prompts belong to the company, so I cannot share them here. [Fortify](https://crm.ontheshore.biz) is a public demo I built with AI from a written spec and its own design system: a front-end CRM for a US insurance agency, running on mock data. The [source code](https://github.com/nguucode/fortify) is open.
 
 ## About the visuals
 

@@ -90,9 +90,9 @@ Nếu làm lại, tôi sẽ không dừng ở việc dạy team cách dùng côn
 
 Prototype giúp CEO cho cả team thấy ý tưởng thay vì phải kể lại nó, và đó là thay đổi lớn nhất mà quy trình này mang lại. **Nhưng để hoàn thiện một tính năng, cả về UX lẫn kỹ thuật, vẫn cần những người làm chuyên môn đó.**
 
-## Hãy thử với quy trình này (Miễn phí)
+## Xem demo: Fortify
 
-Design system và prompt của AccountKit thuộc về công ty, nên tôi không thể đưa ra đây. Cùng quy trình này chạy được trên [Marram](/vi/projects/marram/), design system mã nguồn mở của tôi. [Storybook](https://marram.ontheshore.biz/storybook/) của nó chính là nguồn component để một prototype được dựng lên.
+Design system và prompt của AccountKit thuộc về công ty, nên tôi không thể đưa ra đây. [Fortify](https://crm.ontheshore.biz) là bản demo công khai tôi dựng bằng AI từ một bản spec viết sẵn và design system riêng của nó: một CRM chỉ có front-end cho một đại lý bảo hiểm ở Mỹ, chạy trên dữ liệu giả lập. [Mã nguồn](https://github.com/nguucode/fortify) được công khai.
 
 ## Về hình ảnh
 
