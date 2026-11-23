@@ -17,6 +17,8 @@
   const IDLE = 900; // ms con trỏ đứng yên thì hết mỉm cười
   const FAST = 3; // px/ms: chuột nhanh hơn thế này thì ngạc nhiên
   const SLEEP_AFTER = 30000; // ms đứng yên thì ngáp rồi ngủ
+  // Màn cảm ứng không có con trỏ để nhìn theo: nhìn theo chiều cuộn (LOOK: mức cúi/ngẩng), vuốt nhanh hơn SCROLL_FAST px/ms thì ngạc nhiên.
+  const LOOK = 0.8, SCROLL_FAST = 4;
 
   const c01 = (v) => Math.max(0, Math.min(1, v));
   const clamp1 = (v) => Math.max(-1, Math.min(1, v));
@@ -59,9 +61,10 @@
   }
 
   const el = document.querySelector("[data-avatar]");
-  // Tắt chuyển động, hoặc màn cảm ứng không có con trỏ để nhìn theo: giữ nguyên mặt cười tĩnh trong markup, không gắn gì cả.
+  // Tắt chuyển động: giữ nguyên mặt cười tĩnh trong markup, không gắn gì cả.
   // (Đọc một lần lúc tải trang; đổi cài đặt giữa chừng thì phải tải lại.)
-  if (el && !matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) {
+  if (el && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const touch = matchMedia("(hover: none)").matches;
     const q = (s) => el.querySelector(s);
     const layers = [...el.querySelectorAll("[data-l]")].map((n) => [n, DEPTH[n.dataset.l]]);
     const warps = [...el.querySelectorAll("[data-warp]")].map((n) => [n, n.getAttribute("d").match(/[A-Za-z]|-?[\d.]+/g), BULGE[n.dataset.warp]]);
@@ -143,7 +146,7 @@
     // Không có hoạt động (con trỏ, cuộn, phím) đủ lâu: ngáp một cái, rồi nhắm mắt, đầu gục nhẹ.
     // Có hoạt động trở lại khi đang ngủ: giật mình tỉnh.
     function awake() {
-      if (sleepT) { sleepT = 0; surpriseAt = performance.now(); kick(); }
+      if (sleepT) { sleepT = ty = 0; surpriseAt = performance.now(); kick(); }
       clearTimeout(sleepTimer);
       sleepTimer = setTimeout(() => {
         yawnAt = performance.now(); kick();
@@ -153,19 +156,24 @@
 
     // Chuẩn hoá theo khoảng cách tới mép viewport ở mỗi phía, để avatar nằm sát góc vẫn dùng hết biên độ.
     const norm = (d, c, size) => { const n = clamp1(d > 0 ? d / (size - c) : d / c); return Math.sign(n) * Math.abs(n) ** 0.6; };
+    // Hết hoạt động: về vô cảm; màn cảm ứng thì thêm nhìn thẳng lại (không có con trỏ nào giữ hướng nhìn).
+    const rest = () => { if (touch) tx = ty = 0; kick(); };
+    // Lúc đang di chuột hoặc cuộn: phần lớn mỉm cười, khoảng 30% cười tít, khoảng 25% chớp thêm một cái.
+    function roll(now) {
+      if (now < nextRoll) return;
+      nextRoll = now + 1800 + Math.random() * 1500;
+      const r = Math.random(); grinRT = r < 0.3 ? 1 : 0; if (r > 0.75) blinkAt = now;
+    }
     addEventListener("pointermove", (e) => {
+      if (touch) return; // ngón tay kéo trang: hướng nhìn do chiều cuộn quyết định, không phải vị trí ngón tay
       const now = (lastMove = performance.now());
-      clearTimeout(idleTimer); idleTimer = setTimeout(kick, IDLE + 20);
+      clearTimeout(idleTimer); idleTimer = setTimeout(rest, IDLE + 20);
       if (lastPt) {
         const dt = now - lastPt.t, v = Math.hypot(e.clientX - lastPt.x, e.clientY - lastPt.y) / dt;
         if (dt > 4 && dt < 80 && v > FAST && now - surpriseAt > 3000) surpriseAt = now;
       }
       lastPt = { x: e.clientX, y: e.clientY, t: now };
-      if (now > nextRoll) {
-        // Lúc di chuột: phần lớn mỉm cười, khoảng 30% cười tít, khoảng 25% chớp thêm một cái.
-        nextRoll = now + 1800 + Math.random() * 1500;
-        const r = Math.random(); grinRT = r < 0.3 ? 1 : 0; if (r > 0.75) blinkAt = now;
-      }
+      roll(now);
       awake();
       box ||= el.getBoundingClientRect();
       const cx = box.left + box.width / 2, cy = box.top + box.height / 2;
@@ -179,11 +187,25 @@
       curiousT = !grinT && e.target.closest?.("a,button,input,label,[role=button]") ? 1 : 0;
       kick();
     });
-    addEventListener("pointerdown", () => { winkAt = performance.now(); kick(); });
+    // Nháy mắt: bấm chuột ở bất kỳ đâu; màn cảm ứng thì chỉ khi chạm link hoặc nút, vì mỗi lần vuốt cuộn cũng là một pointerdown.
+    addEventListener("pointerdown", () => { if (touch) awake(); else { winkAt = performance.now(); kick(); } });
+    if (touch) addEventListener("click", (e) => { if (e.target.closest?.("a,button")) { winkAt = performance.now(); kick(); } });
     (function blink() { setTimeout(() => { if (!sleepT && !yawn) { blinkAt = performance.now(); kick(); } blink(); }, 4000 + Math.random() * 3500); })();
     // Rail dính cố định nên vị trí avatar chỉ đổi khi đổi cỡ cửa sổ: đo một lần rồi nhớ.
     addEventListener("resize", () => { box = null; });
-    addEventListener("scroll", awake, { passive: true });
+    let lastY = scrollY, lastScroll = 0;
+    addEventListener("scroll", () => {
+      awake();
+      if (!touch) return;
+      const now = performance.now(), dy = scrollY - lastY, dt = now - lastScroll;
+      lastY = scrollY; lastScroll = now;
+      if (!dy) return;
+      lastMove = now; tx = 0; ty = dy > 0 ? LOOK : -LOOK; // cuộn xuống thì nhìn xuống, cuộn lên thì nhìn lên, kèm mỉm cười
+      if (dt < 80 && Math.abs(dy) / dt > SCROLL_FAST && now - surpriseAt > 3000) surpriseAt = now;
+      roll(now);
+      clearTimeout(idleTimer); idleTimer = setTimeout(rest, IDLE + 20);
+      kick();
+    }, { passive: true });
     addEventListener("keydown", awake);
     awake();
     // Chuyển trang (site là MPA): trang cũ ghi lại hướng nhìn và mức cười, trang mới dựng lại y như vậy.
@@ -195,7 +217,10 @@
       if (s && Number.isFinite(s.x + s.y + s.m) && Date.now() - s.t < 4000 && performance.getEntriesByType("navigation")[0]?.type !== "reload") {
         restored = true;
         x = gx = hx = tx = s.x; y = gy = hy = ty = s.y; mood = s.m; grinR = grinRT = s.g ? 1 : 0; nextRoll = performance.now() + 1500;
-        if (s.m > 0.5) { lastMove = performance.now(); idleTimer = setTimeout(kick, IDLE + 20); }
+        if (s.m > 0.5) lastMove = performance.now();
+        idleTimer = setTimeout(rest, IDLE + 20);
+        // Cú nháy mắt lúc bấm link bị chuyển trang cắt ngang: trang mới nháy tiếp từ lúc mắt đã khép.
+        if (s.w) winkAt = performance.now() - ENV.wink[0];
       }
     } catch {}
     if (!restored) {
@@ -204,10 +229,10 @@
       lastMove = now + GREET + SMILE - IDLE; // mỉm cười SMILE ms sau khi hết cười tít, rồi mới về vô cảm
       nextRoll = now + GREET + SMILE; // di chuột trong lúc chào không gieo lại biểu cảm
       setTimeout(() => { grinRT = 0; kick(); }, GREET);
-      idleTimer = setTimeout(kick, GREET + SMILE + 20);
+      idleTimer = setTimeout(rest, GREET + SMILE + 20);
     }
     addEventListener("pagehide", () => {
-      try { sessionStorage.setItem("avatar", JSON.stringify({ x: tx, y: ty, m: mood, g: grinRT, t: Date.now() })); } catch {}
+      try { sessionStorage.setItem("avatar", JSON.stringify({ x: tx, y: ty, m: mood, g: grinRT, w: performance.now() - winkAt < 1000, t: Date.now() })); } catch {}
     });
     draw();
     kick();
