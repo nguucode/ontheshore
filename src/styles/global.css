@@ -513,7 +513,7 @@ hr {
   grid-row: 1;
 }
 
-/* nút ← → nằm đè hai mép ảnh (cột 3–4), cao 0 nên không đẩy bố cục; chỉ nút nhận chuột */
+/* cặp nút ← → nằm đè góc dưới phải ảnh (cột 3–4), cao 0 nên không đẩy bố cục; chỉ nút nhận chuột */
 .feature {
   position: relative;
 }
@@ -528,13 +528,11 @@ hr {
   pointer-events: none;
 }
 
-/* .feature đứng trước để cỡ 44px thắng 2rem của .go-ring khai báo phía dưới */
-.feature .feature-nav button {
+/* vòng tròn 2rem, transition và :active dùng chung với .go-ring */
+.feature-nav button {
   position: absolute;
-  top: calc(100cqw * 480 / 1494); /* giữa khung 1494 / 960; ảnh cao hơn (Kusabimaru) thì nút vẫn đứng yên chỗ này, không nhảy theo slide */
-  translate: 0 -50%;
-  width: 2.75rem; /* 44px; vòng tròn, transition và :active dùng chung với .go-ring */
-  height: 2.75rem;
+  /* góc dưới phải khung 1494 / 960; ảnh cao hơn (Kusabimaru) thì nút vẫn đứng yên chỗ này, không nhảy theo slide */
+  top: calc(100cqw * 960 / 1494 - 2rem - var(--pad));
   background: var(--bg);
   color: var(--accent);
   font: inherit;
@@ -542,7 +540,7 @@ hr {
   pointer-events: auto;
 }
 
-.feature-nav button:first-child { left: var(--pad); }
+.feature-nav button:first-child { right: calc(var(--pad) + 2.5rem); } /* 2rem + khe 0.5rem */
 .feature-nav button:last-child { right: var(--pad); }
 
 /* chỉ khi có chuột thật: trên màn chạm :hover dính lại sau khi chạm, nút sẽ kẹt màu và thanh thời gian kẹt dừng */
@@ -1901,9 +1899,8 @@ code {
     container-type: normal;
   }
 
-  .feature .feature-nav button {
+  .feature-nav button {
     position: static;
-    translate: none;
   }
 
   .feature-slide {
