@@ -61,7 +61,10 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
   const mix = (n, s, k) => n + (s - n) * k;
   const f = (v) => v.toFixed(1);
   // Đường bao: lên trong a ms, giữ h ms, xuống trong r ms.
-  const env = (t, a, h, r) => (t < 0 || t > a + h + r ? 0 : t < a ? t / a : t < a + h ? 1 : 1 - (t - a - h) / r);
+  const env = (t, [a, h, r]) => (t < 0 || t > a + h + r ? 0 : t < a ? t / a : t < a + h ? 1 : 1 - (t - a - h) / r);
+  // Ngạc nhiên bật lên nhanh, tan chậm trong 2 giây. busy: đường bao còn đang chạy (cộng một khung hình để vẽ nốt giá trị 0).
+  const ENV = { blink: [80, 40, 130], wink: [80, 200, 140], yawn: [400, 900, 500], surprise: [120, 600, 2000] };
+  const busy = (t, [a, h, r]) => t < a + h + r + 20;
 
   // Các lớp "uốn": từng điểm của path bị đẩy theo độ nhô z của nó trên mặt cầu đầu (tâm, bán kính theo viewBox).
   const HEAD = [985, 960, 590];
@@ -90,16 +93,14 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
   }
 
   const el = document.querySelector("[data-avatar]");
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Tắt chuyển động: giữ nguyên mặt cười tĩnh trong markup, không gắn gì cả.
-  if (el && !reduce) {
+  // Tắt chuyển động, hoặc màn cảm ứng không có con trỏ để nhìn theo: giữ nguyên mặt cười tĩnh trong markup, không gắn gì cả.
+  // (Đọc một lần lúc tải trang; đổi cài đặt giữa chừng thì phải tải lại.)
+  if (el && !matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) {
     const q = (s) => el.querySelector(s);
     const layers = [...el.querySelectorAll("[data-l]")].map((n) => [n, DEPTH[n.dataset.l]]);
     const warps = [...el.querySelectorAll("[data-warp]")].map((n) => [n, n.getAttribute("d").match(/[A-Za-z]|-?[\d.]+/g), BULGE[n.dataset.warp]]);
     const eyes = [-1, 1].map((s) => ({ s, pupil: q(`[data-eye="${s}"]`), lid: q(`[data-lid="${s}"]`), clip: q(`#av-eye${s} path`) }));
     const brow = q("[data-brow]"), mouth = q("[data-mouth]"), o = q("[data-o]");
-    // Màn cảm ứng không có hover: mặt nghỉ là mặt cười, không bao giờ về vô cảm.
-    const still = matchMedia("(hover: none)").matches;
 
     // Vị trí: t* đích, x/y đầu (chậm), g* ánh nhìn (nhanh), h* ngọn tóc (trễ). verg: mức chụm mắt.
     let x = 0, y = 0, tx = 0, ty = 0, gx = 0, gy = 0, hx = 0, hy = 0, verg = 0;
@@ -108,7 +109,7 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
     let mood = 1, grin = 0, grinT = 0, grinR = 0, grinRT = 0, curious = 0, curiousT = 0, sleep = 0, sleepT = 0;
     let blinkV = 0, winkV = 0, surprise = 0, yawn = 0;
     let lastMove = -1e9, blinkAt = -1e9, winkAt = -1e9, surpriseAt = -1e9, yawnAt = -1e9, nextRoll = 0;
-    let idleTimer = 0, sleepTimer = 0, lastPt = null, raf = 0;
+    let idleTimer = 0, sleepTimer = 0, lastPt = null, raf = 0, box = null;
 
     function draw() {
       for (const [n, [dx, dy]] of layers) n.setAttribute("transform", `translate(${f(x * dx * STRENGTH)} ${f(y * dy * STRENGTH)})`);
@@ -155,14 +156,12 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
     const far = (a, b) => Math.abs(a - b) > 0.004;
     function tick() {
       raf = 0;
-      const now = performance.now(), want = still || now - lastMove < IDLE ? 1 : 0;
+      const now = performance.now(), want = now - lastMove < IDLE ? 1 : 0;
       if (!want) grinRT = 0;
       mood += (want - mood) * 0.1; curious += (curiousT - curious) * 0.15;
       grin += (grinT - grin) * 0.15; grinR += (grinRT - grinR) * 0.15; sleep += (sleepT - sleep) * 0.05;
-      blinkV = env(now - blinkAt, 80, 40, 130); winkV = env(now - winkAt, 80, 200, 140);
-      yawn = env(now - yawnAt, 400, 900, 500);
-      // Ngạc nhiên bật lên nhanh, tan chậm trong 2 giây và làm mượt hai đầu.
-      const s0 = env(now - surpriseAt, 120, 600, 2000); surprise = s0 * s0 * (3 - 2 * s0);
+      blinkV = env(now - blinkAt, ENV.blink); winkV = env(now - winkAt, ENV.wink); yawn = env(now - yawnAt, ENV.yawn);
+      const s0 = env(now - surpriseAt, ENV.surprise); surprise = s0 * s0 * (3 - 2 * s0); // làm mượt hai đầu
       const fast = Math.min(1, EASE * EYE.speed);
       gx += (tx - gx) * fast; gy += (ty - gy) * fast;
       x += (tx - x) * EASE; y += (ty - y) * EASE;
@@ -170,13 +169,15 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
       draw();
       // Còn thứ gì chưa tới đích hoặc còn đường bao đang chạy thì vẽ tiếp, không thì dừng hẳn vòng lặp.
       if (far(want, mood) || far(curiousT, curious) || far(grinT, grin) || far(grinRT, grinR) || far(sleepT, sleep) ||
-        now - blinkAt < 270 || now - winkAt < 440 || now - yawnAt < 1820 || now - surpriseAt < 2740 ||
+        busy(now - blinkAt, ENV.blink) || busy(now - winkAt, ENV.wink) || busy(now - yawnAt, ENV.yawn) || busy(now - surpriseAt, ENV.surprise) ||
         Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(x - hx) + Math.abs(y - hy) > 0.002) kick();
     }
     const kick = () => { raf ||= requestAnimationFrame(tick); };
 
-    // Đứng yên đủ lâu: ngáp một cái, rồi nhắm mắt, đầu gục nhẹ.
-    function armSleep() {
+    // Không có hoạt động (con trỏ, cuộn, phím) đủ lâu: ngáp một cái, rồi nhắm mắt, đầu gục nhẹ.
+    // Có hoạt động trở lại khi đang ngủ: giật mình tỉnh.
+    function awake() {
+      if (sleepT) { sleepT = 0; surpriseAt = performance.now(); kick(); }
       clearTimeout(sleepTimer);
       sleepTimer = setTimeout(() => {
         yawnAt = performance.now(); kick();
@@ -194,16 +195,16 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
         if (dt > 4 && dt < 80 && v > FAST && now - surpriseAt > 3000) surpriseAt = now;
       }
       lastPt = { x: e.clientX, y: e.clientY, t: now };
-      if (sleepT) { sleepT = 0; surpriseAt = now; } // đang ngủ bị đánh thức: giật mình
       if (now > nextRoll) {
         // Lúc di chuột: phần lớn mỉm cười, khoảng 30% cười tít, khoảng 25% chớp thêm một cái.
         nextRoll = now + 1800 + Math.random() * 1500;
         const r = Math.random(); grinRT = r < 0.3 ? 1 : 0; if (r > 0.75) blinkAt = now;
       }
-      armSleep();
-      const r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      awake();
+      box ||= el.getBoundingClientRect();
+      const cx = box.left + box.width / 2, cy = box.top + box.height / 2;
       tx = norm(e.clientX - cx, cx, innerWidth); ty = norm(e.clientY - cy, cy, innerHeight);
-      verg = Math.max(0, 1 - Math.hypot(e.clientX - cx, e.clientY - cy) / (r.width * 2.5));
+      verg = Math.max(0, 1 - Math.hypot(e.clientX - cx, e.clientY - cy) / (box.width * 2.5));
       kick();
     }, { passive: true });
     document.documentElement.addEventListener("pointerleave", () => { lastMove = -1e9; curiousT = grinT = tx = ty = verg = 0; kick(); });
@@ -214,7 +215,11 @@ const FACE = "M588 950C588 700 760 540 975 540C1200 540 1372 720 1368 1000C1362 
     });
     addEventListener("pointerdown", () => { winkAt = performance.now(); kick(); });
     (function blink() { setTimeout(() => { if (!sleepT && !yawn) { blinkAt = performance.now(); kick(); } blink(); }, 4000 + Math.random() * 3500); })();
-    armSleep();
+    // Rail dính cố định nên vị trí avatar chỉ đổi khi đổi cỡ cửa sổ: đo một lần rồi nhớ.
+    addEventListener("resize", () => { box = null; });
+    addEventListener("scroll", awake, { passive: true });
+    addEventListener("keydown", awake);
+    awake();
     kick();
   }
 </script>

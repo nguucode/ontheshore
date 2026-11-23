@@ -1,5 +1,5 @@
 /* ontheshore.biz — bản thử theo tinh thần Yamatane Museum.
-   Hai rail cố định, lưới 4 cột có kẻ đường dọc, một màu chàm. JS chỉ cho nút sáng/tối và link tab mới. */
+   Hai rail cố định, lưới 4 cột có kẻ đường dọc, một màu chàm. JS chỉ cho nút sáng/tối, link tab mới và avatar ở rail trái (components/Avatar.astro). */
 
 :root {
   /* Sáng/tối: mặc định sáng, đổi bằng nút trên rail trái (data-theme trên <html>). */

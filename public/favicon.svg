@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="305 290 1340 1340">
   <!-- Avatar của components/Avatar.astro ở tư thế cười tĩnh, nét dày hơn cho cỡ 16-32px.
-       Lớp đầu là cùng hình bóng đó với viền trắng dày, để icon tách khỏi thanh tab tối (kiểu icon Notion). -->
+       Lớp đầu là cùng hình bóng đó với viền trắng dày, để icon tách khỏi thanh tab tối (kiểu icon Notion).
+       Màu viết cứng (#1c1d21 = --ink bản sáng) vì favicon không đọc được CSS variable của trang. -->
   <g fill="#fff" stroke="#fff" stroke-width="150" stroke-linejoin="round">
     <ellipse cx="580" cy="1045" rx="105" ry="110"/>
     <ellipse cx="1358" cy="1017" rx="95" ry="133"/>
