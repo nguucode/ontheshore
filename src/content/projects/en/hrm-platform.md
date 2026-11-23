@@ -2,7 +2,7 @@
 title: "Three designers, fifty developers, one HRM built around the seat"
 role: "Lead Product Designer"
 year: "2024"
-summary: "An HRM product for an enterprise client, built by an IT outsourcing team with no prior HRM experience. Shipped and in daily use."
+summary: "An HRM product for an enterprise client, designed and built by an IT outsourcing team that had never worked on HRM before. It shipped and is in daily use."
 facts:
   Year: "2024"
   Team: "3 designers (me and 2 juniors), 50 developers"

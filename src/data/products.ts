@@ -33,33 +33,48 @@ const figmaTemplates: Item[] = [
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
    thumb: circleCharts,
     uses: 73900,
-    note: { vi: "Circle chart dựng sẵn cho dashboard. Template được dùng nhiều nhất.", en: "Ready-made circle charts for dashboards. My most-used template." },
+    note: {
+      vi: "Circle chart dựng sẵn cho dashboard. Mỗi chart giữ đúng tỉ lệ tròn 1:1 khi frame Auto Layout co giãn, nên đặt thẳng vào layout responsive mà không phải chỉnh lại.",
+      en: "Ready-made circle charts for dashboards. Each chart stays a true 1:1 circle while its Auto Layout frame resizes, so it drops into a responsive layout as is.",
+    },
   },
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
    thumb: basicCharts,
     uses: 19000,
-    note: { vi: "Bar, line và area chart cho dashboard thông dụng.", en: "Bar, line and area charts for everyday dashboards." },
+    note: {
+      vi: "Bar, column, stacked, line và circle chart cho dashboard thông dụng: hơn 150 variant, tất cả dựng bằng Auto Layout, có đủ light và dark theme.",
+      en: "Bar, column, stacked, line and circle charts for everyday dashboards: more than 150 variants, all built on Auto Layout, in light and dark themes.",
+    },
   },
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
    thumb: polarisChart,
     uses: 12700,
-    note: { vi: "Chart theo design system Polaris của Shopify, khớp với các component có sẵn.", en: "Charts built on Shopify's Polaris design system, consistent with its components." },
+    note: {
+      vi: "Các chart component của Shopify Admin, dựng lại cho Figma theo design system Polaris. Variant bám theo các cấu hình của Polaris Viz, thư viện chart React của Shopify.",
+      en: "The chart components of the Shopify Admin, rebuilt for Figma on the Polaris design system. Variants mirror the options of Polaris Viz, Shopify's React chart library.",
+    },
   },
   {
     name: "Country Flags",
     href: "https://www.figma.com/community/file/1360105018474702873/country-flags",
     uses: 105,
-    note: { vi: "Bộ cờ các quốc gia cho Figma.", en: "A set of country flags for Figma." },
+    note: {
+      vi: "Hơn 250 lá cờ quốc gia vẽ giản lược cho Figma, mỗi lá gắn tên và mã theo ISO 3166, sẵn sàng publish thành team library hoặc dùng làm local component.",
+      en: "More than 250 simplified country flags for Figma, each labelled with its ISO 3166 name and code, ready to publish as a team library or use as local components.",
+    },
   },
   {
     name: "Marram Design System",
     href: "https://www.figma.com/community/file/1703248516247985173/marram-design-system",
     uses: 3,
-    note: { vi: "File Figma của design system Marram, đi cùng bộ component React.", en: "The Figma file for the Marram design system, paired with its React components." },
+    note: {
+      vi: "Phần Figma của design system Marram: 70 component và 11 foundation trên một lớp token lấy code làm gốc, mỗi trang component đều có specs và guidelines.",
+      en: "The Figma side of the Marram design system: 70 components and 11 foundations on one layer of code-first tokens, with specs and guidelines on every component page.",
+    },
   },
 ];
 
@@ -69,8 +84,8 @@ const apps: Item[] = [
     href: "https://marram.ontheshore.biz",
     kind: "React UI kit",
     note: {
-      vi: "UI kit cho React: CSS Modules trên một lớp design token sinh tự động, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
-      en: "React UI kit: CSS Modules over a generated design-token layer, documented in Storybook. Button and Text Input are ready so far.",
+      vi: "UI kit React cho SaaS doanh nghiệp: CSS Modules trên một lớp design token sinh tự động từ code, tài liệu trên Storybook. Hiện đã có Button và Text Input.",
+      en: "A React UI kit for enterprise SaaS: CSS Modules over a design-token layer generated from code, documented in Storybook. Button and Text Input are ready so far.",
     },
   },
   {
@@ -80,8 +95,8 @@ const apps: Item[] = [
     price: "$20",
     kind: "Web + Figma plugin",
     note: {
-      vi: "Web app và plugin Figma. Đặt ảnh chụp màn hình hoặc frame vào thiết bị 3D thật, xoay tới góc ưng ý, xuất PNG nền trong suốt. 50 lượt đầu miễn phí.",
-      en: "A web app and a Figma plugin. Put a screenshot or a frame on a real 3D device, turn it to any angle, export a transparent PNG. The first 50 exports are free.",
+      vi: "Web app và plugin Figma: đặt ảnh chụp màn hình hoặc frame vào thiết bị 3D thật, xoay tới góc ưng ý rồi xuất PNG nền trong suốt. 50 lượt xuất đầu miễn phí.",
+      en: "A web app and a Figma plugin: put a screenshot or a frame on a real 3D device, turn it to any angle and export a transparent PNG. The first 50 exports are free.",
     },
   },
   {
@@ -91,8 +106,8 @@ const apps: Item[] = [
     kind: "macOS + Windows",
     free: true,
     note: {
-      vi: "App chụp màn hình và chú thích. Chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng. Mã nguồn mở.",
-      en: "A screenshot and annotation app. Capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using. Open source.",
+      vi: "App chụp màn hình và chú thích, mã nguồn mở: chụp một vùng, một cửa sổ hoặc cả màn hình, vẽ khung, chữ, bút, rồi copy hoặc dán thẳng vào app đang dùng.",
+      en: "An open-source screenshot and annotation app: capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using.",
     },
   },
 ];
@@ -103,6 +118,13 @@ export const groups = [
 ];
 
 export const all = groups.flatMap((g) => g.items.map((it) => ({ ...it, kind: it.kind ?? g.kind })));
+
+// note 140–170 ký tự để dòng trong danh sách luôn đủ 3 dòng chữ ở desktop; lệch thì build hỏng.
+for (const it of all)
+  for (const [lang, s] of Object.entries(it.note)) {
+    const n = [...s].length;
+    if (n < 140 || n > 170) throw new Error(`Product "${it.name}" (${lang}): note ${n} ký tự, cần 140–170.`);
+  }
 
 export const isPublished = (it: Item) => Boolean(it.href && !it.wip);
 export const totalPublished = all.filter(isPublished).length;

@@ -2,7 +2,7 @@
 title: "TrueProfit"
 role: "Product Designer"
 year: "2020 — 2021"
-summary: "App Shopify cho chủ shop thấy lợi nhuận ròng thật, theo thời gian thực, bằng cách tự gom mọi khoản chi phí. Có bản web và iOS."
+summary: "App Shopify cho chủ shop thấy lợi nhuận ròng thật, theo thời gian thực, bằng cách tự gom mọi chi phí: giá vốn, vận chuyển, phí, thuế và quảng cáo. Có bản web và iOS."
 order: 1
 draft: true
 ---

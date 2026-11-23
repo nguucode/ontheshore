@@ -2,7 +2,7 @@
 title: "AccountKit v3.0"
 role: "Senior Product Designer"
 year: "2026"
-summary: "Trong thời đại AI, hiện thực hoá ý tưởng và tăng tốc quá trình deliver là ước mơ của rất nhiều team phát triển sản phẩm. Trong vòng 6 tháng, tôi đã xây dựng design system, thiết kế sản phẩm và xây dựng quy trình làm việc với Claude Code, để không chỉ tôi mà cả CEO cũng có thể tự làm ra prototype để thể hiện ý tưởng cho mọi người."
+summary: "Design system, thiết kế sản phẩm và quy trình làm việc với Claude Code cho một SaaS kế toán ở Úc, làm trong 6 tháng để CEO, không chỉ tôi, tự dựng prototype cho ý tưởng."
 facts:
   Năm: "2026"
   Thời gian: "6 tháng"
