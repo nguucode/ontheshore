@@ -92,7 +92,12 @@ Prototype giúp CEO cho cả team thấy ý tưởng thay vì phải kể lại 
 
 ## Xem demo: Fortify
 
-Design system và prompt của AccountKit thuộc về công ty, nên tôi không thể đưa ra đây. [Fortify](https://crm.ontheshore.biz) là bản demo công khai tôi dựng bằng AI từ một bản spec viết sẵn và design system riêng của nó: một CRM chỉ có front-end cho một đại lý bảo hiểm ở Mỹ, chạy trên dữ liệu giả lập. [Mã nguồn](https://github.com/nguucode/fortify) được công khai.
+Storybook, design system và prompt của AccountKit nằm trong thỏa thuận bảo mật (NDA), nên tôi không thể đưa ra đây. Thay vào đó, tôi dựng [Fortify](https://crm.ontheshore.biz) làm bản demo: một CRM chỉ có front-end cho một đại lý bảo hiểm ở Mỹ, chạy trên dữ liệu giả lập. Toàn bộ prototype được tạo bằng Claude Code. [Mã nguồn](https://github.com/nguucode/fortify) được công khai.
+
+<figure class="shot">
+  <img src="/projects/accountkit/fortify.png" alt="Màn Today của Fortify cho producer: lead mới, pipeline theo từng giai đoạn, tiến độ chỉ tiêu và việc trong ngày" loading="lazy" />
+  <figcaption>Fortify, prototype dựng bằng Claude Code.</figcaption>
+</figure>
 
 ## Về hình ảnh
 
