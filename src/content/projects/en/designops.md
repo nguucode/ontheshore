@@ -1,10 +1,10 @@
 ---
 title: "DesignOps - Building a design team"
 role: "Lead Product Designer"
-year: "2023"
+year: "2024"
 summary: "How I grew a design team from just me to about eight people in a year, using the NN/g DesignOps framework as my map for people, process and the impact we made."
 facts:
-  Year: "2023"
+  Year: "2024"
   Duration: "About 1 year"
   Role: "Lead Product Designer"
   Team: "From 1 to 5–8 designers"

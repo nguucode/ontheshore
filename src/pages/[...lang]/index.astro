@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import nhaTrang from "../../assets/nha-trang.jpg";
 import { getCollection } from "astro:content";
-import { byOrder } from "../../data/projects";
+import { byYear } from "../../data/projects";
 import { byLang, getLang, langPaths, T, url } from "../../i18n";
 import { all, compact, topByUses, totalFree, totalUses } from "../../data/products";
 import { email, linkedin, phone } from "../../data/contact";
@@ -16,7 +16,7 @@ const lang = getLang(Astro.params.lang);
 const t = T(lang);
 
 const projects = byLang(await getCollection("projects", (p) => !p.data.draft), lang)
-  .sort(byOrder);
+  .sort(byYear);
 
 // Có lượt dùng xếp trước, theo số lượt dùng.
 const products = [...all].sort((a, b) => (b.uses ?? 0) - (a.uses ?? 0)).slice(0, 3);

@@ -1,10 +1,10 @@
 ---
 title: "DesignOps - Xây một team design"
 role: "Lead Product Designer"
-year: "2023"
+year: "2024"
 summary: "Cách tôi xây team design từ một mình tôi lên khoảng tám người trong một năm, lấy framework DesignOps của NN/g làm bản đồ cho con người, quy trình và tác động."
 facts:
-  Năm: "2023"
+  Năm: "2024"
   Thời gian: "Khoảng 1 năm"
   Vai trò: "Lead Product Designer"
   Team: "Từ 1 lên 5–8 designer"
