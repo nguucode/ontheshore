@@ -17,8 +17,10 @@
   const IDLE = 900; // ms con trỏ đứng yên thì hết mỉm cười
   const FAST = 3; // px/ms: chuột nhanh hơn thế này thì ngạc nhiên
   const SLEEP_AFTER = 30000; // ms đứng yên thì ngáp rồi ngủ
-  // Màn cảm ứng không có con trỏ để nhìn theo: nhìn theo chiều cuộn (LOOK: mức cúi/ngẩng), vuốt nhanh hơn SCROLL_FAST px/ms thì ngạc nhiên.
-  const LOOK = 0.8, SCROLL_FAST = 4;
+  // Màn cảm ứng không có con trỏ để nhìn theo: nhìn theo chiều cuộn.
+  const SCROLL_LOOK = 0.8; // mức cúi/ngẩng khi cuộn
+  const SCROLL_FAST = 4; // px/ms: vuốt nhanh hơn thế này thì ngạc nhiên
+  const SCROLL_DEAD = 6; // px: cuộn ngược ít hơn thế này (ngón tay rung) thì không đổi hướng nhìn
 
   const c01 = (v) => Math.max(0, Math.min(1, v));
   const clamp1 = (v) => Math.max(-1, Math.min(1, v));
@@ -193,15 +195,18 @@
     (function blink() { setTimeout(() => { if (!sleepT && !yawn) { blinkAt = performance.now(); kick(); } blink(); }, 4000 + Math.random() * 3500); })();
     // Rail dính cố định nên vị trí avatar chỉ đổi khi đổi cỡ cửa sổ: đo một lần rồi nhớ.
     addEventListener("resize", () => { box = null; });
-    let lastY = scrollY, lastScroll = 0;
+    // Kẹp trong khoảng cuộn được: cú nảy cao su của iOS ở hai đầu trang không được tính là cuộn ngược.
+    const sy = () => Math.max(0, Math.min(scrollY, document.documentElement.scrollHeight - innerHeight));
+    let lastY = sy(), lastScroll = 0;
     addEventListener("scroll", () => {
       awake();
       if (!touch) return;
-      const now = performance.now(), dy = scrollY - lastY, dt = now - lastScroll;
-      lastY = scrollY; lastScroll = now;
-      if (!dy) return;
-      lastMove = now; tx = 0; ty = dy > 0 ? LOOK : -LOOK; // cuộn xuống thì nhìn xuống, cuộn lên thì nhìn lên, kèm mỉm cười
-      if (dt < 80 && Math.abs(dy) / dt > SCROLL_FAST && now - surpriseAt > 3000) surpriseAt = now;
+      const now = performance.now(), y = sy(), dy = y - lastY, dt = now - lastScroll;
+      lastScroll = now;
+      if (!dy || (Math.sign(dy) !== Math.sign(ty) && Math.abs(dy) < SCROLL_DEAD)) return;
+      lastY = y;
+      lastMove = now; tx = 0; ty = Math.sign(dy) * SCROLL_LOOK; // cuộn xuống thì nhìn xuống, cuộn lên thì nhìn lên, kèm mỉm cười
+      if (dt > 4 && dt < 80 && Math.abs(dy) / dt > SCROLL_FAST && now - surpriseAt > 3000) surpriseAt = now;
       roll(now);
       clearTimeout(idleTimer); idleTimer = setTimeout(rest, IDLE + 20);
       kick();
@@ -219,8 +224,8 @@
         x = gx = hx = tx = s.x; y = gy = hy = ty = s.y; mood = s.m; grinR = grinRT = s.g ? 1 : 0; nextRoll = performance.now() + 1500;
         if (s.m > 0.5) lastMove = performance.now();
         idleTimer = setTimeout(rest, IDLE + 20);
-        // Cú nháy mắt lúc bấm link bị chuyển trang cắt ngang: trang mới nháy tiếp từ lúc mắt đã khép.
-        if (s.w) winkAt = performance.now() - ENV.wink[0];
+        // Cú nháy mắt lúc bấm link bị chuyển trang cắt ngang: trang mới nháy tiếp đúng chỗ đang dở.
+        if (s.w >= 0) winkAt = performance.now() - s.w;
       }
     } catch {}
     if (!restored) {
@@ -232,7 +237,7 @@
       idleTimer = setTimeout(rest, GREET + SMILE + 20);
     }
     addEventListener("pagehide", () => {
-      try { sessionStorage.setItem("avatar", JSON.stringify({ x: tx, y: ty, m: mood, g: grinRT, w: performance.now() - winkAt < 1000, t: Date.now() })); } catch {}
+      try { sessionStorage.setItem("avatar", JSON.stringify({ x: tx, y: ty, m: mood, g: grinRT, w: busy(performance.now() - winkAt, ENV.wink) ? performance.now() - winkAt : -1, t: Date.now() })); } catch {}
     });
     draw();
     kick();
