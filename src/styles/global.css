@@ -240,8 +240,8 @@ svg {
   background: rgba(255, 255, 255, 0.09);
 }
 
-/* hover chỉ cho chuột: trên màn cảm ứng :hover dính lại sau khi chạm, thành hai mục cùng sáng */
-@media (hover: hover) {
+/* hover chỉ khi có chuột (any-hover: laptop Windows cảm ứng báo hover: none dù đang dùng chuột): trên màn cảm ứng :hover dính lại sau khi chạm, thành hai mục cùng sáng */
+@media (any-hover: hover) {
   .rail-r a:hover {
     background: rgba(255, 255, 255, 0.09);
   }
@@ -553,7 +553,7 @@ hr {
 .feature-nav button:last-child { right: var(--pad); }
 
 /* chỉ khi có chuột thật: trên màn chạm :hover dính lại sau khi chạm, nút sẽ kẹt màu và thanh thời gian kẹt dừng */
-@media (hover: hover) {
+@media (any-hover: hover) {
   .feature-nav button:hover {
     background: var(--accent);
     color: var(--bg);
