@@ -3,6 +3,7 @@ title: "Marram - Design System"
 role: "Lead Product Designer"
 year: "2025"
 summary: "Marram, a React design system I rebuilt in public in six weeks, because the systems I ran at previous companies are under NDA. Open source, MIT, early stage."
+cover: "/projects/marram/cover.jpg"
 facts:
   Year: "2025"
   Duration: "6 weeks"

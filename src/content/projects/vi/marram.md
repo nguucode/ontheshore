@@ -3,6 +3,7 @@ title: "Marram - Design System"
 role: "Lead Product Designer"
 year: "2025"
 summary: "Marram, design system cho React mà tôi dựng lại công khai trong sáu tuần, vì các hệ tôi vận hành ở những công ty trước thuộc NDA. Open source, MIT, đang ở giai đoạn đầu."
+cover: "/projects/marram/cover.jpg"
 facts:
   Năm: "2025"
   Thời gian: "6 tuần"
