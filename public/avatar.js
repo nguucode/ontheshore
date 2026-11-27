@@ -63,10 +63,11 @@
   }
 
   const el = document.querySelector("[data-avatar]");
-  // Tắt chuyển động: giữ nguyên mặt cười tĩnh trong markup, không gắn gì cả.
-  // (Đọc một lần lúc tải trang; đổi cài đặt giữa chừng thì phải tải lại.)
-  if (el && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const touch = matchMedia("(hover: none)").matches;
+  // Không theo prefers-reduced-motion (sếp chốt 2026-11-27): Windows tắt "Animation effects" là Chrome báo reduce,
+  // avatar đứng yên trên rất nhiều máy. Chuyển động nhỏ, chỉ chạy khi người đọc tự di chuột hay cuộn.
+  if (el) {
+    // Laptop Windows có màn cảm ứng báo hover: none dù đang dùng chuột: lấy theo loại con trỏ của sự kiện gần nhất.
+    let touch = matchMedia("(hover: none)").matches;
     const q = (s) => el.querySelector(s);
     const layers = [...el.querySelectorAll("[data-l]")].map((n) => [n, DEPTH[n.dataset.l]]);
     const warps = [...el.querySelectorAll("[data-warp]")].map((n) => [n, n.getAttribute("d").match(/[A-Za-z]|-?[\d.]+/g), BULGE[n.dataset.warp]]);
@@ -125,23 +126,30 @@
     }
 
     const far = (a, b) => Math.abs(a - b) > 0.004;
+    // Các hệ số làm mượt được chỉnh trên màn 60Hz. Quy theo thời gian thật để màn 120/144Hz hay máy tụt khung
+    // vẫn đi đúng tốc độ đó. k(a): hệ số a của một khung 60Hz, đổi sang khoảng dt vừa qua.
+    const FRAME = 1000 / 60;
+    let last = 0, dt = FRAME;
+    const k = (a) => 1 - (1 - a) ** (dt / FRAME);
     function tick() {
       raf = 0;
       const now = performance.now(), want = now - lastMove < IDLE ? 1 : 0;
+      dt = last ? Math.min(now - last, 100) : FRAME; last = now; // vòng lặp vừa dừng rồi chạy lại: coi như một khung
       if (!want) grinRT = 0;
-      mood += (want - mood) * 0.1; curious += (curiousT - curious) * 0.15;
-      grin += (grinT - grin) * 0.15; grinR += (grinRT - grinR) * 0.15; sleep += (sleepT - sleep) * 0.05;
+      mood += (want - mood) * k(0.1); curious += (curiousT - curious) * k(0.15);
+      grin += (grinT - grin) * k(0.15); grinR += (grinRT - grinR) * k(0.15); sleep += (sleepT - sleep) * k(0.05);
       blinkV = env(now - blinkAt, ENV.blink); winkV = env(now - winkAt, ENV.wink); yawn = env(now - yawnAt, ENV.yawn);
       const s0 = env(now - surpriseAt, ENV.surprise); surprise = s0 * s0 * (3 - 2 * s0); // làm mượt hai đầu
-      const fast = Math.min(1, EASE * EYE.speed);
+      const fast = k(Math.min(1, EASE * EYE.speed)), ease = k(EASE), lag = k(EASE * 0.6);
       gx += (tx - gx) * fast; gy += (ty - gy) * fast;
-      x += (tx - x) * EASE; y += (ty - y) * EASE;
-      hx += (x - hx) * EASE * 0.6; hy += (y - hy) * EASE * 0.6;
+      x += (tx - x) * ease; y += (ty - y) * ease;
+      hx += (x - hx) * lag; hy += (y - hy) * lag;
       draw();
       // Còn thứ gì chưa tới đích hoặc còn đường bao đang chạy thì vẽ tiếp, không thì dừng hẳn vòng lặp.
       if (far(want, mood) || far(curiousT, curious) || far(grinT, grin) || far(grinRT, grinR) || far(sleepT, sleep) ||
         busy(now - blinkAt, ENV.blink) || busy(now - winkAt, ENV.wink) || busy(now - yawnAt, ENV.yawn) || busy(now - surpriseAt, ENV.surprise) ||
         Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(x - hx) + Math.abs(y - hy) > 0.002) kick();
+      else last = 0;
     }
     const kick = () => { raf ||= requestAnimationFrame(tick); };
 
@@ -167,6 +175,7 @@
       const r = Math.random(); grinRT = r < 0.3 ? 1 : 0; if (r > 0.75) blinkAt = now;
     }
     addEventListener("pointermove", (e) => {
+      touch = e.pointerType === "touch";
       if (touch) return; // ngón tay kéo trang: hướng nhìn do chiều cuộn quyết định, không phải vị trí ngón tay
       const now = (lastMove = performance.now());
       clearTimeout(idleTimer); idleTimer = setTimeout(rest, IDLE + 20);
@@ -190,8 +199,8 @@
       kick();
     });
     // Nháy mắt: bấm chuột ở bất kỳ đâu; màn cảm ứng thì chỉ khi chạm link hoặc nút, vì mỗi lần vuốt cuộn cũng là một pointerdown.
-    addEventListener("pointerdown", () => { if (touch) awake(); else { winkAt = performance.now(); kick(); } });
-    if (touch) addEventListener("click", (e) => { if (e.target.closest?.("a,button")) { winkAt = performance.now(); kick(); } });
+    addEventListener("pointerdown", (e) => { touch = e.pointerType === "touch"; if (touch) awake(); else { winkAt = performance.now(); kick(); } });
+    addEventListener("click", (e) => { if (touch && e.target.closest?.("a,button")) { winkAt = performance.now(); kick(); } });
     (function blink() { setTimeout(() => { if (!sleepT && !yawn) { blinkAt = performance.now(); kick(); } blink(); }, 4000 + Math.random() * 3500); })();
     // Rail dính cố định nên vị trí avatar chỉ đổi khi đổi cỡ cửa sổ: đo một lần rồi nhớ.
     addEventListener("resize", () => { box = null; });
