@@ -110,6 +110,17 @@ const apps: Item[] = [
       en: "An open-source screenshot and annotation app: capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using.",
     },
   },
+  // VietHoaGameXua luôn nằm cuối Apps: thêm app mới phía trên mục này.
+  {
+    name: "VietHoaGameXua",
+    href: "https://game.ontheshore.biz",
+    kind: "Windows",
+    free: true,
+    note: {
+      vi: "Bản Việt hóa game Steam dịch bằng AI theo văn phong và bảng thuật ngữ riêng của từng game. Mỗi game có bộ cài Windows riêng, sao lưu file gốc, gỡ ra là khôi phục.",
+      en: "Vietnamese translations of Steam games, made with AI from a style guide and a glossary for each game. Each game has its own Windows installer that backs up the originals.",
+    },
+  },
 ];
 
 export const groups = [
