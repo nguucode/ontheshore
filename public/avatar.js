@@ -179,11 +179,12 @@
       if (touch) return; // ngón tay kéo trang: hướng nhìn do chiều cuộn quyết định, không phải vị trí ngón tay
       const now = (lastMove = performance.now());
       clearTimeout(idleTimer); idleTimer = setTimeout(rest, IDLE + 20);
-      if (lastPt) {
-        const dt = now - lastPt.t, v = Math.hypot(e.clientX - lastPt.x, e.clientY - lastPt.y) / dt;
-        if (dt > 4 && dt < 80 && v > FAST && now - surpriseAt > 3000) surpriseAt = now;
+      // Chrome bắn pointermove mỗi khung: màn 240/360Hz cách nhau dưới 4ms, nên giữ điểm cũ tới khi đủ khoảng đo vận tốc.
+      const dt = lastPt ? now - lastPt.t : 1e9;
+      if (dt > 4) {
+        if (dt < 80 && Math.hypot(e.clientX - lastPt.x, e.clientY - lastPt.y) / dt > FAST && now - surpriseAt > 3000) surpriseAt = now;
+        lastPt = { x: e.clientX, y: e.clientY, t: now };
       }
-      lastPt = { x: e.clientX, y: e.clientY, t: now };
       roll(now);
       awake();
       box ||= el.getBoundingClientRect();
