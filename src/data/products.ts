@@ -110,9 +110,9 @@ const apps: Item[] = [
       en: "An open-source screenshot and annotation app: capture an area, a window or the full screen, mark it up, then copy it or paste it straight into the app you were using.",
     },
   },
-  // VietHoaGameXua luôn nằm cuối Apps: thêm app mới phía trên mục này.
+  // AI Game Translator (repo VietHoaGameXua) luôn nằm cuối Apps: thêm app mới phía trên mục này.
   {
-    name: "VietHoaGameXua",
+    name: "AI Game Translator",
     href: "https://game.ontheshore.biz",
     kind: "Windows",
     free: true,
