@@ -6,13 +6,17 @@
    local: href là trang trong site này, cần gắn tiền tố /vi/ khi xem bản tiếng Việt.
    price: sản phẩm trả phí, hiện thay số lượt dùng, không tính vào số miễn phí.
    kind: nhãn riêng cho mục chạy trên nhiều nền tảng (vd. Kusabimaru: web + plugin Figma).
-   thumb: ảnh ở khung Featured trên trang chủ và ảnh preview khi hover dòng ở trang Products; không có thì hiện placeholder. */
+   thumb: ảnh ở khung Featured trên trang chủ và ảnh preview khi hover dòng ở trang Products; không có thì hiện placeholder.
+     App lấy ảnh og:image của site sản phẩm; Figma template lấy thumbnail (og:image) trên Figma Community. */
 import type { ImageMetadata } from "astro";
 import circleCharts from "../assets/products/circle-charts.png";
 import basicCharts from "../assets/products/basic-charts.png";
 import polarisChart from "../assets/products/polaris-chart.png";
-import kusabimaru from "../assets/products/kusabimaru/macbook.png";
-import shoreshot from "../assets/products/shoreshot.jpg";
+import countryFlags from "../assets/products/country-flags.png";
+import marram from "../assets/products/marram.jpg";
+import kusabimaru from "../assets/products/kusabimaru-og.png";
+import shoreshot from "../assets/products/shoreshot-og.jpg";
+import aiGameTranslator from "../assets/products/ai-game-translator.png";
 
 export type Item = {
   name: string;
@@ -31,7 +35,7 @@ const figmaTemplates: Item[] = [
   {
     name: "Circle Charts",
     href: "https://www.figma.com/community/file/1227645405724568768/circle-charts",
-   thumb: circleCharts,
+    thumb: circleCharts,
     uses: 73900,
     note: {
       vi: "Circle chart dựng sẵn cho dashboard. Mỗi chart giữ đúng tỉ lệ tròn 1:1 khi frame Auto Layout co giãn, nên đặt thẳng vào layout responsive mà không phải chỉnh lại.",
@@ -41,7 +45,7 @@ const figmaTemplates: Item[] = [
   {
     name: "Basic Charts",
     href: "https://www.figma.com/community/file/1295304364849245693/basic-charts",
-   thumb: basicCharts,
+    thumb: basicCharts,
     uses: 19000,
     note: {
       vi: "Bar, column, stacked, line và circle chart cho dashboard thông dụng: hơn 150 variant, tất cả dựng bằng Auto Layout, có đủ light và dark theme.",
@@ -51,7 +55,7 @@ const figmaTemplates: Item[] = [
   {
     name: "Polaris Chart",
     href: "https://www.figma.com/community/file/1235877373897536001/polaris-chart",
-   thumb: polarisChart,
+    thumb: polarisChart,
     uses: 12700,
     note: {
       vi: "Các chart component của Shopify Admin, dựng lại cho Figma theo design system Polaris. Variant bám theo các cấu hình của Polaris Viz, thư viện chart React của Shopify.",
@@ -60,6 +64,7 @@ const figmaTemplates: Item[] = [
   },
   {
     name: "Country Flags",
+    thumb: countryFlags,
     href: "https://www.figma.com/community/file/1360105018474702873/country-flags",
     uses: 105,
     note: {
@@ -69,6 +74,7 @@ const figmaTemplates: Item[] = [
   },
   {
     name: "Marram Design System",
+    thumb: marram,
     href: "https://www.figma.com/community/file/1703248516247985173/marram-design-system",
     uses: 3,
     note: {
@@ -81,6 +87,7 @@ const figmaTemplates: Item[] = [
 const apps: Item[] = [
   {
     name: "Marram",
+    thumb: marram, // marram.ontheshore.biz chưa có og:image, dùng thumbnail Figma Community của Marram Design System
     href: "https://marram.ontheshore.biz",
     kind: "React UI kit",
     note: {
@@ -113,6 +120,7 @@ const apps: Item[] = [
   // AI Game Translator (repo VietHoaGameXua) luôn nằm cuối Apps: thêm app mới phía trên mục này.
   {
     name: "AI Game Translator",
+    thumb: aiGameTranslator,
     href: "https://game.ontheshore.biz",
     kind: "Windows",
     free: true,
